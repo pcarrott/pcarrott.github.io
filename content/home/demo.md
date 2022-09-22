@@ -8,8 +8,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
 
-title = "Academic Template"
-subtitle = ""
+title = "DEEZ NUTS"
+subtitle = "gottem"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -25,10 +25,13 @@ subtitle = ""
   # color = "navy"
   
   # Background gradient.
-  gradient_start = "DarkGreen"
-  gradient_end = "ForestGreen"
+  # gradient_start = "DarkGreen"
+  # gradient_end = "ForestGreen"
   
   # Background image.
+  image = "nose2.jpeg"
+  image_darken = 0.6
+  image_parallax = true
   # image = "image.jpg"  # Name of image in `static/media/`.
   # image_darken = 0.6  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
   # image_size = "cover"  #  Options are `cover` (default), `contain`, or `actual` size.
@@ -50,7 +53,23 @@ subtitle = ""
  css_class = ""
 +++
 
-## 👋 Welcome to the Academic Template
+## Welcome to the dankest site on the web
+
+Just kidding, let's keep things professional...
+
+This site is still under development, so it's still not how I want it
+
+(I haven't done really that much in my life to fill the site anyway, so...)
+
+(I don't have an OnlyFans, so I can't advertise for that either)
+
+Anyway... 
+
+Enough of my stupid face, let's get to what matters
+
+Enjoy!
+
+<!-- ## 👋 Welcome to the Academic Template
 
 The Wowchemy **Academic Resumé Template** for Hugo empowers you to create your job-winning online resumé and showcase your academic publications.
 
@@ -83,4 +102,4 @@ Backgrounds can be applied to any section. Here, the _background_ option is set 
 
 ## Get inspired
 
-[Check out the Markdown files](https://github.com/wowchemy/starter-academic/tree/master/exampleSite) which power the [Academic Demo](https://academic-demo.netlify.app), or [view the showcase](https://wowchemy.com/user-stories/).
+[Check out the Markdown files](https://github.com/wowchemy/starter-academic/tree/master/exampleSite) which power the [Academic Demo](https://academic-demo.netlify.app), or [view the showcase](https://wowchemy.com/user-stories/). -->
