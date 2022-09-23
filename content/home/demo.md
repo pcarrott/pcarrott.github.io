@@ -6,10 +6,10 @@
 widget = "blank"  # See https://wowchemy.com/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 15  # Order that this section will appear.
+weight = 80  # Order that this section will appear.
 
-title = "DEEZ NUTS"
-subtitle = "gottem"
+# title = "DEEZ NUTS"
+# subtitle = "gottem"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -29,7 +29,7 @@ subtitle = "gottem"
   # gradient_end = "ForestGreen"
   
   # Background image.
-  image = "nose2.jpeg"
+  image = "elmo.jpg"
   image_darken = 0.6
   image_parallax = true
   # image = "image.jpg"  # Name of image in `static/media/`.
@@ -43,7 +43,7 @@ subtitle = "gottem"
 
 [design.spacing]
   # Customize the section spacing. Order is top, right, bottom, left.
-  padding = ["20px", "0", "20px", "0"]
+  padding = ["20px", "0", "0", "0"]
 
 [advanced]
  # Custom CSS. 
@@ -53,7 +53,7 @@ subtitle = "gottem"
  css_class = ""
 +++
 
-## Welcome to the dankest site on the web
+<!-- ## Welcome to the dankest site on the web
 
 Just kidding, let's keep things professional...
 
@@ -67,7 +67,10 @@ Anyway...
 
 Enough of my stupid face, let's get to what matters
 
-Enjoy!
+Enjoy! -->
+
+<center>{{< figure src="rickroll.gif" width="20%" >}}<center>
+
 
 <!-- ## 👋 Welcome to the Academic Template
 

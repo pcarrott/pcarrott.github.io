@@ -6,8 +6,8 @@
 # Appearance
 
 appearance:
-  theme_day: minimal
-  theme_night: minimal
+  theme_day: ocean
+  theme_night: ocean
   font: minimal
   font_size: L
 
@@ -41,9 +41,9 @@ header:
 
 # Site footer
 
-# footer:
-#   copyright:
-#     notice: '© {year} Pedro Carrott. This work is licensed under {license}.'
+footer:
+  copyright:
+    notice: '© {year} Pedro Carrott. Yet another meme enthusiast.'
 #     license:
 #       enable: true
 #       allow_derivatives: false

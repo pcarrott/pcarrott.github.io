@@ -67,7 +67,7 @@ email: 'pedro.carrott@tecnico.ulisboa.pt'
 highlight_name: true
 ---
 
-I am a Computer Science MSc student at [Instituto Superior Técnico](https://tecnico.ulisboa.pt). Currently, I am writing my dissertation on formal verification of concurrent skip lists in Iris, advised by Professor [João Ferreira](https://joaoff.com).
+I am a Computer Science MSc student at [Instituto Superior Técnico](https://tecnico.ulisboa.pt). Currently, I am writing my dissertation on formal verification of concurrent skip lists in [Iris](https://iris-project.org/), advised by Professor [João Ferreira](https://joaoff.com).
 
 My research interests include formal methods and their application on software reliability. In particular, I find concurrency an interesting verification challenge with extreme relevance in computer science.
 
