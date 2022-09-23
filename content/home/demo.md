@@ -30,7 +30,7 @@ weight = 80  # Order that this section will appear.
   
   # Background image.
   image = "elmo.jpg"
-  image_darken = 0.6
+  image_darken = 0.3
   image_parallax = true
   # image = "image.jpg"  # Name of image in `static/media/`.
   # image_darken = 0.6  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
