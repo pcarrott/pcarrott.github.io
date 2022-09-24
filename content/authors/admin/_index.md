@@ -75,6 +75,6 @@ I was born in the 8th of February of 1999 in Évora, Portugal. At 18, I went to 
 
 Currently, I am writing my MSc dissertation on formal verification of concurrent skip lists in [Iris](https://iris-project.org/), advised by Professor [João Ferreira](https://joaoff.com).
 
-My research interests include formal methods and their application on software verification. I have always been interested in pure mathematical reasoning and I found in this field of Computer Science a way to nurture that interest while contributing positively to society.
+My research interests include formal methods and their application on software verification. I have always been interested in pure mathematical reasoning and I found in this field of Computer Science a way to nurture that interest while contributing with a direct impact in society.
 
 <!-- {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}. -->
