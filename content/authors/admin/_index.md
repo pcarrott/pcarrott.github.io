@@ -14,7 +14,7 @@ organizations:
     url: https://tecnico.ulisboa.pt
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include formal methods and their application on software reliability.
+bio: My research interests include formal methods and their application on software verification.
 
 # Interests to show in About widget
 interests:
@@ -71,8 +71,10 @@ email: 'pedro.carrott@tecnico.ulisboa.pt'
 highlight_name: true
 ---
 
-I am a Computer Science MSc student at [Instituto Superior Técnico](https://tecnico.ulisboa.pt). Currently, I am writing my dissertation on formal verification of concurrent skip lists in [Iris](https://iris-project.org/), advised by Professor [João Ferreira](https://joaoff.com).
+I was born in the 8th of February of 1999 in Évora, Portugal. At 18, I went to Lisbon to study Computer Science at [Instituto Superior Técnico](https://tecnico.ulisboa.pt).
 
-My research interests include formal methods and their application on software reliability. In particular, I find concurrency an interesting verification challenge with extreme relevance in computer science.
+Currently, I am writing my MSc dissertation on formal verification of concurrent skip lists in [Iris](https://iris-project.org/), advised by Professor [João Ferreira](https://joaoff.com).
+
+My research interests include formal methods and their application on software verification. I have always been interested in pure mathematical reasoning and I found in this field of Computer Science a way to nurture that interest while contributing positively to society.
 
 <!-- {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}. -->
