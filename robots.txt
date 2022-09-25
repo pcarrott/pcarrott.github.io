@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://pcarrott.github.io/sitemap.xml
+Sitemap: https://<username>.github.io/sitemap.xml
