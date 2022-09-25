@@ -54,7 +54,7 @@ Alternatively, you can create a repository with same name and copy the contents 
 
 ## Setup the repository
 
-In ```config/_default/config.yml``` change the ```baseURL``` field to ```https://<USERNAME>.github.io``` and create a file named ```.github/workflows/gh-pages.yml``` with the following contents:
+In ```config/_default/config.yml``` change the ```baseURL``` field to ```https://<username>.github.io``` and create a file named ```.github/workflows/gh-pages.yml``` with the following contents:
 ```
 name: Deploy GitHub Pages
 
