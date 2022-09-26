@@ -5,7 +5,7 @@
 
 widget: blank  # See https://wowchemy.com/docs/page-builder/
 headless: true  # This file represents a page section.
-weight: 80  # Order that this section will appear.
+weight: 100  # Order that this section will appear.
 
 # title = "DEEZ NUTS"
 # subtitle = "gottem"
@@ -28,7 +28,7 @@ design:
     # gradient_end = "ForestGreen"
     
     # Background image.
-    image: rickroll.gif
+    image: elmo.jpg
     image_darken: 0.3
     image_parallax: true
     # image = "image.jpg"  # Name of image in `static/media/`.
