@@ -1,18 +1,18 @@
 ---
-title: How this website was created
-subtitle: Learn how to deploy your Wowchemy website with GitHub Pages.
+title: How to make a website like this
+subtitle: Learn how to deploy your Wowchemy website with GitHub Pages. Run Hugo on your machine to edit your website locally.
 
 # Summary for listings and search engines
-summary: Learn how to deploy your Wowchemy website with GitHub Pages.
+summary: Learn how to deploy your Wowchemy website with GitHub Pages. Run Hugo on your machine to edit your website locally.
 
 # Link this post with a project
 projects: []
 
 # Date published
-date: '2022-09-26T00:00:00Z'
+date: 2022-09-26
 
 # Date updated
-lastmod: '2022-09-26T00:00:00Z'
+lastmod: 2022-09-26
 
 # Is this an unpublished draft?
 draft: false
@@ -48,7 +48,7 @@ In this post, I will describe step-by-step how you can do the same for your webs
 
 ## Create the repository
 
-Open the Academic Theme repository and click on the green button saying *Use this template*. You will be asked to create a new repository which you should name *username*.github.io, where *username* is your GitHub username. 
+Open the [Academic Theme repository](https://github.com/wowchemy/starter-hugo-academic) and click on the green button saying *Use this template*. You will be asked to create a new repository which you should name *username*.github.io, where *username* is your GitHub username. 
 
 Alternatively, you can create a repository with same name and copy the contents of the Academic Theme to this new repository.
 
@@ -108,3 +108,19 @@ The ```gh-pages``` branch should've been created once you added the ```.github/w
 ## Check your website
 
 And that's it! It should take under a minute for your website to be successfully deployed. Visit your new website in **https://*username*.github.io**!
+
+## Edit your website
+
+Clone your repository and [install Hugo](https://gohugo.io/getting-started/installing/). Run your website on your machine by executing the command:
+
+```
+hugo server
+```
+
+This will provide you a link to access the website hosted on your machine. You can then modify your files and see the changes take place in real time. 
+
+Wowchemy provides a useful [guide](https://wowchemy.com/docs/getting-started/get-started/) on how to manage your files. Visit their site to know more about all features they offer.
+
+## Publish your modifications
+
+Once you're done editting your website, push those changes to the ```main``` branch. GitHub will then deploy those changes and the updated website will be available in no time.
