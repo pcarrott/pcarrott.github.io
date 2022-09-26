@@ -111,13 +111,13 @@ And that's it! It should take under a minute for your website to be successfully
 
 ## Edit your website
 
-Clone your repository and [install Hugo](https://gohugo.io/getting-started/installing/). Run your website on your machine by executing the command:
-
-```
-hugo server
-```
+Clone your repository and [install Hugo](https://gohugo.io/getting-started/installing/). Run your website on your machine by executing: ```hugo server```
 
 This will provide you a link to access the website hosted on your machine. You can then modify your files and see the changes take place in real time. 
+
+{{% callout note %}}
+Sometimes you might need to clear out cached contents by running: ```hugo mod clean```
+{{% /callout %}}
 
 Wowchemy provides a useful [guide](https://wowchemy.com/docs/getting-started/get-started/) on how to manage your files. Visit their site to know more about all features they offer.
 
