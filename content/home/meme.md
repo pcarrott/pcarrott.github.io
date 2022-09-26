@@ -29,7 +29,7 @@ weight = 100  # Order that this section will appear.
   # gradient_end = "ForestGreen"
   
   # Background image.
-  image = "elmo.jpg"
+  image = 'elmo.jpg'
   image_darken = 0.3
   image_parallax = true
   # image = "image.jpg"  # Name of image in `static/media/`.
