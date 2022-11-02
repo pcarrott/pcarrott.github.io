@@ -11,10 +11,10 @@ subtitle: ''
 content:
   filters:
     folders:
-      - thesis
+      - publication
     tag: ''
     category: ''
-    publication_type: ''
+    publication_type: '7'
     author: ''
     exclude_featured: false
     exclude_future: false

@@ -50,8 +50,8 @@ experience:
     date_start: '2020-09-13'
     date_end: ''
     description: |2-
-      * GPA: 19 out of 20
-      * Focus on Algorithms and Artificial Intelligence
+      GPA: 19 out of 20 <br>
+      Thesis advised by [João Ferreira](https://joaoff.com)
 
   - title: DEI Management System
     company: Instituto Superior Técnico
@@ -79,9 +79,7 @@ experience:
     date_start: '2017-09-12'
     date_end: '2020-07-22'
     description: |2-
-      * GPA: 18 out of 20
-      * Merit Board 2017-2018 (Top 35%)
-      * Excellence Board 2019-2020 (Top 10%)
+      GPA: 18 out of 20
 
 design:
   columns: '2'
