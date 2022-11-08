@@ -40,7 +40,7 @@ experience:
     location: Lisbon
     date_start: '2021-01-01'
     date_end: '2021-10-31'
-    description: Representative for the MSc students in Computer Science and Engineering at IST during 2020-2021.
+    description: Representative for the MSc students in Computer Science and Engineering at IST.
 
   - title: MSc in Computer Science and Engineering
     company: Instituto Superior Técnico
@@ -50,8 +50,7 @@ experience:
     date_start: '2020-09-13'
     date_end: ''
     description: |2-
-      GPA: 19 out of 20 <br>
-      Thesis advised by [João Ferreira](https://joaoff.com)
+      GPA: 19 out of 20
 
   - title: DEI Management System
     company: Instituto Superior Técnico
@@ -69,7 +68,7 @@ experience:
     location: Lisbon
     date_start: '2018-09-01'
     date_end: '2020-07-31'
-    description: Welcoming and guiding first year and international students at IST during 2018-2019 and 2019-2020.
+    description: Welcoming and guiding first year and international students at IST.
 
   - title: BSc in Information Systems and Computer Engineering
     company: Instituto Superior Técnico

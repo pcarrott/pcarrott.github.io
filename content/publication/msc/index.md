@@ -33,3 +33,7 @@ links:
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
 ---
+
+{{% callout note %}}
+MSc thesis advised by [João Ferreira](https://joaoff.com).
+{{% /callout %}}
