@@ -1,0 +1,30 @@
+# Theme metadata
+name = "Mine"
+
+[light]
+  # Primary
+  primary = "rgb(0, 136, 204)"
+
+  # Menu
+  menu_primary = "rgb(29, 33, 39)"
+  menu_text = "rgb(0, 136, 204)"
+  menu_text_active = "rgba(255,255,255,1)"
+  menu_title = "rgb(153, 153, 153)"
+
+  # Home sections
+  home_section_odd = "rgb(192, 192, 251)"
+  home_section_even = "rgb(200, 200, 255)"
+
+[dark]
+  # Primary
+  primary = "rgb(0, 136, 204)"
+
+  # Menu
+  menu_primary = "rgb(29, 33, 39)"
+  menu_text = "rgb(0, 136, 204)"
+  menu_text_active = "rgba(255,255,255,1)"
+  menu_title = "rgb(153, 153, 153)"
+
+  # Home sections
+  home_section_odd = "rgb(33, 37, 41)"
+  home_section_even = "rgb(37, 41, 43)"
