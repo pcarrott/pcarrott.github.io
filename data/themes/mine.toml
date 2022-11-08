@@ -12,6 +12,7 @@ name = "Mine"
   menu_title = "rgb(153, 153, 153)"
 
   # Home sections
+  background = "rgb(196, 196, 253)"
   home_section_odd = "rgb(192, 192, 251)"
   home_section_even = "rgb(200, 200, 255)"
 
@@ -26,5 +27,6 @@ name = "Mine"
   menu_title = "rgb(153, 153, 153)"
 
   # Home sections
+  background = "rgb(35, 39, 42)"
   home_section_odd = "rgb(33, 37, 41)"
   home_section_even = "rgb(37, 41, 43)"
