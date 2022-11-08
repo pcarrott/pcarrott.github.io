@@ -12,9 +12,9 @@ name = "Mine"
   menu_title = "rgb(153, 153, 153)"
 
   # Home sections
-  background = "rgb(206, 206, 253)"
-  home_section_odd = "rgb(202, 202, 251)"
-  home_section_even = "rgb(210, 210, 255)"
+  background = "rgb(206, 226, 253)"
+  home_section_odd = "rgb(202, 222, 251)"
+  home_section_even = "rgb(210, 230, 255)"
 
 [dark]
   # Primary
