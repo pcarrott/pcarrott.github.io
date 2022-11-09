@@ -157,12 +157,12 @@ Elements can be skipped by searching the lists in the higher levels
 &lt;/p>
 &lt;/div>
 &lt;div class="r-stack">
-&lt;img class="fragment current-visible" data-fragment-index="1" src="images/empty.png">
-&lt;img class="fragment current-visible" data-fragment-index="2" src="images/skip.png">
-&lt;img class="fragment current-visible" data-fragment-index="3" src="images/skip1.png">
-&lt;img class="fragment current-visible" src="images/skip2.png">
-&lt;img class="fragment current-visible" src="images/skip3.png">
-&lt;img class="fragment" src="images/skip4.png">
+&lt;img class="fragment current-visible" data-fragment-index="1" src="images/empty.svg">
+&lt;img class="fragment current-visible" data-fragment-index="2" src="images/skip.svg">
+&lt;img class="fragment current-visible" data-fragment-index="3" src="images/skip1.svg">
+&lt;img class="fragment current-visible" src="images/skip2.svg">
+&lt;img class="fragment current-visible" src="images/skip3.svg">
+&lt;img class="fragment" src="images/skip4.svg">
 &lt;/div>
 &lt;aside class="notes">
 &lt;p>The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure.&lt;/p>
@@ -188,7 +188,7 @@ Each node contains a &lt;i>vertical list&lt;/i>, a timeline with timestamped val
 To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head's
 &lt;/p>
 &lt;/div>
-&lt;img class="fragment" data-fragment-index="1" src="images/jelly.png">
+&lt;img class="fragment" data-fragment-index="1" src="images/jelly5.svg">
 &lt;aside class="notes">
 &lt;p>As skip lists allow certain keys to be skipped during traversal, this data structure can be used as a map implementation storing key-value pairs.&lt;/p>
 &lt;p>The JellyFish design keeps in each node a list of values, referred to as a vertical list, representing the timeline of values associated to the key, tagging each value with a given timestamp.&lt;/p>
@@ -215,18 +215,18 @@ Insertions are done bottom-up to maintain the sublist relation
 Updates follow the same initial steps, locking the key's predecessor
 &lt;/p>
 &lt;p class="fragment" data-fragment-index="7">
-As a node already exists for the key, the new value will be appended to the vertical list
+If a node already exists for the key, then the new value will be appended to the vertical list
 &lt;/p>
 &lt;/div>
 &lt;div class="r-stack">
-&lt;img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.png">
-&lt;img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.png">
-&lt;img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.png">
-&lt;img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.png">
-&lt;img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.png">
-&lt;img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.png">
+&lt;img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.svg">
+&lt;img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.svg">
+&lt;img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.svg">
+&lt;img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.svg">
+&lt;img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.svg">
+&lt;img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.svg">
 &lt;img class="fragment"
-data-fragment-index="7" src="images/jelly7.png">
+data-fragment-index="7" src="images/jelly7.svg">
 &lt;/div>
 &lt;aside class="notes">
 &lt;p>To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks.&lt;/p>
