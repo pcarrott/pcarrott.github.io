@@ -32,6 +32,8 @@ featured: true
 links:
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
+
+slides: msc
 ---
 
 {{% callout note %}}
