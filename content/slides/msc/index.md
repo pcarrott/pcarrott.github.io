@@ -151,12 +151,12 @@ We begin by looking at how skip lists can be used to perform efficient key searc
 </div>
 
 <div class="r-stack">
-  <img class="fragment current-visible" data-fragment-index="1" src="images/empty.png">
-  <img class="fragment current-visible" data-fragment-index="2" src="images/skip.png">
-  <img class="fragment current-visible" data-fragment-index="3" src="images/skip1.png">
-  <img class="fragment current-visible" src="images/skip2.png">
-  <img class="fragment current-visible" src="images/skip3.png">
-  <img class="fragment" src="images/skip4.png">
+  <img class="fragment current-visible" data-fragment-index="1" src="images/empty.svg">
+  <img class="fragment current-visible" data-fragment-index="2" src="images/skip.svg">
+  <img class="fragment current-visible" data-fragment-index="3" src="images/skip1.svg">
+  <img class="fragment current-visible" src="images/skip2.svg">
+  <img class="fragment current-visible" src="images/skip3.svg">
+  <img class="fragment" src="images/skip4.svg">
 </div>
 
 {{< speaker_note >}}
@@ -199,7 +199,7 @@ If the key is not found upon reaching the bottom level, then we can conclude tha
   </p>
 </div>
 
-<img class="fragment" data-fragment-index="1" src="images/jelly.png">
+<img class="fragment" data-fragment-index="1" src="images/jelly5.svg">
 
 {{< speaker_note >}}
 
@@ -241,19 +241,19 @@ Accordingly, if two updates are executed on the same key with the same timestamp
   </p>
 
   <p class="fragment" data-fragment-index="7">
-    As a node already exists for the key, the new value will be appended to the vertical list
+    If a node already exists for the key, then the new value will be appended to the vertical list
   </p>
 </div>
 
 <div class="r-stack">
-  <img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.png">
-  <img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.png">
-  <img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.png">
-  <img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.png">
-  <img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.png">
-  <img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.png">
+  <img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.svg">
+  <img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.svg">
+  <img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.svg">
+  <img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.svg">
+  <img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.svg">
+  <img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.svg">
   <img class="fragment" 
-  data-fragment-index="7" src="images/jelly7.png">
+  data-fragment-index="7" src="images/jelly7.svg">
 </div>
 
 {{< speaker_note >}}
