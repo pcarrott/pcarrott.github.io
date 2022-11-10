@@ -137,26 +137,43 @@ We begin by looking at how skip lists can be used to perform efficient key searc
 ### Overview
 
 <div class="r-stack">
-  <p class="fragment current-visible" data-fragment-index="1">
-    A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
-  </p>
+  {{< fragment weight=1 class=current-visible >}}
+  A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="2">
-    Each list is a sublist of its lower level and all lists are sorted by key
-  </p>
+  {{< fragment weight=2 class=current-visible >}}
+  Each list is a sublist of its lower level and all lists are sorted by key
+  {{< /fragment >}}
 
-  <p class="fragment" data-fragment-index="3">
-    Elements can be skipped by searching the lists in the higher levels
-  </p>
+  {{< fragment weight=3 >}}
+  Elements can be skipped by searching the lists in the higher levels
+  {{< /fragment >}}
 </div>
 
 <div class="r-stack">
-  <img class="fragment current-visible" data-fragment-index="1" src="images/empty.svg">
-  <img class="fragment current-visible" data-fragment-index="2" src="images/skip.svg">
-  <img class="fragment current-visible" data-fragment-index="3" src="images/skip1.svg">
-  <img class="fragment current-visible" src="images/skip2.svg">
-  <img class="fragment current-visible" src="images/skip3.svg">
-  <img class="fragment" src="images/skip4.svg">
+  {{< fragment weight=1 class=current-visible >}}
+  {{< figure src="images/empty.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  {{< figure src="images/skip.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  {{< figure src="images/skip1.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  {{< figure src="images/skip2.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  {{< figure src="images/skip3.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  {{< figure src="images/skip4.svg" >}}
+  {{< /fragment >}}
 </div>
 
 {{< speaker_note >}}
@@ -186,20 +203,22 @@ If the key is not found upon reaching the bottom level, then we can conclude tha
 ### JellyFish
 
 <div class="r-stack">
-  <p class="fragment current-visible" data-fragment-index="1">
-    The JellyFish skip list implements a map, storing key-value pairs
-  </p>
+  {{< fragment weight=1 class=current-visible >}}
+  The JellyFish skip list implements a map, storing key-value pairs
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="2">
-    Each node contains a <i>vertical list</i>, a timeline with timestamped values
-  </p>
+  {{< fragment weight=2 class=current-visible >}}
+  Each node contains a <i>vertical list</i>, a timeline with timestamped values
+  {{< /fragment >}}
 
-  <p class="fragment" data-fragment-index="3">
-    To append a new value, the timestamp must be <i>at least as recent</i> as the head's
-  </p>
+  {{< fragment weight=3 >}}
+  To append a new value, the timestamp must be <i>at least as recent</i> as the head's
+  {{< /fragment >}}
 </div>
 
-<img class="fragment" data-fragment-index="1" src="images/jelly5.svg">
+{{< fragment weight=1 >}}
+  {{< figure src="images/jelly5.svg" >}}
+{{< /fragment >}}
 
 {{< speaker_note >}}
 
@@ -220,40 +239,63 @@ Accordingly, if two updates are executed on the same key with the same timestamp
 ### Concurrent Updates
 
 <div class="r-stack">
-  <p class="fragment current-visible" data-fragment-index="1">
-    Updating threads employ lazy synchronization through locks
-  </p>
+  {{< fragment weight=1 class=current-visible >}}
+  Updating threads employ lazy synchronization through locks
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="2">
-    Traversal is done until the bottom, locking the key's predecessor
-  </p>
+  {{< fragment weight=2 class=current-visible >}}
+  Traversal is done until the bottom, locking the key's predecessor
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="3">
-    If the key does not exist, then a new node is linked to a random number of levels
-  </p>
+  {{< fragment weight=3 class=fade-in >}}
+  {{< fragment weight=6 class=fade-out >}}
+  If the key does not exist, then a new node is linked to a random number of levels
+  {{< /fragment >}}
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="5">
-    Insertions are done bottom-up to maintain the sublist relation
-  </p>
+  {{< fragment weight=6 class=current-visible >}}
+  Insertions are done bottom-up to maintain the sublist relation
+  {{< /fragment >}}
 
-  <p class="fragment current-visible" data-fragment-index="6">
-    Updates follow the same initial steps, locking the key's predecessor 
-  </p>
+  {{< fragment weight=7 class=current-visible >}}
+  Updates follow the same initial steps, locking the key's predecessor 
+  {{< /fragment >}}
 
-  <p class="fragment" data-fragment-index="7">
-    If a node already exists for the key, then the new value will be appended to the vertical list
-  </p>
+  {{< fragment weight=8 >}}
+  If a node already exists for the key, then the new value will be appended to the vertical list
+  {{< /fragment >}}
 </div>
 
 <div class="r-stack">
-  <img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.svg">
-  <img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.svg">
-  <img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.svg">
-  <img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.svg">
-  <img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.svg">
-  <img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.svg">
-  <img class="fragment" 
-  data-fragment-index="7" src="images/jelly7.svg">
+  {{< fragment weight=1 class=current-visible >}}
+  {{< figure src="images/jelly1.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  {{< figure src="images/jelly2.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  {{< figure src="images/jelly3.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  {{< figure src="images/jelly4.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=fade-in >}}
+  {{< fragment weight=7 class=fade-out >}}
+  {{< figure src="images/jelly5.svg" >}}
+  {{< /fragment >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=7 class=current-visible >}}
+  {{< figure src="images/jelly6.svg" >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=8 >}}
+  {{< figure src="images/jelly7.svg" >}}
+  {{< /fragment >}}
 </div>
 
 {{< speaker_note >}}

@@ -1,10 +1,4 @@
-/**
- * Sky theme for reveal.js.
- *
- * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
- */
  @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
- @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
  .reveal a {
    line-height: 1.3em;
  }
@@ -37,14 +31,13 @@
    --r-heading4-size: 1em;
    --r-code-font: monospace;
    --r-link-color: #0088CC;
-   --r-link-color-dark: #264c66;
+   --r-link-color-dark: #0088CC;
    --r-link-color-hover: #0088CC;
    --r-selection-background-color: #134674;
    --r-selection-color: #fff;
  }
  
  .reveal-viewport {
-   background: #add9e4;
    background-color: var(--r-background-color);
  }
  
@@ -352,8 +345,8 @@
   * PROGRESS BAR
   *********************************************/
  .reveal .progress {
-   background: rgba(0, 0, 0, 0.2);
-   color: var(--r-link-color);
+   background: var(--r-main-color);
+   color: var(--r-heading-color);
  }
  
  /*********************************************
