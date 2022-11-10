@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: https://pcarrott.github.io/sitemap.xml
