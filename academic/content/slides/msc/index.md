@@ -324,48 +324,136 @@ In other words, claiming a node's lock grants exclusive access to update the nod
 
 ---
 
-## Code Highlighting
+<section>
 
-Inline code: `variable`
+## Reasoning about Timestamped Domains
 
-Code block:
+<sup> (continue below) </sup>
 
-```python
-porridge = "blueberry"
-if porridge == "blueberry":
-    print("Eating...")
-```
+{{< speaker_note >}}
 
----
+Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values.
 
-## Math
-
-In-line math: $x + y = z$
-
-Block math:
-
-$$
-f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
-$$
+{{< /speaker_note >}}
 
 ---
 
-## Fragments
+### Ghost state in Iris
 
-Make content appear incrementally
+{{< fragment >}}
+  <span class="ghost"> 
+  $\ a$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
 
-```
-{{</* fragment */>}} $\mathbf{y} =  $ {{</* /fragment */>}}
-{{</* fragment */>}} $X\boldsymbol\beta$ {{</* /fragment */>}}
-{{</* fragment */>}} $+ \boldsymbol\varepsilon$ {{</* /fragment */>}}
-```
+{{< speaker_note >}}
 
-Press `Space` to play!
+{{< /speaker_note >}}
 
-{{< fragment >}} $\mathbf{y} =  $ {{< /fragment >}}
-{{< fragment >}} $X\boldsymbol\beta$ {{< /fragment >}}
-{{< fragment >}} $+ \boldsymbol\varepsilon$ {{< /fragment >}}
+---
+
+### Resource Algebras
+
+<div class="r-stack">
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ a$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ f \cdot a^\prime$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ f$
+  </span> $^{^{\ \gamma}} $
+  $*$
+  <span class="ghost"> 
+  $\ a^\prime$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ f$
+  </span> $^{^{\ \gamma}} $
+  $*$
+  <span class="ghost"> 
+  $\ a^\prime \cdot x$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ f \cdot a^\prime \cdot x$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\ a \cdot x$
+  </span> $^{^{\ \gamma}} $
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Map Composition
+
+<div class="r-stack">
+  {{< fragment class=current-visible >}}
+  $ \\{ \ k_1 : x \ \\} \cup \\{ \ k_2 : y \ \\} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  $ \\{ \ k : x \ \\} \cup \\{ \ k : y \ \\} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  $ \\{ \ k : x \cdot y \ \\} $
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Value Composition
+
+<div class="r-stack">
+  <p class="fragment current-visible">
+  $ (a, i) \cdot (b, j) = (b, j) $
+  </p>
+
+  <p class="fragment current-visible">
+  $ (a, i) \cdot (b, i) = (a \cup b, i) $
+  </p>
+
+  <p class="fragment">
+  $ (a, i) \cdot \textsf{botZ} = (a, i) $
+  </p>
+</div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
 
 ---
 
 # Thank you!
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
