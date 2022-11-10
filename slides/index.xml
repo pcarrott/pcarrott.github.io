@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Slides | Pedro Carrott</title><link>https://pcarrott.github.io/slides/</link><atom:link href="https://pcarrott.github.io/slides/index.xml" rel="self" type="application/rss+xml"/><description>Slides</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 05 Feb 2022 00:00:00 +0000</lastBuildDate><item><title>Slides: Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/slides/msc/</link><pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/slides/msc/</guid><description>&lt;h3 id="formal-specification-and-verification-of-the-lazy-jellyfish-skip-list">&lt;strong>Formal Specification and Verification of the Lazy JellyFish Skip List&lt;/strong>&lt;/h3>
+&lt;h4 id="msc-thesis-defense">MSc Thesis Defense&lt;/h4>
+&lt;br>
+&lt;p>Pedro Carrott &amp;mdash; &lt;em>IST, University of Lisbon&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Advisor:&lt;/strong> João Ferreira &amp;mdash; &lt;em>IST, University of Lisbon&lt;/em>&lt;/p>
+&lt;p>&lt;span class="footer"> Press the &lt;code>S&lt;/code> key to view the speaker notes &lt;/span>&lt;/p>
+&lt;aside class="notes">
+Hello. I am Pedro Carrott and today I&amp;rsquo;m presenting my MSc thesis on the formal verification of the Lazy JellyFish Skip List, a lock-based variant of the original JellyFish, which implements a concurrent append-only map.
+&lt;/aside>
+&lt;hr>
+&lt;section>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;hr>
+&lt;h3 id="concurrent-maps">Concurrent Maps&lt;/h3>
+&lt;p>Concurrent maps are used by data store applications to index data efficiently&lt;/p>
+&lt;p>Most data stores record the value history of each key, rather than delete old values&lt;/p>
+&lt;aside class="notes">
+&lt;p>Maps provide an abstraction for a collection of key-value pairs; this is a useful abstraction for applications such as data stores, which require efficient structures to index data.&lt;/p>
+&lt;p>In fact, most of these applications maintain a history of values for each key in the map, so as to record different versions of the same data, instead of deleting outdated information.&lt;/p>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="the-jellyfish-skip-list">The JellyFish Skip List&lt;/h3>
+&lt;p>The skip list is the most widely used map implementation by these applications&lt;/p>
+&lt;p>JellyFish extends traditional skip lists by associating a list of timestamped values to each key&lt;/p>
+&lt;aside class="notes">
+&lt;p>The most widely used implementation for such concurrent append-only maps is the skip list, since it makes use of a probabilistic strategy to avoid bottlenecks witnessed in concurrent trees, for example.&lt;/p>
+&lt;p>JellyFish is a state-of-the-art implementation for concurrent append-only skip lists, which extends the traditional skip list data structure by storing a linked list in each node to reflect the history of values associated to its key.&lt;/p>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="iris">Iris&lt;/h3>
+&lt;p>We verify a variant of JellyFish using the concurrent separation logic of &lt;a href="https://iris-project.org/" target="_blank" rel="noopener">Iris&lt;/a>.&lt;/p>
+&lt;p>We formalize the argmax resource algebra to define the protocol for concurrent updates&lt;/p>
+&lt;p>The Coq formalization is &lt;a href="https://github.com/sr-lab/iris-jellyfish" target="_blank" rel="noopener">publicly available&lt;/a>&lt;/p>
+&lt;aside class="notes">
+&lt;p>In this work, we verify the functional correctness of a lock-based variant of JellyFish using Iris, a state-of-the-art concurrent separation logic.&lt;/p>
+&lt;p>To reason about the protocol for concurrent updates to the map, we have formalize a resource algebra for the argmax operator.&lt;/p>
+&lt;p>All results are mechanized in Coq and available in GitHub.&lt;/p>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="contributions">Contributions&lt;/h3>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>The first verification effort of the JellyFish design&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>A new concurrent map specification with version control&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>A mechanized proof that our implementation satisfies the specification&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>A novel resource algebra for the argmax operation&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;aside class="notes">
+&lt;p>The contributions of this work can thus be summarized as follows:&lt;/p>
+&lt;ul>
+&lt;li>The first verification effort of the JellyFish design for concurrent append-only skip lists&lt;/li>
+&lt;li>A new concurrent map specification, which supports version control through the use of timestamps&lt;/li>
+&lt;li>A mechanized proof that our skip list implementation satisfies the concurrent map specification&lt;/li>
+&lt;li>A novel resource algebra in the concurrent separation logic of Iris for the argmax operation&lt;/li>
+&lt;/ul>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="skip-lists">Skip Lists&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+We begin by looking at how skip lists can be used to perform efficient key searches, as well as how concurrent updates can be done to the data structure through version control mechanisms.
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;div class="r-stack">
+&lt;p class="fragment current-visible" data-fragment-index="1">
+A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="2">
+Each list is a sublist of its lower level and all lists are sorted by key
+&lt;/p>
+&lt;p class="fragment" data-fragment-index="3">
+Elements can be skipped by searching the lists in the higher levels
+&lt;/p>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;img class="fragment current-visible" data-fragment-index="1" src="images/empty.svg">
+&lt;img class="fragment current-visible" data-fragment-index="2" src="images/skip.svg">
+&lt;img class="fragment current-visible" data-fragment-index="3" src="images/skip1.svg">
+&lt;img class="fragment current-visible" src="images/skip2.svg">
+&lt;img class="fragment current-visible" src="images/skip3.svg">
+&lt;img class="fragment" src="images/skip4.svg">
+&lt;/div>
+&lt;aside class="notes">
+&lt;p>The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure.&lt;/p>
+&lt;p>The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.&lt;/p>
+&lt;p>As new keys are inserted to the skip list, each list must always remain a sublist of the list directly below it, while the bottom list should contain all keys which have been inserted.&lt;/p>
+&lt;p>Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search.&lt;/p>
+&lt;p>Consider the figure example: we begin the search for key 17 in the left sentinel at the top level and check that its successor holds key 13.&lt;/p>
+&lt;p>Since 13 is lower than 17, key 17 can only be found after key 13, making it safe to skip key 5.&lt;/p>
+&lt;p>We then check the successor of key 13 at the top level and see that MAX if greater than 17; as such, we cannot skip any keys between them, since key 17 might be one of them.&lt;/p>
+&lt;p>We then continue the search in the next level and repeat the same steps: since the new successor holds key 24, we continue to the next level and reach the bottom list, where the successor now holds key 17 concluding the search.&lt;/p>
+&lt;p>If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list; otherwise, the search can stop in any level, as soon as the key is found.&lt;/p>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="jellyfish">JellyFish&lt;/h3>
+&lt;div class="r-stack">
+&lt;p class="fragment current-visible" data-fragment-index="1">
+The JellyFish skip list implements a map, storing key-value pairs
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="2">
+Each node contains a &lt;i>vertical list&lt;/i>, a timeline with timestamped values
+&lt;/p>
+&lt;p class="fragment" data-fragment-index="3">
+To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head's
+&lt;/p>
+&lt;/div>
+&lt;img class="fragment" data-fragment-index="1" src="images/jelly5.svg">
+&lt;aside class="notes">
+&lt;p>As skip lists allow certain keys to be skipped during traversal, this data structure can be used as a map implementation storing key-value pairs.&lt;/p>
+&lt;p>The JellyFish design keeps in each node a list of values, referred to as a vertical list, representing the timeline of values associated to the key, tagging each value with a given timestamp.&lt;/p>
+&lt;p>As we see with key 17, the most recent value from timestamp 3 is found at the head of its vertical list, while its predecessor value is from a less recent timestamp 1.&lt;/p>
+&lt;p>The timeline retains its consistency by never appending new values to a vertical list if the new timestamp is less recent than the timestamp found at the head.&lt;/p>
+&lt;p>Accordingly, if two updates are executed on the same key with the same timestamp, then both values are appended to the vertical, as we see in key 5.&lt;/p>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="concurrent-updates">Concurrent Updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;p class="fragment current-visible" data-fragment-index="1">
+Updating threads employ lazy synchronization through locks
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="2">
+Traversal is done until the bottom, locking the key's predecessor
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="3">
+If the key does not exist, then a new node is linked to a random number of levels
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="5">
+Insertions are done bottom-up to maintain the sublist relation
+&lt;/p>
+&lt;p class="fragment current-visible" data-fragment-index="6">
+Updates follow the same initial steps, locking the key's predecessor
+&lt;/p>
+&lt;p class="fragment" data-fragment-index="7">
+If a node already exists for the key, then the new value will be appended to the vertical list
+&lt;/p>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.svg">
+&lt;img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.svg">
+&lt;img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.svg">
+&lt;img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.svg">
+&lt;img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.svg">
+&lt;img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.svg">
+&lt;img class="fragment"
+data-fragment-index="7" src="images/jelly7.svg">
+&lt;/div>
+&lt;aside class="notes">
+&lt;p>To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks.&lt;/p>
+&lt;p>An thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and acquires the node&amp;rsquo;s lock in the bottom level.&lt;/p>
+&lt;p>Since the key has not been found, a new node is created with some random height, which in this case we assume to be 2.&lt;/p>
+&lt;p>As the predecessor&amp;rsquo;s lock has been acquired, we can replace its successor by linking the new node to the bottom level.&lt;/p>
+&lt;p>The lock can then be released and the node can be inserted in the upper level; insertions are performed bottom-up so as to ensure that the sublist relation is preserved.&lt;/p>
+&lt;p>The node is not inserted in any other level, as that would surpass its intended height, which concludes the put operation.&lt;/p>
+&lt;p>A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor.&lt;/p>
+&lt;p>As the node already exists it will append a new value to its vertical, as long as the timestamp is more recent than 3.&lt;/p>
+&lt;p>In other words, claiming a node&amp;rsquo;s lock grants exclusive access to update the node&amp;rsquo;s successor at the lock&amp;rsquo;s level, while the bottom level lock also allows updates to the value of the node&amp;rsquo;s successor.&lt;/p>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;h2 id="code-highlighting">Code Highlighting&lt;/h2>
+&lt;p>Inline code: &lt;code>variable&lt;/code>&lt;/p>
+&lt;p>Code block:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">porridge&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="n">porridge&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Eating...&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="math">Math&lt;/h2>
+&lt;p>In-line math: $x + y = z$&lt;/p>
+&lt;p>Block math:&lt;/p>
+&lt;p>$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p>
+&lt;hr>
+&lt;h2 id="fragments">Fragments&lt;/h2>
+&lt;p>Make content appear incrementally&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $\mathbf{y} = $ {{&amp;lt; /fragment &amp;gt;}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $X\boldsymbol\beta$ {{&amp;lt; /fragment &amp;gt;}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $+ \boldsymbol\varepsilon$ {{&amp;lt; /fragment &amp;gt;}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Press &lt;code>Space&lt;/code> to play!&lt;/p>
+&lt;p>&lt;span class="fragment " >
+$\mathbf{y} = $
+&lt;/span>
+&lt;span class="fragment " >
+$X\boldsymbol\beta$
+&lt;/span>
+&lt;span class="fragment " >
+$+ \boldsymbol\varepsilon$
+&lt;/span>&lt;/p>
+&lt;hr>
+&lt;h1 id="thank-you">Thank you!&lt;/h1></description></item></channel></rss>
