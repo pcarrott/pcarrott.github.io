@@ -352,7 +352,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
 &lt;h3 id="ghost-state-in-iris">Ghost state in Iris&lt;/h3>
 &lt;span class="fragment " >
 &lt;span class="ghost">
-$\ a$
+$a$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;aside class="notes">
@@ -362,40 +362,40 @@ $\ a$
 &lt;div class="r-stack">
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ a$
+$a$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ f \cdot a^\prime$
+$f \cdot a^\prime$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ f$
+$f$
 &lt;/span> $^{^{\ \gamma}} $
 $*$
 &lt;span class="ghost">
-$\ a^\prime$
+$a^\prime$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ f$
+$f$
 &lt;/span> $^{^{\ \gamma}} $
 $*$
 &lt;span class="ghost">
-$\ a^\prime \cdot x$
+$a^\prime \cdot x$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ f \cdot a^\prime \cdot x$
+$f \cdot a^\prime \cdot x$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
-$\ a \cdot x$
+$a \cdot x$
 &lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
 &lt;/div>
