@@ -342,37 +342,100 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;/aside>
 &lt;/section>
 &lt;hr>
-&lt;h2 id="code-highlighting">Code Highlighting&lt;/h2>
-&lt;p>Inline code: &lt;code>variable&lt;/code>&lt;/p>
-&lt;p>Code block:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">porridge&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="n">porridge&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Eating...&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;h2 id="math">Math&lt;/h2>
-&lt;p>In-line math: $x + y = z$&lt;/p>
-&lt;p>Block math:&lt;/p>
-&lt;p>$$
-f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
-$$&lt;/p>
+&lt;section>
+&lt;h2 id="reasoning-about-timestamped-domains">Reasoning about Timestamped Domains&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values.
+&lt;/aside>
 &lt;hr>
-&lt;h2 id="fragments">Fragments&lt;/h2>
-&lt;p>Make content appear incrementally&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $\mathbf{y} = $ {{&amp;lt; /fragment &amp;gt;}}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $X\boldsymbol\beta$ {{&amp;lt; /fragment &amp;gt;}}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&amp;lt; fragment &amp;gt;}} $+ \boldsymbol\varepsilon$ {{&amp;lt; /fragment &amp;gt;}}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Press &lt;code>Space&lt;/code> to play!&lt;/p>
-&lt;p>&lt;span class="fragment " >
-$\mathbf{y} = $
-&lt;/span>
+&lt;h3 id="ghost-state-in-iris">Ghost state in Iris&lt;/h3>
 &lt;span class="fragment " >
-$X\boldsymbol\beta$
+&lt;span class="ghost">
+$\ a$
+&lt;/span> $^{^{\ \gamma}} $
 &lt;/span>
-&lt;span class="fragment " >
-$+ \boldsymbol\varepsilon$
-&lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
 &lt;hr>
-&lt;h1 id="thank-you">Thank you!&lt;/h1></description></item><item><title>Example Project</title><link>https://pcarrott.github.io/project/example/</link><pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/project/example/</guid><description>&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p>
+&lt;h3 id="resource-algebras">Resource Algebras&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ a$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ f \cdot a^\prime$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ f$
+&lt;/span> $^{^{\ \gamma}} $
+$*$
+&lt;span class="ghost">
+$\ a^\prime$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ f$
+&lt;/span> $^{^{\ \gamma}} $
+$*$
+&lt;span class="ghost">
+$\ a^\prime \cdot x$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ f \cdot a^\prime \cdot x$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\ a \cdot x$
+&lt;/span> $^{^{\ \gamma}} $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-composition">Map Composition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+$ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$ \{ \ k : x \cdot y \ \} $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="value-composition">Value Composition&lt;/h3>
+&lt;div class="r-stack">
+&lt;p class="fragment current-visible">
+$ (a, i) \cdot (b, j) = (b, j) $
+&lt;/p>
+&lt;p class="fragment current-visible">
+$ (a, i) \cdot (b, i) = (a \cup b, i) $
+&lt;/p>
+&lt;p class="fragment">
+$ (a, i) \cdot \textsf{botZ} = (a, i) $
+&lt;/p>
+&lt;/div>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;h1 id="thank-you">Thank you!&lt;/h1>
+&lt;aside class="notes">
+&lt;/aside></description></item><item><title>Example Project</title><link>https://pcarrott.github.io/project/example/</link><pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/project/example/</guid><description>&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p>
 &lt;p>Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p>
 &lt;p>Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p>
 &lt;p>Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p>
