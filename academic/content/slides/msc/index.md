@@ -5,7 +5,7 @@ tags: []
 categories: []
 date: '2022-02-05'
 slides:
-  theme: sky
+  theme: light
   highlight_style: dracula
 ---
 

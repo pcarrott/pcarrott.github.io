@@ -25,8 +25,10 @@
 
   {{/* Load Reveal CSS */}}
   <link rel="stylesheet" href="{{ $cdn_url_reveal }}/dist/reveal.min.css">
-  {{- $theme := $.Param "slides.theme" | default "black" -}}
-  <link rel="stylesheet" href="{{ $cdn_url_reveal }}/dist/theme/{{ $theme }}.min.css">
+  {{- $theme := $.Param "slides.theme" | default "light" -}}
+  {{ $theme_path := printf "css/theme/%s.css" $theme }}
+  {{ $theme_css := resources.Get $theme_path | minify }}
+  <link rel="stylesheet" href="{{ $theme_css.RelPermalink }}">
 
   {{/* Hugo Chroma Syntax Highlighter Initialization */}}
   {{ $hl_theme := $.Param "slides.highlight_style" | default "dracula" }}
