@@ -146,23 +146,65 @@ We begin by looking at how skip lists can be used to perform efficient key searc
 &lt;hr>
 &lt;h3 id="overview">Overview&lt;/h3>
 &lt;div class="r-stack">
-&lt;p class="fragment current-visible" data-fragment-index="1">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="2">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
 Each list is a sublist of its lower level and all lists are sorted by key
-&lt;/p>
-&lt;p class="fragment" data-fragment-index="3">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
 Elements can be skipped by searching the lists in the higher levels
-&lt;/p>
+&lt;/span>
 &lt;/div>
 &lt;div class="r-stack">
-&lt;img class="fragment current-visible" data-fragment-index="1" src="images/empty.svg">
-&lt;img class="fragment current-visible" data-fragment-index="2" src="images/skip.svg">
-&lt;img class="fragment current-visible" data-fragment-index="3" src="images/skip1.svg">
-&lt;img class="fragment current-visible" src="images/skip2.svg">
-&lt;img class="fragment current-visible" src="images/skip3.svg">
-&lt;img class="fragment" src="images/skip4.svg">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/empty.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/skip.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/skip1.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/skip2.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/skip3.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/skip4.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
 &lt;/div>
 &lt;aside class="notes">
 &lt;p>The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure.&lt;/p>
@@ -178,17 +220,24 @@ Elements can be skipped by searching the lists in the higher levels
 &lt;hr>
 &lt;h3 id="jellyfish">JellyFish&lt;/h3>
 &lt;div class="r-stack">
-&lt;p class="fragment current-visible" data-fragment-index="1">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 The JellyFish skip list implements a map, storing key-value pairs
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="2">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
 Each node contains a &lt;i>vertical list&lt;/i>, a timeline with timestamped values
-&lt;/p>
-&lt;p class="fragment" data-fragment-index="3">
-To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head's
-&lt;/p>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head&amp;rsquo;s
+&lt;/span>
 &lt;/div>
-&lt;img class="fragment" data-fragment-index="1" src="images/jelly5.svg">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly5.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
 &lt;aside class="notes">
 &lt;p>As skip lists allow certain keys to be skipped during traversal, this data structure can be used as a map implementation storing key-value pairs.&lt;/p>
 &lt;p>The JellyFish design keeps in each node a list of values, referred to as a vertical list, representing the timeline of values associated to the key, tagging each value with a given timestamp.&lt;/p>
@@ -199,34 +248,86 @@ To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as 
 &lt;hr>
 &lt;h3 id="concurrent-updates">Concurrent Updates&lt;/h3>
 &lt;div class="r-stack">
-&lt;p class="fragment current-visible" data-fragment-index="1">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 Updating threads employ lazy synchronization through locks
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="2">
-Traversal is done until the bottom, locking the key's predecessor
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="3">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Traversal is done until the bottom, locking the key&amp;rsquo;s predecessor
+&lt;/span>
+&lt;span class="fragment fade-in" data-fragment-index="3">
+&lt;span class="fragment fade-out" data-fragment-index="6">
 If the key does not exist, then a new node is linked to a random number of levels
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="5">
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
 Insertions are done bottom-up to maintain the sublist relation
-&lt;/p>
-&lt;p class="fragment current-visible" data-fragment-index="6">
-Updates follow the same initial steps, locking the key's predecessor
-&lt;/p>
-&lt;p class="fragment" data-fragment-index="7">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
 If a node already exists for the key, then the new value will be appended to the vertical list
-&lt;/p>
+&lt;/span>
 &lt;/div>
 &lt;div class="r-stack">
-&lt;img class="fragment current-visible" data-fragment-index="1" src="images/jelly1.svg">
-&lt;img class="fragment current-visible" data-fragment-index="2" src="images/jelly2.svg">
-&lt;img class="fragment current-visible" data-fragment-index="3" src="images/jelly3.svg">
-&lt;img class="fragment current-visible" data-fragment-index="4" src="images/jelly4.svg">
-&lt;img class="fragment current-visible" data-fragment-index="5" src="images/jelly5.svg">
-&lt;img class="fragment current-visible" data-fragment-index="6" src="images/jelly6.svg">
-&lt;img class="fragment"
-data-fragment-index="7" src="images/jelly7.svg">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly1.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly2.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly3.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly4.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment fade-in" data-fragment-index="5">
+&lt;span class="fragment fade-out" data-fragment-index="7">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly5.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly6.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&lt;figure >
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt=""
+src="https://pcarrott.github.io/slides/msc/images/jelly7.svg"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/span>
 &lt;/div>
 &lt;aside class="notes">
 &lt;p>To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks.&lt;/p>
