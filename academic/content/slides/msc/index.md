@@ -342,7 +342,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 {{< fragment >}}
   <span class="ghost"> 
-  $\ a$
+  $a$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
@@ -357,45 +357,45 @@ Having seen how the data is organized in memory, we now abstract from the concre
 <div class="r-stack">
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ a$
+  $a$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ f \cdot a^\prime$
+  $f \cdot a^\prime$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ f$
+  $f$
   </span> $^{^{\ \gamma}} $
   $*$
   <span class="ghost"> 
-  $\ a^\prime$
+  $a^\prime$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ f$
+  $f$
   </span> $^{^{\ \gamma}} $
   $*$
   <span class="ghost"> 
-  $\ a^\prime \cdot x$
+  $a^\prime \cdot x$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ f \cdot a^\prime \cdot x$
+  $f \cdot a^\prime \cdot x$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $\ a \cdot x$
+  $a \cdot x$
   </span> $^{^{\ \gamma}} $
   {{< /fragment >}}
 </div>
