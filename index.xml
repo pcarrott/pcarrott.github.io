@@ -123,7 +123,7 @@ Hello. I am Pedro Carrott and today I&amp;rsquo;m presenting my MSc thesis on th
 &lt;/span>
 &lt;span class="fragment " >
 &lt;ul>
-&lt;li>A novel resource algebra for the argmax operation&lt;/li>
+&lt;li>A novel resource algebra for the $\textsf{argmax}$ operation&lt;/li>
 &lt;/ul>
 &lt;/span>
 &lt;aside class="notes">
@@ -158,52 +158,22 @@ Elements can be skipped by searching the lists in the higher levels
 &lt;/div>
 &lt;div class="r-stack">
 &lt;span class="fragment current-visible" data-fragment-index="1">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/empty.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/empty.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" data-fragment-index="2">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/skip.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/skip.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" data-fragment-index="3">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/skip1.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/skip1.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" >
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/skip2.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/skip2.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" >
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/skip3.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/skip3.svg">
 &lt;/span>
 &lt;span class="fragment " >
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/skip4.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/skip4.svg">
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
@@ -231,12 +201,7 @@ To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as 
 &lt;/span>
 &lt;/div>
 &lt;span class="fragment " data-fragment-index="1">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly5.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/jelly5.svg">
 &lt;/span>
 &lt;aside class="notes">
 &lt;p>As skip lists allow certain keys to be skipped during traversal, this data structure can be used as a map implementation storing key-value pairs.&lt;/p>
@@ -254,79 +219,43 @@ Updating threads employ lazy synchronization through locks
 &lt;span class="fragment current-visible" data-fragment-index="2">
 Traversal is done until the bottom, locking the key&amp;rsquo;s predecessor
 &lt;/span>
-&lt;span class="fragment fade-in" data-fragment-index="3">
-&lt;span class="fragment fade-out" data-fragment-index="6">
+&lt;span class="fragment current-visible" data-fragment-index="3">
 If the key does not exist, then a new node is linked to a random number of levels
 &lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The lock is released after insertion, locking the predecessor in the next level
 &lt;/span>
-&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;span class="fragment current-visible" data-fragment-index="5">
 Insertions are done bottom-up to maintain the sublist relation
 &lt;/span>
-&lt;span class="fragment current-visible" data-fragment-index="7">
-Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor
+&lt;span class="fragment current-visible" data-fragment-index="6">
+Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor in the bottom level
 &lt;/span>
-&lt;span class="fragment " data-fragment-index="8">
+&lt;span class="fragment " data-fragment-index="7">
 If a node already exists for the key, then the new value will be appended to the vertical list
 &lt;/span>
 &lt;/div>
 &lt;div class="r-stack">
 &lt;span class="fragment current-visible" data-fragment-index="1">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly1.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/jelly1.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" data-fragment-index="2">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly2.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/jelly2.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" data-fragment-index="3">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly3.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/jelly3.svg">
 &lt;/span>
 &lt;span class="fragment current-visible" data-fragment-index="4">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly4.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;img src="images/jelly4.svg">
 &lt;/span>
-&lt;span class="fragment fade-in" data-fragment-index="5">
-&lt;span class="fragment fade-out" data-fragment-index="7">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly5.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;img src="images/jelly5.svg">
 &lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;img src="images/jelly6.svg">
 &lt;/span>
-&lt;span class="fragment current-visible" data-fragment-index="7">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly6.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/span>
-&lt;span class="fragment " data-fragment-index="8">
-&lt;figure >
-&lt;div class="d-flex justify-content-center">
-&lt;div class="w-100" >&lt;img alt=""
-src="https://pcarrott.github.io/slides/msc/images/jelly7.svg"
-loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;img src="images/jelly7.svg">
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
@@ -350,11 +279,36 @@ Having seen how the data is organized in memory, we now abstract from the concre
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="ghost-state-in-iris">Ghost state in Iris&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\varnothing$
+&lt;/span> $^{^{\gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\varnothing$
+&lt;/span> $^{^{\gamma}} $
+$*$
+&lt;span class="ghost">
+$\varnothing$
+&lt;/span> $^{^{\gamma}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost">
+$\{ \ 1 \ \}$
+&lt;/span> $^{^{\gamma}} $
+$*$
+&lt;span class="ghost">
+$\{ \ 2 \ \}$
+&lt;/span> $^{^{\gamma}} $
+&lt;/span>
 &lt;span class="fragment " >
 &lt;span class="ghost">
-$a$
-&lt;/span> $^{^{\ \gamma}} $
+$\{ \ 1, 2 \ \}$
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
@@ -363,40 +317,40 @@ $a$
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $a$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f \cdot a^\prime$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 $*$
 &lt;span class="ghost">
 $a^\prime$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 $*$
 &lt;span class="ghost">
 $a^\prime \cdot x$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f \cdot a^\prime \cdot x$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment " >
 &lt;span class="ghost">
 $a \cdot x$
-&lt;/span> $^{^{\ \gamma}} $
+&lt;/span> $^{^{\gamma}} $
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
@@ -410,7 +364,7 @@ $ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
 &lt;span class="fragment current-visible" >
 $ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment " >
 $ \{ \ k : x \cdot y \ \} $
 &lt;/span>
 &lt;/div>
@@ -419,16 +373,204 @@ $ \{ \ k : x \cdot y \ \} $
 &lt;hr>
 &lt;h3 id="value-composition">Value Composition&lt;/h3>
 &lt;div class="r-stack">
-&lt;p class="fragment current-visible">
+&lt;span class="fragment current-visible" >
 $ (a, i) \cdot (b, j) = (b, j) $
-&lt;/p>
-&lt;p class="fragment current-visible">
+&lt;/span>
+&lt;span class="fragment current-visible" >
 $ (a, i) \cdot (b, i) = (a \cup b, i) $
-&lt;/p>
-&lt;p class="fragment">
+&lt;/span>
+&lt;span class="fragment " >
 $ (a, i) \cdot \textsf{botZ} = (a, i) $
-&lt;/p>
+&lt;/span>
 &lt;/div>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="map-specification">Map Specification&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-resources">Map Resources&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-constructor">Triple for constructor&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-updates">Triple for updates&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-lookups">Triple for lookups&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="representation-predicate">Representation Predicate&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="left-sentinel">Left Sentinel&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="bottom-list">Bottom List&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sublists">Sublists&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="partial-view">Partial View&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="bottom-list-invariant">Bottom List Invariant&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="authoritative-ghost-state">Authoritative Ghost State&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-fragments">Map Fragments&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="fractions">Fractions&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="set-membership">Set Membership&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="key-value-pairs">Key-Value Pairs&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sortedness">Sortedness&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="successor-chain">Successor Chain&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="lock-resources">Lock Resources&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="invariant-definition">Invariant Definition&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="sublist-invariant">Sublist Invariant&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sublist-relation">Sublist Relation&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="ghost-tokens">Ghost Tokens&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="height-distribution">Height Distribution&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="lock-resources-1">Lock Resources&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="invariant-definition-1">Invariant Definition&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="value-updates">Value Updates&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="vertical-list">Vertical List&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="local-fragment">Local Fragment&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="a-simple-client">A Simple Client&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="code-overview">Code Overview&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="initialization">Initialization&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="updates">Updates&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="lookup">Lookup&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="timestamp-assumptions">Timestamp Assumptions&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="related-work">Related Work&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="polaris">Polaris&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="logical-atomicity">Logical Atomicity&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="key-value-specifications">Key-Value Specifications&lt;/h3>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="future-work">Future Work&lt;/h3>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>
