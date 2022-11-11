@@ -103,7 +103,7 @@ All results are mechanized in Coq and available in GitHub.
 {{< /fragment >}}
 
 {{< fragment >}}
-- A novel resource algebra for the argmax operation
+- A novel resource algebra for the $\textsf{argmax}$ operation
 {{< /fragment >}}
 
 {{< speaker_note >}}
@@ -152,27 +152,27 @@ We begin by looking at how skip lists can be used to perform efficient key searc
 
 <div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  {{< figure src="images/empty.svg" >}}
+  <img src="images/empty.svg">
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  {{< figure src="images/skip.svg" >}}
+  <img src="images/skip.svg">
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  {{< figure src="images/skip1.svg" >}}
+  <img src="images/skip1.svg">
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
-  {{< figure src="images/skip2.svg" >}}
+  <img src="images/skip2.svg">
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
-  {{< figure src="images/skip3.svg" >}}
+  <img src="images/skip3.svg">
   {{< /fragment >}}
 
   {{< fragment >}}
-  {{< figure src="images/skip4.svg" >}}
+  <img src="images/skip4.svg">
   {{< /fragment >}}
 </div>
 
@@ -217,7 +217,7 @@ If the key is not found upon reaching the bottom level, then we can conclude tha
 </div>
 
 {{< fragment weight=1 >}}
-  {{< figure src="images/jelly5.svg" >}}
+<img src="images/jelly5.svg">
 {{< /fragment >}}
 
 {{< speaker_note >}}
@@ -247,54 +247,54 @@ Accordingly, if two updates are executed on the same key with the same timestamp
   Traversal is done until the bottom, locking the key's predecessor
   {{< /fragment >}}
 
-  {{< fragment weight=3 class=fade-in >}}
-  {{< fragment weight=6 class=fade-out >}}
+  {{< fragment weight=3 class=current-visible >}}
   If the key does not exist, then a new node is linked to a random number of levels
   {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  The lock is released after insertion, locking the predecessor in the next level
   {{< /fragment >}}
 
-  {{< fragment weight=6 class=current-visible >}}
+  {{< fragment weight=5 class=current-visible >}}
   Insertions are done bottom-up to maintain the sublist relation
   {{< /fragment >}}
 
-  {{< fragment weight=7 class=current-visible >}}
-  Updates follow the same initial steps, locking the key's predecessor 
+  {{< fragment weight=6 class=current-visible >}}
+  Updates follow the same initial steps, locking the key's predecessor in the bottom level
   {{< /fragment >}}
 
-  {{< fragment weight=8 >}}
+  {{< fragment weight=7 >}}
   If a node already exists for the key, then the new value will be appended to the vertical list
   {{< /fragment >}}
 </div>
 
 <div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  {{< figure src="images/jelly1.svg" >}}
+  <img src="images/jelly1.svg">
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  {{< figure src="images/jelly2.svg" >}}
+  <img src="images/jelly2.svg">
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  {{< figure src="images/jelly3.svg" >}}
+  <img src="images/jelly3.svg">
   {{< /fragment >}}
 
   {{< fragment weight=4 class=current-visible >}}
-  {{< figure src="images/jelly4.svg" >}}
+  <img src="images/jelly4.svg">
   {{< /fragment >}}
 
-  {{< fragment weight=5 class=fade-in >}}
-  {{< fragment weight=7 class=fade-out >}}
-  {{< figure src="images/jelly5.svg" >}}
-  {{< /fragment >}}
+  {{< fragment weight=5 class=current-visible >}}
+  <img src="images/jelly5.svg">
   {{< /fragment >}}
 
-  {{< fragment weight=7 class=current-visible >}}
-  {{< figure src="images/jelly6.svg" >}}
+  {{< fragment weight=6 class=current-visible >}}
+  <img src="images/jelly6.svg">
   {{< /fragment >}}
 
-  {{< fragment weight=8 >}}
-  {{< figure src="images/jelly7.svg" >}}
+  {{< fragment weight=7 >}}
+  <img src="images/jelly7.svg">
   {{< /fragment >}}
 </div>
 
@@ -340,11 +340,39 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 ### Ghost state in Iris
 
-{{< fragment >}}
+<div class="r-stack">
+  {{< fragment class=current-visible >}}
   <span class="ghost"> 
-  $a$
-  </span> $^{^{\ \gamma}} $
+  $\varnothing$
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\varnothing$
+  </span> $^{^{\gamma}} $
+  $*$
+  <span class="ghost"> 
+  $\varnothing$
+  </span> $^{^{\gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment class=current-visible >}}
+  <span class="ghost"> 
+  $\{ \ 1 \ \}$
+  </span> $^{^{\gamma}} $
+  $*$
+  <span class="ghost"> 
+  $\{ \ 2 \ \}$
+  </span> $^{^{\gamma}} $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  <span class="ghost"> 
+  $\{ \ 1, 2 \ \}$
+  </span> $^{^{\gamma}} $
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -358,45 +386,45 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $a$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $f$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   $*$
   <span class="ghost"> 
   $a^\prime$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $f$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   $*$
   <span class="ghost"> 
   $a^\prime \cdot x$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime \cdot x$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment >}}
   <span class="ghost"> 
   $a \cdot x$
-  </span> $^{^{\ \gamma}} $
+  </span> $^{^{\gamma}} $
   {{< /fragment >}}
 </div>
 
@@ -417,7 +445,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   $ \\{ \ k : x \ \\} \cup \\{ \ k : y \ \\} $
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment >}}
   $ \\{ \ k : x \cdot y \ \\} $
   {{< /fragment >}}
 </div>
@@ -431,18 +459,394 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Value Composition
 
 <div class="r-stack">
-  <p class="fragment current-visible">
+  {{< fragment class=current-visible >}}
   $ (a, i) \cdot (b, j) = (b, j) $
-  </p>
+  {{< /fragment >}}
 
-  <p class="fragment current-visible">
+  {{< fragment class=current-visible >}}
   $ (a, i) \cdot (b, i) = (a \cup b, i) $
-  </p>
+  {{< /fragment >}}
 
-  <p class="fragment">
+  {{< fragment >}}
   $ (a, i) \cdot \textsf{botZ} = (a, i) $
-  </p>
+  {{< /fragment >}}
 </div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Map Specification
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Map Resources
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Triple for constructor
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Triple for updates
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Triple for lookups
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Representation Predicate
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Left Sentinel
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Bottom List
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Sublists
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Partial View
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Bottom List Invariant
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Authoritative Ghost State
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Map Fragments
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Fractions
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Set Membership
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Key-Value Pairs
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Sortedness
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Successor Chain
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Lock Resources
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Invariant Definition
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Sublist Invariant
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Sublist Relation
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Ghost Tokens
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Height Distribution
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Lock Resources
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Invariant Definition
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Value Updates
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Vertical List
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Local Fragment
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## A Simple Client
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Code Overview
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Initialization
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Updates
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Lookup
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Timestamp Assumptions
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Related Work
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Polaris
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Logical Atomicity
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Key-Value Specifications
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+</section>
+
+---
+
+<section>
+
+## Conclusion
+
+<sup> (continue below) </sup>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Future Work
 
 {{< speaker_note >}}
 
