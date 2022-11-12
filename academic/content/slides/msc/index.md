@@ -348,7 +348,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
-  <span class="ghost" style="border-color: blue"> 
+  <span class="ghost" style="border-color: red"> 
   $\varnothing$
   </span><sup class="name">$ \ {\gamma} $</sup>
   {{< /fragment >}}
@@ -356,7 +356,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $\varnothing$
-  </span><sup class="name">$ \ \textcolor{blue}{\gamma} $</sup>
+  </span><sup class="name">$ \ \textcolor{red}{\gamma} $</sup>
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
@@ -512,19 +512,19 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  $ \textsf{IsSkipList}(\textcolor{blue}{p}, M, q, \gamma) $
+  $ \textsf{IsSkipList}(\textcolor{red}{p}, M, q, \gamma) $
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, \textcolor{blue}{M}, q, \gamma) $
+  $ \textsf{IsSkipList}(p, \textcolor{red}{M}, q, \gamma) $
   {{< /fragment >}}
 
   {{< fragment weight=4 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, M, \textcolor{blue}{q}, \gamma) $
+  $ \textsf{IsSkipList}(p, M, \textcolor{red}{q}, \gamma) $
   {{< /fragment >}}
 
   {{< fragment weight=5 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, M, q, \textcolor{blue}{\gamma}) $
+  $ \textsf{IsSkipList}(p, M, q, \textcolor{red}{\gamma}) $
   {{< /fragment >}}
 
   {{< fragment weight=6 >}}
@@ -622,15 +622,15 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 <div class="r-stack smath">
   {{< fragment weight=3 class="current-visible" >}}
-  $ \left\\{ \ v^?. \begin{array}{c} \textcolor{blue}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
+  $ \left\\{ \ v^?. \begin{array}{c} \textcolor{red}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 
   {{< fragment weight=4 class="current-visible" >}}
-  $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{blue}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
+  $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 
   {{< fragment weight=5 class="current-visible" >}}
-  $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ \textcolor{blue}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\\} $
+  $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\\} $
   {{< /fragment >}}
 
   {{< fragment weight=6 >}}
@@ -662,17 +662,66 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 <div class="r-stack smath">
   {{< fragment class="current-visible" >}}
-  $ \exists \ head. \ \textcolor{blue}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
+  $ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
   {{< /fragment >}}
 
   {{< fragment >}}
-  $  \exists \ head. \ p \hookrightarrow_\square head * \textcolor{blue}{head\textsf{.key} = \textsf{MIN}} $
+  $  \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $
   {{< /fragment >}}
 </div>
 
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
+
+---
+
+### Iris Invariants
+
+<div class="r-stack">
+{{< fragment weight=1 class="current-visible" >}}
+<span class="inv">
+$ I $
+</span><sup class="name">$ \ \mathcal{N} $</sup>
+{{< /fragment >}}
+
+{{< fragment weight=2 class="current-visible" >}}
+<span class="inv" style="border-color: red">
+$ I $
+</span><sup class="name">$ \ \mathcal{N} $</sup>
+{{< /fragment >}}
+
+{{< fragment weight=3 class="current-visible" >}}
+<span class="inv">
+$ I $
+</span><sup class="name">$ \ \textcolor{red}{\mathcal{N}} $</sup>
+{{< /fragment >}}
+
+{{< fragment weight=4 >}}
+<span class="smath" style="border-bottom-style: solid; padding-bottom: 6px;">
+<span class="fragment" data-fragment-index="7">
+$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
+</span>
+$\quad$
+<span class="fragment" data-fragment-index="5">
+$ \textsf{atomic}(e) $
+</span>
+$\quad$
+<span class="fragment" data-fragment-index="6">
+$ \mathcal{N} \subseteq \mathcal{E} $
+</span>
+</span>
+
+<br>
+<span class="inv">
+$ I $
+</span><sup class="name">$ \ \mathcal{N} $</sup>
+<span class="smath">
+$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $
+</span>
+{{< /fragment >}}
+
+</div>
 
 ---
 
@@ -686,26 +735,20 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< /fragment >}}
 
   {{< fragment class="current-visible" >}}
-  <span class="inv" style="border-color: blue">
+  <span class="inv">
   $\textsf{BotListInv}(head, \gamma^0) $
+  </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(0)} $</sup>
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  <span class="inv">
+  $\textsf{BotListInv}(\textcolor{red}{head}, \gamma^0) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 
   {{< fragment class="current-visible" >}}
   <span class="inv">
-  $\textsf{BotListInv}(head, \gamma^0) $
-  </span><sup class="name">$ \ \textcolor{blue}{\textsf{levelN}(0)} $</sup>
-  {{< /fragment >}}
-
-  {{< fragment class="current-visible" >}}
-  <span class="inv">
-  $\textsf{BotListInv}(\textcolor{blue}{head}, \gamma^0) $
-  </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
-  {{< /fragment >}}
-
-  {{< fragment class="current-visible" >}}
-  <span class="inv">
-  $\textsf{BotListInv}(head, \textcolor{blue}{\gamma^0}) $
+  $\textsf{BotListInv}(head, \textcolor{red}{\gamma^0}) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 </div>
@@ -720,39 +763,21 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 <div class="r-stack">
   {{< fragment class="current-visible" >}}
-  <span class="smath">
-  $ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
-  </span>
   <span class="inv">
-  $ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
-  </span><sup class="name">$ \ \textsf{levelN}(i) $</sup>
+  $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
+  </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
   {{< /fragment >}}
 
   {{< fragment class="current-visible" >}}
-  <span class="smath">
-  $ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
-  </span>
   <span class="inv">
-  $ \textsf{SublistInv}(\textcolor{blue}{i}, head, \gamma^i, \gamma^{i-1}) $
-  </span><sup class="name">$ \ \textsf{levelN}(i) $</sup>
+  $ \textsf{SublistInv}(\textcolor{red}{lvl}, head, \gamma^{lvl}, \gamma^{lvl-1}) $
+  </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(lvl)} $</sup>
   {{< /fragment >}}
 
   {{< fragment class="current-visible" >}}
-  <span class="smath">
-  $ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
-  </span>
   <span class="inv">
-  $ \textsf{SublistInv}(i, head, \textcolor{blue}{\gamma^i}, \textcolor{blue}{\gamma^{i-1}}) $
-  </span><sup class="name">$ \ \textsf{levelN}(i) $</sup>
-  {{< /fragment >}}
-
-  {{< fragment >}}
-  <span class="smath">
-  $ \mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}} $
-  </span>
-  <span class="inv">
-  $ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
-  </span><sup class="name">$ \ \textsf{levelN}(i) $</sup>
+  $ \textsf{SublistInv}(lvl, head, \textcolor{red}{\gamma^{lvl}}, \textcolor{red}{\gamma^{lvl-1}}) $
+  </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
   {{< /fragment >}}
 </div>
 
@@ -777,7 +802,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
 {{< fragment weight=5 >}}
 <span class="ghost"> 
 $ \circ_q \ M $
-</span><sup class="name">$ \ \gamma^0 $</sup>
+</span><sup class="name">$ \ \gamma^0_F $</sup>
 {{< /fragment >}}
 {{< fragment weight=5 >}}
 <span class="smath">$*$</span>
@@ -793,11 +818,11 @@ $\textsf{BotListInv}(head, \gamma^0) $
 
 {{< fragment weight=4 >}}
 <span class="smath">
-$ \mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}} $
+$ \mathop{\Huge\ast}\limits_{lvl = 1}^{\textsf{HMAX}} $
 </span>
 <span class="inv">
-$ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
-</span><sup class="name">$ \ \textsf{levelN}(i) $</sup>
+$ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
+</span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
 {{< /fragment >}}
 
 {{< speaker_note >}}
