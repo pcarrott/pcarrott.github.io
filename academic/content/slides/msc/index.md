@@ -847,6 +847,38 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Authoritative Ghost State
 
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  <span class="ghost"> 
+  $ \bullet \ a $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $*$
+  <span class="ghost"> 
+  $ \circ \ f $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $ \phantom{\vdash f \preccurlyeq a} $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  <span class="ghost"> 
+  $ \bullet \ a $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $*$
+  <span class="ghost"> 
+  $ \circ \ f $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $ \vdash f \preccurlyeq a $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2)$
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2)$
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -871,6 +903,30 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Set Membership
 
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  <span class="ghost"> 
+  $ \bullet \ S $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $*$
+  <span class="ghost"> 
+  $ \circ \ \{ \ node \ \} $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $ \phantom{\vdash node \in S} $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  <span class="ghost"> 
+  $ \bullet \ S $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $*$
+  <span class="ghost"> 
+  $ \circ \ \{ \ node \ \} $
+  </span><sup class="name">$ \ \gamma $</sup>
+  $ \vdash node \in S $
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -878,6 +934,20 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ---
 
 ### Key-Value Pairs
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $ v\textsf{.val} \in vs $
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -887,6 +957,12 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Sortedness
 
+<div class="r-stack smath">
+  {{< fragment >}}
+  $ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -894,6 +970,20 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ---
 
 ### Successor Chain
+
+<div class="smath">
+{{< fragment >}}
+$ \textsf{IsNext}(lvl, pred, succ) \triangleq $
+{{< /fragment >}}
+
+{{< fragment >}}
+$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+{{< /fragment >}}
+
+{{< fragment >}}
+$ * \ s \hookrightarrow_\square succ $
+{{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -903,6 +993,16 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Lock Resources
 
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\\\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\\\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -910,6 +1010,67 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ---
 
 ### Invariant Definition
+
+<div class="smath">
+{{< fragment weight=1 >}}
+$ \textsf{BotListInv}(head, \gamma) \triangleq \exists \ M, S, L. $
+{{< /fragment >}}
+{{< fragment weight=2 >}}
+<span class="ghost"> 
+$ \bullet \ M $
+</span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
+{{< /fragment >}}
+{{< fragment weight=3 >}}
+$ * \ M\textsf{.keys} = S\textsf{.keys} $
+$*$
+{{< /fragment >}}
+
+$ $
+{{< fragment weight=7 >}}
+<span class="ghost"> 
+$ \textsf{KeyRange} \setminus S\textsf{.keys} $
+</span><sup class="name">$ \ \gamma_T^{\phantom{0}} $</sup>
+$*$
+{{< /fragment >}}
+{{< fragment weight=3 >}}
+<span class="ghost"> 
+$ \bullet \ S $
+</span><sup class="name">$ \ \gamma_A^{\phantom{0}} $</sup>
+{{< /fragment >}}
+{{< fragment weight=4 >}}
+$*$
+{{< /fragment >}}
+{{< fragment weight=5 >}}
+$ S \equiv_P L $
+$ * \ \textsf{Sorted}(\textsf{L}) $
+$ * $
+{{< /fragment >}}
+
+{{< fragment weight=6 >}}
+$
+\mathop{\Huge\ast}\limits_{i = 0}^{|L|}
+\left( 
+  \begin{array}{c}
+    \textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\\\
+    \textsf{HasLock}(0, \textsf{L}[i],  \textsf{InBotLock})
+  \end{array}
+\right)
+$
+$ * $
+{{< /fragment >}}
+{{< fragment weight=4 >}}
+$
+\mathop{\Huge\ast}\limits_{n \in S}
+\left( 
+  \exists \ v, vs.
+  \begin{array}{c}
+    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\\\
+    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+  \end{array}
+\right)
+$
+{{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -949,6 +1110,18 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Height Distribution
 
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $ \textsf{put} \ p \ k \ v \ t $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  <span class="ghost"> 
+  $ \{ k \} $
+  </span><sup class="name">$ \ \gamma_T^h $</sup>
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -957,6 +1130,12 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ### Lock Resources
 
+<div class="smath">
+  {{< fragment >}}
+  $ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -964,6 +1143,68 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ---
 
 ### Invariant Definition
+
+<div class="smath">
+{{< fragment weight=1 >}}
+$ \textsf{SublistInv}(lvl, head, \Gamma, \gamma) \triangleq \exists \ S, L. $
+{{< /fragment >}}
+
+{{< fragment weight=4 >}}
+<span class="ghost"> 
+$ \textsf{KeyRange} \setminus S\textsf{.keys} $
+</span><sup class="name">$ \ \Gamma_T^{\phantom{0}} $</sup>
+$*$
+{{< /fragment >}}
+{{< fragment weight=2 >}}
+<span class="ghost"> 
+$ \bullet \ S $
+</span><sup class="name">$ \ \Gamma_A^{\phantom{0}} $</sup>
+$ * \ S \equiv_P L $
+$ * \ \textsf{Sorted}(\textsf{L}) $
+{{< /fragment >}}
+{{< fragment weight=3 >}}
+$ * $
+{{< /fragment >}}
+
+{{< fragment weight=3 >}}
+$
+\mathop{\Huge\ast}\limits_{i = 0}^{|L|}
+\left( 
+  \begin{array}{c}
+    \textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\\\
+    \textsf{HasLock}(lvl, \textsf{L}[i],  \textsf{InSubLock})
+  \end{array}
+\right)
+$
+{{< /fragment >}}
+{{< fragment weight=5 >}}
+$ * $
+$
+\mathop{\Huge\ast}\limits_{n \in S}
+\left(
+  \vphantom{\begin{array}{c}
+    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\\\
+    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+  \end{array}}
+\right.
+$
+<span class="ghost"> 
+$ \circ \ \\{ n \\} $
+</span><sup class="name">$ \ \gamma_A^{\phantom{0}} $</sup>
+$*$
+<span class="ghost"> 
+$ \\{ n\textsf{.key} \\} $
+</span><sup class="name">$ \ \gamma_T^{\phantom{0}} $</sup>
+$
+\left.
+  \vphantom{\begin{array}{c}
+    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\\\
+    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+  \end{array}}
+\right)
+$
+{{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -985,7 +1226,35 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 ---
 
+### Update procedure
+
+<div class="smath">
+  {{< fragment >}}
+  $ \ \textsf{update} \ node \ v \ t \ $
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
 ### Vertical List
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $ \textbf{\textsf{if}} \ t < val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $ \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val $
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -994,6 +1263,21 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ---
 
 ### Local Fragment
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  <span class="ghost"> 
+  $ \circ_q \ M $
+  </span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
+  $ \ \phantom{\cup \{ \ k : (\{ v \}, t) \ \}} $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  <span class="ghost"> 
+  $ \circ_q \ M \cup \{ \ k : (\{ v \}, t) \ \} $
+  </span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
