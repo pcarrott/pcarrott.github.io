@@ -283,30 +283,40 @@ Having seen how the data is organized in memory, we now abstract from the concre
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $\varnothing$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="ghost" style="border-color: blue">
+$\varnothing$
+&lt;/span>&lt;sup class="name">$ \ {\gamma} $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $\varnothing$
-&lt;/span> $^{^{\gamma}} $
-$*$
+&lt;/span>&lt;sup class="name">$ \ \textcolor{blue}{\gamma} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $\varnothing$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
+$\varnothing$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $\{ \ 1 \ \}$
-&lt;/span> $^{^{\gamma}} $
-$*$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $\{ \ 2 \ \}$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " >
 &lt;span class="ghost">
 $\{ \ 1, 2 \ \}$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
@@ -317,47 +327,47 @@ $\{ \ 1, 2 \ \}$
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $a$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f \cdot a^\prime$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f$
-&lt;/span> $^{^{\gamma}} $
-$*$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $a^\prime$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f$
-&lt;/span> $^{^{\gamma}} $
-$*$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $a^\prime \cdot x$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $f \cdot a^\prime \cdot x$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " >
 &lt;span class="ghost">
 $a \cdot x$
-&lt;/span> $^{^{\gamma}} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="map-composition">Map Composition&lt;/h3>
-&lt;div class="r-stack">
+&lt;div class="r-stack smath">
 &lt;span class="fragment current-visible" >
 $ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
 &lt;/span>
@@ -372,7 +382,7 @@ $ \{ \ k : x \cdot y \ \} $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="value-composition">Value Composition&lt;/h3>
-&lt;div class="r-stack">
+&lt;div class="r-stack smath">
 &lt;span class="fragment current-visible" >
 $ (a, i) \cdot (b, j) = (b, j) $
 &lt;/span>
@@ -394,18 +404,105 @@ $ (a, i) \cdot \textsf{botZ} = (a, i) $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="map-resources">Map Resources&lt;/h3>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \textsf{IsSkipList}(p, M, q, \gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \textsf{IsSkipList}(\textcolor{blue}{p}, M, q, \gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \textsf{IsSkipList}(p, \textcolor{blue}{M}, q, \gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \textsf{IsSkipList}(p, M, \textcolor{blue}{q}, \gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$ \textsf{IsSkipList}(p, M, q, \textcolor{blue}{\gamma}) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$ \textsf{IsSkipList}(p, M_1 \cup M_2, q_1 + q_2, \gamma) $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="7">
+$ \downarrow $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+$ \uparrow $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="7">
+$ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \gamma) $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="triple-for-constructor">Triple for constructor&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="2">
+$ \left\{ \ \textsf{True} \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="1">
+$ \textsf{new} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="3">
+$ \left\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \right\} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="triple-for-updates">Triple for updates&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="2">
+$ \left\{ \ \textsf{IsSkipList}(p, M, q, \gamma) \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="1">
+$ \textsf{put} \ p \ k \ v \ t \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="3">
+$ \left\{ \ \textsf{IsSkipList}(p, M \cup \{ \ k : (\{ v \}, t) \ \}, q, \gamma) \ \right\} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="triple-for-lookups">Triple for lookups&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="2">
+$ \left\{ \ \textsf{IsSkipList}(p, M, 1, \gamma) \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment fade-in" data-fragment-index="1">
+$ \textsf{get} \ p \ k \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \left\{ \ v^?. \begin{array}{c} \textcolor{blue}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{blue}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ \textcolor{blue}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\} $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>
@@ -417,18 +514,120 @@ $ (a, i) \cdot \textsf{botZ} = (a, i) $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="left-sentinel">Left Sentinel&lt;/h3>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$ \exists \ head. \ \textcolor{blue}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
+&lt;/span>
+&lt;span class="fragment " >
+$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{blue}{head\textsf{.key} = \textsf{MIN}} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="bottom-list">Bottom List&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="inv" style="border-color: blue">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textcolor{blue}{\textsf{levelN}(0)} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="inv">
+$\textsf{BotListInv}(\textcolor{blue}{head}, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \textcolor{blue}{\gamma^0}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="sublists">Sublists&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+&lt;span class="smath">
+$ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(i) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="smath">
+$ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(\textcolor{blue}{i}, head, \gamma^i, \gamma^{i-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(i) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;span class="smath">
+$ \phantom{\mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(i, head, \textcolor{blue}{\gamma^i}, \textcolor{blue}{\gamma^{i-1}}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(i) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;span class="smath">
+$ \mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(i) $&lt;/sup>
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="partial-view">Partial View&lt;/h3>
+&lt;p>&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">$ \textsf{IsSkipList}(p, M, q, \gamma) \triangleq $&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">$ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="ghost">
+$ \circ_q \ M $
+&lt;/span>&lt;sup class="name">$ \ \gamma^0 $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>&lt;/p>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
+$ \mathop{\Huge\ast}\limits_{i = 1}^{\textsf{HMAX}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(i, head, \gamma^i, \gamma^{i-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(i) $&lt;/sup>
+&lt;/span>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>
