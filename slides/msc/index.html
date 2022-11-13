@@ -67,19 +67,19 @@
 <span class="fragment current-visible" data-fragment-index=4>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $</span>
 <span class="fragment current-visible" data-fragment-index=5>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\} $</span>
 <span class=fragment data-fragment-index=6>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $</span></div><aside class=notes></aside></section></section><section><section><h2 id=representation-predicate>Representation Predicate</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=left-sentinel>Left Sentinel</h3><div class="r-stack smath"><span class="fragment current-visible">$ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $</span>
-<span class=fragment>$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $</span></div><aside class=notes></aside></section><section><h3 id=iris-invariants>Iris Invariants</h3><div class="r-stack smath"><span class="fragment current-visible" data-fragment-index=1><span class=inv>$ I $
+<span class=fragment>$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $</span></div><aside class=notes></aside></section><section><h3 id=iris-invariants>Iris Invariants</h3><div class=r-stack><span class="fragment current-visible" data-fragment-index=1><span class=inv>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup></span>
 <span class="fragment current-visible" data-fragment-index=2><span class=inv style=border-color:red>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup></span>
 <span class="fragment current-visible" data-fragment-index=3><span class=inv>$ I $
 </span><sup class=name>$ \ \textcolor{red}{\mathcal{N}} $</sup></span>
-<span class=fragment data-fragment-index=4><span style=border-bottom-style:solid;padding-bottom:10px><span class=fragment data-fragment-index=7>$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$</span>
+<span class=fragment data-fragment-index=4><span class=smath style=border-bottom-style:solid;padding-bottom:10px><span class=fragment data-fragment-index=7>$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$</span>
 $\quad$
 <span class=fragment data-fragment-index=5>$ \textsf{atomic}(e) $</span>
 $\quad$
 <span class=fragment data-fragment-index=6>$ \mathcal{N} \subseteq \mathcal{E} $</span></span><div style=padding-top:10px><span class=inv>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup>
-$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $</div></span></div></section><section><h3 id=bottom-list>Bottom List</h3><div class=r-stack><span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
+<span class=smath>$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $</span></div></span></div></section><section><h3 id=bottom-list>Bottom List</h3><div class=r-stack><span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
 </span><sup class=name>$ \ \textsf{levelN}(0) $</sup></span>
 <span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
 </span><sup class=name>$ \ \textcolor{red}{\textsf{levelN}(0)} $</sup></span>
@@ -100,112 +100,92 @@ $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E
 </span><sup class=name>$ \ \textsf{levelN}(0) $</sup></span>
 <span class=fragment data-fragment-index=4><span class=smath>$*$</span></span></p><span class=fragment data-fragment-index=4><span class=smath>$ \mathop{\Huge\ast}\limits_{lvl = 1}^{\textsf{HMAX}} $</span>
 <span class=inv>$ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
-</span><sup class=name>$ \ \textsf{levelN}(lvl) $</sup></span><aside class=notes></aside></section></section><section><section><h2 id=bottom-list-invariant>Bottom List Invariant</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=authoritative-ghost-state>Authoritative Ghost State</h3><div class="r-stack smath"><span class="fragment current-visible"><span class=ghost>$ \bullet \ a $
+</span><sup class=name>$ \ \textsf{levelN}(lvl) $</sup></span><aside class=notes></aside></section></section><section><section><h2 id=bottom-list-invariant>Bottom List Invariant</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=authoritative-ghost-state>Authoritative Ghost State</h3><div class=r-stack><span class="fragment fade-out" data-fragment-index=3><span class=fragment data-fragment-index=1><span class=ghost>$ \bullet \ a $
 </span><sup class=name>$ \ \gamma $</sup>
-$*$
+<span class=smath>$*$</span>
 <span class=ghost>$ \circ \ f $
 </span><sup class=name>$ \ \gamma $</sup>
-$ \phantom{\vdash f \preccurlyeq a} $</span>
-<span class="fragment current-visible"><span class=ghost>$ \bullet \ a $
+<span class=fragment data-fragment-index=2><span class=smath>$ \vdash f \preccurlyeq a $</span></span></span></span>
+<span class="fragment current-visible" data-fragment-index=3><span class=smath>$ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $</span></span>
+<span class=fragment data-fragment-index=4><span class=smath>$ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2) $</span></span></div><aside class=notes></aside></section><section><h3 id=map-fragments>Map Fragments</h3><aside class=notes></aside></section><section><h3 id=fractions>Fractions</h3><aside class=notes></aside></section><section><h3 id=set-membership>Set Membership</h3><p><span class=fragment><span class=ghost>$ \bullet \ S $
 </span><sup class=name>$ \ \gamma $</sup>
-$*$
-<span class=ghost>$ \circ \ f $
-</span><sup class=name>$ \ \gamma $</sup>
-$ \vdash f \preccurlyeq a $</span>
-<span class="fragment current-visible">$ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2)$</span>
-<span class=fragment>$ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2)$</span></div><aside class=notes></aside></section><section><h3 id=map-fragments>Map Fragments</h3><aside class=notes></aside></section><section><h3 id=fractions>Fractions</h3><aside class=notes></aside></section><section><h3 id=set-membership>Set Membership</h3><div class="r-stack smath"><span class="fragment current-visible"><span class=ghost>$ \bullet \ S $
-</span><sup class=name>$ \ \gamma $</sup>
-$*$
+<span class=smath>$*$</span>
 <span class=ghost>$ \circ \ \{ \ node \ \} $
-</span><sup class=name>$ \ \gamma $</sup>
-$ \phantom{\vdash node \in S} $</span>
-<span class=fragment><span class=ghost>$ \bullet \ S $
-</span><sup class=name>$ \ \gamma $</sup>
-$*$
-<span class=ghost>$ \circ \ \{ \ node \ \} $
-</span><sup class=name>$ \ \gamma $</sup>
-$ \vdash node \in S $</span></div><aside class=notes></aside></section><section><h3 id=key-value-pairs>Key-Value Pairs</h3><div class="r-stack smath"><span class="fragment current-visible">$ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $</span>
+</span><sup class=name>$ \ \gamma $</sup></span>
+<span class=fragment><span class=smath>$ \vdash node \in S $</span></span></p><aside class=notes></aside></section><section><h3 id=key-value-pairs>Key-Value Pairs</h3><div class="r-stack smath"><span class="fragment current-visible">$ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $</span>
 <span class="fragment current-visible">$ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $</span>
 <span class=fragment>$ v\textsf{.val} \in vs $</span></div><aside class=notes></aside></section><section><h3 id=sortedness>Sortedness</h3><div class="r-stack smath"><span class=fragment>$ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $</span></div><aside class=notes></aside></section><section><h3 id=successor-chain>Successor Chain</h3><div class=smath><span class=fragment>$ \textsf{IsNext}(lvl, pred, succ) \triangleq $</span>
 <span class=fragment>$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $</span>
 <span class=fragment>$ * \ s \hookrightarrow_\square succ $</span></div><aside class=notes></aside></section><section><h3 id=lock-resources>Lock Resources</h3><div class="r-stack smath"><span class="fragment current-visible">$ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $</span>
-<span class=fragment>$ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $</span></div><aside class=notes></aside></section><section><h3 id=invariant-definition>Invariant Definition</h3><div class=smath><span class=fragment data-fragment-index=1>$ \textsf{BotListInv}(head, \gamma) \triangleq \exists \ M, S, L. $</span>
+<span class=fragment>$ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $</span></div><aside class=notes></aside></section><section><h3 id=invariant-definition>Invariant Definition</h3><p><span class=fragment data-fragment-index=1><span class=smath>$ \textsf{BotListInv}(head, \gamma) \triangleq \exists \ M, S, L. $</span></span>
 <span class=fragment data-fragment-index=2><span class=ghost>$ \bullet \ M $
 </span><sup class=name>$ \ \gamma_F^{\phantom{0}} $</sup></span>
-<span class=fragment data-fragment-index=3>$ * \ M\textsf{.keys} = S\textsf{.keys} $
-$*$</span><p>$ $
-<span class=fragment data-fragment-index=7><span class=ghost>$ \textsf{KeyRange} \setminus S\textsf{.keys} $
+<span class=fragment data-fragment-index=3><span class=smath>$ * \ M\textsf{.keys} = S\textsf{.keys} \ * $</span></span></p><p><span class=fragment data-fragment-index=7><span class=ghost>$ \textsf{KeyRange} \setminus S\textsf{.keys} $
 </span><sup class=name>$ \ \gamma_T^{\phantom{0}} $</sup>
-$*$</span>
+<span class=smath>$*$</span></span>
 <span class=fragment data-fragment-index=3><span class=ghost>$ \bullet \ S $
 </span><sup class=name>$ \ \gamma_A^{\phantom{0}} $</sup></span>
-<span class=fragment data-fragment-index=4>$*$</span>
-<span class=fragment data-fragment-index=5>$ S \equiv_P L $
-$ * \ \textsf{Sorted}(\textsf{L}) $
-$ * $</span></p><p><span class=fragment data-fragment-index=6>$
+<span class=fragment data-fragment-index=4><span class=smath>$*$</span></span>
+<span class=fragment data-fragment-index=5><span class=smath>$ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) \ * $</span></span></p><p><span class=fragment data-fragment-index=6><span class=smath>$
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
-\begin{array}{c}
+\begin{matrix}
 \textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
 \textsf{HasLock}(0, \textsf{L}[i], \textsf{InBotLock})
-\end{array}
-\right)
-$
-$ * $</span>
-<span class=fragment data-fragment-index=4>$
+\end{matrix}
+\right) \ *
+$</span></span>
+<span class=fragment data-fragment-index=4><span class=smath>$
 \mathop{\Huge\ast}\limits_{n \in S}
 \left(
 \exists \ v, vs.
-\begin{array}{c}
+\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}
+\end{matrix}
 \right)
-$</span></p></div><aside class=notes></aside></section></section><section><section><h2 id=sublist-invariant>Sublist Invariant</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=sublist-relation>Sublist Relation</h3><aside class=notes></aside></section><section><h3 id=ghost-tokens>Ghost Tokens</h3><aside class=notes></aside></section><section><h3 id=height-distribution>Height Distribution</h3><div class="r-stack smath"><span class="fragment current-visible">$ \textsf{put} \ p \ k \ v \ t $</span>
+$</span></span></p><aside class=notes></aside></section></section><section><section><h2 id=sublist-invariant>Sublist Invariant</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=sublist-relation>Sublist Relation</h3><aside class=notes></aside></section><section><h3 id=ghost-tokens>Ghost Tokens</h3><aside class=notes></aside></section><section><h3 id=height-distribution>Height Distribution</h3><div class=r-stack><span class="fragment current-visible"><span class=smath>$ \textsf{put} \ p \ k \ v \ t $</span></span>
 <span class=fragment><span class=ghost>$ \{ k \} $
-</span><sup class=name>$ \ \gamma_T^h $</sup></span></div><aside class=notes></aside></section><section><h3 id=lock-resources-1>Lock Resources</h3><div class=smath><span class=fragment>$ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $</span></div><aside class=notes></aside></section><section><h3 id=invariant-definition-1>Invariant Definition</h3><div class=smath><span class=fragment data-fragment-index=1>$ \textsf{SublistInv}(lvl, head, \Gamma, \gamma) \triangleq \exists \ S, L. $</span><p><span class=fragment data-fragment-index=4><span class=ghost>$ \textsf{KeyRange} \setminus S\textsf{.keys} $
+</span><sup class=name>$ \ \gamma_T^h $</sup></span></div><aside class=notes></aside></section><section><h3 id=lock-resources-1>Lock Resources</h3><div class=smath><span class=fragment>$ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $</span></div><aside class=notes></aside></section><section><h3 id=invariant-definition-1>Invariant Definition</h3><span class=fragment data-fragment-index=1><span class=smath>$ \textsf{SublistInv}(lvl, head, \Gamma, \gamma) \triangleq \exists \ S, L. $</span></span><p><span class=fragment data-fragment-index=4><span class=ghost>$ \textsf{KeyRange} \setminus S\textsf{.keys} $
 </span><sup class=name>$ \ \Gamma_T^{\phantom{0}} $</sup>
-$*$</span>
+<span class=smath>$*$</span></span>
 <span class=fragment data-fragment-index=2><span class=ghost>$ \bullet \ S $
 </span><sup class=name>$ \ \Gamma_A^{\phantom{0}} $</sup>
-$ * \ S \equiv_P L $
-$ * \ \textsf{Sorted}(\textsf{L}) $</span>
-<span class=fragment data-fragment-index=3>$ * $</span></p><p><span class=fragment data-fragment-index=3>$
+<span class=smath>$ * \ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) $</span></span>
+<span class=fragment data-fragment-index=3><span class=smath>$*$</span></span></p><p><span class=fragment data-fragment-index=3><span class=smath>$
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
-\begin{array}{c}
+\begin{matrix}
 \textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
 \textsf{HasLock}(lvl, \textsf{L}[i], \textsf{InSubLock})
-\end{array}
+\end{matrix}
 \right)
-$</span>
-<span class=fragment data-fragment-index=5>$ * $
-$
-\mathop{\Huge\ast}\limits_{n \in S}
+$</span></span>
+<span class=fragment data-fragment-index=5><span class=smath>$
+* \ \mathop{\Huge\ast}\limits_{n \in S}
 \left(
-\vphantom{\begin{array}{c}
+\vphantom{\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}}
-\right.
-$
+\end{matrix}}
+\right. \!
+$</span>
 <span class=ghost>$ \circ \ \{ n \} $
 </span><sup class=name>$ \ \gamma_A^{\phantom{0}} $</sup>
-$*$
+<span class=smath>$*$</span>
 <span class=ghost>$ \{ n\textsf{.key} \} $
 </span><sup class=name>$ \ \gamma_T^{\phantom{0}} $</sup>
-$
-\left.
-\vphantom{\begin{array}{c}
+<span class=smath>$
+\! \! \! \left.
+\vphantom{\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}}
+\end{matrix}}
 \right)
-$</span></p></div><aside class=notes></aside></section></section><section><section><h2 id=value-updates>Value Updates</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=update-procedure>Update procedure</h3><div class=smath><span class=fragment>$ \ \textsf{update} \ node \ v \ t \ $</span></div><aside class=notes></aside></section><section><h3 id=vertical-list>Vertical List</h3><div class="r-stack smath"><span class="fragment current-visible">$ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $</span>
+$</span></span></p><aside class=notes></aside></section></section><section><section><h2 id=value-updates>Value Updates</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=update-procedure>Update procedure</h3><div class=smath><span class=fragment>$ \ \textsf{update} \ node \ v \ t \ $</span></div><aside class=notes></aside></section><section><h3 id=vertical-list>Vertical List</h3><div class="r-stack smath"><span class="fragment current-visible">$ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $</span>
 <span class="fragment current-visible">$ \textbf{\textsf{if}} \ t &lt; val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $</span>
-<span class=fragment>$ \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val $</span></div><aside class=notes></aside></section><section><h3 id=local-fragment>Local Fragment</h3><div class="r-stack smath"><span class="fragment current-visible"><span class=ghost>$ \circ_q \ M $
-</span><sup class=name>$ \ \gamma_F^{\phantom{0}} $</sup>
-$ \ \phantom{\cup \{ \ k : (\{ v \}, t) \ \}} $</span>
+<span class=fragment>$ \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val $</span></div><aside class=notes></aside></section><section><h3 id=local-fragment>Local Fragment</h3><div class=r-stack><span class="fragment current-visible"><span class=ghost>$ \circ_q \ M $
+</span><sup class=name>$ \ \gamma_F^{\phantom{0}} $</sup></span>
 <span class=fragment><span class=ghost>$ \circ_q \ M \cup \{ \ k : (\{ v \}, t) \ \} $
 </span><sup class=name>$ \ \gamma_F^{\phantom{0}} $</sup></span></div><aside class=notes></aside></section></section><section><section><h2 id=a-simple-client>A Simple Client</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=code-overview>Code Overview</h3><div class=smath><span class=fragment data-fragment-index=1>$ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $</span></div><span class=fragment data-fragment-index=2><div class=smath style=display:inline-block;border-right-style:solid;padding-right:10px;margin-right:5px><div class=r-stack><span class="fragment current-visible" data-fragment-index=2>$
 \textsf{put} \ p \ 10 \ 1 \ 0; \\
@@ -419,19 +399,20 @@ $</span>
 \! \! \!
 \end{array} \! \! }
 \right\rangle
-$</span></div><aside class=notes></aside></section><section><h3 id=client-reasoning>Client Reasoning</h3><div class="r-stack smath"><span class="fragment fade-out" data-fragment-index=4><span class=fragment data-fragment-index=1><span class=fragment data-fragment-index=1>$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $</span>
-<span class=fragment data-fragment-index=2>$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $</span>
-<span class=fragment data-fragment-index=3>$ \ \lor \\ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $</span></span></span>
-<span class=fragment data-fragment-index=4><span class=fragment data-fragment-index=4>$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $</span>
+$</span></div><aside class=notes></aside></section><section><h3 id=client-reasoning>Client Reasoning</h3><div class=r-stack><span class="fragment fade-out" data-fragment-index=4><span class=fragment data-fragment-index=1><span class=fragment data-fragment-index=1><span class=smath>$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $</span></span>
+<span class=fragment data-fragment-index=2><span class=smath>$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $</span></span>
+<span class=fragment data-fragment-index=3><span class=smath>$ \lor \\ $</span></span>
+<span class=fragment data-fragment-index=3><span class=smath>$ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $</span></span></span></span>
+<span class=fragment data-fragment-index=4><span class=fragment data-fragment-index=4><span class=smath>$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $</span></span>
 <span class=fragment data-fragment-index=8><span class=ghost>$ \circ_q \ v_F^? $
 </span><sup class=name>$ \ \gamma^k $</sup>
-$* \\\\ $</span>
+<span class=smath>$ * \\$</span></span>
 <span class=fragment data-fragment-index=5><span class=inv style=margin-top:10px><span class=fragment data-fragment-index=5>$ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $</span>
 <span class=fragment data-fragment-index=6>$ * \ \exists \ v_A^?. $
 <span class=ghost>$ \bullet \ v_A^? $
-</span><sup class=name>$ \ \gamma^k $</sup></span>
+</span><sup class=name style=bottom:16px>$ \ \gamma^k $</sup></span>
 <span class=fragment data-fragment-index=7>$ * \ \textsf{SomeEquiv}(v^?, v_A^?) $</span>
-</span><sup class=name>$ \ \textsf{keyN}(k) $</sup></span></span></div><aside class=notes></aside></section></section><section><section><h2 id=conclusion>Conclusion</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=future-work>Future Work</h3><aside class=notes></aside></section></section><section><h1 id=thank-you>Thank you!</h1><aside class=notes></aside></section></div></div><script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js crossorigin=anonymous></script>
+</span><sup class=name style=bottom:22px>$ \ \textsf{levelN}(k) $</sup></span></span></div><aside class=notes></aside></section></section><section><section><h2 id=conclusion>Conclusion</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=future-work>Future Work</h3><aside class=notes></aside></section></section><section><h1 id=thank-you>Thank you!</h1><aside class=notes></aside></section></div></div><script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/search/search.min.js crossorigin=anonymous></script>

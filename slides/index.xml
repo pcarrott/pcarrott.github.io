@@ -459,7 +459,7 @@ $ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="iris-invariants">Iris Invariants&lt;/h3>
-&lt;div class="r-stack smath">
+&lt;div class="r-stack">
 &lt;span class="fragment current-visible" data-fragment-index="1">
 &lt;span class="inv">
 $ I $
@@ -476,7 +476,7 @@ $ I $
 &lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\mathcal{N}} $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
-&lt;span style="border-bottom-style: solid; padding-bottom: 10px;">
+&lt;span class="smath" style="border-bottom-style: solid; padding-bottom: 10px;">
 &lt;span class="fragment " data-fragment-index="7">
 $\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
 &lt;/span>
@@ -493,7 +493,9 @@ $ \mathcal{N} \subseteq \mathcal{E} $
 &lt;span class="inv">
 $ I $
 &lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+&lt;span class="smath">
 $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $
+&lt;/span>
 &lt;/div>
 &lt;/span>
 &lt;/div>
@@ -590,32 +592,30 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="authoritative-ghost-state">Authoritative Ghost State&lt;/h3>
-&lt;div class="r-stack smath">
-&lt;span class="fragment current-visible" >
+&lt;div class="r-stack">
+&lt;span class="fragment fade-out" data-fragment-index="3">
+&lt;span class="fragment " data-fragment-index="1">
 &lt;span class="ghost">
 $ \bullet \ a $
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $ \circ \ f $
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$ \phantom{\vdash f \preccurlyeq a} $
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">$ \vdash f \preccurlyeq a $&lt;/span>
 &lt;/span>
-&lt;span class="fragment current-visible" >
-&lt;span class="ghost">
-$ \bullet \ a $
-&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$*$
-&lt;span class="ghost">
-$ \circ \ f $
-&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$ \vdash f \preccurlyeq a $
 &lt;/span>
-&lt;span class="fragment current-visible" >
-$ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2)$
 &lt;/span>
-&lt;span class="fragment " >
-$ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2)$
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="smath">
+$ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
+$ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2) $
+&lt;/span>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
@@ -630,28 +630,20 @@ $ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="set-membership">Set Membership&lt;/h3>
-&lt;div class="r-stack smath">
-&lt;span class="fragment current-visible" >
+&lt;p>&lt;span class="fragment " >
 &lt;span class="ghost">
 $ \bullet \ S $
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $ \circ \ \{ \ node \ \} $
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$ \phantom{\vdash node \in S} $
 &lt;/span>
 &lt;span class="fragment " >
-&lt;span class="ghost">
-$ \bullet \ S $
-&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
-$*$
-&lt;span class="ghost">
-$ \circ \ \{ \ node \ \} $
-&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">
 $ \vdash node \in S $
 &lt;/span>
-&lt;/div>
+&lt;/span>&lt;/p>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
@@ -707,9 +699,10 @@ $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\text
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="invariant-definition">Invariant Definition&lt;/h3>
-&lt;div class="smath">
-&lt;span class="fragment " data-fragment-index="1">
+&lt;p>&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{BotListInv}(head, \gamma) \triangleq \exists \ M, S, L. $
+&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="2">
 &lt;span class="ghost">
@@ -717,15 +710,15 @@ $ \bullet \ M $
 &lt;/span>&lt;sup class="name">$ \ \gamma_F^{\phantom{0}} $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="3">
-$ * \ M\textsf{.keys} = S\textsf{.keys} $
-$*$
+&lt;span class="smath">
+$ * \ M\textsf{.keys} = S\textsf{.keys} \ * $
 &lt;/span>
-&lt;p>$ $
-&lt;span class="fragment " data-fragment-index="7">
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="7">
 &lt;span class="ghost">
 $ \textsf{KeyRange} \setminus S\textsf{.keys} $
 &lt;/span>&lt;sup class="name">$ \ \gamma_T^{\phantom{0}} $&lt;/sup>
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="3">
 &lt;span class="ghost">
@@ -733,38 +726,40 @@ $ \bullet \ S $
 &lt;/span>&lt;sup class="name">$ \ \gamma_A^{\phantom{0}} $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="5">
-$ S \equiv_P L $
-$ * \ \textsf{Sorted}(\textsf{L}) $
-$ * $
+&lt;span class="smath">
+$ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) \ * $
+&lt;/span>
 &lt;/span>&lt;/p>
 &lt;p>&lt;span class="fragment " data-fragment-index="6">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
-\begin{array}{c}
+\begin{matrix}
 \textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
 \textsf{HasLock}(0, \textsf{L}[i], \textsf{InBotLock})
-\end{array}
-\right)
+\end{matrix}
+\right) \ *
 $
-$ * $
+&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{n \in S}
 \left(
 \exists \ v, vs.
-\begin{array}{c}
+\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}
+\end{matrix}
 \right)
 $
+&lt;/span>
 &lt;/span>&lt;/p>
-&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>
@@ -784,9 +779,11 @@ $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="height-distribution">Height Distribution&lt;/h3>
-&lt;div class="r-stack smath">
+&lt;div class="r-stack">
 &lt;span class="fragment current-visible" >
+&lt;span class="smath">
 $ \textsf{put} \ p \ k \ v \ t $
+&lt;/span>
 &lt;/span>
 &lt;span class="fragment " >
 &lt;span class="ghost">
@@ -807,65 +804,71 @@ $ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hoo
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="invariant-definition-1">Invariant Definition&lt;/h3>
-&lt;div class="smath">
 &lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{SublistInv}(lvl, head, \Gamma, \gamma) \triangleq \exists \ S, L. $
+&lt;/span>
 &lt;/span>
 &lt;p>&lt;span class="fragment " data-fragment-index="4">
 &lt;span class="ghost">
 $ \textsf{KeyRange} \setminus S\textsf{.keys} $
 &lt;/span>&lt;sup class="name">$ \ \Gamma_T^{\phantom{0}} $&lt;/sup>
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="2">
 &lt;span class="ghost">
 $ \bullet \ S $
 &lt;/span>&lt;sup class="name">$ \ \Gamma_A^{\phantom{0}} $&lt;/sup>
-$ * \ S \equiv_P L $
-$ * \ \textsf{Sorted}(\textsf{L}) $
+&lt;span class="smath">
+$ * \ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) $
+&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="3">
-$ * $
+&lt;span class="smath">$*$&lt;/span>
 &lt;/span>&lt;/p>
 &lt;p>&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
-\begin{array}{c}
+\begin{matrix}
 \textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
 \textsf{HasLock}(lvl, \textsf{L}[i], \textsf{InSubLock})
-\end{array}
+\end{matrix}
 \right)
 $
 &lt;/span>
+&lt;/span>
 &lt;span class="fragment " data-fragment-index="5">
-$ * $
+&lt;span class="smath">
 $
-\mathop{\Huge\ast}\limits_{n \in S}
+* \ \mathop{\Huge\ast}\limits_{n \in S}
 \left(
-\vphantom{\begin{array}{c}
+\vphantom{\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}}
-\right.
+\end{matrix}}
+\right. \!
 $
+&lt;/span>
 &lt;span class="ghost">
 $ \circ \ \{ n \} $
 &lt;/span>&lt;sup class="name">$ \ \gamma_A^{\phantom{0}} $&lt;/sup>
-$*$
+&lt;span class="smath">$*$&lt;/span>
 &lt;span class="ghost">
 $ \{ n\textsf{.key} \} $
 &lt;/span>&lt;sup class="name">$ \ \gamma_T^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">
 $
-\left.
-\vphantom{\begin{array}{c}
+\! \! \! \left.
+\vphantom{\begin{matrix}
 n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
 M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-\end{array}}
+\end{matrix}}
 \right)
 $
+&lt;/span>
 &lt;/span>&lt;/p>
-&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>
@@ -901,12 +904,11 @@ $ \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\fr
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="local-fragment">Local Fragment&lt;/h3>
-&lt;div class="r-stack smath">
+&lt;div class="r-stack">
 &lt;span class="fragment current-visible" >
 &lt;span class="ghost">
 $ \circ_q \ M $
 &lt;/span>&lt;sup class="name">$ \ \gamma_F^{\phantom{0}} $&lt;/sup>
-$ \ \phantom{\cup \{ \ k : (\{ v \}, t) \ \}} $
 &lt;/span>
 &lt;span class="fragment " >
 &lt;span class="ghost">
@@ -1360,29 +1362,42 @@ $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="client-reasoning">Client Reasoning&lt;/h3>
-&lt;div class="r-stack smath">
+&lt;div class="r-stack">
 &lt;span class="fragment fade-out" data-fragment-index="4">
 &lt;span class="fragment " data-fragment-index="1">
 &lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $
 &lt;/span>
+&lt;/span>
 &lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
 $ (v^? = \textsf{None} * v_A^? = \textsf{None}) $
 &lt;/span>
+&lt;/span>
 &lt;span class="fragment " data-fragment-index="3">
-$ \ \lor \\ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $
+&lt;span class="smath">
+$ \lor \\ $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
+$ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $
+&lt;/span>
 &lt;/span>
 &lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
 &lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $
+&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="8">
 &lt;span class="ghost">
 $ \circ_q \ v_F^? $
 &lt;/span>&lt;sup class="name">$ \ \gamma^k $&lt;/sup>
-$* \\\\ $
+&lt;span class="smath">$ * \\$&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="5">
 &lt;span class="inv" style="margin-top: 10px">
@@ -1393,12 +1408,12 @@ $ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $
 $ * \ \exists \ v_A^?. $
 &lt;span class="ghost">
 $ \bullet \ v_A^? $
-&lt;/span>&lt;sup class="name">$ \ \gamma^k $&lt;/sup>
+&lt;/span>&lt;sup class="name" style="bottom: 16px">$ \ \gamma^k $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="7">
 $ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
 &lt;/span>
-&lt;/span>&lt;sup class="name">$ \ \textsf{keyN}(k) $&lt;/sup>
+&lt;/span>&lt;sup class="name" style="bottom: 22px">$ \ \textsf{levelN}(k) $&lt;/sup>
 &lt;/span>
 &lt;/span>
 &lt;/div>
