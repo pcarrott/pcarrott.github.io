@@ -1301,6 +1301,172 @@ $
 
 ### Code Overview
 
+<div class="smath">
+  {{< fragment weight=1 >}}
+  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+  {{< /fragment >}}
+</div>
+
+{{< fragment weight=2 >}}
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+<div class="r-stack">
+{{< fragment weight=2 class="current-visible" >}}
+$ 
+\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=3 class="current-visible" >}}
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
+\textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} \\\\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=4 class="current-visible" >}}
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;}
+$
+{{< /fragment >}}
+
+{{< fragment weight=5 class="current-visible" >}}
+$
+\textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} \\\\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=6 >}}
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+{{< /fragment >}}
+</div>
+</div>
+{{< /fragment >}}
+
+{{< fragment weight=2 >}}
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+<div class="r-stack">
+{{< fragment weight=2 class="current-visible" >}}
+$ 
+\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=3 class="current-visible" >}}
+$
+\textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\\\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=4 class="current-visible" >}}
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
+$
+{{< /fragment >}}
+
+{{< fragment weight=5 class="current-visible" >}}
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\\\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+{{< /fragment >}}
+
+{{< fragment weight=6 >}}
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+{{< /fragment >}}
+</div>
+</div>
+{{< /fragment >}}
+
+<div class="smath">
+  {{< fragment weight=6 >}}
+  $$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $$
+  {{< /fragment >}}
+</div>
+
+<!-- <div class="smath">
+  {{< fragment weight=1 >}}
+  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+  {{< /fragment >}}
+
+  <div class="r-stack">
+  {{< fragment weight=2 class="current-visible" >}}
+  $
+  \begin{array}{c||c}
+    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
+  \end{array}
+  $
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class="current-visible" >}}
+  $
+  \begin{array}{c||c}
+    \textsf{put} \ p \ 10 \ 1 \ 0; & \textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\\\
+    \textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
+  \end{array}
+  $
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class="current-visible" >}}
+  $
+  \begin{array}{c||c}
+    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+    \textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;} & \textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
+  \end{array}
+  $
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class="current-visible" >}}
+  $
+  \begin{array}{c||c}
+    \textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+    \textsf{put} \ p \ 20 \ 2 \ 1; & \textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\\\
+    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
+  \end{array}
+  $
+  {{< /fragment >}}
+
+  {{< fragment weight=6 >}}
+  $
+  \begin{array}{c||c}
+    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
+    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
+    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
+  \end{array}
+  $
+  {{< /fragment >}}
+  </div>
+
+  {{< fragment weight=6 >}}
+  $ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20)  $
+  {{< /fragment >}}
+</div> -->
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -1308,6 +1474,44 @@ $
 ---
 
 ### Initialization
+
+<div class="smath">
+  {{< fragment >}}
+  $ \textcolor{purple}{\\{ \ \textsf{True} \ \\}} $
+  {{< /fragment >}}
+</div>
+
+<div class="smath">
+  {{< fragment >}}
+  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $ \textcolor{purple}{\\{ \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $ \textcolor{purple}{\\{ \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $ \textcolor{purple}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cdot \varnothing, \frac{1}{2} + \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+</div>
+
+<div class="smath">
+  {{< fragment >}}
+  $ \downarrow $
+  {{< /fragment >}}
+</div>
+
+<div class="smath">
+  {{< fragment >}}
+  $ \textcolor{purple}{\\{ \ \textcolor{blue}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} * \textcolor{red}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} \ \\}} $
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
@@ -1317,6 +1521,66 @@ $
 
 ### Updates
 
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+  {{< fragment weight=1 >}}
+  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  $ \textsf{put} \ p \ 10 \ 1 \ 0; $
+
+  <div class="r-stack">
+  {{< fragment weight=2 class="current-visible" >}}
+  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 10 : (\\{ 1 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \\{ \ 10 : (\\{ 1 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+  </div>
+
+  $ \textsf{put} \ p \ 20 \ 2 \ 1; $
+
+  {{< fragment weight=4 >}}
+  $ \textcolor{blue}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
+  {{< /fragment >}}
+
+  $ \textsf{put} \ p \ 10 \ 3 \ 2; $
+
+  {{< fragment weight=5 >}}
+  $ \textcolor{blue}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 3 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
+  {{< /fragment >}}
+</div>
+
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+  {{< fragment weight=1 >}}
+  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  $ \textsf{put} \ p \ 20 \ 5 \ 0; $
+
+  <div class="r-stack">
+  {{< fragment weight=2 class="current-visible" >}}
+  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 20 : (\\{ 5 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \\{ \ 20 : (\\{ 5 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
+  {{< /fragment >}}
+  </div>
+
+  $ \textsf{put} \ p \ 10 \ 2 \ 1; $
+
+  {{< fragment weight=4 >}}
+  $ \textcolor{red}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
+  {{< /fragment >}}
+
+  $ \textsf{put} \ p \ 10 \ 6 \ 2; $
+
+  {{< fragment weight=5 >}}
+  $ \textcolor{red}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 6 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
+  {{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -1324,6 +1588,115 @@ $
 ---
 
 ### Lookup
+
+<div class="smath">
+  {{< fragment >}}
+  $
+  \textcolor{purple}{\left\\{ \textcolor{blue}{\textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 3 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right)}
+  *
+  \textcolor{red}{\textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 6 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right)} \right\\}} \\\\
+  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
+  $
+  {{< /fragment >}}
+</div>
+
+<div class="smath">
+  {{< fragment >}}
+  $ \downarrow $
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $
+  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), \textcolor{blue}{\frac{1}{2}} + \textcolor{red}{\frac{1}{2}}, \gamma\right) \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $
+  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $
+  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \cup \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \cup \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $
+  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left\\{ \ 10 : \begin{array}{l} \textcolor{blue}{(\\{ 1 \\}, 0)} \cdot \textcolor{blue}{(\\{ 3 \\}, 2)} \ \cdot \\\\ \textcolor{red}{(\\{ 2 \\}, 1)} \cdot \textcolor{red}{(\\{ 6 \\}, 2)} \end{array} \right\\} \cup \left\\{ \ 20 : \begin{array}{l} \textcolor{blue}{(\\{ 2 \\}, 1)} \ \cdot \\\\ \textcolor{red}{(\\{ 5 \\}, 0)} \end{array} \right\\}, 1, \gamma\right) \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $
+  \textcolor{purple}{ \left\\{ \ \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ \right\\}}
+  $
+  {{< /fragment >}}
+</div>
+
+<div class="smath">
+  {{< fragment >}}
+  $ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack smath">
+  {{< fragment class="current-visible" >}}
+  $
+  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
+  \textcolor{purple}{ \left\\{
+    (v_1^?, v_2^?).
+    \phantom{\begin{array}{c}
+      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
+      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}
+    \end{array}}
+  \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $
+  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
+  \textcolor{purple}{ \left\\{
+    (v_1^?, v_2^?).
+    \begin{array}{c}
+      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \phantom{\ *} \\\\
+      \phantom{\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}}
+    \end{array}
+  \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment class="current-visible" >}}
+  $
+  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
+  \textcolor{purple}{ \left\\{
+    (v_1^?, v_2^?).
+    \begin{array}{c}
+      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
+      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * \phantom{v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * } v_2^? = \textsf{Some}(v_2, 1) \phantom{* v_2 \in \\{ \textcolor{blue}{2} \\}}
+    \end{array}
+  \right\\}}
+  $
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  $
+  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
+  \textcolor{purple}{ \left\\{
+    (v_1^?, v_2^?).
+    \begin{array}{c}
+      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
+      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}
+    \end{array}
+  \right\\}}
+  $
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
