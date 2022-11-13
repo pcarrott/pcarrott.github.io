@@ -1308,7 +1308,7 @@ $
 </div>
 
 {{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 0px; margin-right: 0px">
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
 <div class="r-stack">
 {{< fragment weight=2 class="current-visible" >}}
 $ 
@@ -1354,7 +1354,7 @@ $
 {{< /fragment >}}
 
 {{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 0px; margin-left: 0px">
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
 <div class="r-stack">
 {{< fragment weight=2 class="current-visible" >}}
 $ 
@@ -1459,7 +1459,7 @@ $
 
 ### Updates
 
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 10px">
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
   {{< fragment weight=1 >}}
   $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
@@ -1489,7 +1489,7 @@ $
   {{< /fragment >}}
 </div>
 
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 10px">
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
   {{< fragment weight=1 >}}
   $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
