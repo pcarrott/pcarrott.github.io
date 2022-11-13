@@ -459,7 +459,7 @@ $ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="iris-invariants">Iris Invariants&lt;/h3>
-&lt;div class="r-stack">
+&lt;div class="r-stack smath">
 &lt;span class="fragment current-visible" data-fragment-index="1">
 &lt;span class="inv">
 $ I $
@@ -476,26 +476,25 @@ $ I $
 &lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\mathcal{N}} $&lt;/sup>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
-&lt;span class="smath" style="border-bottom-style: solid; padding-bottom: 6px;">
-&lt;span class="fragment" data-fragment-index="7">
+&lt;span style="border-bottom-style: solid; padding-bottom: 10px;">
+&lt;span class="fragment " data-fragment-index="7">
 $\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
 &lt;/span>
 $\quad$
-&lt;span class="fragment" data-fragment-index="5">
+&lt;span class="fragment " data-fragment-index="5">
 $ \textsf{atomic}(e) $
 &lt;/span>
 $\quad$
-&lt;span class="fragment" data-fragment-index="6">
+&lt;span class="fragment " data-fragment-index="6">
 $ \mathcal{N} \subseteq \mathcal{E} $
 &lt;/span>
 &lt;/span>
-&lt;br>
+&lt;div style="padding-top: 10px">
 &lt;span class="inv">
 $ I $
 &lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
-&lt;span class="smath">
 $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $
-&lt;/span>
+&lt;/div>
 &lt;/span>
 &lt;/div>
 &lt;hr>
@@ -1221,10 +1220,188 @@ $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="logical-atomicity">Logical Atomicity&lt;/h3>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $
+&lt;/span>
+&lt;span class="fragment " >
+&lt;span style="border-bottom-style: solid; padding-bottom: 10px">
+$\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
+$\quad$
+&lt;span class="fragment fade-out" >
+$ \textsf{atomic}(e) $
+&lt;/span>
+$\quad$
+$ \mathcal{N} \subseteq \mathcal{E} $
+&lt;/span>
+&lt;div style="padding-top: 10px">
+&lt;span class="inv">
+$ I $
+&lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+$ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $
+&lt;/div>
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="key-value-specifications">Key-Value Specifications&lt;/h3>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+| \ \textsf{Some}(v_i, t_i) &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+&amp;amp; &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textcolor{red}{\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}}} \\
+\! \! \!
+\begin{array}{lcl}
+\textcolor{red}{| \ \textsf{None}} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+&amp;amp; &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+\textcolor{red}{| \ \textsf{None}} &amp;amp; \textcolor{red}{\Rightarrow} &amp;amp; \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)} \\
+| \ \textsf{Some}(v_i, t_i) &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+&amp;amp; &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} &amp;amp; \textcolor{red}{\Rightarrow} &amp;amp; \textcolor{red}{\textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma)} \\
+&amp;amp; &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} &amp;amp; \textcolor{red}{\Rightarrow} &amp;amp; \textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+&amp;amp; &amp;amp; \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)}
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;span class="fragment " >
+$
+\left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ v_i^? \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma) \\
+| \ \textsf{Some}(v_i, t_i) &amp;amp; \Rightarrow &amp;amp; \textbf{\textsf{if}} \ t &amp;lt; t_i \ \textbf{\textsf{then}} \ \textsf{Key}(p, k, v_i^?, \gamma) \\
+&amp;amp; &amp;amp; \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="client-reasoning">Client Reasoning&lt;/h3>
+&lt;div class="r-stack smath">
+&lt;span class="fragment fade-out" data-fragment-index="4">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ \ \lor \\ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $
+&lt;/span>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="fragment " data-fragment-index="4">
+$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&lt;span class="ghost">
+$ \circ_q \ v_F^? $
+&lt;/span>&lt;sup class="name">$ \ \gamma^k $&lt;/sup>
+$* \\\\ $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="inv" style="margin-top: 10px">
+&lt;span class="fragment " data-fragment-index="5">
+$ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$ * \ \exists \ v_A^?. $
+&lt;span class="ghost">
+$ \bullet \ v_A^? $
+&lt;/span>&lt;sup class="name">$ \ \gamma^k $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+$ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
+&lt;/span>
+&lt;/span>&lt;sup class="name">$ \ \textsf{keyN}(k) $&lt;/sup>
+&lt;/span>
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;/section>

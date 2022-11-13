@@ -67,19 +67,19 @@
 <span class="fragment current-visible" data-fragment-index=4>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $</span>
 <span class="fragment current-visible" data-fragment-index=5>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\} $</span>
 <span class=fragment data-fragment-index=6>$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $</span></div><aside class=notes></aside></section></section><section><section><h2 id=representation-predicate>Representation Predicate</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=left-sentinel>Left Sentinel</h3><div class="r-stack smath"><span class="fragment current-visible">$ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $</span>
-<span class=fragment>$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $</span></div><aside class=notes></aside></section><section><h3 id=iris-invariants>Iris Invariants</h3><div class=r-stack><span class="fragment current-visible" data-fragment-index=1><span class=inv>$ I $
+<span class=fragment>$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $</span></div><aside class=notes></aside></section><section><h3 id=iris-invariants>Iris Invariants</h3><div class="r-stack smath"><span class="fragment current-visible" data-fragment-index=1><span class=inv>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup></span>
 <span class="fragment current-visible" data-fragment-index=2><span class=inv style=border-color:red>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup></span>
 <span class="fragment current-visible" data-fragment-index=3><span class=inv>$ I $
 </span><sup class=name>$ \ \textcolor{red}{\mathcal{N}} $</sup></span>
-<span class=fragment data-fragment-index=4><span class=smath style=border-bottom-style:solid;padding-bottom:6px><span class=fragment data-fragment-index=7>$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$</span>
+<span class=fragment data-fragment-index=4><span style=border-bottom-style:solid;padding-bottom:10px><span class=fragment data-fragment-index=7>$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$</span>
 $\quad$
 <span class=fragment data-fragment-index=5>$ \textsf{atomic}(e) $</span>
 $\quad$
-<span class=fragment data-fragment-index=6>$ \mathcal{N} \subseteq \mathcal{E} $</span></span><br><span class=inv>$ I $
+<span class=fragment data-fragment-index=6>$ \mathcal{N} \subseteq \mathcal{E} $</span></span><div style=padding-top:10px><span class=inv>$ I $
 </span><sup class=name>$ \ \mathcal{N} $</sup>
-<span class=smath>$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $</span></span></div></section><section><h3 id=bottom-list>Bottom List</h3><div class=r-stack><span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
+$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $</div></span></div></section><section><h3 id=bottom-list>Bottom List</h3><div class=r-stack><span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
 </span><sup class=name>$ \ \textsf{levelN}(0) $</sup></span>
 <span class="fragment current-visible"><span class=inv>$\textsf{BotListInv}(head, \gamma^0) $
 </span><sup class=name>$ \ \textcolor{red}{\textsf{levelN}(0)} $</sup></span>
@@ -317,7 +317,121 @@ $</span>
 \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \{ \textcolor{blue}{3}, \textcolor{red}{6} \} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \{ \textcolor{blue}{2} \}
 \end{array}
 \right\}}
-$</span></div><aside class=notes></aside></section><section><h3 id=timestamp-assumptions>Timestamp Assumptions</h3><aside class=notes></aside></section></section><section><section><h2 id=related-work>Related Work</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=polaris>Polaris</h3><aside class=notes></aside></section><section><h3 id=logical-atomicity>Logical Atomicity</h3><aside class=notes></aside></section><section><h3 id=key-value-specifications>Key-Value Specifications</h3><aside class=notes></aside></section></section><section><section><h2 id=conclusion>Conclusion</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=future-work>Future Work</h3><aside class=notes></aside></section></section><section><h1 id=thank-you>Thank you!</h1><aside class=notes></aside></section></div></div><script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js crossorigin=anonymous></script>
+$</span></div><aside class=notes></aside></section><section><h3 id=timestamp-assumptions>Timestamp Assumptions</h3><aside class=notes></aside></section></section><section><section><h2 id=related-work>Related Work</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=polaris>Polaris</h3><aside class=notes></aside></section><section><h3 id=logical-atomicity>Logical Atomicity</h3><div class="r-stack smath"><span class="fragment current-visible">$ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $</span>
+<span class=fragment><span style=border-bottom-style:solid;padding-bottom:10px>$\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
+$\quad$
+<span class="fragment fade-out">$ \textsf{atomic}(e) $</span>
+$\quad$
+$ \mathcal{N} \subseteq \mathcal{E} $</span><div style=padding-top:10px><span class=inv>$ I $
+</span><sup class=name>$ \ \mathcal{N} $</sup>
+$ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $</div></span></div><aside class=notes></aside></section><section><h3 id=key-value-specifications>Key-Value Specifications</h3><div class="r-stack smath"><span class="fragment current-visible">$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+| \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+& & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span>
+<span class="fragment current-visible">$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textcolor{red}{\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}}} \\
+\! \! \!
+\begin{array}{lcl}
+\textcolor{red}{| \ \textsf{None}} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \Rightarrow & \textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+& & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span>
+<span class="fragment current-visible">$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+\textcolor{red}{| \ \textsf{None}} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)} \\
+| \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+& & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span>
+<span class="fragment current-visible">$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma)} \\
+& & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span>
+<span class="fragment current-visible">$
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\
+\textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\
+& & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)}
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span>
+<span class=fragment>$
+\left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle \
+\textsf{put} \ p \ k \ v \ t \
+\left\langle {\scriptsize \! \!
+\begin{array}{l}
+\textbf{\textsf{match}} \ v_i^? \ \textbf{\textsf{with}} \\
+\! \! \!
+\begin{array}{lcl}
+| \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma) \\
+| \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t &lt; t_i \ \textbf{\textsf{then}} \ \textsf{Key}(p, k, v_i^?, \gamma) \\
+& & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma)
+\end{array}
+\! \! \!
+\end{array} \! \! }
+\right\rangle
+$</span></div><aside class=notes></aside></section><section><h3 id=client-reasoning>Client Reasoning</h3><div class="r-stack smath"><span class="fragment fade-out" data-fragment-index=4><span class=fragment data-fragment-index=1><span class=fragment data-fragment-index=1>$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $</span>
+<span class=fragment data-fragment-index=2>$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $</span>
+<span class=fragment data-fragment-index=3>$ \ \lor \\ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $</span></span></span>
+<span class=fragment data-fragment-index=4><span class=fragment data-fragment-index=4>$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $</span>
+<span class=fragment data-fragment-index=8><span class=ghost>$ \circ_q \ v_F^? $
+</span><sup class=name>$ \ \gamma^k $</sup>
+$* \\\\ $</span>
+<span class=fragment data-fragment-index=5><span class=inv style=margin-top:10px><span class=fragment data-fragment-index=5>$ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $</span>
+<span class=fragment data-fragment-index=6>$ * \ \exists \ v_A^?. $
+<span class=ghost>$ \bullet \ v_A^? $
+</span><sup class=name>$ \ \gamma^k $</sup></span>
+<span class=fragment data-fragment-index=7>$ * \ \textsf{SomeEquiv}(v^?, v_A^?) $</span>
+</span><sup class=name>$ \ \textsf{keyN}(k) $</sup></span></span></div><aside class=notes></aside></section></section><section><section><h2 id=conclusion>Conclusion</h2><p><sup>(continue below)</sup></p><aside class=notes></aside></section><section><h3 id=future-work>Future Work</h3><aside class=notes></aside></section></section><section><h1 id=thank-you>Thank you!</h1><aside class=notes></aside></section></div></div><script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.min.js crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/search/search.min.js crossorigin=anonymous></script>
