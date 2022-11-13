@@ -1308,7 +1308,7 @@ $
 </div>
 
 {{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
 <div class="r-stack">
 {{< fragment weight=2 class="current-visible" >}}
 $ 
@@ -1354,7 +1354,7 @@ $
 {{< /fragment >}}
 
 {{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
 <div class="r-stack">
 {{< fragment weight=2 class="current-visible" >}}
 $ 
@@ -1404,68 +1404,6 @@ $
   $$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $$
   {{< /fragment >}}
 </div>
-
-<!-- <div class="smath">
-  {{< fragment weight=1 >}}
-  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
-  {{< /fragment >}}
-
-  <div class="r-stack">
-  {{< fragment weight=2 class="current-visible" >}}
-  $
-  \begin{array}{c||c}
-    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
-  \end{array}
-  $
-  {{< /fragment >}}
-
-  {{< fragment weight=3 class="current-visible" >}}
-  $
-  \begin{array}{c||c}
-    \textsf{put} \ p \ 10 \ 1 \ 0; & \textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\\\
-    \textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
-  \end{array}
-  $
-  {{< /fragment >}}
-
-  {{< fragment weight=4 class="current-visible" >}}
-  $
-  \begin{array}{c||c}
-    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-    \textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;} & \textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
-  \end{array}
-  $
-  {{< /fragment >}}
-
-  {{< fragment weight=5 class="current-visible" >}}
-  $
-  \begin{array}{c||c}
-    \textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-    \textsf{put} \ p \ 20 \ 2 \ 1; & \textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\\\
-    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
-  \end{array}
-  $
-  {{< /fragment >}}
-
-  {{< fragment weight=6 >}}
-  $
-  \begin{array}{c||c}
-    \textsf{put} \ p \ 10 \ 1 \ 0; & \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-    \textsf{put} \ p \ 20 \ 2 \ 1; & \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-    \textsf{put} \ p \ 10 \ 3 \ 2; & \textsf{put} \ p \ 10 \ 6 \ 2;
-  \end{array}
-  $
-  {{< /fragment >}}
-  </div>
-
-  {{< fragment weight=6 >}}
-  $ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20)  $
-  {{< /fragment >}}
-</div> -->
 
 {{< speaker_note >}}
 
@@ -1521,7 +1459,7 @@ $
 
 ### Updates
 
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
   {{< fragment weight=1 >}}
   $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
@@ -1551,7 +1489,7 @@ $
   {{< /fragment >}}
 </div>
 
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
   {{< fragment weight=1 >}}
   $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
