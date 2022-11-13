@@ -993,18 +993,337 @@ $ \circ_q \ M \cup \{ \ k : (\{ v \}, t) \ \} $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="code-overview">Code Overview&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\
+\textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} \\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$
+\textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} \\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$
+\textsf{put} \ p \ 10 \ 1 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2;
+$
+&lt;/span>
+&lt;/div>
+&lt;/div>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$
+\textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$
+\textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 6 \ 2;
+$
+&lt;/span>
+&lt;/div>
+&lt;/div>
+&lt;/span>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="6">
+$$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $$
+&lt;/span>
+&lt;/div>
+&lt;!-- &lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+&lt;/span>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$
+\begin{array}{c||c}
+\textsf{put} \ p \ 10 \ 1 \ 0; &amp;amp; \textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; &amp;amp; \textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2; &amp;amp; \textsf{put} \ p \ 10 \ 6 \ 2;
+\end{array}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$
+\begin{array}{c||c}
+\textsf{put} \ p \ 10 \ 1 \ 0; &amp;amp; \textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\
+\textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} &amp;amp; \textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2; &amp;amp; \textsf{put} \ p \ 10 \ 6 \ 2;
+\end{array}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$
+\begin{array}{c||c}
+\textsf{put} \ p \ 10 \ 1 \ 0; &amp;amp; \textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; &amp;amp; \textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;} &amp;amp; \textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
+\end{array}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$
+\begin{array}{c||c}
+\textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} &amp;amp; \textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; &amp;amp; \textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\
+\textsf{put} \ p \ 10 \ 3 \ 2; &amp;amp; \textsf{put} \ p \ 10 \ 6 \ 2;
+\end{array}
+$
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+$
+\begin{array}{c||c}
+\textsf{put} \ p \ 10 \ 1 \ 0; &amp;amp; \textsf{put} \ p \ 20 \ 5 \ 0; \\
+\textsf{put} \ p \ 20 \ 2 \ 1; &amp;amp; \textsf{put} \ p \ 10 \ 2 \ 1; \\
+\textsf{put} \ p \ 10 \ 3 \ 2; &amp;amp; \textsf{put} \ p \ 10 \ 6 \ 2;
+\end{array}
+$
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="6">
+$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $
+&lt;/span>
+&lt;/div> -->
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="initialization">Initialization&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ \textcolor{purple}{\{ \ \textsf{True} \ \}} $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$ \textcolor{purple}{\{ \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \}} $
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$ \textcolor{purple}{\{ \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \}} $
+&lt;/span>
+&lt;span class="fragment " >
+$ \textcolor{purple}{\{ \ \textsf{IsSkipList}(p, \varnothing \cdot \varnothing, \frac{1}{2} + \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ \downarrow $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ \textcolor{purple}{\{ \ \textcolor{blue}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} * \textcolor{red}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} \ \}} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="updates">Updates&lt;/h3>
+&lt;div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textcolor{blue}{\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;p>$ \textsf{put} \ p \ 10 \ 1 \ 0; $&lt;/p>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \textcolor{blue}{\{ \ \textsf{IsSkipList}(p, \varnothing \cup \{ \ 10 : (\{ 1 \}, 0) \ \}, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ \textcolor{blue}{\{ \ \textsf{IsSkipList}(p, \{ \ 10 : (\{ 1 \}, 0) \ \}, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;/div>
+&lt;p>$ \textsf{put} \ p \ 20 \ 2 \ 1; $&lt;/p>
+&lt;span class="fragment " data-fragment-index="4">
+$ \textcolor{blue}{\left\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 10 : (\{ 1 \}, 0) \ \} \ \cup \\ \{ \ 20 : (\{ 2 \}, 1) \} \end{array}, \frac{1}{2}, \gamma\right) \right\}} $
+&lt;/span>
+&lt;p>$ \textsf{put} \ p \ 10 \ 3 \ 2; $&lt;/p>
+&lt;span class="fragment " data-fragment-index="5">
+$ \textcolor{blue}{\left\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 10 : (\{ 1 \}, 0) \ \} \ \cup \\ \{ \ 20 : (\{ 2 \}, 1) \ \} \ \cup \\ \{ \ 10 : (\{ 3 \}, 2) \ \} \end{array}, \frac{1}{2}, \gamma\right) \right\}} $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textcolor{red}{\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;p>$ \textsf{put} \ p \ 20 \ 5 \ 0; $&lt;/p>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \textcolor{red}{\{ \ \textsf{IsSkipList}(p, \varnothing \cup \{ \ 20 : (\{ 5 \}, 0) \ \}, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ \textcolor{red}{\{ \ \textsf{IsSkipList}(p, \{ \ 20 : (\{ 5 \}, 0) \ \}, \frac{1}{2}, \gamma) \ \}} $
+&lt;/span>
+&lt;/div>
+&lt;p>$ \textsf{put} \ p \ 10 \ 2 \ 1; $&lt;/p>
+&lt;span class="fragment " data-fragment-index="4">
+$ \textcolor{red}{\left\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 20 : (\{ 5 \}, 0) \ \} \ \cup \\ \{ \ 10 : (\{ 2 \}, 1) \ \} \end{array}, \frac{1}{2}, \gamma\right) \right\}} $
+&lt;/span>
+&lt;p>$ \textsf{put} \ p \ 10 \ 6 \ 2; $&lt;/p>
+&lt;span class="fragment " data-fragment-index="5">
+$ \textcolor{red}{\left\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 20 : (\{ 5 \}, 0) \ \} \ \cup \\ \{ \ 10 : (\{ 2 \}, 1) \ \} \ \cup \\ \{ \ 10 : (\{ 6 \}, 2) \ \} \end{array}, \frac{1}{2}, \gamma\right) \right\}} $
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="lookup">Lookup&lt;/h3>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$
+\textcolor{purple}{\left\{ \textcolor{blue}{\textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 10 : (\{ 1 \}, 0) \ \} \ \cup \\ \{ \ 20 : (\{ 2 \}, 1) \ \} \ \cup \\ \{ \ 10 : (\{ 3 \}, 2) \ \} \end{array}, \frac{1}{2}, \gamma\right)}
+*
+\textcolor{red}{\textsf{IsSkipList}\left(p, \begin{array}{l} \{ \ 20 : (\{ 5 \}, 0) \ \} \ \cup \\ \{ \ 10 : (\{ 2 \}, 1) \ \} \ \cup \\ \{ \ 10 : (\{ 6 \}, 2) \ \} \end{array}, \frac{1}{2}, \gamma\right)} \right\}} \\
+\vphantom{\{ \ 10 : (\{ 1 \}, 0) \ \}} \\
+$
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ \downarrow $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$
+\textcolor{purple}{\left\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\{ \ 10 : (\{ 1 \}, 0) \ \}} \ \cup \\ \textcolor{blue}{\{ \ 20 : (\{ 2 \}, 1) \ \}} \ \cup \\ \textcolor{blue}{\{ \ 10 : (\{ 3 \}, 2) \ \}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\{ \ 20 : (\{ 5 \}, 0) \ \}} \ \cup \\ \textcolor{red}{\{ \ 10 : (\{ 2 \}, 1) \ \}} \ \cup \\ \textcolor{red}{\{ \ 10 : (\{ 6 \}, 2) \ \}} \end{array}\right), \textcolor{blue}{\frac{1}{2}} + \textcolor{red}{\frac{1}{2}}, \gamma\right) \right\}}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\textcolor{purple}{\left\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\{ \ 10 : (\{ 1 \}, 0) \ \}} \ \cup \\ \textcolor{blue}{\{ \ 20 : (\{ 2 \}, 1) \ \}} \ \cup \\ \textcolor{blue}{\{ \ 10 : (\{ 3 \}, 2) \ \}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\{ \ 20 : (\{ 5 \}, 0) \ \}} \ \cup \\ \textcolor{red}{\{ \ 10 : (\{ 2 \}, 1) \ \}} \ \cup \\ \textcolor{red}{\{ \ 10 : (\{ 6 \}, 2) \ \}} \end{array}\right), 1, \gamma\right) \right\}}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\textcolor{purple}{\left\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\{ \ 10 : (\{ 1 \}, 0) \ \}} \cup \textcolor{blue}{\{ \ 10 : (\{ 3 \}, 2) \ \}} \ \cup \\ \textcolor{red}{\{ \ 10 : (\{ 2 \}, 1) \ \}} \cup \textcolor{red}{\{ \ 10 : (\{ 6 \}, 2) \ \}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{blue}{\{ \ 20 : (\{ 2 \}, 1) \ \}} \ \cup \\ \textcolor{red}{\{ \ 20 : (\{ 5 \}, 0) \ \}} \end{array}\right), 1, \gamma\right) \right\}}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\textcolor{purple}{\left\{ \textsf{IsSkipList}\left(p, \left\{ \ 10 : \begin{array}{l} \textcolor{blue}{(\{ 1 \}, 0)} \cdot \textcolor{blue}{(\{ 3 \}, 2)} \ \cdot \\ \textcolor{red}{(\{ 2 \}, 1)} \cdot \textcolor{red}{(\{ 6 \}, 2)} \end{array} \right\} \cup \left\{ \ 20 : \begin{array}{l} \textcolor{blue}{(\{ 2 \}, 1)} \ \cdot \\ \textcolor{red}{(\{ 5 \}, 0)} \end{array} \right\}, 1, \gamma\right) \right\}}
+$
+&lt;/span>
+&lt;span class="fragment " >
+$
+\textcolor{purple}{ \left\{ \ \textsf{IsSkipList}\left(p, \left\{ \ 10 : (\{ \textcolor{blue}{3}, \textcolor{red}{6} \}, 2) \right\} \cup \left\{ \ 20 : (\{ \textcolor{blue}{2} \}, 1)\right\}, 1, \gamma\right) \ \right\}}
+$
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " >
+$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" >
+$
+\vphantom{\{ \ 10 : (\{ 1 \}, 0) \ \}} \\
+\textcolor{purple}{ \left\{
+(v_1^?, v_2^?).
+\phantom{\begin{array}{c}
+\textsf{IsSkipList}\left(p, \left\{ \ 10 : (\{ \textcolor{blue}{3}, \textcolor{red}{6} \}, 2) \right\} \cup \left\{ \ 20 : (\{ \textcolor{blue}{2} \}, 1)\right\}, 1, \gamma\right) \ * \\
+\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \{ \textcolor{blue}{3}, \textcolor{red}{6} \} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \{ \textcolor{blue}{2} \}
+\end{array}}
+\right\}}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\vphantom{\{ \ 10 : (\{ 1 \}, 0) \ \}} \\
+\textcolor{purple}{ \left\{
+(v_1^?, v_2^?).
+\begin{array}{c}
+\textsf{IsSkipList}\left(p, \left\{ \ 10 : (\{ \textcolor{blue}{3}, \textcolor{red}{6} \}, 2) \right\} \cup \left\{ \ 20 : (\{ \textcolor{blue}{2} \}, 1)\right\}, 1, \gamma\right) \phantom{\ *} \\
+\phantom{\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \{ \textcolor{blue}{3}, \textcolor{red}{6} \} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \{ \textcolor{blue}{2} \}}
+\end{array}
+\right\}}
+$
+&lt;/span>
+&lt;span class="fragment current-visible" >
+$
+\vphantom{\{ \ 10 : (\{ 1 \}, 0) \ \}} \\
+\textcolor{purple}{ \left\{
+(v_1^?, v_2^?).
+\begin{array}{c}
+\textsf{IsSkipList}\left(p, \left\{ \ 10 : (\{ \textcolor{blue}{3}, \textcolor{red}{6} \}, 2) \right\} \cup \left\{ \ 20 : (\{ \textcolor{blue}{2} \}, 1)\right\}, 1, \gamma\right) \ * \\
+\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * \phantom{v_1 \in \{ \textcolor{blue}{3}, \textcolor{red}{6} \} * } v_2^? = \textsf{Some}(v_2, 1) \phantom{* v_2 \in \{ \textcolor{blue}{2} \}}
+\end{array}
+\right\}}
+$
+&lt;/span>
+&lt;span class="fragment " >
+$
+\vphantom{\{ \ 10 : (\{ 1 \}, 0) \ \}} \\
+\textcolor{purple}{ \left\{
+(v_1^?, v_2^?).
+\begin{array}{c}
+\textsf{IsSkipList}\left(p, \left\{ \ 10 : (\{ \textcolor{blue}{3}, \textcolor{red}{6} \}, 2) \right\} \cup \left\{ \ 20 : (\{ \textcolor{blue}{2} \}, 1)\right\}, 1, \gamma\right) \ * \\
+\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \{ \textcolor{blue}{3}, \textcolor{red}{6} \} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \{ \textcolor{blue}{2} \}
+\end{array}
+\right\}}
+$
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;/aside>
 &lt;hr>
