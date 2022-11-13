@@ -678,7 +678,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 ### Iris Invariants
 
-<div class="r-stack">
+<div class="r-stack smath">
 {{< fragment weight=1 class="current-visible" >}}
 <span class="inv">
 $ I $
@@ -698,27 +698,26 @@ $ I $
 {{< /fragment >}}
 
 {{< fragment weight=4 >}}
-<span class="smath" style="border-bottom-style: solid; padding-bottom: 6px;">
-<span class="fragment" data-fragment-index="7">
-$\left\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\} \ e \ \left\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
-</span>
+<span style="border-bottom-style: solid; padding-bottom: 10px;">
+{{< fragment weight=7 >}}
+$\left\\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\\} \ e \ \left\\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
+{{< /fragment >}}
 $\quad$
-<span class="fragment" data-fragment-index="5">
+{{< fragment weight=5 >}}
 $ \textsf{atomic}(e) $
-</span>
+{{< /fragment >}}
 $\quad$
-<span class="fragment" data-fragment-index="6">
+{{< fragment weight=6 >}}
 $ \mathcal{N} \subseteq \mathcal{E} $
-</span>
+{{< /fragment >}}
 </span>
 
-<br>
+<div style="padding-top: 10px">
 <span class="inv">
 $ I $
 </span><sup class="name">$ \ \mathcal{N} $</sup>
-<span class="smath">
 $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $
-</span>
+</div>
 {{< /fragment >}}
 
 </div>
@@ -1674,6 +1673,31 @@ $
 
 ### Logical Atomicity
 
+<div class="r-stack smath">
+{{< fragment class="current-visible" >}}
+$ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $
+{{< /fragment >}}
+
+{{< fragment >}}
+<span style="border-bottom-style: solid; padding-bottom: 10px">
+$\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
+$\quad$
+{{< fragment class="fade-out" >}}
+$ \textsf{atomic}(e) $
+{{< /fragment >}}
+$\quad$
+$ \mathcal{N} \subseteq \mathcal{E} $
+</span>
+
+<div style="padding-top: 10px">
+<span class="inv">
+$ I $
+</span><sup class="name">$ \ \mathcal{N} $</sup>
+$ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $
+</div>
+{{< /fragment >}}
+</div>
+
 {{< speaker_note >}}
 
 {{< /speaker_note >}}
@@ -1681,6 +1705,178 @@ $
 ---
 
 ### Key-Value Specifications
+
+<div class="r-stack smath">
+{{< fragment class="current-visible" >}}
+$ 
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
+      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
+       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+
+{{< fragment class="current-visible" >}}
+$ 
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textcolor{red}{\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      \textcolor{red}{| \ \textsf{None}} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
+      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
+       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+
+{{< fragment class="current-visible" >}}
+$ 
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      \textcolor{red}{| \ \textsf{None}} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)} \\\\
+      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
+       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+
+{{< fragment class="current-visible" >}}
+$ 
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
+      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma)} \\\\
+       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+
+{{< fragment class="current-visible" >}}
+$ 
+\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
+      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
+       & & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)}
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+
+{{< fragment >}}
+$ 
+\left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle \ 
+\textsf{put} \ p \ k \ v \ t \ 
+\left\langle {\scriptsize \\! \\!
+  \begin{array}{l}
+    \textbf{\textsf{match}} \ v_i^? \ \textbf{\textsf{with}} \\\\
+    \\! \\! \\!
+    \begin{array}{lcl}
+      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma) \\\\
+      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Key}(p, k, v_i^?, \gamma) \\\\
+       & & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma)
+    \end{array}
+    \\! \\! \\!
+  \end{array} \\! \\! }
+\right\rangle
+$
+{{< /fragment >}}
+</div>
+
+{{< speaker_note >}}
+
+{{< /speaker_note >}}
+
+---
+
+### Client Reasoning
+
+<div class="r-stack smath">
+{{< fragment weight=4 class="fade-out" >}}
+{{< fragment weight=1 >}}
+{{< fragment weight=1 >}}
+$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $
+{{< /fragment >}}
+
+{{< fragment weight=2 >}}
+$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $
+{{< /fragment >}}
+
+{{< fragment weight=3 >}}
+$ \ \lor \\\\ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $
+{{< /fragment >}}
+{{< /fragment >}}
+{{< /fragment >}}
+
+{{< fragment weight=4 >}}
+{{< fragment weight=4 >}}
+$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $
+{{< /fragment >}}
+
+{{< fragment weight=8 >}}
+<span class="ghost"> 
+$ \circ_q \ v_F^? $
+</span><sup class="name">$ \ \gamma^k $</sup>
+$* \\\\ $
+{{< /fragment >}}
+
+{{< fragment weight=5 >}}
+<span class="inv" style="margin-top: 10px">
+{{< fragment weight=5 >}}
+$ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $
+{{< /fragment >}}
+{{< fragment weight=6 >}}
+$ * \ \exists \ v_A^?. $
+<span class="ghost"> 
+$ \bullet \ v_A^? $
+</span><sup class="name">$ \ \gamma^k $</sup>
+{{< /fragment >}}
+{{< fragment weight=7 >}}
+$ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
+{{< /fragment >}}
+</span><sup class="name">$ \ \textsf{keyN}(k) $</sup>
+{{< /fragment >}}
+{{< /fragment >}}
+</div>
 
 {{< speaker_note >}}
 
