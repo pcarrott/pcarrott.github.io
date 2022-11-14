@@ -208,27 +208,58 @@ If a node already exists for the key, then the new value will be appended to the
 &lt;h2 id="reasoning-about-timestamped-domains">Reasoning about Timestamped Domains&lt;/h2>
 &lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
 &lt;aside class="notes">
-Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values.
+Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values through ghost state.
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="ghost-state-in-iris">Ghost state in Iris&lt;/h3>
 &lt;div class="r-stack">
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Ghost state matches the physical state of shared data with an abstract state
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Ghost variables are not stored in memory, being abstract (or auxiliary) variables
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+Ghost variables are associated to ghost names, similarly to program variables
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The following ghost variable abstracts a set implementation, initially empty
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+The ghost variable can be split into disjoint resources, owned separately by each thread
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+Each thread may update its own resource, regardless of the other thread
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+Both updated resources can be combined, obtaining the full updated set
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="8">
+For concurrent updates to be proven consistent, ghost state is defined as a resource algebra
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 &lt;span class="ghost">
 $\varnothing$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="2">
 &lt;span class="ghost" style="border-color: red">
 $\varnothing$
 &lt;/span>&lt;sup class="name">$ \ {\gamma} $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="3">
 &lt;span class="ghost">
 $\varnothing$
 &lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\gamma} $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;span class="ghost">
+$ \textcolor{red}{\varnothing} $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
 &lt;span class="ghost">
 $\varnothing$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
@@ -237,7 +268,7 @@ $\varnothing$
 $\varnothing$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="6">
 &lt;span class="ghost">
 $\{ \ 1 \ \}$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
@@ -246,28 +277,80 @@ $\{ \ 1 \ \}$
 $\{ \ 2 \ \}$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment " >
+&lt;span class="fragment " data-fragment-index="7">
 &lt;span class="ghost">
 $\{ \ 1, 2 \ \}$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
+&lt;p>In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.&lt;/p>
+&lt;p>Ghost variables are denoted by a dashed border, serving only as auxiliary variables to complete the proofs, and are not stored in memory like actual program variables.&lt;/p>
+&lt;p>Each variable is associated to a ghost name, just like in-memory program variables.&lt;/p>
+&lt;p>Here, we consider a ghost variable containing the empty set, to abstract the physical state of a concrete data structure.&lt;/p>
+&lt;p>To verify concurrent operations on this data structure, we need to able to split the ghost variable into separate resources, such that each thread holds its own view of the set.&lt;/p>
+&lt;p>This separation is obtained through the separating conjunction, which expresses the ownership of disjoint resources.&lt;/p>
+&lt;p>Each thread can then update its local view of the set by adding new keys and the updated views can then be joined to obtain the resulting state of the data structure after both operations take place.&lt;/p>
+&lt;p>To ensure that concurrent operations to the shared state do not yield any inconsistencies, we enforce splitting, joining and updating ghost variables to uphold certain properties, by modeling ghost state as a resource algebra.&lt;/p>
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="resource-algebras">Resource Algebras&lt;/h3>
 &lt;div class="r-stack">
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Two main elements define a resource algebra:
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The operator is commutative and associative, making the order of operations irrelevant
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+This avoids reasoning about all possible orders of execution for concurrent operations
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="6">
+&lt;span class="fragment " data-fragment-index="4">
+Consider the following ghost variable $a$, which is composed by $f$ and $a^\prime$
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+We can split the ghost variable into two separate ghost resources&amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&amp;hellip;and perform an update on one of them using the resource algebra operator
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="8">
+The resources can be joined to obtain the composition of all elements
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="9">
+The elements can be composed in any order, due to commutativity and associativity
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="10">
+The local update is equivalent to updating the original decomposed variable
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;ul>
+&lt;li>&lt;strong>Domain&lt;/strong>: type of the ghost variable&lt;/li>
+&lt;li>&lt;strong>Operator&lt;/strong>: splits, joins and updates variables&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="4">
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
+$ a \cdot b = b \cdot a \qquad \qquad (a \cdot b) \cdot c = a \cdot (b \cdot c)$
+&lt;/span>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
 &lt;span class="ghost">
 $a$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="5">
 &lt;span class="ghost">
 $f \cdot a^\prime$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="6">
 &lt;span class="ghost">
 $f$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
@@ -276,7 +359,7 @@ $f$
 $a^\prime$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="7">
 &lt;span class="ghost">
 $f$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
@@ -285,48 +368,135 @@ $f$
 $a^\prime \cdot x$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;span class="fragment current-visible" data-fragment-index="8">
 &lt;span class="ghost">
 $f \cdot a^\prime \cdot x$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
-&lt;span class="fragment " >
+&lt;span class="fragment " data-fragment-index="9">
 &lt;span class="ghost">
 $a \cdot x$
 &lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
+&lt;p>A resource algebra can be defined by indicating a domain and a binary operator for that domain.&lt;/p>
+&lt;p>The domain represents the type of the ghost variables we are considering, while the operator defines how such variables can be split, joined and updated.&lt;/p>
+&lt;p>In the previous example, we considered the domain to be sets of integers, while the operator was the set union.&lt;/p>
+&lt;p>We enforce the operator to be both commutative and associative, so that the order for concurrent operations does not matter.&lt;/p>
+&lt;p>This is a useful property, since it allows us to avoid considering all possible orders of execution for multiple concurrent operations.&lt;/p>
+&lt;p>For instance, consider the following ghost variable &amp;ldquo;a&amp;rdquo;. If we manage to decompose it using the resource algebra operator, then we can split it into two separate variables.&lt;/p>
+&lt;p>A thread can then perform an update &amp;ldquo;x&amp;rdquo; on one of them without altering the other one and rejoin both resources to obtain the full view of the updated variable.&lt;/p>
+&lt;p>Since the operator is commutative and associative, we can compose the operands by whichever order we choose.&lt;/p>
+&lt;p>As such, we can assert that the resulting state of the variable is equivalent to the initial state updated by &amp;ldquo;x&amp;rdquo;.&lt;/p>
+&lt;p>In other words, the update performed by a thread on a partial view is equivalent to an update to the full view.&lt;/p>
+&lt;p>We can thus apply local reasoning to resources reflecting partial knowledge of some shared state, while the underlying resource algebra determines how full knowledge can be obtained.&lt;/p>
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="map-composition">Map Composition&lt;/h3>
-&lt;div class="r-stack smath">
-&lt;span class="fragment current-visible" >
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+We need to consider map composition to abstract the physical state of JellyFish
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+For different keys, the combined map will contain both key-value pairs
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+But what happens when both threads associate different values to the same key?
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The key will be associated to the composition of both values using another resource algebra
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ M_1 \cdot M_2 = M_1 \cup M_2 $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
 $ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="smath">
 $ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
 &lt;/span>
-&lt;span class="fragment " >
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $ \{ \ k : x \cdot y \ \} $
+&lt;/span>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
+&lt;p>To verify JellyFish, we need to consider a suitable resource algebra to abstract concurrent maps.&lt;/p>
+&lt;p>In other words, if two threads hold partial knowledge of the full map, then how can they combine their views to obtain a more complete view?&lt;/p>
+&lt;p>Well, if the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.&lt;/p>
+&lt;p>However, when there exists some key in common, the associated value may differ in both views.&lt;/p>
+&lt;p>This issue can be resolved by returning a new map entry where the associated value is the composition of both values.&lt;/p>
+&lt;p>As such, we need to define a resource algebra for values of the map, leaving us with another question.&lt;/p>
+&lt;p>If two threads update the same key, then which of the values should remain associated to the key?&lt;/p>
+&lt;p>The answer will depend on the timestamp of each value.&lt;/p>
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="value-composition">Value Composition&lt;/h3>
-&lt;div class="r-stack smath">
-&lt;span class="fragment current-visible" >
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Keys are associated to their most recent value, which will have the greatest timestamp
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+If $i &amp;lt; j$, then the pair with value $a$ is discarded, returning the pair with value $b$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+If $j &amp;lt; i$, then the same rule applies due to commutativity
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+For equal timestamps, both values are possible, depending on the scheduler
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+As a result, the abstract map associates each key to a &lt;em>set&lt;/em> of possible values
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+A unit element is also necessary to apply the update rules on maps
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+The $\textsf{argmax}$ operator returns that value
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="4">
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
 $ (a, i) \cdot (b, j) = (b, j) $
 &lt;/span>
-&lt;span class="fragment current-visible" >
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="6">
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $ (a, i) \cdot (b, i) = (a \cup b, i) $
 &lt;/span>
-&lt;span class="fragment " >
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+&lt;span class="smath">
 $ (a, i) \cdot \textsf{botZ} = (a, i) $
+&lt;/span>
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
+&lt;p>As we&amp;rsquo;ve seen previously, JellyFish always maintains its most recent value at the head of its vertical list.&lt;/p>
+&lt;p>As such, the abstract map should associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.&lt;/p>
+&lt;p>Values should be represented as pairs, where &amp;ldquo;j&amp;rdquo; being greater than &amp;ldquo;i&amp;rdquo; returns the pair with value &amp;ldquo;b&amp;rdquo;, discarding the value &amp;ldquo;a&amp;rdquo;.&lt;/p>
+&lt;p>Since the operator is commutative, the composition is also applicable when &amp;ldquo;i&amp;rdquo; is greater than &amp;ldquo;j&amp;rdquo;.&lt;/p>
+&lt;p>However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler.&lt;/p>
+&lt;p>As such, both &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; may be the value associated to the key, so we require &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; to be sets rather than the actual values.&lt;/p>
+&lt;p>In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp &amp;ldquo;i&amp;rdquo;.&lt;/p>
+&lt;p>Although the actual value will depend on the order of operations, the abstract state can only reflect changes where the order doesn&amp;rsquo;t matter, which is why we need to keep track of all possible values.&lt;/p>
+&lt;p>Finally, we define a unit element botZ, as it is necessary to complete the proofs, due to the update rules on maps.&lt;/p>
+&lt;p>To the best of our knowledge, this is the first effort to formalize the argmax RA and to use it for reasoning about concurrent operations on maps.&lt;/p>
 &lt;/aside>
 &lt;/section>
 &lt;hr>
@@ -375,17 +545,17 @@ $ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \g
 &lt;hr>
 &lt;h3 id="triple-for-constructor">Triple for constructor&lt;/h3>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="2">
+&lt;span class="fragment " data-fragment-index="2">
 $ \left\{ \ \textsf{True} \ \right\} \\ $
 &lt;/span>
 &lt;/div>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="1">
+&lt;span class="fragment " data-fragment-index="1">
 $ \textsf{new} \\ $
 &lt;/span>
 &lt;/div>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="3">
+&lt;span class="fragment " data-fragment-index="3">
 $ \left\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \right\} $
 &lt;/span>
 &lt;/div>
@@ -394,17 +564,17 @@ $ \left\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gam
 &lt;hr>
 &lt;h3 id="triple-for-updates">Triple for updates&lt;/h3>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="2">
+&lt;span class="fragment " data-fragment-index="2">
 $ \left\{ \ \textsf{IsSkipList}(p, M, q, \gamma) \ \right\} \\ $
 &lt;/span>
 &lt;/div>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="1">
+&lt;span class="fragment " data-fragment-index="1">
 $ \textsf{put} \ p \ k \ v \ t \\ $
 &lt;/span>
 &lt;/div>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="3">
+&lt;span class="fragment " data-fragment-index="3">
 $ \left\{ \ \textsf{IsSkipList}(p, M \cup \{ \ k : (\{ v \}, t) \ \}, q, \gamma) \ \right\} $
 &lt;/span>
 &lt;/div>
@@ -413,12 +583,12 @@ $ \left\{ \ \textsf{IsSkipList}(p, M \cup \{ \ k : (\{ v \}, t) \ \}, q, \gamma)
 &lt;hr>
 &lt;h3 id="triple-for-lookups">Triple for lookups&lt;/h3>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="2">
+&lt;span class="fragment " data-fragment-index="2">
 $ \left\{ \ \textsf{IsSkipList}(p, M, 1, \gamma) \ \right\} \\ $
 &lt;/span>
 &lt;/div>
 &lt;div class="smath">
-&lt;span class="fragment fade-in" data-fragment-index="1">
+&lt;span class="fragment " data-fragment-index="1">
 $ \textsf{get} \ p \ k \\ $
 &lt;/span>
 &lt;/div>
@@ -1222,12 +1392,14 @@ $
 &lt;/aside>
 &lt;hr>
 &lt;h3 id="logical-atomicity">Logical Atomicity&lt;/h3>
-&lt;div class="r-stack smath">
+&lt;div class="r-stack">
 &lt;span class="fragment current-visible" >
+&lt;span class="smath">
 $ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $
 &lt;/span>
+&lt;/span>
 &lt;span class="fragment " >
-&lt;span style="border-bottom-style: solid; padding-bottom: 10px">
+&lt;span class="smath" style="border-bottom-style: solid; padding-bottom: 10px">
 $\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
 $\quad$
 &lt;span class="fragment fade-out" >
@@ -1240,7 +1412,9 @@ $ \mathcal{N} \subseteq \mathcal{E} $
 &lt;span class="inv">
 $ I $
 &lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+&lt;span class="smath">
 $ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $
+&lt;/span>
 &lt;/div>
 &lt;/span>
 &lt;/div>
