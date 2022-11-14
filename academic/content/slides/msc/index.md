@@ -332,7 +332,7 @@ In other words, claiming a node's lock grants exclusive access to update the nod
 
 {{< speaker_note >}}
 
-Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values.
+Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values through ghost state.
 
 {{< /speaker_note >}}
 
@@ -341,25 +341,65 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Ghost state in Iris
 
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Ghost state matches the physical state of shared data with an abstract state
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  Ghost variables are not stored in memory, being abstract (or auxiliary) variables
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  Ghost variables are associated to ghost names, similarly to program variables
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  The following ghost variable abstracts a set implementation, initially empty
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  The ghost variable can be split into disjoint resources, owned separately by each thread
+  {{< /fragment >}}
+
+  {{< fragment weight=6 class=current-visible >}}
+  Each thread may update its own resource, regardless of the other thread
+  {{< /fragment >}}
+
+  {{< fragment weight=7 class=current-visible >}}
+  Both updated resources can be combined, obtaining the full updated set
+  {{< /fragment >}}
+
+  {{< fragment weight=8 class=current-visible >}}
+  For concurrent updates to be proven consistent, ghost state is defined as a resource algebra
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
   <span class="ghost"> 
   $\varnothing$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=2 class=current-visible >}}
   <span class="ghost" style="border-color: red"> 
   $\varnothing$
   </span><sup class="name">$ \ {\gamma} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=3 class=current-visible >}}
   <span class="ghost"> 
   $\varnothing$
   </span><sup class="name">$ \ \textcolor{red}{\gamma} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=4 class=current-visible >}}
+  <span class="ghost"> 
+  $ \textcolor{red}{\varnothing} $
+  </span><sup class="name">$ \ \gamma $</sup>
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
   <span class="ghost"> 
   $\varnothing$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -369,7 +409,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=6 class=current-visible >}}
   <span class="ghost"> 
   $\{ \ 1 \ \}$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -379,7 +419,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment >}}
+  {{< fragment weight=7 >}}
   <span class="ghost"> 
   $\{ \ 1, 2 \ \}$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -388,6 +428,22 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 {{< speaker_note >}}
 
+In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.
+
+Ghost variables are denoted by a dashed border, serving only as auxiliary variables to complete the proofs, and are not stored in memory like actual program variables.
+
+Each variable is associated to a ghost name, just like in-memory program variables.
+
+Here, we consider a ghost variable containing the empty set, to abstract the physical state of a concrete data structure. 
+
+To verify concurrent operations on this data structure, we need to able to split the ghost variable into separate resources, such that each thread holds its own view of the set.
+
+This separation is obtained through the separating conjunction, which expresses the ownership of disjoint resources.
+
+Each thread can then update its local view of the set by adding new keys and the updated views can then be joined to obtain the resulting state of the data structure after both operations take place.
+
+To ensure that concurrent operations to the shared state do not yield any inconsistencies, we enforce splitting, joining and updating ghost variables to uphold certain properties, by modeling ghost state as a resource algebra.
+
 {{< /speaker_note >}}
 
 ---
@@ -395,19 +451,72 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Resource Algebras
 
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Two main elements define a resource algebra:
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  The operator is commutative and associative, making the order of operations irrelevant
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  This avoids reasoning about all possible orders of execution for concurrent operations
+  {{< /fragment >}}
+
+  {{< fragment weight=6 class=fade-out >}}
+  {{< fragment weight=4 >}}
+  Consider the following ghost variable $a$, which is composed by $f$ and $a^\prime$
+  {{< /fragment >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=6 class=current-visible >}}
+  We can split the ghost variable into two separate ghost resources...
+  {{< /fragment >}}
+
+  {{< fragment weight=7 class=current-visible >}}
+  ...and perform an update on one of them using the resource algebra operator
+  {{< /fragment >}}
+
+  {{< fragment weight=8 class=current-visible >}}
+  The resources can be joined to obtain the composition of all elements
+  {{< /fragment >}}
+
+  {{< fragment weight=9 class=current-visible >}}
+  The elements can be composed in any order, due to commutativity and associativity
+  {{< /fragment >}}
+
+  {{< fragment weight=10 class=current-visible >}}
+  The local update is equivalent to updating the original decomposed variable
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  - **Domain**: type of the ghost variable
+  - **Operator**: splits, joins and updates variables
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=fade-out >}}
+  {{< fragment weight=2 >}}
+  <span class="smath"> 
+  $ a \cdot b = b \cdot a \qquad \qquad (a \cdot b) \cdot c = a \cdot (b \cdot c)$
+  </span>
+  {{< /fragment >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
   <span class="ghost"> 
   $a$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=5 class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=6 class=current-visible >}}
   <span class="ghost"> 
   $f$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -417,7 +526,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=7 class=current-visible >}}
   <span class="ghost"> 
   $f$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -427,13 +536,13 @@ Having seen how the data is organized in memory, we now abstract from the concre
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=8 class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime \cdot x$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment >}}
+  {{< fragment weight=9 >}}
   <span class="ghost"> 
   $a \cdot x$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -442,27 +551,95 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 {{< speaker_note >}}
 
+A resource algebra can be defined by indicating a domain and a binary operator for that domain. 
+
+The domain represents the type of the ghost variables we are considering, while the operator defines how such variables can be split, joined and updated.
+
+In the previous example, we considered the domain to be sets of integers, while the operator was the set union.
+
+We enforce the operator to be both commutative and associative, so that the order for concurrent operations does not matter.
+
+This is a useful property, since it allows us to avoid considering all possible orders of execution for multiple concurrent operations.
+
+For instance, consider the following ghost variable "a". If we manage to decompose it using the resource algebra operator, then we can split it into two separate variables. 
+
+A thread can then perform an update "x" on one of them without altering the other one and rejoin both resources to obtain the full view of the updated variable.
+
+Since the operator is commutative and associative, we can compose the operands by whichever order we choose.
+
+As such, we can assert that the resulting state of the variable is equivalent to the initial state updated by "x".
+
+In other words, the update performed by a thread on a partial view is equivalent to an update to the full view.
+
+We can thus apply local reasoning to resources reflecting partial knowledge of some shared state, while the underlying resource algebra determines how full knowledge can be obtained.
+
 {{< /speaker_note >}}
 
 ---
 
 ### Map Composition
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ \\{ \ k_1 : x \ \\} \cup \\{ \ k_2 : y \ \\} $
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  We need to consider map composition to abstract the physical state of JellyFish
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
-  $ \\{ \ k : x \ \\} \cup \\{ \ k : y \ \\} $
+  {{< fragment weight=2 class=current-visible >}}
+  For different keys, the combined map will contain both key-value pairs
   {{< /fragment >}}
 
-  {{< fragment >}}
-  $ \\{ \ k : x \cdot y \ \\} $
+  {{< fragment weight=3 class=current-visible >}}
+  But what happens when both threads associate different values to the same key?
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  The key will be associated to the composition of both values using another resource algebra
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="smath">
+  $ M_1 \cdot M_2 = M_1 \cup M_2 $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  <span class="smath">
+  $ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  <span class="smath">
+  $ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=4 >}}
+  <span class="smath">
+  $ \{ \ k : x \cdot y \ \} $
+  </span>
   {{< /fragment >}}
 </div>
 
 {{< speaker_note >}}
+
+To verify JellyFish, we need to consider a suitable resource algebra to abstract concurrent maps.
+
+In other words, if two threads hold partial knowledge of the full map, then how can they combine their views to obtain a more complete view?
+
+Well, if the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.
+
+However, when there exists some key in common, the associated value may differ in both views. 
+
+This issue can be resolved by returning a new map entry where the associated value is the composition of both values.
+
+As such, we need to define a resource algebra for values of the map, leaving us with another question.
+
+If two threads update the same key, then which of the values should remain associated to the key?
+
+The answer will depend on the timestamp of each value.
 
 {{< /speaker_note >}}
 
@@ -470,21 +647,81 @@ Having seen how the data is organized in memory, we now abstract from the concre
 
 ### Value Composition
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  Keys are associated to their most recent value, which will have the greatest timestamp
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  If $i < j$, then the pair with value $a$ is discarded, returning the pair with value $b$
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  If $j < i$, then the same rule applies due to commutativity
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  For equal timestamps, both values are possible, depending on the scheduler
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  As a result, the abstract map associates each key to a *set* of possible values
+  {{< /fragment >}}
+
+  {{< fragment weight=6 >}}
+  A unit element is also necessary to apply the update rules on maps
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  The $\textsf{argmax}$ operator returns that value
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=fade-out >}}
+  {{< fragment weight=2 >}}
+  <span class="smath">
   $ (a, i) \cdot (b, j) = (b, j) $
+  </span>
+  {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=6 class=fade-out >}}
+  {{< fragment weight=4 >}}
+  <span class="smath">
   $ (a, i) \cdot (b, i) = (a \cup b, i) $
+  </span>
+  {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment >}}
+  {{< fragment weight=6 >}}
+  <span class="smath">
   $ (a, i) \cdot \textsf{botZ} = (a, i) $
+  </span>
   {{< /fragment >}}
 </div>
 
 {{< speaker_note >}}
+
+As we've seen previously, JellyFish always maintains its most recent value at the head of its vertical list.
+
+As such, the abstract map should associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.
+
+Values should be represented as pairs, where "j" being greater than "i" returns the pair with value "b", discarding the value "a".
+
+Since the operator is commutative, the composition is also applicable when "i" is greater than "j".
+
+However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler.
+
+As such, both "a" and "b" may be the value associated to the key, so we require "a" and "b" to be sets rather than the actual values.
+
+In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp "i".
+
+Although the actual value will depend on the order of operations, the abstract state can only reflect changes where the order doesn't matter, which is why we need to keep track of all possible values.
+
+Finally, we define a unit element botZ, as it is necessary to complete the proofs, due to the update rules on maps.
+
+To the best of our knowledge, this is the first effort to formalize the argmax RA and to use it for reasoning about concurrent operations on maps.
 
 {{< /speaker_note >}}
 
@@ -557,19 +794,19 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Triple for constructor
 
 <div class="smath">
-  {{< fragment weight=2 class="fade-in" >}}
+  {{< fragment weight=2 >}}
   $ \left\\{ \ \textsf{True} \ \right\\} \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="smath">
-  {{< fragment weight=1 class="fade-in" >}}
+  {{< fragment weight=1 >}}
   $ \textsf{new} \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="smath">
-  {{< fragment weight=3 class="fade-in" >}}
+  {{< fragment weight=3 >}}
   $ \left\\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \right\\} $
   {{< /fragment >}}
 </div>
@@ -583,19 +820,19 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Triple for updates
 
 <div class="smath">
-  {{< fragment weight=2 class="fade-in" >}}
+  {{< fragment weight=2 >}}
   $ \left\\{ \ \textsf{IsSkipList}(p, M, q, \gamma) \ \right\\} \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="smath">
-  {{< fragment weight=1 class="fade-in" >}}
+  {{< fragment weight=1 >}}
   $ \textsf{put} \ p \ k \ v \ t \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="smath">
-  {{< fragment weight=3 class="fade-in" >}}
+  {{< fragment weight=3 >}}
   $ \left\\{ \ \textsf{IsSkipList}(p, M \cup \\{ \ k : (\\{ v \\}, t) \ \\}, q, \gamma) \ \right\\} $
   {{< /fragment >}}
 </div>
@@ -609,27 +846,27 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Triple for lookups
 
 <div class="smath">
-  {{< fragment weight=2 class="fade-in" >}}
+  {{< fragment weight=2 >}}
   $ \left\\{ \ \textsf{IsSkipList}(p, M, 1, \gamma) \ \right\\} \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="smath">
-  {{< fragment weight=1 class="fade-in" >}}
+  {{< fragment weight=1 >}}
   $ \textsf{get} \ p \ k \\\\ $
   {{< /fragment >}}
 </div>
 
 <div class="r-stack smath">
-  {{< fragment weight=3 class="current-visible" >}}
+  {{< fragment weight=3 class=current-visible >}}
   $ \left\\{ \ v^?. \begin{array}{c} \textcolor{red}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 
-  {{< fragment weight=4 class="current-visible" >}}
+  {{< fragment weight=4 class=current-visible >}}
   $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 
-  {{< fragment weight=5 class="current-visible" >}}
+  {{< fragment weight=5 class=current-visible >}}
   $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\\} $
   {{< /fragment >}}
 
@@ -661,7 +898,7 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Left Sentinel
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
   {{< /fragment >}}
 
@@ -679,19 +916,19 @@ Having seen how the data is organized in memory, we now abstract from the concre
 ### Iris Invariants
 
 <div class="r-stack">
-{{< fragment weight=1 class="current-visible" >}}
+{{< fragment weight=1 class=current-visible >}}
 <span class="inv">
 $ I $
 </span><sup class="name">$ \ \mathcal{N} $</sup>
 {{< /fragment >}}
 
-{{< fragment weight=2 class="current-visible" >}}
+{{< fragment weight=2 class=current-visible >}}
 <span class="inv" style="border-color: red">
 $ I $
 </span><sup class="name">$ \ \mathcal{N} $</sup>
 {{< /fragment >}}
 
-{{< fragment weight=3 class="current-visible" >}}
+{{< fragment weight=3 class=current-visible >}}
 <span class="inv">
 $ I $
 </span><sup class="name">$ \ \textcolor{red}{\mathcal{N}} $</sup>
@@ -729,25 +966,25 @@ $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E
 ### Bottom List
 
 <div class="r-stack">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \gamma^0) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \gamma^0) $
   </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(0)} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(\textcolor{red}{head}, \gamma^0) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \textcolor{red}{\gamma^0}) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
@@ -763,19 +1000,19 @@ $ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E
 ### Sublists
 
 <div class="r-stack">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $ \textsf{SublistInv}(\textcolor{red}{lvl}, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(lvl)} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="inv">
   $ \textsf{SublistInv}(lvl, head, \textcolor{red}{\gamma^{lvl}}, \textcolor{red}{\gamma^{lvl-1}}) $
   </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
@@ -849,7 +1086,7 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 ### Authoritative Ghost State
 
 <div class="r-stack">
-  {{< fragment weight=3 class="fade-out" >}}
+  {{< fragment weight=3 class=fade-out >}}
   {{< fragment weight=1 >}}
   <span class="ghost"> 
   $ \bullet \ a $
@@ -864,7 +1101,7 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment weight=3 class="current-visible" >}}
+  {{< fragment weight=3 class=current-visible >}}
   <span class="smath">
   $ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $
   </span>
@@ -925,11 +1162,11 @@ $ \vdash node \in S $
 ### Key-Value Pairs
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
   {{< /fragment >}}
 
@@ -983,7 +1220,7 @@ $ * \ s \hookrightarrow_\square succ $
 ### Lock Resources
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\\\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
   {{< /fragment >}}
 
@@ -1103,7 +1340,7 @@ $
 ### Height Distribution
 
 <div class="r-stack">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="smath">
   $ \textsf{put} \ p \ k \ v \ t $
   </span>
@@ -1243,11 +1480,11 @@ $
 ### Vertical List
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \textbf{\textsf{if}} \ t < val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
   {{< /fragment >}}
 
@@ -1265,7 +1502,7 @@ $
 ### Local Fragment
 
 <div class="r-stack">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   <span class="ghost"> 
   $ \circ_q \ M $
   </span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
@@ -1309,7 +1546,7 @@ $
 {{< fragment weight=2 >}}
 <div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
 <div class="r-stack">
-{{< fragment weight=2 class="current-visible" >}}
+{{< fragment weight=2 class=current-visible >}}
 $ 
 \textsf{put} \ p \ 10 \ 1 \ 0; \\\\
 \textsf{put} \ p \ 20 \ 2 \ 1; \\\\
@@ -1317,7 +1554,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=3 class="current-visible" >}}
+{{< fragment weight=3 class=current-visible >}}
 $
 \textsf{put} \ p \ 10 \ 1 \ 0; \\\\
 \textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} \\\\
@@ -1325,7 +1562,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=4 class="current-visible" >}}
+{{< fragment weight=4 class=current-visible >}}
 $
 \textsf{put} \ p \ 10 \ 1 \ 0; \\\\
 \textsf{put} \ p \ 20 \ 2 \ 1; \\\\
@@ -1333,7 +1570,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=5 class="current-visible" >}}
+{{< fragment weight=5 class=current-visible >}}
 $
 \textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} \\\\
 \textsf{put} \ p \ 20 \ 2 \ 1; \\\\
@@ -1355,7 +1592,7 @@ $
 {{< fragment weight=2 >}}
 <div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
 <div class="r-stack">
-{{< fragment weight=2 class="current-visible" >}}
+{{< fragment weight=2 class=current-visible >}}
 $ 
 \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
 \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
@@ -1363,7 +1600,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=3 class="current-visible" >}}
+{{< fragment weight=3 class=current-visible >}}
 $
 \textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\\\
 \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
@@ -1371,7 +1608,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=4 class="current-visible" >}}
+{{< fragment weight=4 class=current-visible >}}
 $
 \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
 \textsf{put} \ p \ 10 \ 2 \ 1; \\\\
@@ -1379,7 +1616,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment weight=5 class="current-visible" >}}
+{{< fragment weight=5 class=current-visible >}}
 $
 \textsf{put} \ p \ 20 \ 5 \ 0; \\\\
 \textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\\\
@@ -1425,11 +1662,11 @@ $
 </div>
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \textcolor{purple}{\\{ \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $ \textcolor{purple}{\\{ \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
   {{< /fragment >}}
 
@@ -1466,7 +1703,7 @@ $
   $ \textsf{put} \ p \ 10 \ 1 \ 0; $
 
   <div class="r-stack">
-  {{< fragment weight=2 class="current-visible" >}}
+  {{< fragment weight=2 class=current-visible >}}
   $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 10 : (\\{ 1 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
 
@@ -1496,7 +1733,7 @@ $
   $ \textsf{put} \ p \ 20 \ 5 \ 0; $
 
   <div class="r-stack">
-  {{< fragment weight=2 class="current-visible" >}}
+  {{< fragment weight=2 class=current-visible >}}
   $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 20 : (\\{ 5 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
   {{< /fragment >}}
 
@@ -1544,25 +1781,25 @@ $
 </div>
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), \textcolor{blue}{\frac{1}{2}} + \textcolor{red}{\frac{1}{2}}, \gamma\right) \right\\}}
   $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
   $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \cup \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \cup \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
   $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left\\{ \ 10 : \begin{array}{l} \textcolor{blue}{(\\{ 1 \\}, 0)} \cdot \textcolor{blue}{(\\{ 3 \\}, 2)} \ \cdot \\\\ \textcolor{red}{(\\{ 2 \\}, 1)} \cdot \textcolor{red}{(\\{ 6 \\}, 2)} \end{array} \right\\} \cup \left\\{ \ 20 : \begin{array}{l} \textcolor{blue}{(\\{ 2 \\}, 1)} \ \cdot \\\\ \textcolor{red}{(\\{ 5 \\}, 0)} \end{array} \right\\}, 1, \gamma\right) \right\\}}
   $
@@ -1582,7 +1819,7 @@ $
 </div>
 
 <div class="r-stack smath">
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
   \textcolor{purple}{ \left\\{
@@ -1595,7 +1832,7 @@ $
   $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
   \textcolor{purple}{ \left\\{
@@ -1608,7 +1845,7 @@ $
   $
   {{< /fragment >}}
 
-  {{< fragment class="current-visible" >}}
+  {{< fragment class=current-visible >}}
   $
   \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
   \textcolor{purple}{ \left\\{
@@ -1673,16 +1910,18 @@ $
 
 ### Logical Atomicity
 
-<div class="r-stack smath">
-{{< fragment class="current-visible" >}}
+<div class="r-stack">
+{{< fragment class=current-visible >}}
+<span class="smath">
 $ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $
+</span>
 {{< /fragment >}}
 
 {{< fragment >}}
-<span style="border-bottom-style: solid; padding-bottom: 10px">
+<span class="smath" style="border-bottom-style: solid; padding-bottom: 10px">
 $\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
 $\quad$
-{{< fragment class="fade-out" >}}
+{{< fragment class=fade-out >}}
 $ \textsf{atomic}(e) $
 {{< /fragment >}}
 $\quad$
@@ -1693,7 +1932,9 @@ $ \mathcal{N} \subseteq \mathcal{E} $
 <span class="inv">
 $ I $
 </span><sup class="name">$ \ \mathcal{N} $</sup>
+<span class="smath">
 $ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $
+</span>
 </div>
 {{< /fragment >}}
 </div>
@@ -1707,7 +1948,7 @@ $ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \righ
 ### Key-Value Specifications
 
 <div class="r-stack smath">
-{{< fragment class="current-visible" >}}
+{{< fragment class=current-visible >}}
 $ 
 \left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
 \textsf{put} \ p \ k \ v \ t \ 
@@ -1726,7 +1967,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment class="current-visible" >}}
+{{< fragment class=current-visible >}}
 $ 
 \left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
 \textsf{put} \ p \ k \ v \ t \ 
@@ -1745,7 +1986,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment class="current-visible" >}}
+{{< fragment class=current-visible >}}
 $ 
 \left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
 \textsf{put} \ p \ k \ v \ t \ 
@@ -1764,7 +2005,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment class="current-visible" >}}
+{{< fragment class=current-visible >}}
 $ 
 \left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
 \textsf{put} \ p \ k \ v \ t \ 
@@ -1783,7 +2024,7 @@ $
 $
 {{< /fragment >}}
 
-{{< fragment class="current-visible" >}}
+{{< fragment class=current-visible >}}
 $ 
 \left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
 \textsf{put} \ p \ k \ v \ t \ 
@@ -1831,7 +2072,7 @@ $
 ### Client Reasoning
 
 <div class="r-stack">
-{{< fragment weight=4 class="fade-out" >}}
+{{< fragment weight=4 class=fade-out >}}
 {{< fragment weight=1 >}}
 
 {{< fragment weight=1 >}}

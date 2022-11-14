@@ -28,10 +28,10 @@ education:
   courses:
     - course: MSc in Computer Science and Engineering
       institution: IST, University of Lisbon
-      year: 2022
-    - course: BSc in Information Systems and Computer Engineering
+      # year: 2022
+    - course: BSc in Computer Science and Engineering
       institution: IST, University of Lisbon
-      year: 2020
+      # year: 2020
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons

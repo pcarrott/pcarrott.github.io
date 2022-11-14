@@ -70,7 +70,7 @@ experience:
     date_end: '2020-07-31'
     description: Welcoming and guiding first year and international students at IST.
 
-  - title: BSc in Information Systems and Computer Engineering
+  - title: BSc in Computer Science and Engineering
     company: Instituto Superior Técnico
     company_url: https://tecnico.ulisboa.pt
     company_logo: ist
