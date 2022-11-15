@@ -4,6 +4,7 @@ authors: []
 tags: []
 categories: []
 date: '2022-02-05'
+draft: true
 slides:
   theme: light
   highlight_style: dracula
@@ -452,7 +453,7 @@ To ensure that concurrent operations to the shared state do not yield any incons
 
 <div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  Two main elements define a resource algebra:
+  Two elements define a resource algebra (RA):
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
@@ -474,7 +475,7 @@ To ensure that concurrent operations to the shared state do not yield any incons
   {{< /fragment >}}
 
   {{< fragment weight=7 class=current-visible >}}
-  ...and perform an update on one of them using the resource algebra operator
+  ...and perform an update on one of them using the RA operator
   {{< /fragment >}}
 
   {{< fragment weight=8 class=current-visible >}}
@@ -593,7 +594,7 @@ We can thus apply local reasoning to resources reflecting partial knowledge of s
   {{< /fragment >}}
 
   {{< fragment weight=4 class=current-visible >}}
-  The key will be associated to the composition of both values using another resource algebra
+  The key will be associated to the composition of both values using another RA
   {{< /fragment >}}
 </div>
 
@@ -737,61 +738,142 @@ To the best of our knowledge, this is the first effort to formalize the argmax R
 
 {{< speaker_note >}}
 
+Ghost state allows us to reason about concurrent maps in the abstract world of resource algebras. 
+
+We now show how these abstractions can help us in reasoning about the physical state of JellyFish and define a specification for its methods
+
 {{< /speaker_note >}}
 
 ---
 
 ### Map Resources
 
-<div class="r-stack smath">
+<div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, M, q, \gamma) $
+  We define the following representation predicate:
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  $ \textsf{IsSkipList}(\textcolor{red}{p}, M, q, \gamma) $
+  $p$ is the left sentinel pointer
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, \textcolor{red}{M}, q, \gamma) $
+  $M$ reflects partial knowledge of the map
   {{< /fragment >}}
 
   {{< fragment weight=4 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, M, \textcolor{red}{q}, \gamma) $
+  $q$ is a fraction between $0$ and $1$
   {{< /fragment >}}
 
   {{< fragment weight=5 class=current-visible >}}
-  $ \textsf{IsSkipList}(p, M, q, \textcolor{red}{\gamma}) $
+  $\gamma$ refers to the required ghost state
   {{< /fragment >}}
 
+  {{< fragment weight=8 class=fade-out >}}
   {{< fragment weight=6 >}}
-  $ \textsf{IsSkipList}(p, M_1 \cup M_2, q_1 + q_2, \gamma) $
+  These resources can be split into smaller fractions...
   {{< /fragment >}}
-</div>
-
-<div class="r-stack smath">
-  {{< fragment weight=7 class=current-visible >}}
-  $ \downarrow $
   {{< /fragment >}}
 
   {{< fragment weight=8 >}}
-  $ \uparrow $
+  ...and combined to obtain the larger fractions
   {{< /fragment >}}
 </div>
 
-<div class="smath">
-  {{< fragment weight=7 >}}
-  $ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \gamma) $
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(p, M, q, \gamma) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(\textcolor{red}{p}, M, q, \gamma) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(p, \textcolor{red}{M}, q, \gamma) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(p, M, \textcolor{red}{q}, \gamma) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(p, M, q, \textcolor{red}{\gamma}) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=6 >}}
+  <span class="smath">
+  $ \textsf{IsSkipList}(p, M_1 \cup M_2, q_1 + q_2, \gamma) $
+  </span>
   {{< /fragment >}}
 </div>
+
+<div class="r-stack">
+  {{< fragment weight=7 class=current-visible >}}
+  <span class="smath">
+  $ \downarrow $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=8 >}}
+  <span class="smath">
+  $ \uparrow $
+  </span>
+  {{< /fragment >}}
+</div>
+
+{{< fragment weight=7 >}}
+<span class="smath">
+$ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \gamma) $
+</span>
+{{< /fragment >}}
 
 {{< speaker_note >}}
+
+First we require a representation predicate to describe the known state of the map, called IsSkipList.
+
+IsSkipList is parameterized by:
+- the pointer to the left sentinel, which tracks the physical state
+- an abstract map, which corresponds to partial knowledge of the full map
+- a fraction, which indicates if we hold exclusive ownership of the full map; 
+  if q is lower than 1, then the skip list is shared with other threads that might attempt to perform updates
+- a list of ghost names to keep track of the required ghost state
+
+This resource can be shared by decomposing the map and splitting the fraction, yielding two new resources.
+
+Separate resources can also be joined to obtain a larger fraction of the skip list.
+
+We will now see how this representation predicate can be used to define an abstract specification for a concurrent map.
 
 {{< /speaker_note >}}
 
 ---
 
 ### Triple for constructor
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  The Hoare triple for $\textsf{new}$ is straightforward
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  No resources are needed as a precondition...
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  ...and we obtain the full fraction of an empty map
+  {{< /fragment >}}
+</div>
 
 <div class="smath">
   {{< fragment weight=2 >}}
@@ -813,11 +895,37 @@ To the best of our knowledge, this is the first effort to formalize the argmax R
 
 {{< speaker_note >}}
 
+First we consider the Hoare triple for the skip list constructor, new.
+
+The method receives no parameters and does not need any initial resources as a precondition.
+
+Its postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.
+
+It is not necessary to know the concrete value of gamma, since it only provides a context for the proof and no reasoning should be applied to it outside the specification.
+
 {{< /speaker_note >}}
 
 ---
 
 ### Triple for updates
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{put}$ receives a key, value and timestamp
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  Holding partial knowledge of the map...
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  ...$\textsf{put}$ updates the map with the new value
+  {{< /fragment >}}
+
+  {{< fragment weight=4 >}}
+  Concurrent updates are handled by the RAs
+  {{< /fragment >}}
+</div>
 
 <div class="smath">
   {{< fragment weight=2 >}}
@@ -839,11 +947,45 @@ To the best of our knowledge, this is the first effort to formalize the argmax R
 
 {{< speaker_note >}}
 
+The put method is parameterized by the updated key, as well as its new value and timestamp.
+
+Its Hoare triple requires an IsSkipList resource to reflect the current knowledge that the thread has of the map.
+
+In the postcondition, this knowledge is update with a new map entry for the key, associated to a pair containing the new value and timestamp.
+
+As we've seen in the previous section, the map and argmax resource algebras will handle how the updates of each thread are composed.
+
 {{< /speaker_note >}}
 
 ---
 
 ### Triple for lookups
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{get}$ performs a search for a key
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  We consider exclusive ownership of the map
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  The map remains unchanged after the search
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  The result is empty if the key is not in the map
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  Otherwise, it must be one of the values in the map
+  {{< /fragment >}}
+
+  {{< fragment weight=6 >}}
+  We'll now see the definition of $\textsf{IsSkipList}$
+  {{< /fragment >}}
+</div>
 
 <div class="smath">
   {{< fragment weight=2 >}}
@@ -876,6 +1018,22 @@ To the best of our knowledge, this is the first effort to formalize the argmax R
 </div>
 
 {{< speaker_note >}}
+
+Finally, the get method performs a lookup for the current value of some key.
+
+Since an updating thread might immediately invalidate the result of a search, we only consider the case where we hold exclusive ownership of the skip list as a precondition...
+
+... which we maintain in the postcondition, as the search operation should not alter the state of the data.
+
+The returned result should then be in accordance to our knowledge of the map.
+
+If the key does not exists in the map, then the search must come up empty.
+
+Otherwise, the return result and the entry in the abstract map should agree on the timestamp.
+
+The actual value returned by the search, however, should be one of the possible values associated to the key, since we cannot disambiguate between updates done with the same timestamp.
+
+We will now see the underlying definition for this representation predicate.
 
 {{< /speaker_note >}}
 
