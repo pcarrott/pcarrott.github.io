@@ -21,11 +21,11 @@ Pedro Carrott --- *IST, University of Lisbon*
 
 <span class="footer"> Press the `S` key to view the speaker notes </span>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-Hello. I am Pedro Carrott and today I'm presenting my MSc thesis on the formal verification of the Lazy JellyFish Skip List, a lock-based variant of the original JellyFish, which implements a concurrent append-only map.
+Hello. I am Pedro Carrott and today I'm presenting my Master's thesis on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent append-only maps.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -43,13 +43,13 @@ Concurrent maps are used by data store applications to index data efficiently
 
 Most data stores record the value history of each key, rather than delete old values
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-Maps provide an abstraction for a collection of key-value pairs; this is a useful abstraction for applications such as data stores, which require efficient structures to index data.
+Maps provide an abstraction for a collection of key-value pairs. This is a useful abstraction for applications such as data stores, which require efficient structures to index data.
 
 In fact, most of these applications maintain a history of values for each key in the map, so as to record different versions of the same data, instead of deleting outdated information.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -59,13 +59,13 @@ The skip list is the most widely used map implementation by these applications
 
 JellyFish extends traditional skip lists by associating a list of timestamped values to each key
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-The most widely used implementation for such concurrent append-only maps is the skip list, since it makes use of a probabilistic strategy to avoid bottlenecks witnessed in concurrent trees, for example.
+The most widely used implementation for such concurrent append-only maps is the skip list data structure.
 
-JellyFish is a state-of-the-art implementation for concurrent append-only skip lists, which extends the traditional skip list data structure by storing a linked list in each node to reflect the history of values associated to its key.
+A state-of-the-art implementation for such concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -73,49 +73,31 @@ JellyFish is a state-of-the-art implementation for concurrent append-only skip l
 
 We verify a variant of JellyFish using the concurrent separation logic of [Iris](https://iris-project.org/).
 
-We formalize the argmax resource algebra to define the protocol for concurrent updates
-
 The Coq formalization is [publicly available](https://github.com/sr-lab/iris-jellyfish)
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
 In this work, we verify the functional correctness of a lock-based variant of JellyFish using Iris, a state-of-the-art concurrent separation logic.
 
-To reason about the protocol for concurrent updates to the map, we have formalize a resource algebra for the argmax operator.
-
 All results are mechanized in Coq and available in GitHub.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
-### Contributions
+### Map Specification
 
-{{< fragment >}}
-- The first verification effort of the JellyFish design
-{{< /fragment >}}
+We provide a new specification for concurrent maps with version control
 
-{{< fragment >}}
-- A new concurrent map specification with version control
-{{< /fragment >}}
+Conflicting writes are handled by a novel resource algebra for the $\textsf{argmax}$ operation
 
-{{< fragment >}}
-- A mechanized proof that our implementation satisfies the specification
-{{< /fragment >}}
+{{< speaker_note >}} <sub>
 
-{{< fragment >}}
-- A novel resource algebra for the $\textsf{argmax}$ operation
-{{< /fragment >}}
+Our verification efforts provide a new concurrent map specification, which supports version control through the use of timestamps.
 
-{{< speaker_note >}}
+To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation
 
-The contributions of this work can thus be summarized as follows:
-- The first verification effort of the JellyFish design for concurrent append-only skip lists
-- A new concurrent map specification, which supports version control through the use of timestamps
-- A mechanized proof that our skip list implementation satisfies the concurrent map specification
-- A novel resource algebra in the concurrent separation logic of Iris for the argmax operation
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -127,11 +109,11 @@ The contributions of this work can thus be summarized as follows:
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-We begin by looking at how skip lists can be used to perform efficient key searches, as well as how concurrent updates can be done to the data structure through version control mechanisms.
+We begin by looking at the implementation of the lazy JellyFish skip list.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -177,27 +159,21 @@ We begin by looking at how skip lists can be used to perform efficient key searc
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure.
-
-The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.
+The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure. The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.
 
 As new keys are inserted to the skip list, each list must always remain a sublist of the list directly below it, while the bottom list should contain all keys which have been inserted.
 
-Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search.
+Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search. We search in the top level ...
 
-Consider the figure example: we begin the search for key 17 in the left sentinel at the top level and check that its successor holds key 13.
+... stop searching when we reach a value equal to or greater than the key ...
 
-Since 13 is lower than 17, key 17 can only be found after key 13, making it safe to skip key 5.
+... descend to the next level starting from the same element and repeat until we reach the bottom level.
 
-We then check the successor of key 13 at the top level and see that MAX if greater than 17; as such, we cannot skip any keys between them, since key 17 might be one of them.
+If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list.
 
-We then continue the search in the next level and repeat the same steps: since the new successor holds key 24, we continue to the next level and reach the bottom list, where the successor now holds key 17 concluding the search.
-
-If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list; otherwise, the search can stop in any level, as soon as the key is found.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -221,19 +197,15 @@ If the key is not found upon reaching the bottom level, then we can conclude tha
 <img src="images/jelly5.svg">
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-As skip lists allow certain keys to be skipped during traversal, this data structure can be used as a map implementation storing key-value pairs.
+Skip lists can also be used to implement key-value stores.
 
-The JellyFish design keeps in each node a list of values, referred to as a vertical list, representing the timeline of values associated to the key, tagging each value with a given timestamp.
-
-As we see with key 17, the most recent value from timestamp 3 is found at the head of its vertical list, while its predecessor value is from a less recent timestamp 1.
+The JellyFish design keeps in each node a list of timestamped values, referred to as a vertical list, representing the timeline of values associated to the key.
 
 The timeline retains its consistency by never appending new values to a vertical list if the new timestamp is less recent than the timestamp found at the head.
 
-Accordingly, if two updates are executed on the same key with the same timestamp, then both values are appended to the vertical, as we see in key 5.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -299,27 +271,23 @@ Accordingly, if two updates are executed on the same key with the same timestamp
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks.
+To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks. A thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and then ... 
 
-An thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and acquires the node's lock in the bottom level.
+... acquires the node's lock in the bottom level. Since the key has not been found, ...
 
-Since the key has not been found, a new node is created with some random height, which in this case we assume to be 2.
+... a new node is created with some random height. As the predecessor's lock has been acquired, ...
 
-As the predecessor's lock has been acquired, we can replace its successor by linking the new node to the bottom level.
+... we can replace its successor by linking the new node to the bottom level. The lock can then be released and the node can be inserted in the upper level.
 
-The lock can then be released and the node can be inserted in the upper level; insertions are performed bottom-up so as to ensure that the sublist relation is preserved.
+Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.
 
-The node is not inserted in any other level, as that would surpass its intended height, which concludes the put operation.
+A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical, ...
 
-A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor.
+... as long as the timestamp is more recent than 3. In short, claiming a node's lock grants exclusive access to update the node's successor at the lock's level, while the bottom level locks also control updates to the value of the node's successor.
 
-As the node already exists it will append a new value to its vertical, as long as the timestamp is more recent than 3.
-
-In other words, claiming a node's lock grants exclusive access to update the node's successor at the lock's level, while the bottom level lock also allows updates to the value of the node's successor.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -331,11 +299,11 @@ In other words, claiming a node's lock grants exclusive access to update the nod
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can use Iris to reason about concurrent maps with timestamped values through ghost state.
+Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can reason about concurrent maps in Iris through ghost state.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -347,177 +315,77 @@ Having seen how the data is organized in memory, we now abstract from the concre
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  Ghost variables are not stored in memory, being abstract (or auxiliary) variables
-  {{< /fragment >}}
-
-  {{< fragment weight=3 class=current-visible >}}
-  Ghost variables are associated to ghost names, similarly to program variables
-  {{< /fragment >}}
-
-  {{< fragment weight=4 class=current-visible >}}
-  The following ghost variable abstracts a set implementation, initially empty
-  {{< /fragment >}}
-
-  {{< fragment weight=5 class=current-visible >}}
-  The ghost variable can be split into disjoint resources, owned separately by each thread
-  {{< /fragment >}}
-
-  {{< fragment weight=6 class=current-visible >}}
-  Each thread may update its own resource, regardless of the other thread
-  {{< /fragment >}}
-
-  {{< fragment weight=7 class=current-visible >}}
-  Both updated resources can be combined, obtaining the full updated set
-  {{< /fragment >}}
-
-  {{< fragment weight=8 class=current-visible >}}
   For concurrent updates to be proven consistent, ghost state is defined as a resource algebra
   {{< /fragment >}}
-</div>
-
-<div class="r-stack">
-  {{< fragment weight=1 class=current-visible >}}
-  <span class="ghost"> 
-  $\varnothing$
-  </span><sup class="name">$ \ \gamma $</sup>
-  {{< /fragment >}}
-
-  {{< fragment weight=2 class=current-visible >}}
-  <span class="ghost" style="border-color: red"> 
-  $\varnothing$
-  </span><sup class="name">$ \ {\gamma} $</sup>
-  {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  <span class="ghost"> 
-  $\varnothing$
-  </span><sup class="name">$ \ \textcolor{red}{\gamma} $</sup>
-  {{< /fragment >}}
-
-  {{< fragment weight=4 class=current-visible >}}
-  <span class="ghost"> 
-  $ \textcolor{red}{\varnothing} $
-  </span><sup class="name">$ \ \gamma $</sup>
-  {{< /fragment >}}
-
-  {{< fragment weight=5 class=current-visible >}}
-  <span class="ghost"> 
-  $\varnothing$
-  </span><sup class="name">$ \ \gamma $</sup>
-  <span class="smath">$*$</span>
-  <span class="ghost"> 
-  $\varnothing$
-  </span><sup class="name">$ \ \gamma $</sup>
-  {{< /fragment >}}
-
-  {{< fragment weight=6 class=current-visible >}}
-  <span class="ghost"> 
-  $\{ \ 1 \ \}$
-  </span><sup class="name">$ \ \gamma $</sup>
-  <span class="smath">$*$</span>
-  <span class="ghost"> 
-  $\{ \ 2 \ \}$
-  </span><sup class="name">$ \ \gamma $</sup>
-  {{< /fragment >}}
-
-  {{< fragment weight=7 >}}
-  <span class="ghost"> 
-  $\{ \ 1, 2 \ \}$
-  </span><sup class="name">$ \ \gamma $</sup>
-  {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.
-
-Ghost variables are denoted by a dashed border, serving only as auxiliary variables to complete the proofs, and are not stored in memory like actual program variables.
-
-Each variable is associated to a ghost name, just like in-memory program variables.
-
-Here, we consider a ghost variable containing the empty set, to abstract the physical state of a concrete data structure. 
-
-To verify concurrent operations on this data structure, we need to able to split the ghost variable into separate resources, such that each thread holds its own view of the set.
-
-This separation is obtained through the separating conjunction, which expresses the ownership of disjoint resources.
-
-Each thread can then update its local view of the set by adding new keys and the updated views can then be joined to obtain the resulting state of the data structure after both operations take place.
-
-To ensure that concurrent operations to the shared state do not yield any inconsistencies, we enforce splitting, joining and updating ghost variables to uphold certain properties, by modeling ghost state as a resource algebra.
-
-{{< /speaker_note >}}
-
----
-
-### Resource Algebras
-
-<div class="r-stack">
-  {{< fragment weight=1 class=current-visible >}}
   Two elements define a resource algebra (RA):
   {{< /fragment >}}
 
-  {{< fragment weight=2 class=current-visible >}}
+  {{< fragment weight=4 class=current-visible >}}
   The operator is commutative and associative, making the order of operations irrelevant
   {{< /fragment >}}
 
-  {{< fragment weight=3 class=current-visible >}}
-  This avoids reasoning about all possible orders of execution for concurrent operations
-  {{< /fragment >}}
-
-  {{< fragment weight=6 class=fade-out >}}
-  {{< fragment weight=4 >}}
+  {{< fragment weight=7 class=fade-out >}}
+  {{< fragment weight=5 >}}
   Consider the following ghost variable $a$, which is composed by $f$ and $a^\prime$
   {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment weight=6 class=current-visible >}}
-  We can split the ghost variable into two separate ghost resources...
-  {{< /fragment >}}
-
   {{< fragment weight=7 class=current-visible >}}
-  ...and perform an update on one of them using the RA operator
+  We can split the ghost variable into two separate ghost resources ...
   {{< /fragment >}}
 
   {{< fragment weight=8 class=current-visible >}}
-  The resources can be joined to obtain the composition of all elements
+  ... and perform an update on one of them using the RA operator
   {{< /fragment >}}
 
   {{< fragment weight=9 class=current-visible >}}
-  The elements can be composed in any order, due to commutativity and associativity
+  The resources can be joined to obtain the composition of all elements
   {{< /fragment >}}
 
   {{< fragment weight=10 class=current-visible >}}
+  The elements can be composed in any order, due to commutativity and associativity
+  {{< /fragment >}}
+
+  {{< fragment weight=11 class=current-visible >}}
   The local update is equivalent to updating the original decomposed variable
   {{< /fragment >}}
 </div>
 
 <div class="r-stack">
-  {{< fragment weight=1 class=current-visible >}}
+  {{< fragment weight=3 class=fade-out >}}
+  {{< fragment weight=1 >}}
+  <span class="ghost"> 
+  $a$
+  </span><sup class="name">$ \ \gamma $</sup>
+  {{< /fragment >}}
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
   - **Domain**: type of the ghost variable
   - **Operator**: splits, joins and updates variables
   {{< /fragment >}}
 
-  {{< fragment weight=4 class=fade-out >}}
-  {{< fragment weight=2 >}}
+  {{< fragment weight=4 class=current-visible >}}
   <span class="smath"> 
   $ a \cdot b = b \cdot a \qquad \qquad (a \cdot b) \cdot c = a \cdot (b \cdot c)$
   </span>
   {{< /fragment >}}
-  {{< /fragment >}}
 
-  {{< fragment weight=4 class=current-visible >}}
+  {{< fragment weight=5 class=current-visible >}}
   <span class="ghost"> 
   $a$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment weight=5 class=current-visible >}}
+  {{< fragment weight=6 class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment weight=6 class=current-visible >}}
+  {{< fragment weight=7 class=current-visible >}}
   <span class="ghost"> 
   $f$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -527,7 +395,7 @@ To ensure that concurrent operations to the shared state do not yield any incons
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment weight=7 class=current-visible >}}
+  {{< fragment weight=8 class=current-visible >}}
   <span class="ghost"> 
   $f$
   </span><sup class="name">$ \ \gamma $</sup>
@@ -537,44 +405,44 @@ To ensure that concurrent operations to the shared state do not yield any incons
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment weight=8 class=current-visible >}}
+  {{< fragment weight=9 class=current-visible >}}
   <span class="ghost"> 
   $f \cdot a^\prime \cdot x$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 
-  {{< fragment weight=9 >}}
+  {{< fragment weight=10 >}}
   <span class="ghost"> 
   $a \cdot x$
   </span><sup class="name">$ \ \gamma $</sup>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-A resource algebra can be defined by indicating a domain and a binary operator for that domain. 
+In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.
 
-The domain represents the type of the ghost variables we are considering, while the operator defines how such variables can be split, joined and updated.
+These properties are upheld by modelling ghost state as a resource algebra.
 
-In the previous example, we considered the domain to be sets of integers, while the operator was the set union.
+A resource algebra can be defined by indicating a domain and a binary operator for that domain.
 
-We enforce the operator to be both commutative and associative, so that the order for concurrent operations does not matter.
+We enforce the operator to be both commutative and associative, which allows us to avoid considering all possible orders of execution for multiple concurrent operations.
 
-This is a useful property, since it allows us to avoid considering all possible orders of execution for multiple concurrent operations.
+If we manage to decompose a ghost variable "a" using the resource algebra operator ...
 
-For instance, consider the following ghost variable "a". If we manage to decompose it using the resource algebra operator, then we can split it into two separate variables. 
+... then we can split it into two separate variables. 
 
-A thread can then perform an update "x" on one of them without altering the other one and rejoin both resources to obtain the full view of the updated variable.
+A thread can then ...
 
-Since the operator is commutative and associative, we can compose the operands by whichever order we choose.
+... perform an update "x" on one of them without altering the other one ...
+
+... and rejoin both resources to obtain the full view of the updated variable. Since the operator is commutative and associative, we can compose the operands by whichever order we choose. 
 
 As such, we can assert that the resulting state of the variable is equivalent to the initial state updated by "x".
 
 In other words, the update performed by a thread on a partial view is equivalent to an update to the full view.
 
-We can thus apply local reasoning to resources reflecting partial knowledge of some shared state, while the underlying resource algebra determines how full knowledge can be obtained.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -624,25 +492,17 @@ We can thus apply local reasoning to resources reflecting partial knowledge of s
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
 To verify JellyFish, we need to consider a suitable resource algebra to abstract concurrent maps.
 
-In other words, if two threads hold partial knowledge of the full map, then how can they combine their views to obtain a more complete view?
-
-Well, if the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.
+If the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.
 
 However, when there exists some key in common, the associated value may differ in both views. 
 
-This issue can be resolved by returning a new map entry where the associated value is the composition of both values.
+This issue can be resolved by returning a new map entry where the associated value is the composition of both values. Therefore, we need to define a resource algebra for values of the map.
 
-As such, we need to define a resource algebra for values of the map, leaving us with another question.
-
-If two threads update the same key, then which of the values should remain associated to the key?
-
-The answer will depend on the timestamp of each value.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -658,18 +518,14 @@ The answer will depend on the timestamp of each value.
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  If $j < i$, then the same rule applies due to commutativity
-  {{< /fragment >}}
-
-  {{< fragment weight=4 class=current-visible >}}
   For equal timestamps, both values are possible, depending on the scheduler
   {{< /fragment >}}
 
-  {{< fragment weight=5 class=current-visible >}}
+  {{< fragment weight=4 class=current-visible >}}
   As a result, the abstract map associates each key to a *set* of possible values
   {{< /fragment >}}
 
-  {{< fragment weight=6 >}}
+  {{< fragment weight=5 >}}
   A unit element is also necessary to apply the update rules on maps
   {{< /fragment >}}
 </div>
@@ -679,52 +535,40 @@ The answer will depend on the timestamp of each value.
   The $\textsf{argmax}$ operator returns that value
   {{< /fragment >}}
 
-  {{< fragment weight=4 class=fade-out >}}
-  {{< fragment weight=2 >}}
+  {{< fragment weight=2 class=current-visible >}}
   <span class="smath">
   $ (a, i) \cdot (b, j) = (b, j) $
   </span>
   {{< /fragment >}}
-  {{< /fragment >}}
 
-  {{< fragment weight=6 class=fade-out >}}
-  {{< fragment weight=4 >}}
+  {{< fragment weight=5 class=fade-out >}}
+  {{< fragment weight=3 >}}
   <span class="smath">
   $ (a, i) \cdot (b, i) = (a \cup b, i) $
   </span>
   {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment weight=6 >}}
+  {{< fragment weight=5 >}}
   <span class="smath">
   $ (a, i) \cdot \textsf{botZ} = (a, i) $
   </span>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-As we've seen previously, JellyFish always maintains its most recent value at the head of its vertical list.
+As we've seen previously, JellyFish always maintains its most recent value at the head of its vertical list. The abstract map should thus associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.
 
-As such, the abstract map should associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.
+Values should be represented as pairs, where timestamp "j" being greater than timestamp "i" returns the pair with value "b", discarding the value "a".
 
-Values should be represented as pairs, where "j" being greater than "i" returns the pair with value "b", discarding the value "a".
+However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler. As such, both "a" and "b" may be the value associated to the key, so ...
 
-Since the operator is commutative, the composition is also applicable when "i" is greater than "j".
+... we require "a" and "b" to be sets rather than the actual values. In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp "i".
 
-However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler.
+Finally, we define a unit element, as it is necessary to complete the proofs, due to the update rules on maps. To the best of our knowledge, this is the first effort to formalize the argmax resource algebra.
 
-As such, both "a" and "b" may be the value associated to the key, so we require "a" and "b" to be sets rather than the actual values.
-
-In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp "i".
-
-Although the actual value will depend on the order of operations, the abstract state can only reflect changes where the order doesn't matter, which is why we need to keep track of all possible values.
-
-Finally, we define a unit element botZ, as it is necessary to complete the proofs, due to the update rules on maps.
-
-To the best of our knowledge, this is the first effort to formalize the argmax RA and to use it for reasoning about concurrent operations on maps.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -736,13 +580,11 @@ To the best of our knowledge, this is the first effort to formalize the argmax R
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-Ghost state allows us to reason about concurrent maps in the abstract world of resource algebras. 
+Based on these resource algebras, we now define a specification for JellyFish.
 
-We now show how these abstractions can help us in reasoning about the physical state of JellyFish and define a specification for its methods
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -771,12 +613,12 @@ We now show how these abstractions can help us in reasoning about the physical s
 
   {{< fragment weight=8 class=fade-out >}}
   {{< fragment weight=6 >}}
-  These resources can be split into smaller fractions...
+  These resources can be split into smaller fractions ...
   {{< /fragment >}}
   {{< /fragment >}}
 
   {{< fragment weight=8 >}}
-  ...and combined to obtain the larger fractions
+  ... and combined to obtain the larger fractions
   {{< /fragment >}}
 </div>
 
@@ -838,24 +680,25 @@ $ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \g
 </span>
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-First we require a representation predicate to describe the known state of the map, called IsSkipList.
+First, we require a representation predicate to describe the known state of the map, called IsSkipList.
 
-IsSkipList is parameterized by:
-- the pointer to the left sentinel, which tracks the physical state
-- an abstract map, which corresponds to partial knowledge of the full map
-- a fraction, which indicates if we hold exclusive ownership of the full map; 
-  if q is lower than 1, then the skip list is shared with other threads that might attempt to perform updates
-- a list of ghost names to keep track of the required ghost state
+IsSkipList is parameterized by the pointer to the left sentinel, which tracks the physical state, ...
 
-This resource can be shared by decomposing the map and splitting the fraction, yielding two new resources.
+... an abstract map, which corresponds to partial knowledge of the full map, ...
+
+... a fraction, which indicates that we hold exclusive ownership of the full map if equal to 1, ...
+
+... and a list of ghost names to keep track of the required ghost state.
+
+This resource can be shared by decomposing the map and splitting the fraction ...
+
+... yielding two new resources.
 
 Separate resources can also be joined to obtain a larger fraction of the skip list.
 
-We will now see how this representation predicate can be used to define an abstract specification for a concurrent map.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -867,11 +710,11 @@ We will now see how this representation predicate can be used to define an abstr
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  No resources are needed as a precondition...
+  No resources are needed as a precondition ...
   {{< /fragment >}}
 
   {{< fragment weight=3 >}}
-  ...and we obtain the full fraction of an empty map
+  ... and we obtain the full fraction of an empty map
   {{< /fragment >}}
 </div>
 
@@ -893,17 +736,15 @@ We will now see how this representation predicate can be used to define an abstr
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-First we consider the Hoare triple for the skip list constructor, new.
+To define the JellyFish specification, we first consider the Hoare triple for the skip list constructor.
 
-The method receives no parameters and does not need any initial resources as a precondition.
+This method does not need any initial resources as a precondition ...
 
-Its postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.
+... and the postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.
 
-It is not necessary to know the concrete value of gamma, since it only provides a context for the proof and no reasoning should be applied to it outside the specification.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -915,11 +756,11 @@ It is not necessary to know the concrete value of gamma, since it only provides 
   {{< /fragment >}}
 
   {{< fragment weight=2 class=current-visible >}}
-  Holding partial knowledge of the map...
+  Holding partial knowledge of the map, ...
   {{< /fragment >}}
 
   {{< fragment weight=3 class=current-visible >}}
-  ...$\textsf{put}$ updates the map with the new value
+  ... $\textsf{put}$ updates the map with the new value
   {{< /fragment >}}
 
   {{< fragment weight=4 >}}
@@ -945,17 +786,17 @@ It is not necessary to know the concrete value of gamma, since it only provides 
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
 The put method is parameterized by the updated key, as well as its new value and timestamp.
 
 Its Hoare triple requires an IsSkipList resource to reflect the current knowledge that the thread has of the map.
 
-In the postcondition, this knowledge is update with a new map entry for the key, associated to a pair containing the new value and timestamp.
+In the postcondition, this knowledge is updated with a new map entry for the key, associated to a pair containing the new value and timestamp. 
 
 As we've seen in the previous section, the map and argmax resource algebras will handle how the updates of each thread are composed.
 
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
@@ -978,12 +819,8 @@ As we've seen in the previous section, the map and argmax resource algebras will
   The result is empty if the key is not in the map
   {{< /fragment >}}
 
-  {{< fragment weight=5 class=current-visible >}}
+  {{< fragment weight=5 >}}
   Otherwise, it must be one of the values in the map
-  {{< /fragment >}}
-
-  {{< fragment weight=6 >}}
-  We'll now see the definition of $\textsf{IsSkipList}$
   {{< /fragment >}}
 </div>
 
@@ -1008,34 +845,24 @@ As we've seen in the previous section, the map and argmax resource algebras will
   $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 
-  {{< fragment weight=5 class=current-visible >}}
+  {{< fragment weight=5 >}}
   $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\\} $
-  {{< /fragment >}}
-
-  {{< fragment weight=6 >}}
-  $ \left\\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\\\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\\} $
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
 Finally, the get method performs a lookup for the current value of some key.
 
-Since an updating thread might immediately invalidate the result of a search, we only consider the case where we hold exclusive ownership of the skip list as a precondition...
+Since an updating thread might immediately invalidate the result of a search, we only consider the case where we hold exclusive ownership of the skip list ...
 
 ... which we maintain in the postcondition, as the search operation should not alter the state of the data.
 
-The returned result should then be in accordance to our knowledge of the map.
-
 If the key does not exists in the map, then the search must come up empty.
 
-Otherwise, the return result and the entry in the abstract map should agree on the timestamp.
+Otherwise, the return result and the entry in the abstract map should agree on the timestamp. We can only assert that the value returned by the search must be one of the possible values associated to the key, since we cannot disambiguate between updates done with the same timestamp.
 
-The actual value returned by the search, however, should be one of the possible values associated to the key, since we cannot disambiguate between updates done with the same timestamp.
-
-We will now see the underlying definition for this representation predicate.
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -1047,143 +874,253 @@ We will now see the underlying definition for this representation predicate.
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+We will now see the underlying definition for the IsSkipList predicate.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Left Sentinel
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  The parameter $p$ points to the left sentinel node
   {{< /fragment >}}
 
-  {{< fragment >}}
-  $  \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $
+  {{< fragment weight=2 class=current-visible >}}
+  The pointer must be persistent
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  The left sentinel must have key $\textsf{MIN}$
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="smath">
+  $ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $
+  </span>
+  {{< /fragment >}}
 
-{{< /speaker_note >}}
+  {{< fragment weight=2 class=current-visible >}}
+  <span class="smath">
+  $ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  <span class="smath">
+  $  \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $
+  </span>
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}} <sub>
+
+The left sentinel should be a node stored in the memory location aliased by the paramenter "p".
+
+The corresponding points-to assertion is made persistent, since "p" should always point to the same node.
+
+We guarantee that the node is, in fact, the left sentinel by asserting that its key is equal to the minimum value.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Iris Invariants
 
 <div class="r-stack">
-{{< fragment weight=1 class=current-visible >}}
-<span class="inv">
-$ I $
-</span><sup class="name">$ \ \mathcal{N} $</sup>
-{{< /fragment >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Shared resources are expressed in Iris through invariants
+  {{< /fragment >}}
 
-{{< fragment weight=2 class=current-visible >}}
-<span class="inv" style="border-color: red">
-$ I $
-</span><sup class="name">$ \ \mathcal{N} $</sup>
-{{< /fragment >}}
+  {{< fragment weight=2 class=current-visible >}}
+  Invariant assertions are kept within a solid border ...
+  {{< /fragment >}}
 
-{{< fragment weight=3 class=current-visible >}}
-<span class="inv">
-$ I $
-</span><sup class="name">$ \ \textcolor{red}{\mathcal{N}} $</sup>
-{{< /fragment >}}
-
-{{< fragment weight=4 >}}
-<span class="smath" style="border-bottom-style: solid; padding-bottom: 10px;">
-{{< fragment weight=7 >}}
-$\left\\{ \ \textcolor{red}{\triangleright \ I} * P \ \right\\} \ e \ \left\\{ \ v. \ \textcolor{red}{\triangleright I} * Q(v) \ \right\\}_{\textcolor{red}{\mathcal{E} \setminus \mathcal{N}}}$
-{{< /fragment >}}
-$\quad$
-{{< fragment weight=5 >}}
-$ \textsf{atomic}(e) $
-{{< /fragment >}}
-$\quad$
-{{< fragment weight=6 >}}
-$ \mathcal{N} \subseteq \mathcal{E} $
-{{< /fragment >}}
-</span>
-
-<div style="padding-top: 10px">
-<span class="inv">
-$ I $
-</span><sup class="name">$ \ \mathcal{N} $</sup>
-<span class="smath">
-$ \vdash \left\{ \ P \ \right\} \ e \ \left\{ \ v. \ Q(v) \ \right\}_{\mathcal{E}} $
-</span>
+  {{< fragment weight=3 class=current-visible >}}
+  ... and associated to a given namespace
+  {{< /fragment >}}
 </div>
-{{< /fragment >}}
 
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="inv">
+  $ I $
+  </span><sup class="name">$ \ \mathcal{N} $</sup>
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  <span class="inv" style="border-color: red">
+  $ I $
+  </span><sup class="name">$ \ \mathcal{N} $</sup>
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  <span class="inv">
+  $ I $
+  </span><sup class="name">$ \ \textcolor{red}{\mathcal{N}} $</sup>
+  {{< /fragment >}}
 </div>
+
+{{< speaker_note >}} <sub>
+
+The remaining nodes of the skip list, however, may change depending on the operations performed by different threads. To reason about shared mutable resources ...
+
+... Iris allows the definition of invariants ...
+
+... which are associated to namespaces.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Bottom List
 
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Each level will contain its own invariant describing the level's linked list
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  Each invariant will have a unique namespace provided by $\textsf{levelN}$
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  A unique invariant is defined for the bottom list, describing the full map
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  The invariant requires the left sentinel node ...
+  {{< /fragment >}}
+
+  {{< fragment weight=5 >}}
+  ... and the ghost names for the bottom level
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \gamma^0) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=2 class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \gamma^0) $
   </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(0)} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=3 class=current-visible >}}
+  <span class="inv">
+  $\textcolor{red}{\textsf{BotListInv}}(head, \gamma^0) $
+  </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
   <span class="inv">
   $\textsf{BotListInv}(\textcolor{red}{head}, \gamma^0) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=5 >}}
   <span class="inv">
   $\textsf{BotListInv}(head, \textcolor{red}{\gamma^0}) $
   </span><sup class="name">$ \ \textsf{levelN}(0) $</sup>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+Since each level can be seen as its own linked list, we define a unique invariant per level ...
+
+... which will be associated to its own invariant namespace.
+
+Unlike the sublists, the bottom level represents the full map, so it will have its own invariant definition ...
+
+... parameterized by the left sentinel node ...
+
+... and the ghost names for the bottom level.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Sublists
 
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Each sublist invariant will be defined with the same predicate
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  The sublist invariant and namespace are parameterized by the current level
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  The ghost names from the current level and its lower level are both required
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
   <span class="inv">
   $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=2 class=current-visible >}}
   <span class="inv">
   $ \textsf{SublistInv}(\textcolor{red}{lvl}, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   </span><sup class="name">$ \ \textcolor{red}{\textsf{levelN}(lvl)} $</sup>
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
+  {{< fragment weight=3 >}}
   <span class="inv">
   $ \textsf{SublistInv}(lvl, head, \textcolor{red}{\gamma^{lvl}}, \textcolor{red}{\gamma^{lvl-1}}) $
   </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+For the remaining levels, we use a different invariant definition ...
+
+... which is parameterized by the considered level.
+
+Besides the level's ghost names, the invariant also requires the ghost names for the lower level to reason about the sublist relation.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
-### Partial View
+### Definition
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{IsSkipList}$ is thus defined with ...
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  ... the left sentinel assertions, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  ... the bottom list invariant, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  ... the invariants for all sublists and ...
+  {{< /fragment >}}
+
+  {{< fragment weight=5 >}}
+  ... a ghost variable for a partial view of the map
+  {{< /fragment >}}
+</div>
 
 {{< fragment weight=1 >}}
 <span class="smath">$ \textsf{IsSkipList}(p, M, q, \gamma) \triangleq $</span>
@@ -1221,9 +1158,19 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 </span><sup class="name">$ \ \textsf{levelN}(lvl) $</sup>
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+The IsSkipList predicate can thus be defined by joining all these pieces together ...
+
+... the left sentinel assertions ...
+
+... the bottom list invariant ...
+
+... the sublist invariants for all remaining levels ...
+
+... and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant
+
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -1235,16 +1182,44 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+For the bottom list invariant, we need to match the physical state of JellyFish with the map abstraction.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Authoritative Ghost State
 
 <div class="r-stack">
-  {{< fragment weight=3 class=fade-out >}}
+  {{< fragment weight=1 class=current-visible >}}
+  Partial views are obtained through an authoritative resource algebra
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  Resources can be either authoritative ($\bullet$) or fragments ($\circ$)
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  Composition of all fragments yields the authoritative resource
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  Fragments will serve as partial views for the full authoritative map
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  Fragment composition is performed by the underlying RA
+  {{< /fragment >}}
+
+  {{< fragment weight=6 >}}
+  Fractions indicate whether we have composed all existing fragments
+  {{< /fragment >}}
+</div>
+
+<div class="r-stack">
+  {{< fragment weight=5 class=fade-out >}}
   {{< fragment weight=1 >}}
   <span class="ghost"> 
   $ \bullet \ a $
@@ -1253,50 +1228,56 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
   <span class="ghost"> 
   $ \circ \ f $
   </span><sup class="name">$ \ \gamma $</sup>
-  {{< fragment weight=2 >}}
+  {{< fragment weight=3 >}}
   <span class="smath">$ \vdash f \preccurlyeq a $</span>
   {{< /fragment >}}
   {{< /fragment >}}
   {{< /fragment >}}
 
-  {{< fragment weight=3 class=current-visible >}}
+  {{< fragment weight=5 class=current-visible >}}
   <span class="smath">
   $ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $
   </span>
   {{< /fragment >}}
 
-  {{< fragment weight=4 >}}
+  {{< fragment weight=6 >}}
   <span class="smath">
   $ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2) $
   </span>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+A partial view of a shared object can be obtained through an authoritative resource algebra.
 
----
+This algebra contains multiple fragments and an authoritative resource ...
 
-### Map Fragments
+... composed by those fragments.
 
-{{< speaker_note >}}
+An authoritative map is thus stored inside the invariant reflecting the full map, while each thread holds its own fragment to reflect its partial view.
 
-{{< /speaker_note >}}
+Fragments are composed through the underlying resource algebra ...
 
----
+... and fractions indicate whether we have combined all existing fragments.
 
-### Fractions
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Set Membership
 
-{{< fragment >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  Set membership assertions are required to verify traversals
+  {{< /fragment >}}
+
+  {{< fragment weight=2 >}}
+  Fragments express that notion, regardless of the state of the authoritative resource
+  {{< /fragment >}}
+</div>
+
+{{< fragment weight=1 >}}
 <span class="ghost"> 
 $ \bullet \ S $
 </span><sup class="name">$ \ \gamma $</sup>
@@ -1305,95 +1286,207 @@ $ \bullet \ S $
 $ \circ \ \{ \ node \ \} $
 </span><sup class="name">$ \ \gamma $</sup>
 {{< /fragment >}}
-{{< fragment >}}
+{{< fragment weight=2 >}}
 <span class="smath">
 $ \vdash node \in S $
 </span>
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+Traversing a list requires a set membership assertion, which we can also obtain from an authoritative resource algebra.
+
+Owning a fragment for a singleton set with the visited node entails that the node belongs to the full set without knowing the concrete state of the set.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Key-Value Pairs
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  A node's vertical list should store some value node at its head
   {{< /fragment >}}
 
-  {{< fragment class=current-visible >}}
-  $ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
+  {{< fragment weight=2 class=current-visible >}}
+  The map should associate the node's key to the value node's timestamp ...
   {{< /fragment >}}
 
-  {{< fragment >}}
-  $ v\textsf{.val} \in vs $
+  {{< fragment weight=3 >}}
+  ... and to a set of values containing the value from the value node
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="smath">
+  $ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
+  </span>
+  {{< /fragment >}}
 
-{{< /speaker_note >}}
+  {{< fragment weight=2 class=current-visible >}}
+  <span class="smath">
+  $ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
+  </span>
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  <span class="smath">
+  $ v\textsf{.val} \in vs $
+  </span>
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}} <sub>
+
+Each node of the set should have a value stored in the head of its vertical list.
+
+The corresponding map entry should agree with the node's timestamp, while keeping a set of possible values ...
+
+... containing the actual value stored in memory.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Sortedness
 
-<div class="r-stack smath">
-  {{< fragment >}}
-  $ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+<div class="r-stack">
+  {{< fragment weight=1 >}}
+  The set is a sorted list, including the sentinels
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+<div class="r-stack">
+  {{< fragment weight=1 >}}
+  <span class="smath">
+  $ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+  </span>
+  {{< /fragment >}}
+</div>
 
-{{< /speaker_note >}}
+{{< speaker_note >}} <sub>
+
+The set must also reflect a sorted list, with all keys confined within both sentinel nodes.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Successor Chain
 
-<div class="smath">
-{{< fragment >}}
-$ \textsf{IsNext}(lvl, pred, succ) \triangleq $
-{{< /fragment >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  Each physical node should point to its successor in the abstract list
+  {{< /fragment >}}
 
-{{< fragment >}}
-$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
-{{< /fragment >}}
+  {{< fragment weight=2 class=current-visible >}}
+  The array entry is mutable and stores a pointer for some successor node
+  {{< /fragment >}}
 
-{{< fragment >}}
-$ * \ s \hookrightarrow_\square succ $
-{{< /fragment >}}
+  {{< fragment weight=3 >}}
+  The successor pointer is immutable and must point to the corresponding successor
+  {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+<span class="smath">
+{{< fragment weight=1 >}}
+$ \textsf{IsNext}(lvl, pred, succ) \triangleq $
+{{< /fragment >}}
+{{< fragment weight=2 >}}
+$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+{{< /fragment >}}
+{{< fragment weight=3 >}}
+$ * \ s \hookrightarrow_\square succ $
+{{< /fragment >}}
+</span>
 
-{{< /speaker_note >}}
+{{< speaker_note >}} <sub>
+
+The chain of successors obtained by each node's pointer should reflect the order of this list.
+
+The corresponding array entry is mutable, storing a pointer for the successor in the list.
+
+This successor pointer should be immutable, since multiple nodes might point to the same node at different levels.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Lock Resources
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\\\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  Each node holds a lock for the given level, along with the corresponding lock invariant
   {{< /fragment >}}
 
-  {{< fragment >}}
-  $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\\\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $
+  {{< fragment weight=2 class=current-visible >}}
+  The lock resources include the node's successor and the successor's value
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  Both pointers are fractional to allow read access to threads which have not acquired the lock
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <span class="smath">
+  $ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
+  </span>
+  {{< /fragment >}}
 
-{{< /speaker_note >}}
+  {{< fragment weight=2 >}}
+  <span class="smath">
+  $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $
+  </span>
+  {{< /fragment >}}
+</div>
+
+{{< speaker_note >}} <sub>
+
+Each node should contain a lock for the level, which maintains the lock invariant with some resources satisfying R.
+
+For bottom list nodes, the resources protected by the lock are the node's successor and the vertical list of this successor.
+
+The points-to assertions are fractional allowing other threads to read their contents without acquiring the lock, while a locking thread will obtain write access to those memory positions.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Invariant Definition
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{BotListInv}$ is thus defined with ...
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  ... the authoritative map, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  ... the authoritative set, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  ... their node-wise equivalence, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=5 class=current-visible >}}
+  ... the sorted list, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=6 class=current-visible >}}
+  ... the successor chain and the lock resources ...
+  {{< /fragment >}}
+
+  {{< fragment weight=7 >}}
+  ... and a set of tokens for the sublist relation
+  {{< /fragment >}}
+</div>
 
 {{< fragment weight=1 >}}
 <span class="smath">
@@ -1407,7 +1500,12 @@ $ \bullet \ M $
 {{< /fragment >}}
 {{< fragment weight=3 >}}
 <span class="smath">
-$ * \ M\textsf{.keys} = S\textsf{.keys} \ * $
+$ * $
+</span>
+{{< /fragment >}}
+{{< fragment weight=4 >}}
+<span class="smath">
+$ M\textsf{.keys} = S\textsf{.keys} \ * $
 </span>
 {{< /fragment >}}
 
@@ -1459,9 +1557,23 @@ $
 </span>
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+The bottom list invariant is thus defined by combining all elements:
+
+The authoritative map, ...
+
+... the authoritative set ...
+
+and the equivalence between both.
+
+The sortedness assertion, ...
+
+... as well as the successor chain and lock assertions.
+
+There is also a set of tokens, required for the sublist relation between consecutive levels ...
+
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -1473,65 +1585,117 @@ $
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+... which will now be the focus of our attention.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Sublist Relation
 
-{{< speaker_note >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  For two consecutive levels, the upper level must be a sublist of the lower level
+  {{< /fragment >}}
 
-{{< /speaker_note >}}
+  {{< fragment weight=2 >}}
+  As such, upper level nodes keep fragments of the lower level's authoritative set
+  {{< /fragment >}}
+</div>
+
+{{< fragment weight=1 >}}
+<img src="images/sub.svg">
+{{< /fragment >}}
+
+{{< speaker_note >}} <sub>
+
+Each level must contain a sublist of the list contained in its lower level.
+
+For this reason, we associate each sublist node to a fragment of the lower level's authoritative set, expressing the sublist relation.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Ghost Tokens
 
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Height Distribution
-
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
-  <span class="smath">
-  $ \textsf{put} \ p \ k \ v \ t $
-  </span>
+  {{< fragment weight=1 class=current-visible >}}
+  Upon insertion, the code does not check if the key already exists in the upper levels
   {{< /fragment >}}
 
-  {{< fragment >}}
-  <span class="ghost"> 
-  $ \{ k \} $
-  </span><sup class="name">$ \ \gamma_T^h $</sup>
+  {{< fragment weight=2 class=current-visible >}}
+  Each level will hold a set of ghost tokens to be removed and associated with upper level nodes
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  Tokens are exclusive, so any new node will have a different token than other existing nodes
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< fragment weight=1 >}}
+<img src="images/tok.svg">
+{{< /fragment >}}
 
-{{< /speaker_note >}}
+{{< speaker_note >}} <sub>
+
+When inserting in the upper levels, we do not check if the key already exists there, because we already checked the bottom level, which contains all keys.
+
+Since we do not prove this explicitly in the code, we require each level to keep a set of available tokens and associate each sublist node to a lower level token.
+
+By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Lock Resources
 
-<div class="smath">
-  {{< fragment >}}
-  $ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+<div class="r-stack">
+  {{< fragment weight=1 >}}
+  The lock resources no longer include the successor's value
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< fragment weight=1 >}}
+<span class="smath">
+$ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+</span>
+{{< /fragment >}}
 
-{{< /speaker_note >}}
+{{< speaker_note >}} <sub>
+
+The sublist locks only protect the node's successor in that level, leaving the value of the successor to the bottom list locks.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Invariant Definition
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{SublistInv}$ is thus defined with ...
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  ... the authoritative set and sorted list, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=3 class=current-visible >}}
+  ... the successor chain and the lock resources, ...
+  {{< /fragment >}}
+
+  {{< fragment weight=4 class=current-visible >}}
+  ... the set of available tokens ...
+  {{< /fragment >}}
+
+  {{< fragment weight=5 >}}
+  ... and the fragments and tokens of each node
+  {{< /fragment >}}
+</div>
 
 {{< fragment weight=1 >}}
 <span class="smath">
@@ -1601,9 +1765,19 @@ $
 </span>
 {{< /fragment >}}
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+The sublist invariant is thus defined with ...
+
+... the same authoritative set and sorted list, ...
+
+... the same successor chain and the lock assertions for the sublist lock resources, ...
+
+... the set of available tokens ...
+
+... and the lower level fragments and tokens for each node.
+
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -1611,436 +1785,92 @@ $
 
 <section>
 
-## Value Updates
+## Vertical List
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+Although the bottom list invariant only accounts for the head of the vertical list, we now show how the remainder of the node's value history is preserved.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Update procedure
 
-<div class="smath">
-  {{< fragment >}}
-  $ \ \textsf{update} \ node \ v \ t \ $
-  {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Vertical List
-
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $ \textbf{\textsf{if}} \ t < val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val $
-  {{< /fragment >}}
-
-  {{< fragment >}}
-  $ \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val $
-  {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Local Fragment
-
 <div class="r-stack">
-  {{< fragment class=current-visible >}}
-  <span class="ghost"> 
-  $ \circ_q \ M $
-  </span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
+  {{< fragment weight=1 class=current-visible >}}
+  $\textsf{udpate}$ controls which values are appended to vertical lists
   {{< /fragment >}}
 
-  {{< fragment >}}
-  <span class="ghost"> 
-  $ \circ_q \ M \cup \{ \ k : (\{ v \}, t) \ \} $
-  </span><sup class="name">$ \ \gamma_F^{\phantom{0}} $</sup>
+  {{< fragment weight=2 class=current-visible >}}
+  Ownership of the initial value is required
   {{< /fragment >}}
-</div>
 
-{{< speaker_note >}}
+  {{< fragment weight=3 class=current-visible >}}
 
-{{< /speaker_note >}}
+  The update does not occur if the new timestamp is less recent than the head's timestamp
+  {{< /fragment >}}
 
-</section>
+  {{< fragment weight=4 class=current-visible >}}
+  Otherwise, the value is appended to the vertical list
+  {{< /fragment >}}
 
----
-
-<section>
-
-## A Simple Client
-
-<sup> (continue below) </sup>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Code Overview
-
-<div class="smath">
-  {{< fragment weight=1 >}}
-  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
+  {{< fragment weight=5 >}}
+  The chain is made persistent, yielding an immutable history of values
   {{< /fragment >}}
 </div>
 
 {{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
+<span class="smath">
+$$ \{ \ ... \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \ ... \ \} $$
+</span>
+{{< /fragment >}}
+
+{{< fragment weight=1 >}}
+<span class="smath">
+$$ \ \textsf{update} \ node \ v \ t \ $$
+</span>
+{{< /fragment >}}
+
 <div class="r-stack">
-{{< fragment weight=2 class=current-visible >}}
-$ 
-\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
-\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 3 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=3 class=current-visible >}}
-$
-\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
-\textcolor{red}{\textsf{put} \ p \ 20 \ 2 \ 1;} \\\\
-\textsf{put} \ p \ 10 \ 3 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=4 class=current-visible >}}
-$
-\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
-\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
-\textcolor{red}{\textsf{put} \ p \ 10 \ 3 \ 2;}
-$
-{{< /fragment >}}
-
-{{< fragment weight=5 class=current-visible >}}
-$
-\textcolor{red}{\textsf{put} \ p \ 10 \ 1 \ 0;} \\\\
-\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 3 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=6 >}}
-$
-\textsf{put} \ p \ 10 \ 1 \ 0; \\\\
-\textsf{put} \ p \ 20 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 3 \ 2;
-$
-{{< /fragment >}}
-</div>
-</div>
-{{< /fragment >}}
-
-{{< fragment weight=2 >}}
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
-<div class="r-stack">
-{{< fragment weight=2 class=current-visible >}}
-$ 
-\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 6 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=3 class=current-visible >}}
-$
-\textcolor{red}{\textsf{put} \ p \ 20 \ 5 \ 0;} \\\\
-\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 6 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=4 class=current-visible >}}
-$
-\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-\textcolor{red}{\textsf{put} \ p \ 10 \ 6 \ 2;}
-$
-{{< /fragment >}}
-
-{{< fragment weight=5 class=current-visible >}}
-$
-\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-\textcolor{red}{\textsf{put} \ p \ 10 \ 2 \ 1;} \\\\
-\textsf{put} \ p \ 10 \ 6 \ 2;
-$
-{{< /fragment >}}
-
-{{< fragment weight=6 >}}
-$
-\textsf{put} \ p \ 20 \ 5 \ 0; \\\\
-\textsf{put} \ p \ 10 \ 2 \ 1; \\\\
-\textsf{put} \ p \ 10 \ 6 \ 2;
-$
-{{< /fragment >}}
-</div>
-</div>
-{{< /fragment >}}
-
-<div class="smath">
-  {{< fragment weight=6 >}}
-  $$ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $$
+  {{< fragment weight=3 class=current-visible >}}
+  <span class="smath">
+  $ \left\{ \ ... \ 
+  \begin{matrix}
+    \textbf{\textsf{if}} \ t < val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
+    \phantom{\textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val}
+  \end{matrix}
+  \ ... \ \right\} $
+  </span>
   {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Initialization
-
-<div class="smath">
-  {{< fragment >}}
-  $ \textcolor{purple}{\\{ \ \textsf{True} \ \\}} $
-  {{< /fragment >}}
-</div>
-
-<div class="smath">
-  {{< fragment >}}
-  $ \textbf{\textsf{let}} \ p = \textsf{new} \ \textbf{\textsf{in}} $
-  {{< /fragment >}}
-</div>
-
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $ \textcolor{purple}{\\{ \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $ \textcolor{purple}{\\{ \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  {{< fragment >}}
-  $ \textcolor{purple}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cdot \varnothing, \frac{1}{2} + \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-</div>
-
-<div class="smath">
-  {{< fragment >}}
-  $ \downarrow $
-  {{< /fragment >}}
-</div>
-
-<div class="smath">
-  {{< fragment >}}
-  $ \textcolor{purple}{\\{ \ \textcolor{blue}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} * \textcolor{red}{\textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma)} \ \\}} $
-  {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Updates
-
-<div class="smath" style="display: inline-block; border-right-style: solid; padding-right: 10px; margin-right: 5px">
-  {{< fragment weight=1 >}}
-  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  $ \textsf{put} \ p \ 10 \ 1 \ 0; $
-
-  <div class="r-stack">
-  {{< fragment weight=2 class=current-visible >}}
-  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 10 : (\\{ 1 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  {{< fragment weight=3 >}}
-  $ \textcolor{blue}{\\{ \ \textsf{IsSkipList}(p, \\{ \ 10 : (\\{ 1 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-  </div>
-
-  $ \textsf{put} \ p \ 20 \ 2 \ 1; $
 
   {{< fragment weight=4 >}}
-  $ \textcolor{blue}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
-  {{< /fragment >}}
-
-  $ \textsf{put} \ p \ 10 \ 3 \ 2; $
-
-  {{< fragment weight=5 >}}
-  $ \textcolor{blue}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 3 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
-  {{< /fragment >}}
-</div>
-
-<div class="smath" style="display: inline-block; border-left-style: solid; padding-left: 10px; margin-left: 5px">
-  {{< fragment weight=1 >}}
-  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  $ \textsf{put} \ p \ 20 \ 5 \ 0; $
-
-  <div class="r-stack">
-  {{< fragment weight=2 class=current-visible >}}
-  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \varnothing \cup \\{ \ 20 : (\\{ 5 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-
-  {{< fragment weight=3 >}}
-  $ \textcolor{red}{\\{ \ \textsf{IsSkipList}(p, \\{ \ 20 : (\\{ 5 \\}, 0) \ \\}, \frac{1}{2}, \gamma) \ \\}} $
-  {{< /fragment >}}
-  </div>
-
-  $ \textsf{put} \ p \ 10 \ 2 \ 1; $
-
-  {{< fragment weight=4 >}}
-  $ \textcolor{red}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
-  {{< /fragment >}}
-
-  $ \textsf{put} \ p \ 10 \ 6 \ 2; $
-
-  {{< fragment weight=5 >}}
-  $ \textcolor{red}{\left\\{ \textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 6 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right) \right\\}} $
+  <span class="smath">
+  $ \left\{ \ ... \ 
+  \begin{matrix}
+    \textbf{\textsf{if}} \ t < val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
+    \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val
+  \end{matrix}
+  \ ... \ \right\} $
+  </span>
   {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+An internal procedure is responsible for updating the node's vertical list.
 
----
+The precondition for its specification includes the points-to assertion for the initial value.
 
-### Lookup
+If the new timestamp is less recent then the value already stored, then the update does not occur.
 
-<div class="smath">
-  {{< fragment >}}
-  $
-  \textcolor{purple}{\left\\{ \textcolor{blue}{\textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 10 : (\\{ 1 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 20 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 3 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right)}
-  *
-  \textcolor{red}{\textsf{IsSkipList}\left(p, \begin{array}{l} \\{ \ 20 : (\\{ 5 \\}, 0) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 2 \\}, 1) \ \\} \ \cup \\\\ \\{ \ 10 : (\\{ 6 \\}, 2) \ \\} \end{array}, \frac{1}{2}, \gamma\right)} \right\\}} \\\\
-  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
-  $
-  {{< /fragment >}}
-</div>
+Otherwise, the new value and timestamp are appended to the head.
 
-<div class="smath">
-  {{< fragment >}}
-  $ \downarrow $
-  {{< /fragment >}}
-</div>
+Asserting that the new value's predecessor is persistent, ensures that the node's value history is immutable by construction.
 
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $
-  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), \textcolor{blue}{\frac{1}{2}} + \textcolor{red}{\frac{1}{2}}, \gamma\right) \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $
-  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $
-  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left(\begin{array}{l} \textcolor{blue}{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \cup \textcolor{blue}{\\{ \ 10 : (\\{ 3 \\}, 2) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 10 : (\\{ 2 \\}, 1) \ \\}} \cup \textcolor{red}{\\{ \ 10 : (\\{ 6 \\}, 2) \ \\}} \end{array}\right) \cup \left(\begin{array}{l} \textcolor{blue}{\\{ \ 20 : (\\{ 2 \\}, 1) \ \\}} \ \cup \\\\ \textcolor{red}{\\{ \ 20 : (\\{ 5 \\}, 0) \ \\}} \end{array}\right), 1, \gamma\right) \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $
-  \textcolor{purple}{\left\\{ \textsf{IsSkipList}\left(p, \left\\{ \ 10 : \begin{array}{l} \textcolor{blue}{(\\{ 1 \\}, 0)} \cdot \textcolor{blue}{(\\{ 3 \\}, 2)} \ \cdot \\\\ \textcolor{red}{(\\{ 2 \\}, 1)} \cdot \textcolor{red}{(\\{ 6 \\}, 2)} \end{array} \right\\} \cup \left\\{ \ 20 : \begin{array}{l} \textcolor{blue}{(\\{ 2 \\}, 1)} \ \cdot \\\\ \textcolor{red}{(\\{ 5 \\}, 0)} \end{array} \right\\}, 1, \gamma\right) \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment >}}
-  $
-  \textcolor{purple}{ \left\\{ \ \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ \right\\}}
-  $
-  {{< /fragment >}}
-</div>
-
-<div class="smath">
-  {{< fragment >}}
-  $ (\textsf{get} \ p \ 10, \textsf{get} \ p \ 20) $
-  {{< /fragment >}}
-</div>
-
-<div class="r-stack smath">
-  {{< fragment class=current-visible >}}
-  $
-  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
-  \textcolor{purple}{ \left\\{
-    (v_1^?, v_2^?).
-    \phantom{\begin{array}{c}
-      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
-      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}
-    \end{array}}
-  \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $
-  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
-  \textcolor{purple}{ \left\\{
-    (v_1^?, v_2^?).
-    \begin{array}{c}
-      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \phantom{\ *} \\\\
-      \phantom{\exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}}
-    \end{array}
-  \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment class=current-visible >}}
-  $
-  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
-  \textcolor{purple}{ \left\\{
-    (v_1^?, v_2^?).
-    \begin{array}{c}
-      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
-      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * \phantom{v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * } v_2^? = \textsf{Some}(v_2, 1) \phantom{* v_2 \in \\{ \textcolor{blue}{2} \\}}
-    \end{array}
-  \right\\}}
-  $
-  {{< /fragment >}}
-
-  {{< fragment >}}
-  $
-  \vphantom{\\{ \ 10 : (\\{ 1 \\}, 0) \ \\}} \\\\
-  \textcolor{purple}{ \left\\{
-    (v_1^?, v_2^?).
-    \begin{array}{c}
-      \textsf{IsSkipList}\left(p, \left\\{ \ 10 : (\\{ \textcolor{blue}{3}, \textcolor{red}{6} \\}, 2) \right\\} \cup \left\\{ \ 20 : (\\{ \textcolor{blue}{2} \\}, 1)\right\\}, 1, \gamma\right) \ * \\\\
-      \exists \ v_1, v_2. \ v_1^? = \textsf{Some}(v_1, 2) * v_1 \in \\{ \textcolor{blue}{3}, \textcolor{red}{6} \\} * v_2^? = \textsf{Some}(v_2, 1) * v_2 \in \\{ \textcolor{blue}{2} \\}
-    \end{array}
-  \right\\}}
-  $
-  {{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Timestamp Assumptions
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -2052,247 +1882,75 @@ $
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+I will now highlight some of the most relevant related work.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Polaris
 
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Logical Atomicity
-
 <div class="r-stack">
-{{< fragment class=current-visible >}}
-<span class="smath">
-$ \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle $
-</span>
-{{< /fragment >}}
+  {{< fragment class=current-visible >}}
+  Our mechanization is mostly based on the work of Tassarotti and Harper
 
-{{< fragment >}}
-<span class="smath" style="border-bottom-style: solid; padding-bottom: 10px">
-$\left\langle \ \triangleright \ I * P \ \right\rangle \ e \ \left\langle \ v. \ \triangleright I * Q(v) \ \right\rangle_{\mathcal{E} \setminus \mathcal{N}}$
-$\quad$
-{{< fragment class=fade-out >}}
-$ \textsf{atomic}(e) $
-{{< /fragment >}}
-$\quad$
-$ \mathcal{N} \subseteq \mathcal{E} $
-</span>
+  In their work, they present Polaris, an extension of Iris to support probabilistic reasoning.
+  {{< /fragment >}}
 
-<div style="padding-top: 10px">
-<span class="inv">
-$ I $
-</span><sup class="name">$ \ \mathcal{N} $</sup>
-<span class="smath">
-$ \vdash \left\langle \ P \ \right\rangle \ e \ \left\langle \ v. \ Q(v) \ \right\rangle_{\mathcal{E}} $
-</span>
-</div>
-{{< /fragment >}}
+  {{< fragment >}}
+  In Polaris, they proved correctness and probabilistic properties of a 2-level concurrent skip list
+
+  We generalize their correctness proofs to any number levels, simplifying the required ghost state
+  {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+Most of our mechanization effort is deeply based on the work of Tassarotti and Harper on Polaris, a probabilistic extension of Iris.
+
+Their work focused more on proving probabilistic properties of a 2-level skip list, while we generalized their arguments to an arbitrary number of levels, simplifying the ghost state for in-level reasoning.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Key-Value Specifications
 
-<div class="r-stack smath">
-{{< fragment class=current-visible >}}
-$ 
-\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
-      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
-       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-
-{{< fragment class=current-visible >}}
-$ 
-\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textcolor{red}{\textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      \textcolor{red}{| \ \textsf{None}} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
-      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
-       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-
-{{< fragment class=current-visible >}}
-$ 
-\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      \textcolor{red}{| \ \textsf{None}} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)} \\\\
-      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
-       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-
-{{< fragment class=current-visible >}}
-$ 
-\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
-      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textcolor{red}{\textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma)} \\\\
-       & & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-
-{{< fragment class=current-visible >}}
-$ 
-\left\langle \ \textsf{Map}(p, M, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textbf{\textsf{match}} \ M[k] \ \textbf{\textsf{with}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma) \\\\
-      \textcolor{red}{| \ \textsf{Some}(v_i, t_i)} & \textcolor{red}{\Rightarrow} & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Map}(p, M, \gamma) \\\\
-       & & \textcolor{red}{\textbf{\textsf{else}} \ \textsf{Map}(p, \langle k : (v, t) \rangle M, \gamma)}
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-
-{{< fragment >}}
-$ 
-\left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle \ 
-\textsf{put} \ p \ k \ v \ t \ 
-\left\langle {\scriptsize \\! \\!
-  \begin{array}{l}
-    \textbf{\textsf{match}} \ v_i^? \ \textbf{\textsf{with}} \\\\
-    \\! \\! \\!
-    \begin{array}{lcl}
-      | \ \textsf{None} & \Rightarrow & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma) \\\\
-      | \ \textsf{Some}(v_i, t_i) & \Rightarrow & \textbf{\textsf{if}} \ t < t_i \ \textbf{\textsf{then}} \ \textsf{Key}(p, k, v_i^?, \gamma) \\\\
-       & & \textbf{\textsf{else}} \ \textsf{Key}(p, k, \textsf{Some}(v, t), \gamma)
-    \end{array}
-    \\! \\! \\!
-  \end{array} \\! \\! }
-\right\rangle
-$
-{{< /fragment >}}
-</div>
-
-{{< speaker_note >}}
-
-{{< /speaker_note >}}
-
----
-
-### Client Reasoning
-
 <div class="r-stack">
-{{< fragment weight=4 class=fade-out >}}
-{{< fragment weight=1 >}}
+  {{< fragment weight=1 class=current-visible >}}
+  da Rocha Pinto *et. al.* and Xiong *et. al.* provide key-value specifications for concurrent maps
 
-{{< fragment weight=1 >}}
-<span class="smath">
-$ \textsf{SomeEquiv}(v^?, v_A^?) \triangleq $
-</span>
-{{< /fragment >}}
-{{< fragment weight=2 >}}
-<span class="smath">
-$ (v^? = \textsf{None} * v_A^? = \textsf{None}) $
-</span>
-{{< /fragment >}}
-{{< fragment weight=3 >}}
-<span class="smath">
-$ \lor \\ $
-</span>
-{{< /fragment >}}
+  Such specifications allow reasoning about individual keys rather than the entire state of the map
+  {{< /fragment >}}
 
-{{< fragment weight=3 >}}
-<span class="smath">
-$ \exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * v_A^? = \textsf{Some}(S, t) * v \in S $
-</span>
-{{< /fragment >}}
+  {{< fragment >}}
+  Xiong *et. al.* show how to derive a key-value specification from a full map specification
 
-{{< /fragment >}}
-{{< /fragment >}}
-
-{{< fragment weight=4 >}}
-{{< fragment weight=4 >}}
-<span class="smath">
-$ \textsf{FKey}(p, k, v_F^?, q, \gamma) \triangleq $
-</span>
-{{< /fragment >}}
-{{< fragment weight=8 >}}
-<span class="ghost"> 
-$ \circ_q \ v_F^? $
-</span><sup class="name">$ \ \gamma^k $</sup>
-<span class="smath">$ * \\$</span>
-{{< /fragment >}}
-
-{{< fragment weight=5 >}}
-<span class="inv" style="margin-top: 10px">
-{{< fragment weight=5 >}}
-$ \exists \ v^?, \Gamma. \ \textsf{Key}(p, k, v^?, \Gamma) $
-{{< /fragment >}}
-{{< fragment weight=6 >}}
-$ * \ \exists \ v_A^?. $
-<span class="ghost"> 
-$ \bullet \ v_A^? $
-</span><sup class="name" style="bottom: 16px">$ \ \gamma^k $</sup>
-{{< /fragment >}}
-{{< fragment weight=7 >}}
-$ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
-{{< /fragment >}}
-</span><sup class="name" style="bottom: 22px">$ \ \textsf{levelN}(k) $</sup>
-{{< /fragment >}}
-{{< /fragment >}}
+  Any algebra (*e.g.*, our $\textsf{argmax}$ RA) can be built on top of the specification to reason about clients
+  {{< /fragment >}}
 </div>
 
-{{< speaker_note >}}
+{{< fragment weight=1 >}}
+<div class="smath">
+$ \left\{ \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\} $
+</div>
+<div class="smath">
+$ \textsf{put} \ p \ k \ v \ t $
+</div>
+<div class="smath">
+$ \left\{ \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \right\} $
+</div>
+{{< /fragment >}}
 
-{{< /speaker_note >}}
+{{< speaker_note >}} <sub>
+
+The works of da Rocha Pinto et. al. and Xiong et. al. focus on developing a map specification for each map entry instead of the whole map. Such a specification allows reasoning about composition and sharing of individual keys rather than sharing the entire map.
+
+Xiong et. al. show how to build a key-value specification from a full map specification using logically atomic triples. Client reasoning is applied on top of this specification by constructing a suitable algebra, much like our argmax resource algebra.
+
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -2304,17 +1962,39 @@ $ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
 
 <sup> (continue below) </sup>
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+To conclude, this work contributes to the understanding of complex list-based data structures, providing a new approach for reasoning about concurrent maps.
+
+</sub> {{< /speaker_note >}}
 
 ---
 
 ### Future Work
 
-{{< speaker_note >}}
+{{< fragment >}}
+- Verifying other skip list implementations (*e.g.*, the original JellyFish)
+{{< /fragment >}}
 
-{{< /speaker_note >}}
+{{< fragment >}}
+- Proving a key-value specification built from our map specification
+{{< /fragment >}}
+
+{{< fragment >}}
+- Constructing new RAs for verifying other types of clients (*e.g.*, producer-consumer)
+{{< /fragment >}}
+
+{{< speaker_note >}} <sub>
+
+We leave as future work ...
+
+... adapting of our proofs to other skip list implementations, ...
+
+... refactoring the proofs to define a key-value specification ...
+
+... and constructing other expressive resource algebras for client reasoning.
+
+</sub> {{< /speaker_note >}}
 
 </section>
 
@@ -2322,6 +2002,8 @@ $ * \ \textsf{SomeEquiv}(v^?, v_A^?) $
 
 # Thank you!
 
-{{< speaker_note >}}
+{{< speaker_note >}} <sub>
 
-{{< /speaker_note >}}
+Thank you for your attention and I am now available to answer any questions you may have.
+
+</sub> {{< /speaker_note >}}
