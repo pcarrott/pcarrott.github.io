@@ -1607,9 +1607,15 @@ There is also a set of tokens, required for the sublist relation between consecu
   {{< /fragment >}}
 </div>
 
-{{< fragment weight=1 >}}
-<img src="images/sub.svg">
-{{< /fragment >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <img src="images/sub.svg">
+  {{< /fragment >}}
+
+  {{< fragment weight=2 >}}
+  <img src="images/sub1.svg">
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}} <sub>
 
@@ -1637,9 +1643,19 @@ For this reason, we associate each sublist node to a fragment of the lower level
   {{< /fragment >}}
 </div>
 
-{{< fragment weight=1 >}}
-<img src="images/tok.svg">
-{{< /fragment >}}
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  <img src="images/tok.svg">
+  {{< /fragment >}}
+
+  {{< fragment weight=2 class=current-visible >}}
+  <img src="images/tok1.svg">
+  {{< /fragment >}}
+
+  {{< fragment weight=3 >}}
+  <img src="images/tok2.svg">
+  {{< /fragment >}}
+</div>
 
 {{< speaker_note >}} <sub>
 
