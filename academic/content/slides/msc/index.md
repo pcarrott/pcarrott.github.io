@@ -4,7 +4,7 @@ authors: []
 tags: []
 categories: []
 date: '2022-02-05'
-draft: true
+draft: false
 slides:
   theme: light
   highlight_style: dracula
@@ -24,6 +24,8 @@ Pedro Carrott --- *IST, University of Lisbon*
 {{< speaker_note >}} <sub>
 
 Hello. I am Pedro Carrott and today I'm presenting my Master's thesis on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent append-only maps.
+
+This work was also submitted as a conference paper, which is currently under review.
 
 </sub> {{< /speaker_note >}}
 
@@ -285,7 +287,7 @@ Insertions are performed bottom-up so as to ensure that the sublist relation is 
 
 A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical, ...
 
-... as long as the timestamp is more recent than 3. In short, claiming a node's lock grants exclusive access to update the node's successor at the lock's level, while the bottom level locks also control updates to the value of the node's successor.
+... as long as the timestamp is as recent as 3. In short, claiming a node's lock grants exclusive access to update the node's successor at the lock's level, while the bottom level locks also control updates to the value of the node's successor.
 
 </sub> {{< /speaker_note >}}
 
