@@ -1268,9 +1268,14 @@ For two consecutive levels, the upper level must be a sublist of the lower level
 As such, upper level nodes keep fragments of the lower level&amp;rsquo;s authoritative set
 &lt;/span>
 &lt;/div>
-&lt;span class="fragment " data-fragment-index="1">
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 &lt;img src="images/sub.svg">
 &lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;img src="images/sub1.svg">
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;sub>
 &lt;p>Each level must contain a sublist of the list contained in its lower level.&lt;/p>
@@ -1290,9 +1295,17 @@ Each level will hold a set of ghost tokens to be removed and associated with upp
 Tokens are exclusive, so any new node will have a different token than other existing nodes
 &lt;/span>
 &lt;/div>
-&lt;span class="fragment " data-fragment-index="1">
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
 &lt;img src="images/tok.svg">
 &lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/tok1.svg">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;img src="images/tok2.svg">
+&lt;/span>
+&lt;/div>
 &lt;aside class="notes">
 &lt;sub>
 &lt;p>When inserting in the upper levels, we do not check if the key already exists there, because we already checked the bottom level, which contains all keys.&lt;/p>
