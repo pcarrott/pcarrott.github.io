@@ -4,7 +4,6 @@ authors: []
 tags: []
 categories: []
 date: '2022-02-05'
-draft: true
 slides:
   theme: light
   highlight_style: dracula
@@ -23,9 +22,7 @@ Pedro Carrott --- *IST, University of Lisbon*
 
 {{< speaker_note >}} <sub>
 
-Hello. I am Pedro Carrott and today I'm presenting my Master's thesis on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent append-only maps.
-
-This work was also submitted as a conference paper, which is currently under review.
+Hello. Today I'm presenting my Master's thesis, advised by Professor João Ferreira, on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.
 
 </sub> {{< /speaker_note >}}
 
@@ -1934,39 +1931,67 @@ Their work focused more on proving probabilistic properties of a 2-level skip li
 
 ---
 
+### Logical Atomicity
+
+<div class="r-stack">
+  {{< fragment weight=1 class=current-visible >}}
+  Logically atomic triples state that the operation takes place at a single atomic step
+  {{< /fragment >}}
+
+  {{< fragment >}}
+  Non-atomic operations can be seen as atomic, whose changes are caused by that atomic step
+  {{< /fragment >}}
+</div>
+
+{{< fragment weight=1 >}}
+<span class="smath">
+$ \left\langle \ P \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ v. \ Q(v) \ \right\rangle $
+</span>
+{{< /fragment >}}
+
+{{< speaker_note >}} <sub>
+
+An important correctness criterion for concurrent operations is logical atomicity. Iris allows the definition of logically atomic triples, meaning that a potentially non-atomic operation transforms the precondition into the postcondition at a single atomic step.
+
+That atomic step suffices to reason about interference between concurrent operations, allowing us to treat a non-atomic operation as if it were atomic.
+
+</sub> {{< /speaker_note >}}
+
+---
+
 ### Key-Value Specifications
 
 <div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  da Rocha Pinto *et. al.* and Xiong *et. al.* provide key-value specifications for concurrent maps
+  Xiong *et al.* derive a key-value specification from a logically atomic map specification
+  {{< /fragment >}}
 
+  {{< fragment class=current-visible >}}
   Such specifications allow reasoning about individual keys rather than the entire state of the map
   {{< /fragment >}}
 
   {{< fragment >}}
-  Xiong *et. al.* show how to derive a key-value specification from a full map specification
-
   Any algebra (*e.g.*, our $\textsf{argmax}$ RA) can be built on top of the specification to reason about clients
   {{< /fragment >}}
 </div>
 
 {{< fragment weight=1 >}}
-<div class="smath">
-$ \left\{ \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\} $
-</div>
-<div class="smath">
-$ \textsf{put} \ p \ k \ v \ t $
-</div>
-<div class="smath">
-$ \left\{ \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \right\} $
-</div>
+<span class="smath">
+$ \left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle $
+$ \ \textsf{put} \ p \ k \ v \ t \ $
+$ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \right\rangle $
+</span>
 {{< /fragment >}}
 
 {{< speaker_note >}} <sub>
 
-The works of da Rocha Pinto et. al. and Xiong et. al. focus on developing a map specification for each map entry instead of the whole map. Such a specification allows reasoning about composition and sharing of individual keys rather than sharing the entire map.
+Xiong et al. define a logically atomic specification for a concurrent map, which they then use to define a key-value specification.
 
-Xiong et. al. show how to build a key-value specification from a full map specification using logically atomic triples. Client reasoning is applied on top of this specification by constructing a suitable algebra, much like our argmax resource algebra.
+Key-value specifications allows reasoning about composition and sharing of individual keys rather than sharing the entire map.
+
+They also show how to apply client reasoning on top of this specification by constructing a suitable algebra, much like we did with the argmax resource algebra.
 
 </sub> {{< /speaker_note >}}
 
@@ -1995,7 +2020,11 @@ To conclude, this work contributes to the understanding of complex list-based da
 {{< /fragment >}}
 
 {{< fragment >}}
-- Proving a key-value specification built from our map specification
+- Proving logical atomicity for the map operations of lazy JellyFish.
+{{< /fragment >}}
+
+{{< fragment >}}
+- Deriving a key-value specification from the logically atomic map specification
 {{< /fragment >}}
 
 {{< fragment >}}
@@ -2007,6 +2036,8 @@ To conclude, this work contributes to the understanding of complex list-based da
 We leave as future work ...
 
 ... adapting of our proofs to other skip list implementations, ...
+
+... proving the map operations to be logically atomic, ...
 
 ... refactoring the proofs to define a key-value specification ...
 
