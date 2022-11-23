@@ -1909,7 +1909,7 @@ I will now highlight some of the most relevant related work.
 
 <div class="r-stack">
   {{< fragment class=current-visible >}}
-  Our mechanization is mostly based on the work of Tassarotti and Harper
+  Our mechanization is mostly based on the work of [Tassarotti and Harper](https://doi.org/10.1145/3290377) (POPL 2019)
 
   In their work, they present Polaris, an extension of Iris to support probabilistic reasoning.
   {{< /fragment >}}
@@ -1965,7 +1965,7 @@ That atomic step suffices to reason about interference between concurrent operat
 
 <div class="r-stack">
   {{< fragment weight=1 class=current-visible >}}
-  Xiong *et al.* derive a key-value specification from a logically atomic map specification
+  From a logically atomic map specification, [Xiong *et al.*](https://doi.org/10.1007/978-3-662-54434-1_36) (ESOP 2017) derive a key-value specification
   {{< /fragment >}}
 
   {{< fragment class=current-visible >}}
@@ -2020,7 +2020,7 @@ To conclude, this work contributes to the understanding of complex list-based da
 {{< /fragment >}}
 
 {{< fragment >}}
-- Proving logical atomicity for the map operations of lazy JellyFish.
+- Proving logical atomicity for the map operations of lazy JellyFish
 {{< /fragment >}}
 
 {{< fragment >}}
