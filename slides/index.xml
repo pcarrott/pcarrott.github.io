@@ -1439,7 +1439,7 @@ $ \left\{ \ ... \
 &lt;h3 id="polaris">Polaris&lt;/h3>
 &lt;div class="r-stack">
 &lt;span class="fragment current-visible" >
-&lt;p>Our mechanization is mostly based on the work of Tassarotti and Harper&lt;/p>
+&lt;p>Our mechanization is mostly based on the work of &lt;a href="https://doi.org/10.1145/3290377" target="_blank" rel="noopener">Tassarotti and Harper&lt;/a> (POPL 2019)&lt;/p>
 &lt;p>In their work, they present Polaris, an extension of Iris to support probabilistic reasoning.&lt;/p>
 &lt;/span>
 &lt;span class="fragment " >
@@ -1480,7 +1480,7 @@ $ \left\langle \ v. \ Q(v) \ \right\rangle $
 &lt;h3 id="key-value-specifications">Key-Value Specifications&lt;/h3>
 &lt;div class="r-stack">
 &lt;span class="fragment current-visible" data-fragment-index="1">
-Xiong &lt;em>et al.&lt;/em> derive a key-value specification from a logically atomic map specification
+From a logically atomic map specification, &lt;a href="https://doi.org/10.1007/978-3-662-54434-1_36" target="_blank" rel="noopener">Xiong &lt;em>et al.&lt;/em>&lt;/a> (ESOP 2017) derive a key-value specification
 &lt;/span>
 &lt;span class="fragment current-visible" >
 Such specifications allow reasoning about individual keys rather than the entire state of the map
@@ -1522,7 +1522,7 @@ $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \
 &lt;/span>
 &lt;span class="fragment " >
 &lt;ul>
-&lt;li>Proving logical atomicity for the map operations of lazy JellyFish.&lt;/li>
+&lt;li>Proving logical atomicity for the map operations of lazy JellyFish&lt;/li>
 &lt;/ul>
 &lt;/span>
 &lt;span class="fragment " >
