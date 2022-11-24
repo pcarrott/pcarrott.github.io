@@ -43,12 +43,8 @@ header:
 
 footer:
   copyright:
-    notice: '© 2022---{year} Pedro Carrott. Meme design is my passion.'
-#     license:
-#       enable: true
-#       allow_derivatives: false
-#       share_alike: true
-#       allow_commercial: false
+    notice: >-
+      © {year} Pedro Carrott. Meme design is my passion.
 
 # Localization
 

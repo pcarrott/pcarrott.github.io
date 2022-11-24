@@ -94,7 +94,7 @@ Conflicting writes are handled by a novel resource algebra for the $\textsf{argm
 
 Our verification efforts provide a new concurrent map specification, which supports version control through the use of timestamps.
 
-To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation
+To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation.
 
 </sub> {{< /speaker_note >}}
 
@@ -1167,7 +1167,7 @@ The IsSkipList predicate can thus be defined by joining all these pieces togethe
 
 ... the sublist invariants for all remaining levels ...
 
-... and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant
+... and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant.
 
 </sub> {{< /speaker_note >}}
 
@@ -1660,7 +1660,7 @@ When inserting in the upper levels, we do not check if the key already exists th
 
 Since we do not prove this explicitly in the code, we require each level to keep a set of available tokens and associate each sublist node to a lower level token.
 
-By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level
+By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level.
 
 </sub> {{< /speaker_note >}}
 
@@ -1879,7 +1879,7 @@ An internal procedure is responsible for updating the node's vertical list.
 
 The precondition for its specification includes the points-to assertion for the initial value.
 
-If the new timestamp is less recent then the value already stored, then the update does not occur.
+If the new timestamp is less recent than the value already stored, then the update does not occur.
 
 Otherwise, the new value and timestamp are appended to the head.
 

@@ -29,8 +29,9 @@ experience:
     location: Lisbon
     date_start: '2021-12-01'
     date_end: '2022-10-31'
-    description: |2-
-        [Analysis and Synthesis of Algorithms](https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre) (Fall 2021-2022, 2nd Quarter) <br>
+    description: >-
+        [Analysis and Synthesis of Algorithms](https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre) (Fall 2021-2022, 2nd Quarter)
+        <br>
         [Artificial Inteligence](https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre) (Spring 2021-2022, 4th Quarter)
 
   - title: Student Representative
@@ -49,8 +50,7 @@ experience:
     location: Lisbon
     date_start: '2020-09-13'
     date_end: ''
-    description: |2-
-      GPA: 19 out of 20
+    description: 'GPA: 19 out of 20'
 
   - title: DEI Management System
     company: Instituto Superior Técnico
@@ -77,8 +77,7 @@ experience:
     location: Lisbon
     date_start: '2017-09-12'
     date_end: '2020-07-22'
-    description: |2-
-      GPA: 18 out of 20
+    description: 'GPA: 18 out of 20'
 
 design:
   columns: '2'
