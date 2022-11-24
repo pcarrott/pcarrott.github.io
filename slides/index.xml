@@ -50,7 +50,7 @@
 &lt;aside class="notes">
 &lt;sub>
 &lt;p>Our verification efforts provide a new concurrent map specification, which supports version control through the use of timestamps.&lt;/p>
-&lt;p>To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation&lt;/p>
+&lt;p>To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation.&lt;/p>
 &lt;/sub>
 &lt;/aside>
 &lt;/section>
@@ -858,7 +858,7 @@ $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
 &lt;p>&amp;hellip; the left sentinel assertions &amp;hellip;&lt;/p>
 &lt;p>&amp;hellip; the bottom list invariant &amp;hellip;&lt;/p>
 &lt;p>&amp;hellip; the sublist invariants for all remaining levels &amp;hellip;&lt;/p>
-&lt;p>&amp;hellip; and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant&lt;/p>
+&lt;p>&amp;hellip; and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant.&lt;/p>
 &lt;/sub>
 &lt;/aside>
 &lt;/section>
@@ -1242,7 +1242,7 @@ Tokens are exclusive, so any new node will have a different token than other exi
 &lt;sub>
 &lt;p>When inserting in the upper levels, we do not check if the key already exists there, because we already checked the bottom level, which contains all keys.&lt;/p>
 &lt;p>Since we do not prove this explicitly in the code, we require each level to keep a set of available tokens and associate each sublist node to a lower level token.&lt;/p>
-&lt;p>By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level&lt;/p>
+&lt;p>By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level.&lt;/p>
 &lt;/sub>
 &lt;/aside>
 &lt;hr>
@@ -1420,7 +1420,7 @@ $ \left\{ \ ... \
 &lt;sub>
 &lt;p>An internal procedure is responsible for updating the node&amp;rsquo;s vertical list.&lt;/p>
 &lt;p>The precondition for its specification includes the points-to assertion for the initial value.&lt;/p>
-&lt;p>If the new timestamp is less recent then the value already stored, then the update does not occur.&lt;/p>
+&lt;p>If the new timestamp is less recent than the value already stored, then the update does not occur.&lt;/p>
 &lt;p>Otherwise, the new value and timestamp are appended to the head.&lt;/p>
 &lt;p>Asserting that the new value&amp;rsquo;s predecessor is persistent, ensures that the node&amp;rsquo;s value history is immutable by construction.&lt;/p>
 &lt;/sub>
