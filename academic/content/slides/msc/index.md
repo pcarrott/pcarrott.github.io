@@ -62,7 +62,7 @@ JellyFish extends traditional skip lists by associating a list of timestamped va
 
 The most widely used implementation for such concurrent append-only maps is the skip list data structure.
 
-A state-of-the-art implementation for such concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.
+A state-of-the-art implementation for concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.
 
 </sub> {{< /speaker_note >}}
 
@@ -282,7 +282,7 @@ To ensure that concurrent updates to the data structure alter the state safely, 
 
 Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.
 
-A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical, ...
+A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical list, ...
 
 ... as long as the timestamp is as recent as 3. In short, claiming a node's lock grants exclusive access to update the node's successor at the lock's level, while the bottom level locks also control updates to the value of the node's successor.
 
@@ -1445,7 +1445,7 @@ This successor pointer should be immutable, since multiple nodes might point to 
 
 {{< speaker_note >}} <sub>
 
-Each node should contain a lock for the level, which maintains the lock invariant with some resources satisfying R.
+Each node should contain a lock for the level, which maintains the lock invariant with some resources.
 
 For bottom list nodes, the resources protected by the lock are the node's successor and the vertical list of this successor.
 
@@ -1989,7 +1989,7 @@ $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \
 
 Xiong et al. define a logically atomic specification for a concurrent map, which they then use to define a key-value specification.
 
-Key-value specifications allows reasoning about composition and sharing of individual keys rather than sharing the entire map.
+Key-value specifications allow reasoning about composition and sharing of individual keys rather than sharing the entire map.
 
 They also show how to apply client reasoning on top of this specification by constructing a suitable algebra, much like we did with the argmax resource algebra.
 
