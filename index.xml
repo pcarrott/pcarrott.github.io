@@ -34,7 +34,7 @@ MSc thesis advised by &lt;a href="https://joaoff.com" target="_blank" rel="noope
 &lt;aside class="notes">
 &lt;sub>
 &lt;p>The most widely used implementation for such concurrent append-only maps is the skip list data structure.&lt;/p>
-&lt;p>A state-of-the-art implementation for such concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.&lt;/p>
+&lt;p>A state-of-the-art implementation for concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.&lt;/p>
 &lt;/sub>
 &lt;/aside>
 &lt;hr>
@@ -188,7 +188,7 @@ If a node already exists for the key, then the new value will be appended to the
 &lt;p>&amp;hellip; a new node is created with some random height. As the predecessor&amp;rsquo;s lock has been acquired, &amp;hellip;&lt;/p>
 &lt;p>&amp;hellip; we can replace its successor by linking the new node to the bottom level. The lock can then be released and the node can be inserted in the upper level.&lt;/p>
 &lt;p>Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.&lt;/p>
-&lt;p>A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical, &amp;hellip;&lt;/p>
+&lt;p>A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical list, &amp;hellip;&lt;/p>
 &lt;p>&amp;hellip; as long as the timestamp is as recent as 3. In short, claiming a node&amp;rsquo;s lock grants exclusive access to update the node&amp;rsquo;s successor at the lock&amp;rsquo;s level, while the bottom level locks also control updates to the value of the node&amp;rsquo;s successor.&lt;/p>
 &lt;/sub>
 &lt;/aside>
@@ -1077,7 +1077,7 @@ $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\text
 &lt;/div>
 &lt;aside class="notes">
 &lt;sub>
-&lt;p>Each node should contain a lock for the level, which maintains the lock invariant with some resources satisfying R.&lt;/p>
+&lt;p>Each node should contain a lock for the level, which maintains the lock invariant with some resources.&lt;/p>
 &lt;p>For bottom list nodes, the resources protected by the lock are the node&amp;rsquo;s successor and the vertical list of this successor.&lt;/p>
 &lt;p>The points-to assertions are fractional allowing other threads to read their contents without acquiring the lock, while a locking thread will obtain write access to those memory positions.&lt;/p>
 &lt;/sub>
@@ -1503,7 +1503,7 @@ $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \
 &lt;aside class="notes">
 &lt;sub>
 &lt;p>Xiong et al. define a logically atomic specification for a concurrent map, which they then use to define a key-value specification.&lt;/p>
-&lt;p>Key-value specifications allows reasoning about composition and sharing of individual keys rather than sharing the entire map.&lt;/p>
+&lt;p>Key-value specifications allow reasoning about composition and sharing of individual keys rather than sharing the entire map.&lt;/p>
 &lt;p>They also show how to apply client reasoning on top of this specification by constructing a suitable algebra, much like we did with the argmax resource algebra.&lt;/p>
 &lt;/sub>
 &lt;/aside>
