@@ -1010,7 +1010,7 @@ The set is a sorted list, including the sentinels
 &lt;div class="r-stack">
 &lt;span class="fragment " data-fragment-index="1">
 &lt;span class="smath">
-$ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+$ L_\textsf{cat} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
 &lt;/span>
 &lt;/span>
 &lt;/div>
@@ -1143,7 +1143,7 @@ $ \bullet \ S $
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="5">
 &lt;span class="smath">
-$ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) \ * $
+$ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) \ * $
 &lt;/span>
 &lt;/span>&lt;/p>
 &lt;p>&lt;span class="fragment " data-fragment-index="6">
@@ -1152,8 +1152,8 @@ $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
 \begin{matrix}
-\textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-\textsf{HasLock}(0, \textsf{L}[i], \textsf{InBotLock})
+\textsf{IsNext}(0, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(0, L_\textsf{cat}[i], \textsf{InBotLock})
 \end{matrix}
 \right) \ *
 $
@@ -1301,7 +1301,7 @@ $ \textsf{KeyRange} \setminus S\textsf{.keys} $
 $ \bullet \ S $
 &lt;/span>&lt;sup class="name">$ \ \Gamma_A^{\phantom{0}} $&lt;/sup>
 &lt;span class="smath">
-$ * \ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) $
+$ * \ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) $
 &lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="3">
@@ -1313,8 +1313,8 @@ $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
 \begin{matrix}
-\textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-\textsf{HasLock}(lvl, \textsf{L}[i], \textsf{InSubLock})
+\textsf{IsNext}(lvl, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(lvl, L_\textsf{cat}[i], \textsf{InSubLock})
 \end{matrix}
 \right)
 $

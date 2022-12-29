@@ -150,7 +150,7 @@
 <span class="fragment current-visible" data-fragment-index=2>The map should associate the node&rsquo;s key to the value node&rsquo;s timestamp &mldr;</span>
 <span class=fragment data-fragment-index=3>&mldr; and to a set of values containing the value from the value node</span></div><div class=r-stack><span class="fragment current-visible" data-fragment-index=1><span class=smath>$ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $</span></span>
 <span class="fragment current-visible" data-fragment-index=2><span class=smath>$ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $</span></span>
-<span class=fragment data-fragment-index=3><span class=smath>$ v\textsf{.val} \in vs $</span></span></div><aside class=notes><sub><p>Each node of the set should have a value stored in the head of its vertical list.</p><p>The corresponding map entry should agree with the node&rsquo;s timestamp, while keeping a set of possible values &mldr;</p><p>&mldr; containing the actual value stored in memory.</p></sub></aside></section><section><h3 id=sortedness>Sortedness</h3><div class=r-stack><span class=fragment data-fragment-index=1>The set is a sorted list, including the sentinels</span></div><div class=r-stack><span class=fragment data-fragment-index=1><span class=smath>$ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $</span></span></div><aside class=notes><sub><p>The set must also reflect a sorted list, with all keys confined within both sentinel nodes.</p></sub></aside></section><section><h3 id=successor-chain>Successor Chain</h3><div class=r-stack><span class="fragment current-visible" data-fragment-index=1>Each physical node should point to its successor in the abstract list</span>
+<span class=fragment data-fragment-index=3><span class=smath>$ v\textsf{.val} \in vs $</span></span></div><aside class=notes><sub><p>Each node of the set should have a value stored in the head of its vertical list.</p><p>The corresponding map entry should agree with the node&rsquo;s timestamp, while keeping a set of possible values &mldr;</p><p>&mldr; containing the actual value stored in memory.</p></sub></aside></section><section><h3 id=sortedness>Sortedness</h3><div class=r-stack><span class=fragment data-fragment-index=1>The set is a sorted list, including the sentinels</span></div><div class=r-stack><span class=fragment data-fragment-index=1><span class=smath>$ L_\textsf{cat} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $</span></span></div><aside class=notes><sub><p>The set must also reflect a sorted list, with all keys confined within both sentinel nodes.</p></sub></aside></section><section><h3 id=successor-chain>Successor Chain</h3><div class=r-stack><span class="fragment current-visible" data-fragment-index=1>Each physical node should point to its successor in the abstract list</span>
 <span class="fragment current-visible" data-fragment-index=2>The array entry is mutable and stores a pointer for some successor node</span>
 <span class=fragment data-fragment-index=3>The successor pointer is immutable and must point to the corresponding successor</span></div><span class=smath><span class=fragment data-fragment-index=1>$ \textsf{IsNext}(lvl, pred, succ) \triangleq $</span>
 <span class=fragment data-fragment-index=2>$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $</span>
@@ -173,12 +173,12 @@
 <span class=fragment data-fragment-index=3><span class=ghost>$ \bullet \ S $
 </span><sup class=name>$ \ \gamma_A^{\phantom{0}} $</sup></span>
 <span class=fragment data-fragment-index=4><span class=smath>$*$</span></span>
-<span class=fragment data-fragment-index=5><span class=smath>$ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) \ * $</span></span></p><p><span class=fragment data-fragment-index=6><span class=smath>$
+<span class=fragment data-fragment-index=5><span class=smath>$ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) \ * $</span></span></p><p><span class=fragment data-fragment-index=6><span class=smath>$
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
 \begin{matrix}
-\textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-\textsf{HasLock}(0, \textsf{L}[i], \textsf{InBotLock})
+\textsf{IsNext}(0, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(0, L_\textsf{cat}[i], \textsf{InBotLock})
 \end{matrix}
 \right) \ *
 $</span></span>
@@ -206,13 +206,13 @@ $</span></span></p><aside class=notes><sub><p>The bottom list invariant is thus 
 <span class=smath>$*$</span></span>
 <span class=fragment data-fragment-index=2><span class=ghost>$ \bullet \ S $
 </span><sup class=name>$ \ \Gamma_A^{\phantom{0}} $</sup>
-<span class=smath>$ * \ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) $</span></span>
+<span class=smath>$ * \ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) $</span></span>
 <span class=fragment data-fragment-index=3><span class=smath>$*$</span></span></p><p><span class=fragment data-fragment-index=3><span class=smath>$
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left(
 \begin{matrix}
-\textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-\textsf{HasLock}(lvl, \textsf{L}[i], \textsf{InSubLock})
+\textsf{IsNext}(lvl, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(lvl, L_\textsf{cat}[i], \textsf{InSubLock})
 \end{matrix}
 \right)
 $</span></span>
