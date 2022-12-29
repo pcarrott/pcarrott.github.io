@@ -8,10 +8,10 @@ subtitle: 'A Case Study in Iris on the Verification of Concurrent Maps with Vers
 authors:
   - admin
 
-date: '2022-11-01T00:00:00Z'
+date: '2022-11-25T14:30:00Z'
 
 # Schedule page publish date (NOT publication's date).
-publishDate: '2022-11-01T00:00:00Z'
+publishDate: '2022-11-25T14:30:00Z'
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
@@ -30,8 +30,8 @@ featured: true
 
 # Custom links (uncomment lines below)
 links:
-- name: Extended Abstract
-  url: extended-abstract.pdf
+# - name: Extended Abstract
+#   url: extended-abstract.pdf
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
 
