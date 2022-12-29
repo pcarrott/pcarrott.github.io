@@ -1360,7 +1360,7 @@ The corresponding map entry should agree with the node's timestamp, while keepin
 <div class="r-stack">
   {{< fragment weight=1 >}}
   <span class="smath">
-  $ \textsf{L} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+  $ L_\textsf{cat} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
   </span>
   {{< /fragment >}}
 </div>
@@ -1524,7 +1524,7 @@ $ \bullet \ S $
 {{< /fragment >}}
 {{< fragment weight=5 >}}
 <span class="smath">
-$ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) \ * $
+$ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) \ * $
 </span>
 {{< /fragment >}}
 
@@ -1534,8 +1534,8 @@ $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left( 
   \begin{matrix}
-    \textsf{IsNext}(0, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-    \textsf{HasLock}(0, \textsf{L}[i],  \textsf{InBotLock})
+    \textsf{IsNext}(0, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+    \textsf{HasLock}(0, L_\textsf{cat}[i],  \textsf{InBotLock})
   \end{matrix}
 \right) \ * 
 $
@@ -1729,7 +1729,7 @@ $ \textsf{KeyRange} \setminus S\textsf{.keys} $
 $ \bullet \ S $
 </span><sup class="name">$ \ \Gamma_A^{\phantom{0}} $</sup>
 <span class="smath">
-$ * \ S \equiv_P L * \ \textsf{Sorted}(\textsf{L}) $
+$ * \ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) $
 </span>
 {{< /fragment >}}
 {{< fragment weight=3 >}}
@@ -1742,8 +1742,8 @@ $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
 \left( 
   \begin{matrix}
-    \textsf{IsNext}(lvl, \textsf{L}[i], \textsf{L}[i+1]) \ * \\
-    \textsf{HasLock}(lvl, \textsf{L}[i],  \textsf{InSubLock})
+    \textsf{IsNext}(lvl, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+    \textsf{HasLock}(lvl, L_\textsf{cat}[i],  \textsf{InSubLock})
   \end{matrix}
 \right)
 $
