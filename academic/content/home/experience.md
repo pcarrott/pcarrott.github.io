@@ -49,7 +49,7 @@ experience:
     company_logo: ist
     location: Lisbon
     date_start: '2020-09-13'
-    date_end: ''
+    date_end: '2022-11-25'
     description: 'GPA: 19 out of 20'
 
   - title: DEI Management System
