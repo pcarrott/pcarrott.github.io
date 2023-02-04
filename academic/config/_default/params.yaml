@@ -24,7 +24,7 @@ marketing:
     google_analytics: ''
     baidu_tongji: ''
   verification:
-    google: ''
+    google: 'google-site-verification=4omoyigtgblOcV6mF9I-k7ar_wWcgOTwadNNRVpzznI'
     baidu: ''
 
 # Site header
