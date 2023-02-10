@@ -72,7 +72,7 @@ email: 'pedro.carrott@tecnico.ulisboa.pt'
 highlight_name: true
 ---
 
-I was born in the 8th of February of 1999 in Évora, Portugal. I am a Computer Science graduate from [Instituto Superior Técnico](https://tecnico.ulisboa.pt), having successfully defended my MSc thesis with a grade of 19 out of 20! Currently, I intend to broaden my knowledge by pursuing a PhD degree at a reputable research group.
+I was born in 1999 in Évora, Portugal. I am a Computer Science graduate from [Instituto Superior Técnico](https://tecnico.ulisboa.pt), having successfully defended my MSc thesis with a grade of 19 out of 20! Currently, I intend to broaden my knowledge by pursuing a PhD degree at a reputable research group.
 
 My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages. I have always been interested in pure mathematical reasoning and I found in these fields of Computer Science a way to nurture that interest while contributing with a direct impact in society.
 
