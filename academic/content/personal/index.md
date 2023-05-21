@@ -16,10 +16,10 @@ sections:
     content:
       title: ':carrot: About me'
       text: |-
-        <center>This page contains some personal information about myself and what I enjoy doing in my free time.</center>
-        <br>
-        <center>Below, I leave pictures of the cutest woofers to lay their paws on Earth.</center>
-        <br>
+        This page contains some personal information about myself and what I enjoy doing in my free time.
+        
+        Below, I leave pictures of the cutest woofers to lay their paws on Earth.
+        
         {{< gallery album="dogs" >}}
   - block: markdown
     content:
