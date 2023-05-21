@@ -1,29 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Publications | Pedro Carrott</title>
-    <link>https://pcarrott.github.io/publication/</link>
-      <atom:link href="https://pcarrott.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
-    <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 25 Nov 2022 14:30:00 +0000</lastBuildDate>
-    <image>
-      <url>https://pcarrott.github.io/media/icon_hu2f40df1e36ee708a3b980cca86548b45_2432_512x512_fill_lanczos_center_3.png</url>
-      <title>Publications</title>
-      <link>https://pcarrott.github.io/publication/</link>
-    </image>
-    
-    <item>
-      <title>Formal Specification and Verification of the Lazy JellyFish Skip List</title>
-      <link>https://pcarrott.github.io/publication/msc/</link>
-      <pubDate>Fri, 25 Nov 2022 14:30:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/publication/msc/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    MSc thesis advised by &lt;a href=&#34;https://joaoff.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;João Ferreira&lt;/a&gt;.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Publications | Pedro Carrott</title><link>https://pcarrott.github.io/publication/</link><atom:link href="https://pcarrott.github.io/publication/index.xml" rel="self" type="application/rss+xml"/><description>Publications</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 25 Nov 2022 14:30:00 +0000</lastBuildDate><image><url>https://pcarrott.github.io/media/icon_hu2f40df1e36ee708a3b980cca86548b45_2432_512x512_fill_lanczos_center_3.png</url><title>Publications</title><link>https://pcarrott.github.io/publication/</link></image><item><title>Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/publication/msc/</link><pubDate>Fri, 25 Nov 2022 14:30:00 +0000</pubDate><guid>https://pcarrott.github.io/publication/msc/</guid><description>&lt;div class="alert alert-note">
+&lt;div>
+MSc thesis advised by &lt;a href="https://joaoff.com" target="_blank" rel="noopener">João Ferreira&lt;/a>.
+&lt;/div>
+&lt;/div></description></item></channel></rss>

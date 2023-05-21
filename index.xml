@@ -1,1764 +1,1570 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Pedro Carrott</title>
-    <link>https://pcarrott.github.io/</link>
-      <atom:link href="https://pcarrott.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <description>Pedro Carrott</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 25 Nov 2022 14:30:00 +0000</lastBuildDate>
-    <image>
-      <url>https://pcarrott.github.io/media/icon_hu2f40df1e36ee708a3b980cca86548b45_2432_512x512_fill_lanczos_center_3.png</url>
-      <title>Pedro Carrott</title>
-      <link>https://pcarrott.github.io/</link>
-    </image>
-    
-    <item>
-      <title>Formal Specification and Verification of the Lazy JellyFish Skip List</title>
-      <link>https://pcarrott.github.io/publication/msc/</link>
-      <pubDate>Fri, 25 Nov 2022 14:30:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/publication/msc/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    MSc thesis advised by &lt;a href=&#34;https://joaoff.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;João Ferreira&lt;/a&gt;.
-  &lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Slides: Formal Specification and Verification of the Lazy JellyFish Skip List</title>
-      <link>https://pcarrott.github.io/slides/msc/</link>
-      <pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/slides/msc/</guid>
-      <description>&lt;h3 id=&#34;formal-specification-and-verification-of-the-lazy-jellyfish-skip-list&#34;&gt;&lt;strong&gt;Formal Specification and Verification of the Lazy JellyFish Skip List&lt;/strong&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;msc-thesis-defense&#34;&gt;MSc Thesis Defense&lt;/h4&gt;
-&lt;br&gt;
-&lt;p&gt;Pedro Carrott &amp;mdash; &lt;em&gt;IST, University of Lisbon&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Advisor:&lt;/strong&gt; João Ferreira &amp;mdash; &lt;em&gt;IST, University of Lisbon&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;footer&#34;&gt; Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes &lt;/span&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Hello. Today I&amp;rsquo;m presenting my Master&amp;rsquo;s thesis, advised by Professor João Ferreira, on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;concurrent-maps&#34;&gt;Concurrent Maps&lt;/h3&gt;
-&lt;p&gt;Concurrent maps are used by data store applications to index data efficiently&lt;/p&gt;
-&lt;p&gt;Most data stores record the value history of each key, rather than delete old values&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Maps provide an abstraction for a collection of key-value pairs. This is a useful abstraction for applications such as data stores, which require efficient structures to index data.&lt;/p&gt;
-&lt;p&gt;In fact, most of these applications maintain a history of values for each key in the map, so as to record different versions of the same data, instead of deleting outdated information.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;the-jellyfish-skip-list&#34;&gt;The JellyFish Skip List&lt;/h3&gt;
-&lt;p&gt;The skip list is the most widely used map implementation by these applications&lt;/p&gt;
-&lt;p&gt;JellyFish extends traditional skip lists by associating a list of timestamped values to each key&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The most widely used implementation for such concurrent append-only maps is the skip list data structure.&lt;/p&gt;
-&lt;p&gt;A state-of-the-art implementation for concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;iris&#34;&gt;Iris&lt;/h3&gt;
-&lt;p&gt;We verify a variant of JellyFish using the concurrent separation logic of &lt;a href=&#34;https://iris-project.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Iris&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The Coq formalization is &lt;a href=&#34;https://github.com/sr-lab/iris-jellyfish&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;publicly available&lt;/a&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;In this work, we verify the functional correctness of a lock-based variant of JellyFish using Iris, a state-of-the-art concurrent separation logic.&lt;/p&gt;
-&lt;p&gt;All results are mechanized in Coq and available in GitHub.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;map-specification&#34;&gt;Map Specification&lt;/h3&gt;
-&lt;p&gt;We provide a new specification for concurrent maps with version control&lt;/p&gt;
-&lt;p&gt;Conflicting writes are handled by a novel resource algebra for the $\textsf{argmax}$ operation&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Our verification efforts provide a new concurrent map specification, which supports version control through the use of timestamps.&lt;/p&gt;
-&lt;p&gt;To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;skip-lists&#34;&gt;Skip Lists&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;We begin by looking at the implementation of the lazy JellyFish skip list.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;overview&#34;&gt;Overview&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Each list is a sublist of its lower level and all lists are sorted by key
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  Elements can be skipped by searching the lists in the higher levels
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;img src=&#34;images/empty.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;img src=&#34;images/skip.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;img src=&#34;images/skip1.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; &gt;
-  &lt;img src=&#34;images/skip2.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; &gt;
-  &lt;img src=&#34;images/skip3.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;img src=&#34;images/skip4.svg&#34;&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure. The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.&lt;/p&gt;
-&lt;p&gt;As new keys are inserted to the skip list, each list must always remain a sublist of the list directly below it, while the bottom list should contain all keys which have been inserted.&lt;/p&gt;
-&lt;p&gt;Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search. We search in the top level &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; stop searching when we reach a value equal to or greater than the key &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; descend to the next level starting from the same element and repeat until we reach the bottom level.&lt;/p&gt;
-&lt;p&gt;If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;jellyfish&#34;&gt;JellyFish&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  The JellyFish skip list implements a map, storing key-value pairs
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Each node contains a &lt;i&gt;vertical list&lt;/i&gt;, a timeline with timestamped values
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  To append a new value, the timestamp must be &lt;i&gt;at least as recent&lt;/i&gt; as the head&amp;rsquo;s
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;img src=&#34;images/jelly5.svg&#34;&gt;
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Skip lists can also be used to implement key-value stores.&lt;/p&gt;
-&lt;p&gt;The JellyFish design keeps in each node a list of timestamped values, referred to as a vertical list, representing the timeline of values associated to the key.&lt;/p&gt;
-&lt;p&gt;The timeline retains its consistency by never appending new values to a vertical list if the new timestamp is less recent than the timestamp found at the head.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;concurrent-updates&#34;&gt;Concurrent Updates&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Updating threads employ lazy synchronization through locks
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Traversal is done until the bottom, locking the key&amp;rsquo;s predecessor
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  If the key does not exist, then a new node is linked to a random number of levels
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  The lock is released after insertion, locking the predecessor in the next level
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-  Insertions are done bottom-up to maintain the sublist relation
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;6&#34;&gt;
-  Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor in the bottom level
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;7&#34;&gt;
-  If a node already exists for the key, then the new value will be appended to the vertical list
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;img src=&#34;images/jelly1.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;img src=&#34;images/jelly2.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;img src=&#34;images/jelly3.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;img src=&#34;images/jelly4.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-  &lt;img src=&#34;images/jelly5.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;6&#34;&gt;
-  &lt;img src=&#34;images/jelly6.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;7&#34;&gt;
-  &lt;img src=&#34;images/jelly7.svg&#34;&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks. A thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and then &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; acquires the node&amp;rsquo;s lock in the bottom level. Since the key has not been found, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; a new node is created with some random height. As the predecessor&amp;rsquo;s lock has been acquired, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; we can replace its successor by linking the new node to the bottom level. The lock can then be released and the node can be inserted in the upper level.&lt;/p&gt;
-&lt;p&gt;Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.&lt;/p&gt;
-&lt;p&gt;A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical list, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; as long as the timestamp is as recent as 3. In short, claiming a node&amp;rsquo;s lock grants exclusive access to update the node&amp;rsquo;s successor at the lock&amp;rsquo;s level, while the bottom level locks also control updates to the value of the node&amp;rsquo;s successor.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;reasoning-about-timestamped-domains&#34;&gt;Reasoning about Timestamped Domains&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can reason about concurrent maps in Iris through ghost state.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;ghost-state-in-iris&#34;&gt;Ghost state in Iris&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Ghost state matches the physical state of shared data with an abstract state
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  For concurrent updates to be proven consistent, ghost state is defined as a resource algebra
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  Two elements define a resource algebra (RA):
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  The operator is commutative and associative, making the order of operations irrelevant
-&lt;/span&gt;
-&lt;span class=&#34;fragment fade-out&#34; data-fragment-index=&#34;7&#34;&gt;
-    &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  Consider the following ghost variable $a$, which is composed by $f$ and $a^\prime$
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;7&#34;&gt;
-  We can split the ghost variable into two separate ghost resources &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;8&#34;&gt;
-  &amp;hellip; and perform an update on one of them using the RA operator
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;9&#34;&gt;
-  The resources can be joined to obtain the composition of all elements
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;10&#34;&gt;
-  The elements can be composed in any order, due to commutativity and associativity
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;11&#34;&gt;
-  The local update is equivalent to updating the original decomposed variable
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment fade-out&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $a$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Domain&lt;/strong&gt;: type of the ghost variable&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Operator&lt;/strong&gt;: splits, joins and updates variables&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt; 
-  $ a \cdot b = b \cdot a \qquad \qquad (a \cdot b) \cdot c = a \cdot (b \cdot c)$
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $a$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;6&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $f \cdot a^\prime$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;7&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $f$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
-  $a^\prime$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;8&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $f$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
-  $a^\prime \cdot x$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;9&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $f \cdot a^\prime \cdot x$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;10&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $a \cdot x$
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.&lt;/p&gt;
-&lt;p&gt;These properties are upheld by modelling ghost state as a resource algebra.&lt;/p&gt;
-&lt;p&gt;A resource algebra can be defined by indicating a domain and a binary operator for that domain.&lt;/p&gt;
-&lt;p&gt;We enforce the operator to be both commutative and associative, which allows us to avoid considering all possible orders of execution for multiple concurrent operations.&lt;/p&gt;
-&lt;p&gt;If we manage to decompose a ghost variable &amp;ldquo;a&amp;rdquo; using the resource algebra operator &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; then we can split it into two separate variables.&lt;/p&gt;
-&lt;p&gt;A thread can then &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; perform an update &amp;ldquo;x&amp;rdquo; on one of them without altering the other one &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and rejoin both resources to obtain the full view of the updated variable. Since the operator is commutative and associative, we can compose the operands by whichever order we choose.&lt;/p&gt;
-&lt;p&gt;As such, we can assert that the resulting state of the variable is equivalent to the initial state updated by &amp;ldquo;x&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;In other words, the update performed by a thread on a partial view is equivalent to an update to the full view.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;map-composition&#34;&gt;Map Composition&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  We need to consider map composition to abstract the physical state of JellyFish
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  For different keys, the combined map will contain both key-value pairs
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  But what happens when both threads associate different values to the same key?
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  The key will be associated to the composition of both values using another RA
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ M_1 \cdot M_2 = M_1 \cup M_2 $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \{ \ k : x \cdot y \ \} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;To verify JellyFish, we need to consider a suitable resource algebra to abstract concurrent maps.&lt;/p&gt;
-&lt;p&gt;If the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.&lt;/p&gt;
-&lt;p&gt;However, when there exists some key in common, the associated value may differ in both views.&lt;/p&gt;
-&lt;p&gt;This issue can be resolved by returning a new map entry where the associated value is the composition of both values. Therefore, we need to define a resource algebra for values of the map.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;value-composition&#34;&gt;Value Composition&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Keys are associated to their most recent value, which will have the greatest timestamp
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  If $i &amp;lt; j$, then the pair with value $a$ is discarded, returning the pair with value $b$
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  For equal timestamps, both values are possible, depending on the scheduler
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  As a result, the abstract map associates each key to a &lt;em&gt;set&lt;/em&gt; of possible values
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  A unit element is also necessary to apply the update rules on maps
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  The $\textsf{argmax}$ operator returns that value
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ (a, i) \cdot (b, j) = (b, j) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment fade-out&#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ (a, i) \cdot (b, i) = (a \cup b, i) $
-  &lt;/span&gt;
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ (a, i) \cdot \textsf{botZ} = (a, i) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;As we&amp;rsquo;ve seen previously, JellyFish always maintains its most recent value at the head of its vertical list. The abstract map should thus associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.&lt;/p&gt;
-&lt;p&gt;Values should be represented as pairs, where timestamp &amp;ldquo;j&amp;rdquo; being greater than timestamp &amp;ldquo;i&amp;rdquo; returns the pair with value &amp;ldquo;b&amp;rdquo;, discarding the value &amp;ldquo;a&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler. As such, both &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; may be the value associated to the key, so &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; we require &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; to be sets rather than the actual values. In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp &amp;ldquo;i&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;Finally, we define a unit element, as it is necessary to complete the proofs, due to the update rules on maps. To the best of our knowledge, this is the first effort to formalize the argmax resource algebra.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;map-specification-1&#34;&gt;Map Specification&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Based on these resource algebras, we now define a specification for JellyFish.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;map-resources&#34;&gt;Map Resources&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  We define the following representation predicate:
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  $p$ is the left sentinel pointer
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  $M$ reflects partial knowledge of the map
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  $q$ is a fraction between $0$ and $1$
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-  $\gamma$ refers to the required ghost state
-&lt;/span&gt;
-&lt;span class=&#34;fragment fade-out&#34; data-fragment-index=&#34;8&#34;&gt;
-    &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;6&#34;&gt;
-  These resources can be split into smaller fractions &amp;hellip;
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;8&#34;&gt;
-  &amp;hellip; and combined to obtain the larger fractions
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(p, M, q, \gamma) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(\textcolor{red}{p}, M, q, \gamma) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(p, \textcolor{red}{M}, q, \gamma) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(p, M, \textcolor{red}{q}, \gamma) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(p, M, q, \textcolor{red}{\gamma}) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;6&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{IsSkipList}(p, M_1 \cup M_2, q_1 + q_2, \gamma) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;7&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \downarrow $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;8&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \uparrow $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;7&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pedro Carrott</title><link>https://pcarrott.github.io/</link><atom:link href="https://pcarrott.github.io/index.xml" rel="self" type="application/rss+xml"/><description>Pedro Carrott</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 25 Nov 2022 14:30:00 +0000</lastBuildDate><image><url>https://pcarrott.github.io/media/icon_hu2f40df1e36ee708a3b980cca86548b45_2432_512x512_fill_lanczos_center_3.png</url><title>Pedro Carrott</title><link>https://pcarrott.github.io/</link></image><item><title>Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/publication/msc/</link><pubDate>Fri, 25 Nov 2022 14:30:00 +0000</pubDate><guid>https://pcarrott.github.io/publication/msc/</guid><description>&lt;div class="alert alert-note">
+&lt;div>
+MSc thesis advised by &lt;a href="https://joaoff.com" target="_blank" rel="noopener">João Ferreira&lt;/a>.
+&lt;/div>
+&lt;/div></description></item><item><title>Slides: Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/slides/msc/</link><pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/slides/msc/</guid><description>&lt;h3 id="formal-specification-and-verification-of-the-lazy-jellyfish-skip-list">&lt;strong>Formal Specification and Verification of the Lazy JellyFish Skip List&lt;/strong>&lt;/h3>
+&lt;h4 id="msc-thesis-defense">MSc Thesis Defense&lt;/h4>
+&lt;br>
+&lt;p>Pedro Carrott &amp;mdash; &lt;em>IST, University of Lisbon&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Advisor:&lt;/strong> João Ferreira &amp;mdash; &lt;em>IST, University of Lisbon&lt;/em>&lt;/p>
+&lt;p>&lt;span class="footer"> Press the &lt;code>S&lt;/code> key to view the speaker notes &lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Hello. Today I&amp;rsquo;m presenting my Master&amp;rsquo;s thesis, advised by Professor João Ferreira, on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;section>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;hr>
+&lt;h3 id="concurrent-maps">Concurrent Maps&lt;/h3>
+&lt;p>Concurrent maps are used by data store applications to index data efficiently&lt;/p>
+&lt;p>Most data stores record the value history of each key, rather than delete old values&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Maps provide an abstraction for a collection of key-value pairs. This is a useful abstraction for applications such as data stores, which require efficient structures to index data.&lt;/p>
+&lt;p>In fact, most of these applications maintain a history of values for each key in the map, so as to record different versions of the same data, instead of deleting outdated information.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="the-jellyfish-skip-list">The JellyFish Skip List&lt;/h3>
+&lt;p>The skip list is the most widely used map implementation by these applications&lt;/p>
+&lt;p>JellyFish extends traditional skip lists by associating a list of timestamped values to each key&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The most widely used implementation for such concurrent append-only maps is the skip list data structure.&lt;/p>
+&lt;p>A state-of-the-art implementation for concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated to its key.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="iris">Iris&lt;/h3>
+&lt;p>We verify a variant of JellyFish using the concurrent separation logic of &lt;a href="https://iris-project.org/" target="_blank" rel="noopener">Iris&lt;/a>.&lt;/p>
+&lt;p>The Coq formalization is &lt;a href="https://github.com/sr-lab/iris-jellyfish" target="_blank" rel="noopener">publicly available&lt;/a>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>In this work, we verify the functional correctness of a lock-based variant of JellyFish using Iris, a state-of-the-art concurrent separation logic.&lt;/p>
+&lt;p>All results are mechanized in Coq and available in GitHub.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-specification">Map Specification&lt;/h3>
+&lt;p>We provide a new specification for concurrent maps with version control&lt;/p>
+&lt;p>Conflicting writes are handled by a novel resource algebra for the $\textsf{argmax}$ operation&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Our verification efforts provide a new concurrent map specification, which supports version control through the use of timestamps.&lt;/p>
+&lt;p>To reason about conflicting writes, we have formalized in Iris a novel resource algebra for the argmax operation.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="skip-lists">Skip Lists&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>We begin by looking at the implementation of the lazy JellyFish skip list.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+A skip list contains two sentinel nodes with keys MIN and MAX, linked in HMAX lists
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Each list is a sublist of its lower level and all lists are sorted by key
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+Elements can be skipped by searching the lists in the higher levels
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/empty.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/skip.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;img src="images/skip1.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;img src="images/skip2.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;img src="images/skip3.svg">
+&lt;/span>
+&lt;span class="fragment " >
+&lt;img src="images/skip4.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure. The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.&lt;/p>
+&lt;p>As new keys are inserted to the skip list, each list must always remain a sublist of the list directly below it, while the bottom list should contain all keys which have been inserted.&lt;/p>
+&lt;p>Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search. We search in the top level &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; stop searching when we reach a value equal to or greater than the key &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; descend to the next level starting from the same element and repeat until we reach the bottom level.&lt;/p>
+&lt;p>If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="jellyfish">JellyFish&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+The JellyFish skip list implements a map, storing key-value pairs
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Each node contains a &lt;i>vertical list&lt;/i>, a timeline with timestamped values
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head&amp;rsquo;s
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;img src="images/jelly5.svg">
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Skip lists can also be used to implement key-value stores.&lt;/p>
+&lt;p>The JellyFish design keeps in each node a list of timestamped values, referred to as a vertical list, representing the timeline of values associated to the key.&lt;/p>
+&lt;p>The timeline retains its consistency by never appending new values to a vertical list if the new timestamp is less recent than the timestamp found at the head.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="concurrent-updates">Concurrent Updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Updating threads employ lazy synchronization through locks
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Traversal is done until the bottom, locking the key&amp;rsquo;s predecessor
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+If the key does not exist, then a new node is linked to a random number of levels
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The lock is released after insertion, locking the predecessor in the next level
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+Insertions are done bottom-up to maintain the sublist relation
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor in the bottom level
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+If a node already exists for the key, then the new value will be appended to the vertical list
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/jelly1.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/jelly2.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;img src="images/jelly3.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;img src="images/jelly4.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;img src="images/jelly5.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;img src="images/jelly6.svg">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;img src="images/jelly7.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks. A thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and then &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; acquires the node&amp;rsquo;s lock in the bottom level. Since the key has not been found, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; a new node is created with some random height. As the predecessor&amp;rsquo;s lock has been acquired, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; we can replace its successor by linking the new node to the bottom level. The lock can then be released and the node can be inserted in the upper level.&lt;/p>
+&lt;p>Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.&lt;/p>
+&lt;p>A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor. As the node already exists it will append a new value to its vertical list, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; as long as the timestamp is as recent as 3. In short, claiming a node&amp;rsquo;s lock grants exclusive access to update the node&amp;rsquo;s successor at the lock&amp;rsquo;s level, while the bottom level locks also control updates to the value of the node&amp;rsquo;s successor.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="reasoning-about-timestamped-domains">Reasoning about Timestamped Domains&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Having seen how the data is organized in memory, we now abstract from the concrete implementation and discuss how we can reason about concurrent maps in Iris through ghost state.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="ghost-state-in-iris">Ghost state in Iris&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Ghost state matches the physical state of shared data with an abstract state
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+For concurrent updates to be proven consistent, ghost state is defined as a resource algebra
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+Two elements define a resource algebra (RA):
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The operator is commutative and associative, making the order of operations irrelevant
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="7">
+&lt;span class="fragment " data-fragment-index="5">
+Consider the following ghost variable $a$, which is composed by $f$ and $a^\prime$
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+We can split the ghost variable into two separate ghost resources &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="8">
+&amp;hellip; and perform an update on one of them using the RA operator
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="9">
+The resources can be joined to obtain the composition of all elements
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="10">
+The elements can be composed in any order, due to commutativity and associativity
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="11">
+The local update is equivalent to updating the original decomposed variable
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment fade-out" data-fragment-index="3">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="ghost">
+$a$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;ul>
+&lt;li>&lt;strong>Domain&lt;/strong>: type of the ghost variable&lt;/li>
+&lt;li>&lt;strong>Operator&lt;/strong>: splits, joins and updates variables&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;span class="smath">
+$ a \cdot b = b \cdot a \qquad \qquad (a \cdot b) \cdot c = a \cdot (b \cdot c)$
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;span class="ghost">
+$a$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;span class="ghost">
+$f \cdot a^\prime$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;span class="ghost">
+$f$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
+$a^\prime$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="8">
+&lt;span class="ghost">
+$f$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
+$a^\prime \cdot x$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="9">
+&lt;span class="ghost">
+$f \cdot a^\prime \cdot x$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="10">
+&lt;span class="ghost">
+$a \cdot x$
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>In Iris, ghost state provides a way of matching the physical state of shared data with an abstract state where certain properties must hold.&lt;/p>
+&lt;p>These properties are upheld by modelling ghost state as a resource algebra.&lt;/p>
+&lt;p>A resource algebra can be defined by indicating a domain and a binary operator for that domain.&lt;/p>
+&lt;p>We enforce the operator to be both commutative and associative, which allows us to avoid considering all possible orders of execution for multiple concurrent operations.&lt;/p>
+&lt;p>If we manage to decompose a ghost variable &amp;ldquo;a&amp;rdquo; using the resource algebra operator &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; then we can split it into two separate variables.&lt;/p>
+&lt;p>A thread can then &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; perform an update &amp;ldquo;x&amp;rdquo; on one of them without altering the other one &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and rejoin both resources to obtain the full view of the updated variable. Since the operator is commutative and associative, we can compose the operands by whichever order we choose.&lt;/p>
+&lt;p>As such, we can assert that the resulting state of the variable is equivalent to the initial state updated by &amp;ldquo;x&amp;rdquo;.&lt;/p>
+&lt;p>In other words, the update performed by a thread on a partial view is equivalent to an update to the full view.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-composition">Map Composition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+We need to consider map composition to abstract the physical state of JellyFish
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+For different keys, the combined map will contain both key-value pairs
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+But what happens when both threads associate different values to the same key?
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The key will be associated to the composition of both values using another RA
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ M_1 \cdot M_2 = M_1 \cup M_2 $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
+$ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="smath">
+$ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
+$ \{ \ k : x \cdot y \ \} $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>To verify JellyFish, we need to consider a suitable resource algebra to abstract concurrent maps.&lt;/p>
+&lt;p>If the threads hold no key in common, then the combined map is simply a map containing all key-value pairs of both threads.&lt;/p>
+&lt;p>However, when there exists some key in common, the associated value may differ in both views.&lt;/p>
+&lt;p>This issue can be resolved by returning a new map entry where the associated value is the composition of both values. Therefore, we need to define a resource algebra for values of the map.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="value-composition">Value Composition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Keys are associated to their most recent value, which will have the greatest timestamp
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+If $i &amp;lt; j$, then the pair with value $a$ is discarded, returning the pair with value $b$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+For equal timestamps, both values are possible, depending on the scheduler
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+As a result, the abstract map associates each key to a &lt;em>set&lt;/em> of possible values
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+A unit element is also necessary to apply the update rules on maps
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+The $\textsf{argmax}$ operator returns that value
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
+$ (a, i) \cdot (b, j) = (b, j) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="5">
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
+$ (a, i) \cdot (b, i) = (a \cup b, i) $
+&lt;/span>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="smath">
+$ (a, i) \cdot \textsf{botZ} = (a, i) $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>As we&amp;rsquo;ve seen previously, JellyFish always maintains its most recent value at the head of its vertical list. The abstract map should thus associate each key to the value with the greatest timestamp, meaning that the resource algebra operator for value composition should be the argmax operator.&lt;/p>
+&lt;p>Values should be represented as pairs, where timestamp &amp;ldquo;j&amp;rdquo; being greater than timestamp &amp;ldquo;i&amp;rdquo; returns the pair with value &amp;ldquo;b&amp;rdquo;, discarding the value &amp;ldquo;a&amp;rdquo;.&lt;/p>
+&lt;p>However, when both timestamps are equal, the value left at the head of the vertical list will depend on the scheduler. As such, both &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; may be the value associated to the key, so &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; we require &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; to be sets rather than the actual values. In that way, we can maintain each key associated to all possible values, along with the corresponding timestamp &amp;ldquo;i&amp;rdquo;.&lt;/p>
+&lt;p>Finally, we define a unit element, as it is necessary to complete the proofs, due to the update rules on maps. To the best of our knowledge, this is the first effort to formalize the argmax resource algebra.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="map-specification-1">Map Specification&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Based on these resource algebras, we now define a specification for JellyFish.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-resources">Map Resources&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+We define the following representation predicate:
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$p$ is the left sentinel pointer
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$M$ reflects partial knowledge of the map
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$q$ is a fraction between $0$ and $1$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$\gamma$ refers to the required ghost state
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="8">
+&lt;span class="fragment " data-fragment-index="6">
+These resources can be split into smaller fractions &amp;hellip;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&amp;hellip; and combined to obtain the larger fractions
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(p, M, q, \gamma) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(\textcolor{red}{p}, M, q, \gamma) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(p, \textcolor{red}{M}, q, \gamma) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(p, M, \textcolor{red}{q}, \gamma) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(p, M, q, \textcolor{red}{\gamma}) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+&lt;span class="smath">
+$ \textsf{IsSkipList}(p, M_1 \cup M_2, q_1 + q_2, \gamma) $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;span class="smath">
+$ \downarrow $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&lt;span class="smath">
+$ \uparrow $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;span class="smath">
 $ \textsf{IsSkipList}(p, M_1, q_1, \gamma) * \textsf{IsSkipList}(p, M_2, q_2, \gamma) $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;First, we require a representation predicate to describe the known state of the map, called IsSkipList.&lt;/p&gt;
-&lt;p&gt;IsSkipList is parameterized by the pointer to the left sentinel, which tracks the physical state, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; an abstract map, which corresponds to partial knowledge of the full map, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; a fraction, which indicates that we hold exclusive ownership of the full map if equal to 1, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and a list of ghost names to keep track of the required ghost state.&lt;/p&gt;
-&lt;p&gt;This resource can be shared by decomposing the map and splitting the fraction &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; yielding two new resources.&lt;/p&gt;
-&lt;p&gt;Separate resources can also be joined to obtain a larger fraction of the skip list.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;triple-for-constructor&#34;&gt;Triple for constructor&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  The Hoare triple for $\textsf{new}$ is straightforward
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  No resources are needed as a precondition &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; and we obtain the full fraction of an empty map
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  $ \left\{ \ \textsf{True} \ \right\} \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  $ \textsf{new} \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  $ \left\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \right\} $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;To define the JellyFish specification, we first consider the Hoare triple for the skip list constructor.&lt;/p&gt;
-&lt;p&gt;This method does not need any initial resources as a precondition &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and the postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;triple-for-updates&#34;&gt;Triple for updates&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{put}$ receives a key, value and timestamp
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Holding partial knowledge of the map, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; $\textsf{put}$ updates the map with the new value
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  Concurrent updates are handled by the RAs
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  $ \left\{ \ \textsf{IsSkipList}(p, M, q, \gamma) \ \right\} \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  $ \textsf{put} \ p \ k \ v \ t \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  $ \left\{ \ \textsf{IsSkipList}(p, M \cup \{ \ k : (\{ v \}, t) \ \}, q, \gamma) \ \right\} $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The put method is parameterized by the updated key, as well as its new value and timestamp.&lt;/p&gt;
-&lt;p&gt;Its Hoare triple requires an IsSkipList resource to reflect the current knowledge that the thread has of the map.&lt;/p&gt;
-&lt;p&gt;In the postcondition, this knowledge is updated with a new map entry for the key, associated to a pair containing the new value and timestamp.&lt;/p&gt;
-&lt;p&gt;As we&amp;rsquo;ve seen in the previous section, the map and argmax resource algebras will handle how the updates of each thread are composed.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;triple-for-lookups&#34;&gt;Triple for lookups&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{get}$ performs a search for a key
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  We consider exclusive ownership of the map
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  The map remains unchanged after the search
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  The result is empty if the key is not in the map
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  Otherwise, it must be one of the values in the map
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  $ \left\{ \ \textsf{IsSkipList}(p, M, 1, \gamma) \ \right\} \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;smath&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  $ \textsf{get} \ p \ k \\ $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack smath&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  $ \left\{ \ v^?. \begin{array}{c} \textcolor{red}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  $ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  $ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\} $
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Finally, the get method performs a lookup for the current value of some key.&lt;/p&gt;
-&lt;p&gt;Since an updating thread might immediately invalidate the result of a search, we only consider the case where we hold exclusive ownership of the skip list &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; which we maintain in the postcondition, as the search operation should not alter the state of the data.&lt;/p&gt;
-&lt;p&gt;If the key does not exists in the map, then the search must come up empty.&lt;/p&gt;
-&lt;p&gt;Otherwise, the return result and the entry in the abstract map should agree on the timestamp. We can only assert that the value returned by the search must be one of the possible values associated to the key, since we cannot disambiguate between updates done with the same timestamp.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;representation-predicate&#34;&gt;Representation Predicate&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;We will now see the underlying definition for the IsSkipList predicate.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;left-sentinel&#34;&gt;Left Sentinel&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  The parameter $p$ points to the left sentinel node
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  The pointer must be persistent
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  The left sentinel must have key $\textsf{MIN}$
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $  \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The left sentinel should be a node stored in the memory location aliased by the paramenter &amp;ldquo;p&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;The corresponding points-to assertion is made persistent, since &amp;ldquo;p&amp;rdquo; should always point to the same node.&lt;/p&gt;
-&lt;p&gt;We guarantee that the node is, in fact, the left sentinel by asserting that its key is equal to the minimum value.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;iris-invariants&#34;&gt;Iris Invariants&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Shared resources are expressed in Iris through invariants
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Invariant assertions are kept within a solid border &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; and associated to a given namespace
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $ I $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \mathcal{N} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;inv&#34; style=&#34;border-color: red&#34;&gt;
-  $ I $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \mathcal{N} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $ I $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textcolor{red}{\mathcal{N}} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The remaining nodes of the skip list, however, may change depending on the operations performed by different threads. To reason about shared mutable resources &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; Iris allows the definition of invariants &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; which are associated to namespaces.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;bottom-list&#34;&gt;Bottom List&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Each level will contain its own invariant describing the level&amp;rsquo;s linked list
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Each invariant will have a unique namespace provided by $\textsf{levelN}$
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  A unique invariant is defined for the bottom list, describing the full map
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  The invariant requires the left sentinel node &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &amp;hellip; and the ghost names for the bottom level
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $\textsf{BotListInv}(head, \gamma^0) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(0) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $\textsf{BotListInv}(head, \gamma^0) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textcolor{red}{\textsf{levelN}(0)} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $\textcolor{red}{\textsf{BotListInv}}(head, \gamma^0) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(0) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $\textsf{BotListInv}(\textcolor{red}{head}, \gamma^0) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(0) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $\textsf{BotListInv}(head, \textcolor{red}{\gamma^0}) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(0) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Since each level can be seen as its own linked list, we define a unique invariant per level &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; which will be associated to its own invariant namespace.&lt;/p&gt;
-&lt;p&gt;Unlike the sublists, the bottom level represents the full map, so it will have its own invariant definition &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; parameterized by the left sentinel node &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and the ghost names for the bottom level.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;sublists&#34;&gt;Sublists&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Each sublist invariant will be defined with the same predicate
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  The sublist invariant and namespace are parameterized by the current level
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  The ghost names from the current level and its lower level are both required
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(lvl) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $ \textsf{SublistInv}(\textcolor{red}{lvl}, head, \gamma^{lvl}, \gamma^{lvl-1}) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textcolor{red}{\textsf{levelN}(lvl)} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;inv&#34;&gt;
-  $ \textsf{SublistInv}(lvl, head, \textcolor{red}{\gamma^{lvl}}, \textcolor{red}{\gamma^{lvl-1}}) $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(lvl) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;For the remaining levels, we use a different invariant definition &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; which is parameterized by the considered level.&lt;/p&gt;
-&lt;p&gt;Besides the level&amp;rsquo;s ghost names, the invariant also requires the ghost names for the lower level to reason about the sublist relation.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;definition&#34;&gt;Definition&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{IsSkipList}$ is thus defined with &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &amp;hellip; the left sentinel assertions, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; the bottom list invariant, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  &amp;hellip; the invariants for all sublists and &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &amp;hellip; a ghost variable for a partial view of the map
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$ \textsf{IsSkipList}(p, M, q, \gamma) \triangleq $&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
-$ \circ_q \ M $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma^0_F $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;inv&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>First, we require a representation predicate to describe the known state of the map, called IsSkipList.&lt;/p>
+&lt;p>IsSkipList is parameterized by the pointer to the left sentinel, which tracks the physical state, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; an abstract map, which corresponds to partial knowledge of the full map, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; a fraction, which indicates that we hold exclusive ownership of the full map if equal to 1, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and a list of ghost names to keep track of the required ghost state.&lt;/p>
+&lt;p>This resource can be shared by decomposing the map and splitting the fraction &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; yielding two new resources.&lt;/p>
+&lt;p>Separate resources can also be joined to obtain a larger fraction of the skip list.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-constructor">Triple for constructor&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+The Hoare triple for $\textsf{new}$ is straightforward
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+No resources are needed as a precondition &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&amp;hellip; and we obtain the full fraction of an empty map
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\{ \ \textsf{True} \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{new} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="3">
+$ \left\{ \ p. \ \exists \ \gamma. \ \textsf{IsSkipList}(p, \varnothing, 1, \gamma) \ \right\} $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>To define the JellyFish specification, we first consider the Hoare triple for the skip list constructor.&lt;/p>
+&lt;p>This method does not need any initial resources as a precondition &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and the postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-updates">Triple for updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{put}$ receives a key, value and timestamp
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Holding partial knowledge of the map, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&amp;hellip; $\textsf{put}$ updates the map with the new value
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+Concurrent updates are handled by the RAs
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\{ \ \textsf{IsSkipList}(p, M, q, \gamma) \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{put} \ p \ k \ v \ t \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="3">
+$ \left\{ \ \textsf{IsSkipList}(p, M \cup \{ \ k : (\{ v \}, t) \ \}, q, \gamma) \ \right\} $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The put method is parameterized by the updated key, as well as its new value and timestamp.&lt;/p>
+&lt;p>Its Hoare triple requires an IsSkipList resource to reflect the current knowledge that the thread has of the map.&lt;/p>
+&lt;p>In the postcondition, this knowledge is updated with a new map entry for the key, associated to a pair containing the new value and timestamp.&lt;/p>
+&lt;p>As we&amp;rsquo;ve seen in the previous section, the map and argmax resource algebras will handle how the updates of each thread are composed.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-lookups">Triple for lookups&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{get}$ performs a search for a key
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+We consider exclusive ownership of the map
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+The map remains unchanged after the search
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The result is empty if the key is not in the map
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+Otherwise, it must be one of the values in the map
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\{ \ \textsf{IsSkipList}(p, M, 1, \gamma) \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{get} \ p \ k \\ $
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \left\{ \ v^?. \begin{array}{c} \textcolor{red}{\textsf{IsSkipList}(p, M, 1, \gamma)} * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * (\textcolor{red}{(v^? = \textsf{None} * M[k] = \textsf{None})} \ \lor \\ (\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)) \end{array} \right\} $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+$ \left\{ \ v^?. \begin{array}{c} \textsf{IsSkipList}(p, M, 1, \gamma) * ((v^? = \textsf{None} * M[k] = \textsf{None}) \ \lor \\ \textcolor{red}{(\exists \ v, S, t. \ v^? = \textsf{Some}(v, t) * M[k] = \textsf{Some}(S, t) * v \in S)}) \end{array} \right\} $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Finally, the get method performs a lookup for the current value of some key.&lt;/p>
+&lt;p>Since an updating thread might immediately invalidate the result of a search, we only consider the case where we hold exclusive ownership of the skip list &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which we maintain in the postcondition, as the search operation should not alter the state of the data.&lt;/p>
+&lt;p>If the key does not exists in the map, then the search must come up empty.&lt;/p>
+&lt;p>Otherwise, the return result and the entry in the abstract map should agree on the timestamp. We can only assert that the value returned by the search must be one of the possible values associated to the key, since we cannot disambiguate between updates done with the same timestamp.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="representation-predicate">Representation Predicate&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>We will now see the underlying definition for the IsSkipList predicate.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="left-sentinel">Left Sentinel&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+The parameter $p$ points to the left sentinel node
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The pointer must be persistent
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+The left sentinel must have key $\textsf{MIN}$
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
+$ \exists \ head. \ \textcolor{red}{p \hookrightarrow_\square head} * head\textsf{.key} = \textsf{MIN} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
+$ \exists \ head. \ p \hookrightarrow_\square head * \textcolor{red}{head\textsf{.key} = \textsf{MIN}} $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The left sentinel should be a node stored in the memory location aliased by the paramenter &amp;ldquo;p&amp;rdquo;.&lt;/p>
+&lt;p>The corresponding points-to assertion is made persistent, since &amp;ldquo;p&amp;rdquo; should always point to the same node.&lt;/p>
+&lt;p>We guarantee that the node is, in fact, the left sentinel by asserting that its key is equal to the minimum value.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="iris-invariants">Iris Invariants&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Shared resources are expressed in Iris through invariants
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Invariant assertions are kept within a solid border &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&amp;hellip; and associated to a given namespace
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="inv">
+$ I $
+&lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="inv" style="border-color: red">
+$ I $
+&lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="inv">
+$ I $
+&lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\mathcal{N}} $&lt;/sup>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The remaining nodes of the skip list, however, may change depending on the operations performed by different threads. To reason about shared mutable resources &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; Iris allows the definition of invariants &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which are associated to namespaces.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="bottom-list">Bottom List&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Each level will contain its own invariant describing the level&amp;rsquo;s linked list
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Each invariant will have a unique namespace provided by $\textsf{levelN}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+A unique invariant is defined for the bottom list, describing the full map
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+The invariant requires the left sentinel node &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&amp;hellip; and the ghost names for the bottom level
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="inv">
 $\textsf{BotListInv}(head, \gamma^0) $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(0) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
-$ \mathop{\Huge\ast}\limits_{lvl = 1}^{\textsf{HMAX}} $
-&lt;/span&gt;
-&lt;span class=&#34;inv&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\textsf{levelN}(0)} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="inv">
+$\textcolor{red}{\textsf{BotListInv}}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;span class="inv">
+$\textsf{BotListInv}(\textcolor{red}{head}, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \textcolor{red}{\gamma^0}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Since each level can be seen as its own linked list, we define a unique invariant per level &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which will be associated to its own invariant namespace.&lt;/p>
+&lt;p>Unlike the sublists, the bottom level represents the full map, so it will have its own invariant definition &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; parameterized by the left sentinel node &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and the ghost names for the bottom level.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sublists">Sublists&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Each sublist invariant will be defined with the same predicate
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The sublist invariant and namespace are parameterized by the current level
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+The ghost names from the current level and its lower level are both required
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="inv">
 $ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \textsf{levelN}(lvl) $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The IsSkipList predicate can thus be defined by joining all these pieces together &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the left sentinel assertions &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the bottom list invariant &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the sublist invariants for all remaining levels &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;bottom-list-invariant&#34;&gt;Bottom List Invariant&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;For the bottom list invariant, we need to match the physical state of JellyFish with the map abstraction.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;authoritative-ghost-state&#34;&gt;Authoritative Ghost State&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Partial views are obtained through an authoritative resource algebra
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Resources can be either authoritative ($\bullet$) or fragments ($\circ$)
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  Composition of all fragments yields the authoritative resource
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  Fragments will serve as partial views for the full authoritative map
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-  Fragment composition is performed by the underlying RA
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;6&#34;&gt;
-  Fractions indicate whether we have composed all existing fragments
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment fade-out&#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;ghost&#34;&gt; 
-  $ \bullet \ a $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
-  $ \circ \ f $
-  &lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$ \vdash f \preccurlyeq a $&lt;/span&gt;
-&lt;/span&gt;
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;6&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;A partial view of a shared object can be obtained through an authoritative resource algebra.&lt;/p&gt;
-&lt;p&gt;This algebra contains multiple fragments and an authoritative resource &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; composed by those fragments.&lt;/p&gt;
-&lt;p&gt;An authoritative map is thus stored inside the invariant reflecting the full map, while each thread holds its own fragment to reflect its partial view.&lt;/p&gt;
-&lt;p&gt;Fragments are composed through the underlying resource algebra &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and fractions indicate whether we have combined all existing fragments.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;set-membership&#34;&gt;Set Membership&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Set membership assertions are required to verify traversals
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  Fragments express that notion, regardless of the state of the authoritative resource
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(lvl) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="inv">
+$ \textsf{SublistInv}(\textcolor{red}{lvl}, head, \gamma^{lvl}, \gamma^{lvl-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textcolor{red}{\textsf{levelN}(lvl)} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="inv">
+$ \textsf{SublistInv}(lvl, head, \textcolor{red}{\gamma^{lvl}}, \textcolor{red}{\gamma^{lvl-1}}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(lvl) $&lt;/sup>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>For the remaining levels, we use a different invariant definition &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which is parameterized by the considered level.&lt;/p>
+&lt;p>Besides the level&amp;rsquo;s ghost names, the invariant also requires the ghost names for the lower level to reason about the sublist relation.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="definition">Definition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{IsSkipList}$ is thus defined with &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&amp;hellip; the left sentinel assertions, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&amp;hellip; the bottom list invariant, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&amp;hellip; the invariants for all sublists and &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&amp;hellip; a ghost variable for a partial view of the map
+&lt;/span>
+&lt;/div>
+&lt;p>&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">$ \textsf{IsSkipList}(p, M, q, \gamma) \triangleq $&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">$ \exists \ head. \ p \hookrightarrow_\square head * head\textsf{.key} = \textsf{MIN} $&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="ghost">
+$ \circ_q \ M $
+&lt;/span>&lt;sup class="name">$ \ \gamma^0_F $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="inv">
+$\textsf{BotListInv}(head, \gamma^0) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(0) $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>&lt;/p>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
+$ \mathop{\Huge\ast}\limits_{lvl = 1}^{\textsf{HMAX}} $
+&lt;/span>
+&lt;span class="inv">
+$ \textsf{SublistInv}(lvl, head, \gamma^{lvl}, \gamma^{lvl-1}) $
+&lt;/span>&lt;sup class="name">$ \ \textsf{levelN}(lvl) $&lt;/sup>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The IsSkipList predicate can thus be defined by joining all these pieces together &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the left sentinel assertions &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the bottom list invariant &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the sublist invariants for all remaining levels &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and also a ghost variable for the partial view of the map which we will now discuss while defining the bottom list invariant.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="bottom-list-invariant">Bottom List Invariant&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>For the bottom list invariant, we need to match the physical state of JellyFish with the map abstraction.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="authoritative-ghost-state">Authoritative Ghost State&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Partial views are obtained through an authoritative resource algebra
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Resources can be either authoritative ($\bullet$) or fragments ($\circ$)
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+Composition of all fragments yields the authoritative resource
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+Fragments will serve as partial views for the full authoritative map
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+Fragment composition is performed by the underlying RA
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+Fractions indicate whether we have composed all existing fragments
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment fade-out" data-fragment-index="5">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="ghost">
+$ \bullet \ a $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
+$ \circ \ f $
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">$ \vdash f \preccurlyeq a $&lt;/span>
+&lt;/span>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;span class="smath">
+$ \circ \ f_1 \cdot \circ \ f_2 = \circ \ (f_1 \cdot f_2) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="6">
+&lt;span class="smath">
+$ \circ_{q_1} \ f_1 \cdot \circ_{q_2} \ f_2 = \circ_{q_1 + q_2} \ (f_1 \cdot f_2) $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>A partial view of a shared object can be obtained through an authoritative resource algebra.&lt;/p>
+&lt;p>This algebra contains multiple fragments and an authoritative resource &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; composed by those fragments.&lt;/p>
+&lt;p>An authoritative map is thus stored inside the invariant reflecting the full map, while each thread holds its own fragment to reflect its partial view.&lt;/p>
+&lt;p>Fragments are composed through the underlying resource algebra &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and fractions indicate whether we have combined all existing fragments.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="set-membership">Set Membership&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Set membership assertions are required to verify traversals
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+Fragments express that notion, regardless of the state of the authoritative resource
+&lt;/span>
+&lt;/div>
+&lt;p>&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="ghost">
 $ \bullet \ S $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
 $ \circ \ \{ \ node \ \} $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \gamma $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
 $ \vdash node \in S $
-&lt;/span&gt;
-
-&lt;/span&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Traversing a list requires a set membership assertion, which we can also obtain from an authoritative resource algebra.&lt;/p&gt;
-&lt;p&gt;Owning a fragment for a singleton set with the visited node entails that the node belongs to the full set without knowing the concrete state of the set.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;key-value-pairs&#34;&gt;Key-Value Pairs&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  A node&amp;rsquo;s vertical list should store some value node at its head
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  The map should associate the node&amp;rsquo;s key to the value node&amp;rsquo;s timestamp &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; and to a set of values containing the value from the value node
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ v\textsf{.val} \in vs $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Each node of the set should have a value stored in the head of its vertical list.&lt;/p&gt;
-&lt;p&gt;The corresponding map entry should agree with the node&amp;rsquo;s timestamp, while keeping a set of possible values &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; containing the actual value stored in memory.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;sortedness&#34;&gt;Sortedness&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  The set is a sorted list, including the sentinels
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ L_\textsf{cat} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The set must also reflect a sorted list, with all keys confined within both sentinel nodes.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;successor-chain&#34;&gt;Successor Chain&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Each physical node should point to its successor in the abstract list
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  The array entry is mutable and stores a pointer for some successor node
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  The successor pointer is immutable and must point to the corresponding successor
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;smath&#34;&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  $ \textsf{IsNext}(lvl, pred, succ) \triangleq $
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  $ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  $ * \ s \hookrightarrow_\square succ $
-&lt;/span&gt;
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The chain of successors obtained by each node&amp;rsquo;s pointer should reflect the order of this list.&lt;/p&gt;
-&lt;p&gt;The corresponding array entry is mutable, storing a pointer for the successor in the list.&lt;/p&gt;
-&lt;p&gt;This successor pointer should be immutable, since multiple nodes might point to the same node at different levels.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;lock-resources&#34;&gt;Lock Resources&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Each node holds a lock for the given level, along with the corresponding lock invariant
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  The lock resources include the node&amp;rsquo;s successor and the successor&amp;rsquo;s value
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  Both pointers are fractional to allow read access to threads which have not acquired the lock
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Each node should contain a lock for the level, which maintains the lock invariant with some resources.&lt;/p&gt;
-&lt;p&gt;For bottom list nodes, the resources protected by the lock are the node&amp;rsquo;s successor and the vertical list of this successor.&lt;/p&gt;
-&lt;p&gt;The points-to assertions are fractional allowing other threads to read their contents without acquiring the lock, while a locking thread will obtain write access to those memory positions.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;invariant-definition&#34;&gt;Invariant Definition&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{BotListInv}$ is thus defined with &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &amp;hellip; the authoritative map, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; the authoritative set, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  &amp;hellip; their node-wise equivalence, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;5&#34;&gt;
-  &amp;hellip; the sorted list, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;6&#34;&gt;
-  &amp;hellip; the successor chain and the lock resources &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;7&#34;&gt;
-  &amp;hellip; and a set of tokens for the sublist relation
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Traversing a list requires a set membership assertion, which we can also obtain from an authoritative resource algebra.&lt;/p>
+&lt;p>Owning a fragment for a singleton set with the visited node entails that the node belongs to the full set without knowing the concrete state of the set.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="key-value-pairs">Key-Value Pairs&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+A node&amp;rsquo;s vertical list should store some value node at its head
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The map should associate the node&amp;rsquo;s key to the value node&amp;rsquo;s timestamp &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&amp;hellip; and to a set of values containing the value from the value node
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ \exists \ v. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} v $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;span class="smath">
+$ \exists \ vs. \ M[node\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts}) $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
+$ v\textsf{.val} \in vs $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Each node of the set should have a value stored in the head of its vertical list.&lt;/p>
+&lt;p>The corresponding map entry should agree with the node&amp;rsquo;s timestamp, while keeping a set of possible values &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; containing the actual value stored in memory.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sortedness">Sortedness&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment " data-fragment-index="1">
+The set is a sorted list, including the sentinels
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
+$ L_\textsf{cat} \triangleq [head] +\kern-1.3ex+\kern0.8ex L +\kern-1.3ex+\kern0.8ex [\textsf{tail}] $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The set must also reflect a sorted list, with all keys confined within both sentinel nodes.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="successor-chain">Successor Chain&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Each physical node should point to its successor in the abstract list
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The array entry is mutable and stores a pointer for some successor node
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+The successor pointer is immutable and must point to the corresponding successor
+&lt;/span>
+&lt;/div>
+&lt;span class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{IsNext}(lvl, pred, succ) \triangleq $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+$ \exists \ s. \ pred\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ * \ s \hookrightarrow_\square succ $
+&lt;/span>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The chain of successors obtained by each node&amp;rsquo;s pointer should reflect the order of this list.&lt;/p>
+&lt;p>The corresponding array entry is mutable, storing a pointer for the successor in the list.&lt;/p>
+&lt;p>This successor pointer should be immutable, since multiple nodes might point to the same node at different levels.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="lock-resources">Lock Resources&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Each node holds a lock for the given level, along with the corresponding lock invariant
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+The lock resources include the node&amp;rsquo;s successor and the successor&amp;rsquo;s value
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+Both pointers are fractional to allow read access to threads which have not acquired the lock
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;span class="smath">
+$ \textsf{HasLock}(lvl, node, R) \triangleq \exists \ \gamma, l. \begin{array}{c} node\textsf{.lock}[lvl] \hookrightarrow_\square l \ * \\ \textsf{IsLock}(\gamma, l, R(node, lvl)) \end{array} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
+$ \textsf{InBotLock}(n, 0) \triangleq \exists \ s, succ. \begin{array}{c} n\textsf{.next}[0] \hookrightarrow_{\frac{1}{2}} s * s \hookrightarrow_\square succ \ * \\ (succ = \textsf{tail} \lor \exists \ v. \ succ\textsf{.val} \hookrightarrow_{\frac{1}{2}} v) \end{array} $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Each node should contain a lock for the level, which maintains the lock invariant with some resources.&lt;/p>
+&lt;p>For bottom list nodes, the resources protected by the lock are the node&amp;rsquo;s successor and the vertical list of this successor.&lt;/p>
+&lt;p>The points-to assertions are fractional allowing other threads to read their contents without acquiring the lock, while a locking thread will obtain write access to those memory positions.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="invariant-definition">Invariant Definition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{BotListInv}$ is thus defined with &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&amp;hellip; the authoritative map, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&amp;hellip; the authoritative set, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&amp;hellip; their node-wise equivalence, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&amp;hellip; the sorted list, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&amp;hellip; the successor chain and the lock resources &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+&amp;hellip; and a set of tokens for the sublist relation
+&lt;/span>
+&lt;/div>
+&lt;p>&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{BotListInv}(head, \gamma) \triangleq \exists \ M, S, L. $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="ghost">
 $ \bullet \ M $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma_F^{\phantom{0}} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \gamma_F^{\phantom{0}} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
 $ * $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $ M\textsf{.keys} = S\textsf{.keys} \ * $
-&lt;/span&gt;
-
-&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;7&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="7">
+&lt;span class="ghost">
 $ \textsf{KeyRange} \setminus S\textsf{.keys} $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma_T^{\phantom{0}} $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>&lt;sup class="name">$ \ \gamma_T^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="ghost">
 $ \bullet \ S $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma_A^{\phantom{0}} $&lt;/sup&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \gamma_A^{\phantom{0}} $&lt;/sup>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="smath">
 $ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) \ * $
-&lt;/span&gt;
-
-&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;6&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="6">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
-\left( 
-  \begin{matrix}
-    \textsf{IsNext}(0, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
-    \textsf{HasLock}(0, L_\textsf{cat}[i],  \textsf{InBotLock})
-  \end{matrix}
-\right) \ * 
+\left(
+\begin{matrix}
+\textsf{IsNext}(0, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(0, L_\textsf{cat}[i], \textsf{InBotLock})
+\end{matrix}
+\right) \ *
 $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{n \in S}
-\left( 
-  \exists \ v, vs.
-  \begin{matrix}
-    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
-    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-  \end{matrix}
+\left(
+\exists \ v, vs.
+\begin{matrix}
+n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
+M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+\end{matrix}
 \right)
 $
-&lt;/span&gt;
-
-&lt;/span&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The bottom list invariant is thus defined by combining all elements:&lt;/p&gt;
-&lt;p&gt;The authoritative map, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the authoritative set &amp;hellip;&lt;/p&gt;
-&lt;p&gt;and the equivalence between both.&lt;/p&gt;
-&lt;p&gt;The sortedness assertion, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; as well as the successor chain and lock assertions.&lt;/p&gt;
-&lt;p&gt;There is also a set of tokens, required for the sublist relation between consecutive levels &amp;hellip;&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;sublist-invariant&#34;&gt;Sublist Invariant&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;&amp;hellip; which will now be the focus of our attention.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;sublist-relation&#34;&gt;Sublist Relation&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  For two consecutive levels, the upper level must be a sublist of the lower level
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  As such, upper level nodes keep fragments of the lower level&amp;rsquo;s authoritative set
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;img src=&#34;images/sub.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;img src=&#34;images/sub1.svg&#34;&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Each level must contain a sublist of the list contained in its lower level.&lt;/p&gt;
-&lt;p&gt;For this reason, we associate each sublist node to a fragment of the lower level&amp;rsquo;s authoritative set, expressing the sublist relation.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;ghost-tokens&#34;&gt;Ghost Tokens&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Upon insertion, the code does not check if the key already exists in the upper levels
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Each level will hold a set of ghost tokens to be removed and associated with upper level nodes
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  Tokens are exclusive, so any new node will have a different token than other existing nodes
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;img src=&#34;images/tok.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;img src=&#34;images/tok1.svg&#34;&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;img src=&#34;images/tok2.svg&#34;&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;When inserting in the upper levels, we do not check if the key already exists there, because we already checked the bottom level, which contains all keys.&lt;/p&gt;
-&lt;p&gt;Since we do not prove this explicitly in the code, we require each level to keep a set of available tokens and associate each sublist node to a lower level token.&lt;/p&gt;
-&lt;p&gt;By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;lock-resources-1&#34;&gt;Lock Resources&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  The lock resources no longer include the successor&amp;rsquo;s value
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The bottom list invariant is thus defined by combining all elements:&lt;/p>
+&lt;p>The authoritative map, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the authoritative set &amp;hellip;&lt;/p>
+&lt;p>and the equivalence between both.&lt;/p>
+&lt;p>The sortedness assertion, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; as well as the successor chain and lock assertions.&lt;/p>
+&lt;p>There is also a set of tokens, required for the sublist relation between consecutive levels &amp;hellip;&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="sublist-invariant">Sublist Invariant&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>&amp;hellip; which will now be the focus of our attention.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="sublist-relation">Sublist Relation&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+For two consecutive levels, the upper level must be a sublist of the lower level
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+As such, upper level nodes keep fragments of the lower level&amp;rsquo;s authoritative set
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/sub.svg">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;img src="images/sub1.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Each level must contain a sublist of the list contained in its lower level.&lt;/p>
+&lt;p>For this reason, we associate each sublist node to a fragment of the lower level&amp;rsquo;s authoritative set, expressing the sublist relation.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="ghost-tokens">Ghost Tokens&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Upon insertion, the code does not check if the key already exists in the upper levels
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Each level will hold a set of ghost tokens to be removed and associated with upper level nodes
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+Tokens are exclusive, so any new node will have a different token than other existing nodes
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/tok.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/tok1.svg">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;img src="images/tok2.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>When inserting in the upper levels, we do not check if the key already exists there, because we already checked the bottom level, which contains all keys.&lt;/p>
+&lt;p>Since we do not prove this explicitly in the code, we require each level to keep a set of available tokens and associate each sublist node to a lower level token.&lt;/p>
+&lt;p>By enforcing each token to be exclusive, a new node will require a different token than the tokens for existing nodes, making it safe to insert in any upper level.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="lock-resources-1">Lock Resources&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment " data-fragment-index="1">
+The lock resources no longer include the successor&amp;rsquo;s value
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{InSubLock}(n, lvl) \triangleq \exists \ s. \ n\textsf{.next}[lvl] \hookrightarrow_{\frac{1}{2}} s $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The sublist locks only protect the node&amp;rsquo;s successor in that level, leaving the value of the successor to the bottom list locks.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;invariant-definition-1&#34;&gt;Invariant Definition&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{SublistInv}$ is thus defined with &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  &amp;hellip; the authoritative set and sorted list, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  &amp;hellip; the successor chain and the lock resources, &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  &amp;hellip; the set of available tokens &amp;hellip;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &amp;hellip; and the fragments and tokens of each node
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The sublist locks only protect the node&amp;rsquo;s successor in that level, leaving the value of the successor to the bottom list locks.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="invariant-definition-1">Invariant Definition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{SublistInv}$ is thus defined with &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&amp;hellip; the authoritative set and sorted list, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&amp;hellip; the successor chain and the lock resources, &amp;hellip;
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&amp;hellip; the set of available tokens &amp;hellip;
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&amp;hellip; and the fragments and tokens of each node
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \textsf{SublistInv}(lvl, head, \Gamma, \gamma) \triangleq \exists \ S, L. $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>
+&lt;/span>
+&lt;p>&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="ghost">
 $ \textsf{KeyRange} \setminus S\textsf{.keys} $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \Gamma_T^{\phantom{0}} $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>&lt;sup class="name">$ \ \Gamma_T^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="ghost">
 $ \bullet \ S $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \Gamma_A^{\phantom{0}} $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \Gamma_A^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">
 $ * \ S \equiv_P L * \ \textsf{Sorted}(L_\textsf{cat}) $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;3&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">$*$&lt;/span>
+&lt;/span>&lt;/p>
+&lt;p>&lt;span class="fragment " data-fragment-index="3">
+&lt;span class="smath">
 $
 \mathop{\Huge\ast}\limits_{i = 0}^{|L|}
-\left( 
-  \begin{matrix}
-    \textsf{IsNext}(lvl, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
-    \textsf{HasLock}(lvl, L_\textsf{cat}[i],  \textsf{InSubLock})
-  \end{matrix}
+\left(
+\begin{matrix}
+\textsf{IsNext}(lvl, L_\textsf{cat}[i], L_\textsf{cat}[i+1]) \ * \\
+\textsf{HasLock}(lvl, L_\textsf{cat}[i], \textsf{InSubLock})
+\end{matrix}
 \right)
 $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;span class="smath">
 $
 * \ \mathop{\Huge\ast}\limits_{n \in S}
 \left(
-  \vphantom{\begin{matrix}
-    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
-    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-  \end{matrix}}
+\vphantom{\begin{matrix}
+n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
+M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+\end{matrix}}
 \right. \!
 $
-&lt;/span&gt;
-&lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>
+&lt;span class="ghost">
 $ \circ \ \{ n \} $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma_A^{\phantom{0}} $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;$*$&lt;/span&gt;
-&lt;span class=&#34;ghost&#34;&gt; 
+&lt;/span>&lt;sup class="name">$ \ \gamma_A^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">$*$&lt;/span>
+&lt;span class="ghost">
 $ \{ n\textsf{.key} \} $
-&lt;/span&gt;&lt;sup class=&#34;name&#34;&gt;$ \ \gamma_T^{\phantom{0}} $&lt;/sup&gt;
-&lt;span class=&#34;smath&#34;&gt;
+&lt;/span>&lt;sup class="name">$ \ \gamma_T^{\phantom{0}} $&lt;/sup>
+&lt;span class="smath">
 $
 \! \! \! \left.
-  \vphantom{\begin{matrix}
-    n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
-    M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
-  \end{matrix}}
+\vphantom{\begin{matrix}
+n\textsf{.val} \hookrightarrow_{\frac{1}{2}} v * v\textsf{.val} \in vs \ * \\
+M[n\textsf{.key}] = \textsf{Some}(vs, v\textsf{.ts})
+\end{matrix}}
 \right)
 $
-&lt;/span&gt;
-
-&lt;/span&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;The sublist invariant is thus defined with &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the same authoritative set and sorted list, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the same successor chain and the lock assertions for the sublist lock resources, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; the set of available tokens &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and the lower level fragments and tokens for each node.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;vertical-list&#34;&gt;Vertical List&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Although the bottom list invariant only accounts for the head of the vertical list, we now show how the remainder of the node&amp;rsquo;s value history is preserved.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;update-procedure&#34;&gt;Update procedure&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  $\textsf{udpate}$ controls which values are appended to vertical lists
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;2&#34;&gt;
-  Ownership of the initial value is required
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-  The update does not occur if the new timestamp is less recent than the head&amp;rsquo;s timestamp
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;4&#34;&gt;
-  Otherwise, the value is appended to the vertical list
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;5&#34;&gt;
-  The chain is made persistent, yielding an immutable history of values
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;2&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>The sublist invariant is thus defined with &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the same authoritative set and sorted list, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the same successor chain and the lock assertions for the sublist lock resources, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; the set of available tokens &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and the lower level fragments and tokens for each node.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="vertical-list">Vertical List&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Although the bottom list invariant only accounts for the head of the vertical list, we now show how the remainder of the node&amp;rsquo;s value history is preserved.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="update-procedure">Update procedure&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$\textsf{udpate}$ controls which values are appended to vertical lists
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+Ownership of the initial value is required
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+The update does not occur if the new timestamp is less recent than the head&amp;rsquo;s timestamp
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+Otherwise, the value is appended to the vertical list
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+The chain is made persistent, yielding an immutable history of values
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="2">
+&lt;span class="smath">
 $$ \{ \ ... \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \ ... \ \} $$
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $$ \ \textsf{update} \ node \ v \ t \ $$
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;3&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \left\{ \ ... \ 
-  \begin{matrix}
-    \textbf{\textsf{if}} \ t &lt; val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
-    \phantom{\textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val}
-  \end{matrix}
-  \ ... \ \right\} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;4&#34;&gt;
-    &lt;span class=&#34;smath&#34;&gt;
-  $ \left\{ \ ... \ 
-  \begin{matrix}
-    \textbf{\textsf{if}} \ t &lt; val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
-    \textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val
-  \end{matrix}
-  \ ... \ \right\} $
-  &lt;/span&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;An internal procedure is responsible for updating the node&amp;rsquo;s vertical list.&lt;/p&gt;
-&lt;p&gt;The precondition for its specification includes the points-to assertion for the initial value.&lt;/p&gt;
-&lt;p&gt;If the new timestamp is less recent than the value already stored, then the update does not occur.&lt;/p&gt;
-&lt;p&gt;Otherwise, the new value and timestamp are appended to the head.&lt;/p&gt;
-&lt;p&gt;Asserting that the new value&amp;rsquo;s predecessor is persistent, ensures that the node&amp;rsquo;s value history is immutable by construction.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;related-work&#34;&gt;Related Work&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;I will now highlight some of the most relevant related work.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;polaris&#34;&gt;Polaris&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; &gt;
-  &lt;p&gt;Our mechanization is mostly based on the work of &lt;a href=&#34;https://doi.org/10.1145/3290377&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tassarotti and Harper&lt;/a&gt; (POPL 2019)&lt;/p&gt;
-&lt;p&gt;In their work, they present Polaris, an extension of Iris to support probabilistic reasoning.&lt;/p&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;p&gt;In Polaris, they proved correctness and probabilistic properties of a 2-level concurrent skip list&lt;/p&gt;
-&lt;p&gt;We generalize their correctness proofs to any number levels, simplifying the required ghost state&lt;/p&gt;
-
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Most of our mechanization effort is deeply based on the work of Tassarotti and Harper on Polaris, a probabilistic extension of Iris.&lt;/p&gt;
-&lt;p&gt;Their work focused more on proving probabilistic properties of a 2-level skip list, while we generalized their arguments to an arbitrary number of levels, simplifying the ghost state for in-level reasoning.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;logical-atomicity&#34;&gt;Logical Atomicity&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  Logically atomic triples state that the operation takes place at a single atomic step
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  Non-atomic operations can be seen as atomic, whose changes are caused by that atomic step
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;span class="smath">
+$ \left\{ \ ... \
+\begin{matrix}
+\textbf{\textsf{if}} \ t &lt; val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
+\phantom{\textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val}
+\end{matrix}
+\ ... \ \right\} $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;span class="smath">
+$ \left\{ \ ... \
+\begin{matrix}
+\textbf{\textsf{if}} \ t &lt; val\textsf{.ts} \ \textbf{\textsf{then}} \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} val \\
+\textbf{\textsf{else}} \ \exists \ p. \ node\textsf{.val} \hookrightarrow_{\frac{1}{2}} (v, t, p) * p \hookrightarrow_\square val
+\end{matrix}
+\ ... \ \right\} $
+&lt;/span>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>An internal procedure is responsible for updating the node&amp;rsquo;s vertical list.&lt;/p>
+&lt;p>The precondition for its specification includes the points-to assertion for the initial value.&lt;/p>
+&lt;p>If the new timestamp is less recent than the value already stored, then the update does not occur.&lt;/p>
+&lt;p>Otherwise, the new value and timestamp are appended to the head.&lt;/p>
+&lt;p>Asserting that the new value&amp;rsquo;s predecessor is persistent, ensures that the node&amp;rsquo;s value history is immutable by construction.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="related-work">Related Work&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>I will now highlight some of the most relevant related work.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="polaris">Polaris&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" >
+&lt;p>Our mechanization is mostly based on the work of &lt;a href="https://doi.org/10.1145/3290377" target="_blank" rel="noopener">Tassarotti and Harper&lt;/a> (POPL 2019)&lt;/p>
+&lt;p>In their work, they present Polaris, an extension of Iris to support probabilistic reasoning.&lt;/p>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;p>In Polaris, they proved correctness and probabilistic properties of a 2-level concurrent skip list&lt;/p>
+&lt;p>We generalize their correctness proofs to any number levels, simplifying the required ghost state&lt;/p>
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Most of our mechanization effort is deeply based on the work of Tassarotti and Harper on Polaris, a probabilistic extension of Iris.&lt;/p>
+&lt;p>Their work focused more on proving probabilistic properties of a 2-level skip list, while we generalized their arguments to an arbitrary number of levels, simplifying the ghost state for in-level reasoning.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="logical-atomicity">Logical Atomicity&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+Logically atomic triples state that the operation takes place at a single atomic step
+&lt;/span>
+&lt;span class="fragment " >
+Non-atomic operations can be seen as atomic, whose changes are caused by that atomic step
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \left\langle \ P \ \right\rangle $
 $ \ e \ $
 $ \left\langle \ v. \ Q(v) \ \right\rangle $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;An important correctness criterion for concurrent operations is logical atomicity. Iris allows the definition of logically atomic triples, meaning that a potentially non-atomic operation transforms the precondition into the postcondition at a single atomic step.&lt;/p&gt;
-&lt;p&gt;That atomic step suffices to reason about interference between concurrent operations, allowing us to treat a non-atomic operation as if it were atomic.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;key-value-specifications&#34;&gt;Key-Value Specifications&lt;/h3&gt;
-&lt;div class=&#34;r-stack&#34;&gt;
-  &lt;span class=&#34;fragment current-visible&#34; data-fragment-index=&#34;1&#34;&gt;
-  From a logically atomic map specification, &lt;a href=&#34;https://doi.org/10.1007/978-3-662-54434-1_36&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Xiong &lt;em&gt;et al.&lt;/em&gt;&lt;/a&gt; (ESOP 2017) derive a key-value specification
-&lt;/span&gt;
-&lt;span class=&#34;fragment current-visible&#34; &gt;
-  Such specifications allow reasoning about individual keys rather than the entire state of the map
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  Any algebra (&lt;em&gt;e.g.&lt;/em&gt;, our $\textsf{argmax}$ RA) can be built on top of the specification to reason about clients
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span class=&#34;fragment &#34; data-fragment-index=&#34;1&#34;&gt;
-  &lt;span class=&#34;smath&#34;&gt;
+&lt;/span>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>An important correctness criterion for concurrent operations is logical atomicity. Iris allows the definition of logically atomic triples, meaning that a potentially non-atomic operation transforms the precondition into the postcondition at a single atomic step.&lt;/p>
+&lt;p>That atomic step suffices to reason about interference between concurrent operations, allowing us to treat a non-atomic operation as if it were atomic.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="key-value-specifications">Key-Value Specifications&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+From a logically atomic map specification, &lt;a href="https://doi.org/10.1007/978-3-662-54434-1_36" target="_blank" rel="noopener">Xiong &lt;em>et al.&lt;/em>&lt;/a> (ESOP 2017) derive a key-value specification
+&lt;/span>
+&lt;span class="fragment current-visible" >
+Such specifications allow reasoning about individual keys rather than the entire state of the map
+&lt;/span>
+&lt;span class="fragment " >
+Any algebra (&lt;em>e.g.&lt;/em>, our $\textsf{argmax}$ RA) can be built on top of the specification to reason about clients
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="smath">
 $ \left\langle \ \textsf{Key}(p, k, v_i^?, \gamma) \ \right\rangle $
 $ \ \textsf{put} \ p \ k \ v \ t \ $
 $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \right\rangle $
-&lt;/span&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Xiong et al. define a logically atomic specification for a concurrent map, which they then use to define a key-value specification.&lt;/p&gt;
-&lt;p&gt;Key-value specifications allow reasoning about composition and sharing of individual keys rather than sharing the entire map.&lt;/p&gt;
-&lt;p&gt;They also show how to apply client reasoning on top of this specification by constructing a suitable algebra, much like we did with the argmax resource algebra.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;section&gt;
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt; (continue below) &lt;/sup&gt;&lt;/p&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;To conclude, this work contributes to the understanding of complex list-based data structures, providing a new approach for reasoning about concurrent maps.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;future-work&#34;&gt;Future Work&lt;/h3&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;ul&gt;
-&lt;li&gt;Verifying other skip list implementations (&lt;em&gt;e.g.&lt;/em&gt;, the original JellyFish)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;ul&gt;
-&lt;li&gt;Proving logical atomicity for the map operations of lazy JellyFish&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;ul&gt;
-&lt;li&gt;Deriving a key-value specification from the logically atomic map specification&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;ul&gt;
-&lt;li&gt;Constructing new RAs for verifying other types of clients (&lt;em&gt;e.g.&lt;/em&gt;, producer-consumer)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/span&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;We leave as future work &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; adapting of our proofs to other skip list implementations, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; proving the map operations to be logically atomic, &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; refactoring the proofs to define a key-value specification &amp;hellip;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; and constructing other expressive resource algebras for client reasoning.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-&lt;/section&gt;
-&lt;hr&gt;
-&lt;h1 id=&#34;thank-you&#34;&gt;Thank you!&lt;/h1&gt;
-&lt;aside class=&#34;notes&#34;&gt;
-   &lt;sub&gt;
-&lt;p&gt;Thank you for your attention and I am now available to answer any questions you may have.&lt;/p&gt;
-&lt;/sub&gt; 
-&lt;/aside&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://pcarrott.github.io/admin/config.yml</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/admin/config.yml</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Experience</title>
-      <link>https://pcarrott.github.io/experience/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/experience/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Personal</title>
-      <link>https://pcarrott.github.io/personal/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/personal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Test</title>
-      <link>https://pcarrott.github.io/test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pcarrott.github.io/test/</guid>
-      <description>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;div class=&#34;gallery-grid&#34;&gt;
-
-  
-  
-  
-    
-    
-    
-    
-    
-      
-        
-      
-    
-  
-  
-  &lt;div class=&#34;gallery-item gallery-item--medium&#34;&gt;
-    &lt;a data-fancybox=&#34;gallery-dogs&#34; href=&#34;https://pcarrott.github.io/media/albums/dogs/1-tea.jpg&#34; data-caption=&#34;My first dog, Tea ♀️&#34;&gt;
-      &lt;img src=&#34;https://pcarrott.github.io/media/albums/dogs/1-tea_hu3ba3c70bbc7645adb642e83a61c29ab5_165603_750x750_fit_q75_h2_lanczos.webp&#34; loading=&#34;lazy&#34; alt=&#34;My first dog, Tea :female_sign:&#34; width=&#34;492&#34; height=&#34;750&#34;&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-  
-    
-    
-    
-    
-    
-      
-        
-      
-    
-  
-  
-  &lt;div class=&#34;gallery-item gallery-item--medium&#34;&gt;
-    &lt;a data-fancybox=&#34;gallery-dogs&#34; href=&#34;https://pcarrott.github.io/media/albums/dogs/2-ruby.jpg&#34; data-caption=&#34;My current dog, Ruby ♀️&#34;&gt;
-      &lt;img src=&#34;https://pcarrott.github.io/media/albums/dogs/2-ruby_hub426b9da9ab1d09c014bf45aad51a1c6_7536705_750x750_fit_q75_h2_lanczos.webp&#34; loading=&#34;lazy&#34; alt=&#34;My current dog, Ruby :female_sign:&#34; width=&#34;750&#34; height=&#34;563&#34;&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-  
-
-&lt;/div&gt;
-
-</description>
-    </item>
-    
-  </channel>
-</rss>
+&lt;/span>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Xiong et al. define a logically atomic specification for a concurrent map, which they then use to define a key-value specification.&lt;/p>
+&lt;p>Key-value specifications allow reasoning about composition and sharing of individual keys rather than sharing the entire map.&lt;/p>
+&lt;p>They also show how to apply client reasoning on top of this specification by constructing a suitable algebra, much like we did with the argmax resource algebra.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>&lt;sup> (continue below) &lt;/sup>&lt;/p>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>To conclude, this work contributes to the understanding of complex list-based data structures, providing a new approach for reasoning about concurrent maps.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="future-work">Future Work&lt;/h3>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>Verifying other skip list implementations (&lt;em>e.g.&lt;/em>, the original JellyFish)&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>Proving logical atomicity for the map operations of lazy JellyFish&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>Deriving a key-value specification from the logically atomic map specification&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;ul>
+&lt;li>Constructing new RAs for verifying other types of clients (&lt;em>e.g.&lt;/em>, producer-consumer)&lt;/li>
+&lt;/ul>
+&lt;/span>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>We leave as future work &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; adapting of our proofs to other skip list implementations, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; proving the map operations to be logically atomic, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; refactoring the proofs to define a key-value specification &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and constructing other expressive resource algebras for client reasoning.&lt;/p>
+&lt;/sub>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;h1 id="thank-you">Thank you!&lt;/h1>
+&lt;aside class="notes">
+&lt;sub>
+&lt;p>Thank you for your attention and I am now available to answer any questions you may have.&lt;/p>
+&lt;/sub>
+&lt;/aside></description></item><item><title/><link>https://pcarrott.github.io/admin/config.yml</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/admin/config.yml</guid><description/></item><item><title>Experience</title><link>https://pcarrott.github.io/experience/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/experience/</guid><description/></item><item><title>Personal</title><link>https://pcarrott.github.io/personal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/personal/</guid><description/></item><item><title>Test</title><link>https://pcarrott.github.io/test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/test/</guid><description>
+&lt;div class="gallery-grid">
+&lt;div class="gallery-item gallery-item--medium">
+&lt;a data-fancybox="gallery-dogs" href="https://pcarrott.github.io/media/albums/dogs/1-tea.jpg" data-caption="My first dog, Tea ♀️">
+&lt;img src="https://pcarrott.github.io/media/albums/dogs/1-tea_hu3ba3c70bbc7645adb642e83a61c29ab5_165603_750x750_fit_q75_h2_lanczos.webp" loading="lazy" alt="My first dog, Tea :female_sign:" width="492" height="750">
+&lt;/a>
+&lt;/div>
+&lt;div class="gallery-item gallery-item--medium">
+&lt;a data-fancybox="gallery-dogs" href="https://pcarrott.github.io/media/albums/dogs/2-ruby.jpg" data-caption="My current dog, Ruby ♀️">
+&lt;img src="https://pcarrott.github.io/media/albums/dogs/2-ruby_hub426b9da9ab1d09c014bf45aad51a1c6_7536705_750x750_fit_q75_h2_lanczos.webp" loading="lazy" alt="My current dog, Ruby :female_sign:" width="750" height="563">
+&lt;/a>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
