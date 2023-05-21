@@ -109,4 +109,5 @@ security:
   # Allow frame for embedding speaker notes in slides
   allow_frame: true
 
-# require_fancybox: true
+# Needed for galleries in blocks
+require_fancybox: true
