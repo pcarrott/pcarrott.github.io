@@ -1555,4 +1555,16 @@ $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \
 &lt;sub>
 &lt;p>Thank you for your attention and I am now available to answer any questions you may have.&lt;/p>
 &lt;/sub>
-&lt;/aside></description></item><item><title/><link>https://pcarrott.github.io/admin/config.yml</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/admin/config.yml</guid><description/></item><item><title>Experience</title><link>https://pcarrott.github.io/experience/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/experience/</guid><description/></item><item><title>Personal</title><link>https://pcarrott.github.io/personal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/personal/</guid><description/></item></channel></rss>
+&lt;/aside></description></item><item><title/><link>https://pcarrott.github.io/admin/config.yml</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/admin/config.yml</guid><description/></item><item><title>Experience</title><link>https://pcarrott.github.io/experience/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/experience/</guid><description/></item><item><title>Personal</title><link>https://pcarrott.github.io/personal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/personal/</guid><description/></item><item><title>Test</title><link>https://pcarrott.github.io/test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/test/</guid><description>
+&lt;div class="gallery-grid">
+&lt;div class="gallery-item gallery-item--medium">
+&lt;a data-fancybox="gallery-dogs" href="https://pcarrott.github.io/media/albums/dogs/1-tea.jpg" data-caption="My first dog, Tea ♀️">
+&lt;img src="https://pcarrott.github.io/media/albums/dogs/1-tea_hu3ba3c70bbc7645adb642e83a61c29ab5_165603_750x750_fit_q75_h2_lanczos.webp" loading="lazy" alt="My first dog, Tea :female_sign:" width="492" height="750">
+&lt;/a>
+&lt;/div>
+&lt;div class="gallery-item gallery-item--medium">
+&lt;a data-fancybox="gallery-dogs" href="https://pcarrott.github.io/media/albums/dogs/2-ruby.jpg" data-caption="My current dog, Ruby ♀️">
+&lt;img src="https://pcarrott.github.io/media/albums/dogs/2-ruby_hub426b9da9ab1d09c014bf45aad51a1c6_7536705_750x750_fit_q75_h2_lanczos.webp" loading="lazy" alt="My current dog, Ruby :female_sign:" width="750" height="563">
+&lt;/a>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
