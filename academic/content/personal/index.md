@@ -16,9 +16,9 @@ sections:
     content:
       title: ':carrot: About me'
       text: |-
-        <center>This page contains some personal information about myself and what I enjoy doing in my free time.<center>
+        <center>This page contains some personal information about myself and what I enjoy doing in my free time.</center>
         <br>
-        <center>Below, I leave pictures of the two cutest woofers to lay their paws on Earth.<center>
+        <center>Below, I leave pictures of the two cutest woofers to lay their paws on Earth.</center>
         <br>
         {{< gallery album="dogs" >}}
   - block: markdown
@@ -45,7 +45,7 @@ sections:
       columns: '2'
   - block: markdown
     content:
-      text: <center>{{< spoiler text="Click to view" >}}{{< figure src="rickroll.gif" width="20%" >}}{{< /spoiler >}}<center>
+      text: <center>{{< spoiler text="Click to view" >}}{{< figure src="rickroll.gif" width="20%" >}}{{< /spoiler >}}</center>
     design:
       columns: '2' # just to make image smaller
       background:
