@@ -3,6 +3,14 @@
 title: Personal
 type: landing
 
+gallery_item:
+- album: dogs
+  image: 1-tea.jpg
+  caption: 'My first dog, Tea :female_sign:'
+- album: dogs
+  image: 2-ruby.jpg
+  caption: 'My current dog, Ruby :female_sign:'
+
 sections:
   - block: markdown
     content:
@@ -48,12 +56,4 @@ sections:
             brightness: 0.6
       spacing:
         padding: ["20px", "0", "0", "0"]
-
-gallery_item:
-- album: dogs
-  image: 1-tea.jpg
-  caption: 'My first dog, Tea :female_sign:'
-- album: dogs
-  image: 2-ruby.jpg
-  caption: 'My current dog, Ruby :female_sign:'
 ---
