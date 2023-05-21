@@ -23,14 +23,6 @@ jobs:
           submodules: true  # Fetch any Git submodules (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install JS dependencies
-        run: rm -rf node_modules && yarn install --frozen-lockfile
-
   deploy:
     runs-on: ubuntu-latest
     permissions:
