@@ -51,21 +51,25 @@ sections:
                 <li>
                   <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre" target="_blank">Artificial Intelligence</a>
                   <div class="card-subtitle my-0 article-metadata">
+                    <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
+                    <span class="middot-divider"></span>
                     Spring 2022
                     <span class="middot-divider"></span>
                     4th Quarter of 2021/2022
                   </div>
-                  Teaching Assistant at <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
+                  Role: Teaching Assistant
                 </li>
                 <br>
                 <li>
                   <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre" target="_blank">Analysis and Synthesis of Algorithms</a>
                   <div class="card-subtitle my-0 article-metadata">
+                    <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
+                    <span class="middot-divider"></span>
                     Fall 2021
                     <span class="middot-divider"></span>
                     2nd Quarter of 2021/2022
                   </div>
-                  Teaching Assistant at <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
+                  Role: Teaching Assistant
                 </li>
               </ul>
             </div>
