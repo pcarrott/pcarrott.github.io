@@ -51,7 +51,7 @@ sections:
       background:
         image: 
           filename: elmo.jpg
-          parallax: true # not working :/
+          parallax: true # not working on mobile :/
           filters:
             brightness: 0.6
       spacing:
