@@ -22,7 +22,7 @@
   url = "mailto:?subject={title}&body={url}"
   title = "Email"
   icon_pack = "fas"
-  icon = "envelope"
+  icon = "at"
   enable = true
 
 [[buttons]]
