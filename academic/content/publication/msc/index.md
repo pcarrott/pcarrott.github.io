@@ -30,8 +30,8 @@ featured: true
 
 # Custom links (uncomment lines below)
 links:
-# - name: Extended Abstract
-#   url: extended-abstract.pdf
+- name: Extended Abstract
+  url: extended-abstract.pdf
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
 
