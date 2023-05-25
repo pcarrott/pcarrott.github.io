@@ -21,7 +21,7 @@ slides:
 
 {{< speaker_note >}} <small>
 
-The work I'll be presenting is based on my Master's thesis, advised by Professor João Ferreira, which has been submitted for publication and is currently under review. It consists on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.
+The work I'll be presenting is based on my Master's thesis, advised by João Ferreira, which has been submitted for publication and is currently under review. It consists on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.
 
 </small> {{< /speaker_note >}}
 
@@ -755,7 +755,7 @@ The invariant asserts shared ownership of a VCMap resource tied to some abstract
 
 At the linearization point, this resource is preserved as is, since a search is not supposed to perform any changes.
 
-If the key does not exists in the map, then the search must come up empty.
+If the key does not exist in the map, then the search must come up empty.
 
 Otherwise, the value with the most recent timestamp should be returned, ignoring the vertical list.
 
@@ -1105,7 +1105,7 @@ As we've seen previously, a search will always return the most recent value asso
 
 Values should be represented as pairs, where timestamp "j" being greater than timestamp "i" returns the pair with value "b", discarding the value "a".
 
-However, when both timestamps are equal, the last value to the written will depend on the scheduler. As such, both "a" and "b" may be the value associated with the key, so ...
+However, when both timestamps are equal, the last value to be written will depend on the scheduler. As such, both "a" and "b" may be the value associated with the key, so ...
 
 ... we require "a" and "b" to be sets rather than the actual values. In that way, we can maintain each key associated with all possible values, along with the corresponding timestamp "i".
 
