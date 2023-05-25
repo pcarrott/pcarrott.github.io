@@ -1,5 +1,5 @@
 ---
-title: 'Slides: Formal Specification and Verification of the Lazy JellyFish Skip List'
+title: 'Slides - Formal Specification and Verification of the Lazy JellyFish Skip List'
 authors: []
 tags: []
 categories: []

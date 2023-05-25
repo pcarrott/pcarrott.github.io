@@ -25,7 +25,7 @@ sections:
           description: |-
             GPA: 19 out of 20
             <br>
-            Focus on **Algorithms and Programming** and **Intelligent Systems**
+            Major in **Algorithms and Programming** and **Intelligent Systems**
         - title: BSc in Computer Science and Engineering
           company: Instituto Superior Técnico
           company_url: https://tecnico.ulisboa.pt
@@ -53,9 +53,7 @@ sections:
                   <div class="card-subtitle my-0 article-metadata">
                     <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
                     <span class="middot-divider"></span>
-                    Spring 2022
-                    <span class="middot-divider"></span>
-                    4th Quarter of 2021/2022
+                    4th Quarter
                   </div>
                   Role: Teaching Assistant
                 </li>
@@ -65,9 +63,7 @@ sections:
                   <div class="card-subtitle my-0 article-metadata">
                     <a href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener">Instituto Superior Técnico</a>
                     <span class="middot-divider"></span>
-                    Fall 2021
-                    <span class="middot-divider"></span>
-                    2nd Quarter of 2021/2022
+                    2nd Quarter
                   </div>
                   Role: Teaching Assistant
                 </li>
