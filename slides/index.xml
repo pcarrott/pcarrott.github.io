@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Slides | Pedro Carrott</title><link>https://pcarrott.github.io/slides/</link><atom:link href="https://pcarrott.github.io/slides/index.xml" rel="self" type="application/rss+xml"/><description>Slides</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 05 Feb 2022 00:00:00 +0000</lastBuildDate><item><title>Slides: Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/slides/msc/</link><pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/slides/msc/</guid><description>&lt;h3 id="formal-specification-and-verification-of-the-lazy-jellyfish-skip-list">&lt;strong>Formal Specification and Verification of the Lazy JellyFish Skip List&lt;/strong>&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Slides | Pedro Carrott</title><link>https://pcarrott.github.io/slides/</link><atom:link href="https://pcarrott.github.io/slides/index.xml" rel="self" type="application/rss+xml"/><description>Slides</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 05 Feb 2022 00:00:00 +0000</lastBuildDate><item><title>Slides - Formal Specification and Verification of the Lazy JellyFish Skip List</title><link>https://pcarrott.github.io/slides/msc/</link><pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/slides/msc/</guid><description>&lt;h3 id="formal-specification-and-verification-of-the-lazy-jellyfish-skip-list">&lt;strong>Formal Specification and Verification of the Lazy JellyFish Skip List&lt;/strong>&lt;/h3>
 &lt;h4 id="msc-thesis-defense">MSc Thesis Defense&lt;/h4>
 &lt;br>
 &lt;p>Pedro Carrott &amp;mdash; &lt;em>IST, University of Lisbon&lt;/em>&lt;/p>
@@ -1551,4 +1551,895 @@ $ \left\langle \ \textsf{Key}(p, k, v_i^? \cdot \textsf{Some}(v, t), \gamma) \ \
 &lt;sub>
 &lt;p>Thank you for your attention and I am now available to answer any questions you may have.&lt;/p>
 &lt;/sub>
+&lt;/aside></description></item><item><title>Slides - Formal Verification of a Concurrent Map in Iris</title><link>https://pcarrott.github.io/slides/jellyfish/</link><pubDate>Sat, 05 Feb 2022 00:00:00 +0000</pubDate><guid>https://pcarrott.github.io/slides/jellyfish/</guid><description>&lt;h3 id="formal-verification-of-abrconcurrent-map-in-iris">&lt;strong>Formal Verification of a&lt;br>Concurrent Map in Iris&lt;/strong>&lt;/h3>
+&lt;h4 id="resourceful-reasoning-beyond-linearization-pointsbrfor-the-lazy-jellyfish-skip-list">Resourceful Reasoning beyond Linearization Points&lt;br>for the Lazy JellyFish Skip List&lt;/h4>
+&lt;br>
+&lt;p>&lt;small>&lt;strong>Pedro Carrott&lt;/strong> &amp;mdash; &lt;em>INESC-ID and IST, University of Lisbon&lt;/em>&lt;/small>
+&lt;small>João Ferreira &amp;mdash; &lt;em>INESC-ID and IST, University of Lisbon&lt;/em>&lt;/small>&lt;/p>
+&lt;p>&lt;span class="footer"> Press the &lt;code>S&lt;/code> key to view the speaker notes &lt;/span>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The work I&amp;rsquo;ll be presenting is based on my Master&amp;rsquo;s thesis, advised by Professor João Ferreira, which has been submitted for publication and is currently under review. It consists on the formal verification of the Lazy JellyFish Skip List, an implementation for concurrent maps with version control.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;section>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;hr>
+&lt;h3 id="concurrent-maps-and-skip-lists">Concurrent Maps and Skip Lists&lt;/h3>
+&lt;span class="fragment " >
+&lt;small>Concurrent maps are used by data store applications to index data efficiently.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>Most data stores record the value history of each key, rather than delete old values.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>The skip list is the most widely used map implementation by these applications.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>JellyFish extends traditional skip lists with a list of timestamped values per key.&lt;/small>
+&lt;/span>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Maps provide an abstraction for a collection of key-value pairs. This is a useful abstraction for applications such as data stores, which require efficient structures to index data.&lt;/p>
+&lt;p>In fact, most of these applications maintain a history of values for each key in the map, so as to record different versions of the same data, instead of deleting outdated information.&lt;/p>
+&lt;p>The most widely used implementation for such concurrent append-only maps is the skip list data structure.&lt;/p>
+&lt;p>A state-of-the-art implementation for concurrent append-only skip lists is JellyFish, which extends traditional skip lists by storing a linked list in each node to reflect the history of values associated with its key.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="iris-and-logical-atomicity">Iris and Logical Atomicity&lt;/h3>
+&lt;span class="fragment " >
+&lt;small>We verify a variant of JellyFish using the concurrent separation logic &lt;a href="https://iris-project.org/" target="_blank" rel="noopener">Iris&lt;/a>.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>Our proofs show operations on JellyFish to be logically atomic.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>We extend atomic triples to reason about resources &lt;em>after&lt;/em> a linearization point.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>From the logically atomic specification, we build a suitable client specification.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>The Coq formalization is &lt;a href="https://github.com/sr-lab/iris-jellyfish" target="_blank" rel="noopener">publicly available&lt;/a>.&lt;/small>
+&lt;/span>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>In this work, we verify the functional correctness of a lock-based variant of JellyFish using Iris, a state-of-the-art concurrent separation logic.&lt;/p>
+&lt;p>As a standard correctness criterion for concurrent operations, we prove operations on JellyFish to be logically atomic.&lt;/p>
+&lt;p>For this purpose, we extend the Iris definition of atomic triples to be able to reason about shared resources after the operation&amp;rsquo;s linearization point.&lt;/p>
+&lt;p>We then show how to build from the logically atomic specification other specifications more suitable for client reasoning.&lt;/p>
+&lt;p>All our results are mechanized in Coq and available on GitHub.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="skip-lists">Skip Lists&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>We begin by looking at the implementation of the lazy JellyFish skip list.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>A skip list contains two sentinel nodes with keys $\textsf{MIN}$ and $\textsf{MAX}$, linked in $\textsf{HMAX}$ lists.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Each list is a sublist of its lower level and all lists are sorted by key.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;small>Elements can be skipped by searching the lists in the higher levels.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/empty.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/skip.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;img src="images/skip1.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;img src="images/skip2.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" >
+&lt;img src="images/skip3.svg">
+&lt;/span>
+&lt;span class="fragment " >
+&lt;img src="images/skip4.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The skip list is initialized with two sentinel nodes with keys MIN and MAX, defining the valid key range for the structure. The left sentinel contains an array of HMAX entries, each pointing to the right sentinel, initializing HMAX empty linked lists.&lt;/p>
+&lt;p>As new keys are inserted to the skip list, each list must always remain a sublist of the list directly below it, while the bottom list should contain all keys which have been inserted.&lt;/p>
+&lt;p>Since each level contains progressively fewer elements of the bottom list, maintaining all lists sorted allows searches in higher levels to skip elements that would otherwise be traversed in a standard linear search. We search in the top level &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; stop searching when we reach a value equal to or greater than the key &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; descend to the next level starting from the same element and repeat until we reach the bottom level.&lt;/p>
+&lt;p>If the key is not found upon reaching the bottom level, then we can conclude that it does not belong to the skip list.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="jellyfish">JellyFish&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>The JellyFish skip list implements a map, storing key-value pairs.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Each node contains a &lt;i>vertical list&lt;/i>, a timeline with timestamped values.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;small>To append a new value, the timestamp must be &lt;i>at least as recent&lt;/i> as the head&amp;rsquo;s.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;span class="fragment " data-fragment-index="1">
+&lt;img src="images/jelly5.svg">
+&lt;/span>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Skip lists can also be used to implement key-value stores.&lt;/p>
+&lt;p>The JellyFish design keeps in each node a list of timestamped values, referred to as a vertical list, representing the timeline of values associated with the key.&lt;/p>
+&lt;p>The timeline retains its consistency by never appending new values to a vertical list if the new timestamp is less recent than the timestamp found at the head.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="concurrent-updates">Concurrent Updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>Updating threads employ lazy synchronization through locks.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Traversal is done until the bottom, locking the key&amp;rsquo;s predecessor.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>The key does not exist: a new node is linked to a random number of levels.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>The lock is released after insertion, locking the predecessor in the next level.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;small>Insertions are done bottom-up to maintain the sublist relation.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;small>Updates follow the same initial steps, locking the key&amp;rsquo;s predecessor in the bottom level.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;small>A node already exists for the key: the new value will be appended to the vertical list.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/jelly1.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;img src="images/jelly2.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;img src="images/jelly3.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;img src="images/jelly4.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;img src="images/jelly5.svg">
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;img src="images/jelly6.svg">
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;img src="images/jelly7.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>To ensure that concurrent updates to the data structure alter the state safely, the put operation employs a lazy synchronization strategy using locks. A thread trying to insert key 24 will first traverse the skip list until the bottom level to find its predecessor in key 17 and then &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; acquires the node&amp;rsquo;s lock in the bottom level. Since the key has not been found, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; a new node is created with some random height. As the predecessor&amp;rsquo;s lock has been acquired, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; we can replace its successor by linking the new node to the bottom level. The lock can then be released and the node can be inserted in the upper level.&lt;/p>
+&lt;p>Insertions are performed bottom-up so as to ensure that the sublist relation is preserved.&lt;/p>
+&lt;p>A following update on key 24 will repeat the same initial steps by traversing the skip list until the bottom level and locking its predecessor.&lt;/p>
+&lt;p>As the node already exists it will append a new value to its vertical list, as long as the timestamp is as recent as 3.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="logical-atomicity">Logical Atomicity&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>To reason about the correctness of JellyFish, I&amp;rsquo;ll now discuss the notion of logical atomicity.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="linearization-point">Linearization Point&lt;/h3>
+&lt;span class="fragment " >
+&lt;small>A non-atomic operation is logically atomic if a single atomic step yields its effects.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>Therefore, we can reason about the operation &lt;em>as if&lt;/em> it were atomic.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>We refer to that step as the &lt;em>linearization point&lt;/em> (LP) of the operation.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>The LP of an insertion in JellyFish is the LP of an insertion in the bottom level.&lt;/small>
+&lt;/span>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>An operation is said to be logically atomic if it contains a single atomic step which is responsible for the desired effects for the operation.&lt;/p>
+&lt;p>When reasoning about the possible interleavings between steps of concurrent executions, we can simply reason about the interleavings between the corresponding atomic step of each operation as if these operations were atomic.&lt;/p>
+&lt;p>This atomic step is commonly known as the operation&amp;rsquo;s linearization point.&lt;/p>
+&lt;p>In the case of JellyFish, the linearization point of put corresponds to the linearization point of the bottom level insertion, meaning that insertions on the upper levels take place after the linearization point.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="atomic-triples">Atomic Triples&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>Atomic triples describe the effects of an operation at its LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>The precondition describes the invariant shared state &lt;em>before&lt;/em> the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>The postcondition states how the shared state is affected &lt;em>at&lt;/em> the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>Atomic triples do not describe the invariant state &lt;em>after&lt;/em> the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;small>Therefore, we cannot reason about upper level insertions in JellyFish.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \left\langle \ \alpha \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ \beta \ \right\rangle $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \left\langle \ \textcolor{red}{\alpha} \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ \beta \ \right\rangle $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \left\langle \ \alpha \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ \textcolor{red}{\beta} \ \right\rangle $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+$ \left\langle \ \alpha \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ \beta \ \right\rangle $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The desired behaviour for a logically atomic operation can be expressed through atomic triples.&lt;/p>
+&lt;p>The precondition states an invariant assertion on the shared state which must hold throughout all steps prior to the linearization point.&lt;/p>
+&lt;p>The postcondition expresses how that shared state is altered at the linearization point.&lt;/p>
+&lt;p>After the linearization point, no assertion is provided losing all information regarding the shared state.&lt;/p>
+&lt;p>In other words, after inserting a node in the bottom level of JellyFish, we lose access to the entire data structure, so we cannot verify insertions in the remaining levels.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="nested-data-structures">Nested Data Structures&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>Nested data structures are data structures composed of other data structures.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Generally, locks are acquired &lt;em>before&lt;/em> and released &lt;em>after&lt;/em> the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>An atomic triple should describe the state of the shared object in its precondition.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>Therefore, we can access the shared object before the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;small>We can thus acquire the lock contained within the shared object. &lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;small>At the LP, we can perform the atomic effects on the shared object.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;small>After the LP, we do not know how to describe the invariant shared state, &amp;hellip;&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="8">
+&lt;small>&amp;hellip; so we can no longer access the shared object nor its lock.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="9">
+&lt;small>Without access to the lock, we are unable to release it.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="10">
+&lt;small>We can reason about the lock and the object as separately shared structures, &amp;hellip;&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="11">
+&lt;small>&amp;hellip; resulting in a more complex specification.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;img src="images/lock1.svg">
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="5">
+&lt;span class="fragment " data-fragment-index="2">
+&lt;img src="images/lock2.svg">
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;img src="images/lock3.svg">
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="8">
+&lt;span class="fragment " data-fragment-index="6">
+&lt;img src="images/lock4.svg">
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="10">
+&lt;span class="fragment " data-fragment-index="8">
+&lt;img src="images/lock5.svg">
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="10">
+&lt;img src="images/lock6.svg">
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>In general, this problem arises with any data structure composed of other simpler data structures, such as any shared object containing a lock.&lt;/p>
+&lt;p>The standard use case for locks is to ensure mutual exclusion by acquiring the lock before reaching the linearization point, releasing it afterwards.&lt;/p>
+&lt;p>The atomic triple for such operations should assert ownership of the shared object in its precondition &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; allowing the object to be accessed before the linearization point.&lt;/p>
+&lt;p>As the lock is a part of the object, we are thus able to acquire the lock &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; before reaching the linearization point.&lt;/p>
+&lt;p>After the linearization point, however &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; we lose access to the object &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and so we cannot release the lock.&lt;/p>
+&lt;p>An alternative approach would be to treat the object and the lock as separately shared resources &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; but this would only result in a more complex and less intuitive specification.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="beyond-linearization-points">Beyond Linearization Points&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>To reason beyond LPs, we provide an alternative definition of atomic triples.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>In this definition, the invariant shared state must hold throughout &lt;em>all&lt;/em> steps.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>These triples still describe the effects at the LP.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>We also include &lt;em>private&lt;/em> pre and postconditions to describe &lt;em>thread-local&lt;/em> resources.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;small>The previous notation is still used when there are no local resources.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \left\langle \ \alpha \rightarrow \beta \ \right\rangle $
+$ \left\{ \ P \ \right\} $
+$ \ e \ $
+$ \left\{ \ Q \ \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \left\langle \ \textcolor{red}{\alpha} \rightarrow \beta \ \right\rangle $
+$ \left\{ \ P \ \right\} $
+$ \ e \ $
+$ \left\{ \ Q \ \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \left\langle \ \alpha \rightarrow \textcolor{red}{\beta} \ \right\rangle $
+$ \left\{ \ P \ \right\} $
+$ \ e \ $
+$ \left\{ \ Q \ \right\} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \left\langle \ \alpha \rightarrow \beta \ \right\rangle $
+$ \left\{ \ \textcolor{red}{P} \ \right\} $
+$ \ e \ $
+$ \left\{ \ \textcolor{red}{Q} \ \right\} $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+$ \left\langle \ \alpha \ \right\rangle $
+$ \ e \ $
+$ \left\langle \ \beta \ \right\rangle $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>To solve this issue, we redefine the concept of logical atomicity.&lt;/p>
+&lt;p>The invariant assertion on the shared state must now hold throughout all steps of the operation &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; while the effects are still described in the same manner.&lt;/p>
+&lt;p>Akin to standard Hoare triples, we also include private pre and postconditions to reason about thread-local resources.&lt;/p>
+&lt;p>Whenever atomic triples require no local resources, we still use the previous notation.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="a-map-specification">A Map Specification&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>I now present the atomic triples which express the intended behaviour for JellyFish.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="representation-predicate">Representation Predicate&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>We first define a representation predicate for the map resources.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>The left sentinel pointer keeps track of the physical structure.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;small>A map describes the abstract state of the structure.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \textsf{VCMap}(p, m, \Gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \textsf{VCMap}(\textcolor{red}{p}, m, \Gamma) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ \textsf{VCMap}(p, \textcolor{red}{m}, \Gamma) $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>First, we require a representation predicate to describe the known state of the map, called VCMap.&lt;/p>
+&lt;p>VCMap is parameterized by the pointer to the left sentinel, which tracks the physical state, &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and a map which abstracts our interpretation of the state of the data structure.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-constructor">Triple for Constructor&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>A Hoare triple is defined for $\textsf{newMap}$, rather than an atomic triple.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>No resources are needed as a precondition &amp;hellip;&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;small>&amp;hellip; and we obtain a pointer to an empty map.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\{ \ \textsf{emp} \ \right\} \\ $
+&lt;/span>
+&lt;/div>
+&lt;p class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{newMap} \\ $
+&lt;/span>
+&lt;/p>
+&lt;p class="smath">
+&lt;span class="fragment " data-fragment-index="3">
+$ \left\{ \ \exists \ p, \ \Gamma. \ \textsf{VCMap}(p, \varnothing, \Gamma); \ p \ \right\} $
+&lt;/span>
+&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>For the skip list constructor, we define a Hoare triple instead of an atomic triple, since it will never be called concurrently for the same object.&lt;/p>
+&lt;p>This method does not need any initial resources as a precondition &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and the postcondition simply asserts exclusive ownership of an empty map, where the return value p corresponds to the left sentinel pointer.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-lookups">Triple for Lookups&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>$\textsf{get}$ performs a search for a key.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>The invariant ties the shared resources to some abstract state $m$.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>The map remains unchanged after the search.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>The result is empty if the key is not in the map.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;small>Otherwise, the most recent value is returned, ignoring the vertical list.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\langle \ m. \ \textsf{VCMap}(p, m, \Gamma) \ \right\rangle \\ $
+&lt;/span>
+&lt;/div>
+&lt;p class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{get} \ p \ k \\ $
+&lt;/span>
+&lt;/p>
+&lt;p class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \left\langle \ \textcolor{red}{\textsf{VCMap}(p, m, \Gamma)}; \begin{array}{c} \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \ \textsf{None} \Rightarrow \textsf{None} \ | \ \textsf{Some}(v, t, vl) \Rightarrow \textsf{Some}(v, t) \end{array} \right\rangle $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \left\langle \ \textsf{VCMap}(p, m, \Gamma); \begin{array}{c} \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \ \textcolor{red}{\textsf{None}} \Rightarrow \textcolor{blue}{\textsf{None}} \ | \ \textsf{Some}(v, t, vl) \Rightarrow \textsf{Some}(v, t) \end{array} \right\rangle $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+$ \left\langle \ \textsf{VCMap}(p, m, \Gamma); \begin{array}{c} \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \ \textsf{None} \Rightarrow \textsf{None} \ | \ \textcolor{red}{\textsf{Some}(v, t, vl)} \Rightarrow \textcolor{blue}{\textsf{Some}(v, t)} \end{array} \right\rangle $
+&lt;/span>
+&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The get method performs a lookup for the current value of some key.&lt;/p>
+&lt;p>The invariant asserts shared ownership of a VCMap resource tied to some abstract state.&lt;/p>
+&lt;p>At the linearization point, this resource is preserved as is, since a search is not supposed to perform any changes.&lt;/p>
+&lt;p>If the key does not exists in the map, then the search must come up empty.&lt;/p>
+&lt;p>Otherwise, the value with the most recent timestamp should be returned, ignoring the vertical list.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="triple-for-updates">Triple for Updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>$\textsf{put}$ receives a key, value and timestamp.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Again, the invariant ties the shared resources to some abstract state $m$.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+&lt;small>At the LP, the map is updated depending on the values it stores.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="smath">
+&lt;span class="fragment " data-fragment-index="2">
+$ \left\langle \ m. \ \textsf{VCMap}(p, m, \Gamma) \ \right\rangle \\ $
+&lt;/span>
+&lt;/div>
+&lt;p class="smath">
+&lt;span class="fragment " data-fragment-index="1">
+$ \textsf{put} \ p \ k \ v \ t \\ $
+&lt;/span>
+&lt;/p>
+&lt;p class="smath">
+&lt;span class="fragment " data-fragment-index="3">
+$ \left\langle \ \textsf{VCMap}(p, \textsf{CaseMap}(m, k, v, t), \Gamma) \ \right\rangle \\ $
+&lt;/span>
+&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Finally, the put method is parameterized by the updated key, as well as its new value and timestamp.&lt;/p>
+&lt;p>We use the same invariant as the one for get.&lt;/p>
+&lt;p>Whether the abstract state of the map is updated will be determined by the state of the map at the linearization point.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-updates">Map Updates&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>A case analysis is performed on the map&amp;rsquo;s entry for the key.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>If the entry is empty, then the key is added to the map with the given value.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>Otherwise, an update to the entry will occur depending on the timestamp.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>If the given timestamp is &lt;em>less recent&lt;/em>, then the map will remain unchanged.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+&lt;small>Otherwise, the old value is appended to the vertical list, keeping the new value.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \begin{array}{rl} \textsf{CaseMap}(m, k, v, t) \triangleq &amp;amp; \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ &amp;amp; | \ \textsf{None} \Rightarrow \langle k : (v, t, []) \rangle m \\ &amp;amp; | \ \textsf{Some}(v_i, t_i, vl) \Rightarrow \textsf{\textbf{if}} \ t &amp;lt; t_i \ \textsf{\textbf{then}} \ m \ \textsf{\textbf{else}} \ \langle k : (v, t, (v_i, t_i) :: vl) \rangle m \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \begin{array}{rl} \textsf{CaseMap}(m, k, v, t) \triangleq &amp;amp; \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \\ &amp;amp; | \ \textcolor{red}{\textsf{None}} \Rightarrow \textcolor{blue}{\langle k : (v, t, []) \rangle m} \\ &amp;amp; | \ \textsf{Some}(v_i, t_i, vl) \Rightarrow \textsf{\textbf{if}} \ t &amp;lt; t_i \ \textsf{\textbf{then}} \ m \ \textsf{\textbf{else}} \ \langle k : (v, t, (v_i, t_i) :: vl) \rangle m \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \begin{array}{rl} \textsf{CaseMap}(m, k, v, t) \triangleq &amp;amp; \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \\ &amp;amp; | \ \textsf{None} \Rightarrow \langle k : (v, t, []) \rangle m \\ &amp;amp; | \ \textcolor{red}{\textsf{Some}(v_i, t_i, vl)} \Rightarrow \textsf{\textbf{if}} \ \textcolor{green}{t &amp;lt; t_i} \ \textsf{\textbf{then}} \ m \ \textsf{\textbf{else}} \ \langle k : (v, t, (v_i, t_i) :: vl) \rangle m \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \begin{array}{rl} \textsf{CaseMap}(m, k, v, t) \triangleq &amp;amp; \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ &amp;amp; | \ \textsf{None} \Rightarrow \langle k : (v, t, []) \rangle m \\ &amp;amp; | \ \textsf{Some}(v_i, t_i, vl) \Rightarrow \textsf{\textbf{if}} \ \textcolor{green}{t &amp;lt; t_i} \ \textsf{\textbf{then}} \ \textcolor{blue}{m} \ \textsf{\textbf{else}} \ \langle k : (v, t, (v_i, t_i) :: vl) \rangle m \end{array}$
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="5">
+$ \begin{array}{rl} \textsf{CaseMap}(m, k, v, t) \triangleq &amp;amp; \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ &amp;amp; | \ \textsf{None} \Rightarrow \langle k : (v, t, []) \rangle m \\ &amp;amp; | \ \textsf{Some}(v_i, t_i, vl) \Rightarrow \textsf{\textbf{if}} \ \textcolor{green}{t &amp;lt; t_i} \ \textsf{\textbf{then}} \ m \ \textsf{\textbf{else}} \ \textcolor{blue}{\langle k : (v, t, (v_i, t_i) :: vl) \rangle m} \end{array}$
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The new map abstraction will depend on the map&amp;rsquo;s entry for the key.&lt;/p>
+&lt;p>If the key is not in the map, then a new entry with a single timestamped value and an initially empty vertical list is added to the map.&lt;/p>
+&lt;p>If an entry already exists for the key, then an update may occur, depending on the most recent timestamp.&lt;/p>
+&lt;p>If the new timestamp is less recent, then the new value is outdated and the map will be maintained as is.&lt;/p>
+&lt;p>Otherwise, the most recent value is appended to the vertical list and the new value and timestamp are added to the map&amp;rsquo;s entry.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="client-reasoning">Client Reasoning&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Although logical atomicity ensures that operations on JellyFish are correct, it does not provide a way to directly reason about functional properties relevant for client programs. I&amp;rsquo;ll now discuss how to reason about shared resources and how to combine thread-local operations to obtain a global view of the shared state.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="shared-resources">Shared Resources&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>Shared resources are expressed in Iris through invariants.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>Invariant resources can be accessed during logically atomic operations.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>The invariant containing $\textsf{VCMap}$ is abstracted by another predicate.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="4">
+&lt;small>The shared state must not be described by a specific abstract map.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment fade-out" data-fragment-index="3">
+&lt;span class="fragment " data-fragment-index="1">
+&lt;span class="inv">
+$ I $
+&lt;/span>&lt;sup class="name">$ \ \mathcal{N} $&lt;/sup>
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="3">
+$ \textsf{IsMap}(p, \Gamma) $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>To reason about shared resources, Iris allows the definition of invariants.&lt;/p>
+&lt;p>Iris invariants ensure that invariant assertions on shared resources do not break by only allowing temporary access to these shared resources during atomic instructions. The same can be done for logically atomic operations as these can be reasoned about as if they were atomic.&lt;/p>
+&lt;p>A new representation predicate is defined to abstract an Iris invariant protecting a VCMap resource.&lt;/p>
+&lt;p>This invariant represents the shared state which cannot be tied to a specific map abstraction, unlike VCMap.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="private-views">Private Views&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>Knowledge of the map&amp;rsquo;s state is obtained through thread-local views of the map.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>A view refers to a fraction of the map which may be mutable or constant.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>Views can be split into more views of the &lt;em>same type&lt;/em> with smaller fractions.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>Partial views can be combined to obtain the full fraction of the map.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;small>Both types of view are interchangeable when in possession of the full fraction.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;small>With constant views we can verify clients which perform concurrent reads.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;small>Mutable views allow reasoning about concurrent updates to the map.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&lt;small>How can we handle conflicting updates and inconsistent views?&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \textsf{MutMap}(m, q, \Gamma) \qquad \qquad \textsf{ConMap}(m, q, \Gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \textsf{MutMap}(m, \textcolor{red}{q}, \Gamma) \qquad \qquad \textsf{ConMap}(m, \textcolor{red}{q}, \Gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ q = q_1 + q_2 $
+&lt;/span>
+&lt;span class="fragment fade-out" data-fragment-index="6">
+&lt;span class="fragment " data-fragment-index="4">
+$ q = 1 $
+&lt;/span>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+$ \textsf{ConMap}(m, q, \Gamma) $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+$ \textsf{MutMap}(m, q, \Gamma) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+$ \textsf{MutMap}(m_1, q_1, \Gamma) * \textsf{MutMap}(m_2, q_2, \Gamma) $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>The map&amp;rsquo;s state is described by separate views of the map which can be owned privately by each thread.&lt;/p>
+&lt;p>Each view is associated with a fraction and views can be either mutable or constant.&lt;/p>
+&lt;p>A view can be split into other views with smaller fractions, maintaining the same type.&lt;/p>
+&lt;p>All views can be combined to obtain a full fraction, which corresponds to all knowledge we hold of the map&amp;rsquo;s state.&lt;/p>
+&lt;p>In this scenario, we can switch between types of views, ensuring that we can switch between read-only and write-only concurrency.&lt;/p>
+&lt;p>With constant views, threads can perform concurrent reads&amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; and with mutable views, threads can perform concurrent updates.&lt;/p>
+&lt;p>However, how can we reason about conflicting updates which may result in inconsistent views of the map?&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="map-composition">Map Composition&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>We require a composition operator on maps.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>For different keys, the combined map will contain both key-value pairs.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>But what happens when both threads associate different values to the same key?&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>The key will be associated with the composition of both values.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;small>Value composition should yield the most recent value.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;small>If $i &amp;lt; j$, then the pair with value $a$ is discarded, returning the pair with value $b$.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="7">
+&lt;small>For equal timestamps, both values are possible, depending on the scheduler.&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="8">
+&lt;small>As a result, the abstract map associates each key to a &lt;em>set&lt;/em> of possible values.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ m_1 \cdot m_2 $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \{ \ k_1 : x \ \} \cup \{ \ k_2 : y \ \} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \{ \ k : x \ \} \cup \{ \ k : y \ \} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \{ \ k : x \cdot y \ \} $
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;font size="5">The $\textsf{argmax}$ operator returns that value.&lt;/font>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+$ \textsf{prodZ}(a, i) \cdot \textsf{prodZ}(b, j) = \textsf{prodZ}(b, j) $
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+$ \textsf{prodZ}(a, i) \cdot \textsf{prodZ}(b, i) = \textsf{prodZ}(a \cup b, i) $
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>We reason about such inconsistencies through a composition operator on maps.&lt;/p>
+&lt;p>If the views hold no key in common, then the combined map is simply a map containing all key-value pairs of both views.&lt;/p>
+&lt;p>However, when there exists some key in common, the associated value may differ in both views.&lt;/p>
+&lt;p>This issue can be resolved by returning a new map entry where the associated value is the composition of both values.&lt;/p>
+&lt;p>As we&amp;rsquo;ve seen previously, a search will always return the most recent value associated with the key. The abstract map should thus associate each key to the value with the greatest timestamp, meaning that value composition should be done through the argmax operator.&lt;/p>
+&lt;p>Values should be represented as pairs, where timestamp &amp;ldquo;j&amp;rdquo; being greater than timestamp &amp;ldquo;i&amp;rdquo; returns the pair with value &amp;ldquo;b&amp;rdquo;, discarding the value &amp;ldquo;a&amp;rdquo;.&lt;/p>
+&lt;p>However, when both timestamps are equal, the last value to the written will depend on the scheduler. As such, both &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; may be the value associated with the key, so &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; we require &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; to be sets rather than the actual values. In that way, we can maintain each key associated with all possible values, along with the corresponding timestamp &amp;ldquo;i&amp;rdquo;.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="updates-and-lookups">Updates and Lookups&lt;/h3>
+&lt;div class="r-stack">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+&lt;small>The map is updated by composition with the new timestamped entry for the key.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+&lt;small>The key is mapped to a singleton set containing the new value.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+&lt;small>Lookups to the map will depend on the following case analysis.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+&lt;small>The return result $o$ will be empty if the key is not in the map.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+&lt;small>Otherwise, some timestamped value is returned.&lt;/small>
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+&lt;small>The returned value must belong to some set of values, &amp;hellip;&lt;/small>
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+&lt;small>&amp;hellip; which corresponds to the set stored in the abstract state of the map.&lt;/small>
+&lt;/span>
+&lt;/div>
+&lt;div class="r-stack smath">
+&lt;span class="fragment current-visible" data-fragment-index="1">
+$ \begin{array}{l} m \cdot \{ \ k : \textsf{prodZ}(\{ v \}, t) \ \} \\ \ \\ \ \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="2">
+$ \begin{array}{l} m \cdot \{ \ k : \textsf{prodZ}(\textcolor{red}{\{ v \}}, t) \ \} \\ \ \\ \ \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="3">
+$ \begin{array}{l} \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ | \ \textsf{None} \Rightarrow o = \textsf{None} \\ | \ \textsf{Some}(a) \Rightarrow \exists \ vs, v, t. \ a = \textsf{prodZ}(vs, t) * v \in vs * o = \textsf{Some}(v, t) \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="4">
+$ \begin{array}{l} \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \\ | \ \textcolor{red}{\textsf{None}} \Rightarrow \textcolor{blue}{o = \textsf{None}} \\ | \ \textsf{Some}(a) \Rightarrow \exists \ vs, v, t. \ a = \textsf{prodZ}(vs, t) * v \in vs * o = \textsf{Some}(v, t) \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="5">
+$ \begin{array}{l} \textsf{\textbf{match}} \ \textcolor{red}{m[k]} \ \textsf{\textbf{with}} \\ | \ \textsf{None} \Rightarrow o = \textsf{None} \\ | \ \textcolor{red}{\textsf{Some}(a)} \Rightarrow \exists \ vs, v, t. \ a = \textsf{prodZ}(vs, t) * v \in vs * \textcolor{blue}{o = \textsf{Some}(v, t)} \end{array}$
+&lt;/span>
+&lt;span class="fragment current-visible" data-fragment-index="6">
+$ \begin{array}{l} \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ | \ \textsf{None} \Rightarrow o = \textsf{None} \\ | \ \textsf{Some}(a) \Rightarrow \exists \ vs, v, t. \ a = \textsf{prodZ}(vs, t) * \textcolor{green}{v \in vs} * o = \textsf{Some}(v, t) \end{array}$
+&lt;/span>
+&lt;span class="fragment " data-fragment-index="7">
+$ \begin{array}{l} \textsf{\textbf{match}} \ m[k] \ \textsf{\textbf{with}} \\ | \ \textsf{None} \Rightarrow o = \textsf{None} \\ | \ \textsf{Some}(a) \Rightarrow \exists \ vs, v, t. \ \textcolor{green}{a = \textsf{prodZ}(vs, t)} * v \in vs * o = \textsf{Some}(v, t) \end{array}$
+&lt;/span>
+&lt;/div>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Since map composition will handle all conflicts, updates to the map can be expressed through composition with a singleton entry for the key with its new timestamped value &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which is initially kept in its own singleton set.&lt;/p>
+&lt;p>Since we can only ensure that each key is mapped to a set of possible values, lookups can now be defined as follows.&lt;/p>
+&lt;p>The search will come up empty if there is no map entry for the key.&lt;/p>
+&lt;p>Otherwise, some timestamped value will be returned &amp;hellip;&lt;/p>
+&lt;p>&amp;hellip; which belongs to the set of values &amp;hellip;&lt;/p>
+&lt;p>.. stored in the map associated with the same timestamp.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;section>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>&lt;small> (continue below) &lt;/small>&lt;/p>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>To conclude, this work contributes to the understanding of complex nested data structures, providing a new approach for reasoning about concurrent maps.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;hr>
+&lt;h3 id="contributions">Contributions&lt;/h3>
+&lt;span class="fragment " >
+&lt;small>&lt;li>The first verification effort for the JellyFish skip list.&lt;/li>&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>&lt;li>A compositional approach for defining map specifications.&lt;/li>&lt;/small>
+&lt;/span>
+&lt;span class="fragment " >
+&lt;small>&lt;li>An alternative interpretation of logical atomicity defined in &lt;a href="https://iris-project.org/" target="_blank" rel="noopener">Iris&lt;/a>.&lt;/li>&lt;/small>
+&lt;/span>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>As for the main contributions I highlight:&lt;/p>
+&lt;p>The first verification effort of the JellyFish design for concurrent append-only skip lists.&lt;/p>
+&lt;p>A compositional approach for defining map specifications suitable for verifying client programs.&lt;/p>
+&lt;p>And an alternative interpretation of logical atomicity which allows compositional reasoning about shared resources after an operation’s linearization point.&lt;/p>
+&lt;/small>
+&lt;/aside>
+&lt;/section>
+&lt;hr>
+&lt;h1 id="thank-you">Thank you!&lt;/h1>
+&lt;aside class="notes">
+&lt;small>
+&lt;p>Thank you for your attention and I am now available to answer any questions you may have.&lt;/p>
+&lt;/small>
 &lt;/aside></description></item></channel></rss>
