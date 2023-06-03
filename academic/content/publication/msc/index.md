@@ -18,6 +18,9 @@ publishDate: '2022-11-25T14:30:00Z'
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
 publication_types: ['7']
+publication: |-
+  [MSc Thesis, Instituto Superior Técnico](https://scholar.tecnico.ulisboa.pt/records/WcX0DzHiRG0JbSdINpsBWX_h8g9go2ZN2yrC)
+publication_short: MSc Thesis
 
 abstract: 'Concurrent append-only skip lists are widely used in data store applications, so as to maintain multiple versions of the same data with different timestamps, rather than delete outdated information. One such skip list implementation is JellyFish, which greatly mitigates the drop in performance witnessed in other skip lists induced by the append-only design. JellyFish accomplishes this feat by storing in each node a consistent timeline of values as a linked list, instead of inserting new nodes in the skip list. 
 <br> <br>
@@ -32,6 +35,8 @@ featured: true
 links:
 - name: Extended Abstract
   url: extended-abstract.pdf
+    # Doesn't open in new tab, but this doesnt't work:
+    #   {{site.BaseURL}}/publication/msc/extended-abstract.pdf
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
 
@@ -39,5 +44,5 @@ slides: msc
 ---
 
 {{% callout note %}}
-MSc thesis advised by [João Ferreira](https://joaoff.com).
+Thesis advised by [João Ferreira](https://joaoff.com).
 {{% /callout %}}
