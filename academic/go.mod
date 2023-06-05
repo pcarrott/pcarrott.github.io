@@ -11,4 +11,5 @@ require (
 
 replace (
 	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-plugin-reveal => ../modules/wowchemy-plugin-reveal
+	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5 => ../modules/wowchemy
 )
