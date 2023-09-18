@@ -18,10 +18,10 @@ bio: My research interests include formal methods and their application on softw
 
 # Interests to show in About widget
 interests:
-  - Formal Methods
   - Programming Languages
-  - Software Verification
   - Program Logics
+  - Formal Methods
+  - Software Verification
 
 # Education to show in About widget
 education:
