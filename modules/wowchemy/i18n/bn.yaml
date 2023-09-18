@@ -201,6 +201,9 @@
 - id: pub_patent # Patent
   translation: পেটেন্ট
 
+- id: pub_tool # Tool
+  # translation: পেটেন্ট
+
 # Project details
 
 - id: open_project_site # Go to Project Site

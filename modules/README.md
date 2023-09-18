@@ -8,6 +8,8 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `about.biography.html`: Admin avatar is not compressed maintaining image quality.
 
+`publication_types.toml`: Add publication type for tool papers.
+
 ## wowchemy-plugin-reveal
 
 `baseof.html`: Load local themes in `assets/css/theme` for Reveal slides.
