@@ -26,6 +26,8 @@ sections:
             GPA: 19 out of 20
             <br>
             Major in **Algorithms and Programming** and **Intelligent Systems**
+            <br>
+            Thesis: [Formal Specification and Verification of the Lazy JellyFish Skip List](/publication/msc/)
         - title: BSc in Computer Science and Engineering
           company: Instituto Superior Técnico
           company_url: https://tecnico.ulisboa.pt
