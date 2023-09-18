@@ -49,7 +49,7 @@ social:
   #   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
   - icon: google-scholar
     icon_pack: ai
-    link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl=pt-PT
+    link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl
   - icon: github
     icon_pack: fab
     link: https://github.com/pcarrott
