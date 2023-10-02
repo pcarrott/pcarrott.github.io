@@ -6,12 +6,12 @@ title: Pedro Carrott
 superuser: true
 
 # Role/position/tagline
-role: PhD Candidate
+role: PhD Student
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Instituto Superior Técnico
-    url: https://tecnico.ulisboa.pt
+  - name: Imperial College London
+    url: https://www.imperial.ac.uk
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages.
@@ -65,13 +65,13 @@ social:
 #   link: uploads/resume.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: 'pedro.carrott@tecnico.ulisboa.pt'
+email: 'p.carrott23@imperial.ac.uk'
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
 
-I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at [Instituto Superior Técnico](https://tecnico.ulisboa.pt), I now intend to broaden my knowledge by pursuing a PhD degree at a reputable research group.
+I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at [Instituto Superior Técnico](https://tecnico.ulisboa.pt), I am now a PhD student at [Imperial College London](https://www.imperial.ac.uk) under the advisory of [Azalea Raad](https://www.soundandcomplete.org).
 
 My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages. I have always been interested in pure mathematical reasoning and I found in these fields of Computer Science a way to nurture that interest while contributing with a direct impact in society.
 

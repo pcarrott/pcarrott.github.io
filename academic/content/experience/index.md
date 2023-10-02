@@ -15,6 +15,14 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
+        - title: PhD in Computing Research
+          company: Imperial College London
+          company_url: https://www.imperial.ac.uk
+          company_logo: imperial_college
+          location: London
+          date_start: '2023-10-02'
+          date_end: ''
+          description: 'Topic: Incorrectness Logic'
         - title: MSc in Computer Science and Engineering
           company: Instituto Superior Técnico
           company_url: https://tecnico.ulisboa.pt
