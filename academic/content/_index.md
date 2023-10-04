@@ -17,7 +17,7 @@ sections:
       contact_links:
         - icon: at
           icon_pack: fas
-          name: p.carrott23@imperial.ac.uk
+          name: pedro.carrott@imperial.ac.uk
           link: "mailto:?subject={title}&body={url}"
     design:
       columns: '2'

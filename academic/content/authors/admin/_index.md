@@ -65,7 +65,7 @@ social:
 #   link: uploads/resume.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: 'p.carrott23@imperial.ac.uk'
+email: 'pedro.carrott@imperial.ac.uk'
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
