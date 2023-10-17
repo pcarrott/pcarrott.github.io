@@ -41,18 +41,15 @@ social:
   # - icon: at
   #   icon_pack: fas
   #   link: '/#contact'
-  # - icon: twitter
-  #   icon_pack: fab
-  #   link: https://twitter.com/GeorgeCushen
-  # - icon: graduation-cap # Alternatively, use `google-scholar` icon from `ai` icon pack
-  #   icon_pack: fas
-  #   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
-  - icon: google-scholar
-    icon_pack: ai
-    link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl
-  - icon: github
+  - icon: square-twitter
+    icon_pack: fab
+    link: https://twitter.com/pedrocarrott
+  - icon: square-github
     icon_pack: fab
     link: https://github.com/pcarrott
+  - icon: google-scholar-square
+    icon_pack: ai
+    link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl
   # - icon: linkedin
   #   icon_pack: fab
   #   link: https://www.linkedin.com/in/pedro-carrott
