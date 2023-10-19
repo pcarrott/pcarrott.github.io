@@ -10,6 +10,8 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `publication_types.toml`: Add publication type for tool papers.
 
+`blocks/groups.html`: Add a new block type to replace accomplishments with groups of accomplishments.
+
 ## wowchemy-plugin-reveal
 
 `baseof.html`: Load local themes in `assets/css/theme` for Reveal slides.
