@@ -50,7 +50,7 @@ sections:
     content:
       # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
       title: 'Teaching'
-      subtitle:
+      subtitle: 'Experience as a teaching assistant'
       # Date format: https://wowchemy.com/docs/customization/#date-format
       date_format: Jan 2006
       # Accomplishments.
@@ -68,8 +68,7 @@ sections:
             date_start: ''
             date_end: ''
             certificate_url: ''
-            description: |- 
-              Role: <u>Teaching Assistant</u>
+            description: ''
             url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
           - organization: Imperial College London
             organization_url: https://www.imperial.ac.uk
@@ -78,8 +77,7 @@ sections:
             date_start: ''
             date_end: ''
             certificate_url: ''
-            description: |- 
-              Role: <u>Teaching Assistant</u>
+            description: ''
             url: https://www.imperial.ac.uk/computing/current-students/courses/40018/
         - title: Academic Year 2021/2022
           items:
@@ -90,8 +88,7 @@ sections:
             date_start: ''
             date_end: ''
             certificate_url: ''
-            description: |- 
-              Role: <u>Teaching Assistant</u>
+            description: ''
             url: https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre
           - organization: Instituto Superior Técnico
             organization_url: https://tecnico.ulisboa.pt/en
@@ -100,8 +97,7 @@ sections:
             date_start: ''
             date_end: ''
             certificate_url: ''
-            description: |- 
-              Role: <u>Teaching Assistant</u>
+            description: ''
             url: https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre
     design:
       columns: '2'
