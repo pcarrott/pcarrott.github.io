@@ -1,9 +1,9 @@
 ---
-title: Incorrectness and Under-Approximation
+title: Concurrent Separation Logic
 summary: An example of using the in-built project page.
 tags:
   - Program Logics
-  - Static Analysis
+  - Theorem Proving
 date: '2016-04-27T00:00:00Z'
 draft: true
 

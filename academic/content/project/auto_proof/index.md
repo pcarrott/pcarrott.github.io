@@ -1,8 +1,9 @@
 ---
-title: Proof Automation with LLMs
+title: Theorem Proving and Automation
 summary: An example of using the in-built project page.
 tags:
   - Large Language Models
+  - Theorem Proving
 date: '2016-04-27T00:00:00Z'
 draft: true
 
