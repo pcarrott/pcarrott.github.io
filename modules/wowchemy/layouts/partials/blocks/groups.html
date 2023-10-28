@@ -46,12 +46,11 @@
 
               {{ if .date_term}}
               {{ .date_term }}
-              {{end}}
-              {{ if .date_start}}
-              {{ (time .date_start) | time.Format ($block.content.date_format | default "Jan 2006") }}
-              {{end}}
-              {{ if .date_end}}
-              – {{ (time .date_end) | time.Format ($block.content.date_format | default "Jan 2006") }}
+              {{ else }}
+                {{ (time .date_start) | time.Format ($block.content.date_format | default "Jan 2006") }}
+                {{ if .date_end}}
+                – {{ (time .date_end) | time.Format ($block.content.date_format | default "Jan 2006") }}
+                {{end}}
               {{end}}
             </div>
             {{- if $svg_icon}}

@@ -18,7 +18,7 @@ sections:
         - title: PhD in Computing Research
           company: Imperial College London
           company_url: https://www.imperial.ac.uk
-          company_logo: imperial_college
+          company_logo: imperial_college_london
           location: London
           date_start: '2023-10-02'
           date_end: ''
@@ -59,6 +59,28 @@ sections:
       #   Leave other parameters empty if not required.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       groups:
+        - title: Academic Year 2023/2024
+          items:
+          - organization: Imperial College London
+            organization_url: https://www.imperial.ac.uk
+            title: Models of Computation
+            date_term: 'Autumn Term'
+            date_start: ''
+            date_end: ''
+            certificate_url: ''
+            description: |- 
+              Role: <u>Teaching Assistant</u>
+            url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
+          - organization: Imperial College London
+            organization_url: https://www.imperial.ac.uk
+            title: Discrete Mathematics, Logic & Reasoning
+            date_term: 'Autumn Term'
+            date_start: ''
+            date_end: ''
+            certificate_url: ''
+            description: |- 
+              Role: <u>Teaching Assistant</u>
+            url: https://www.imperial.ac.uk/computing/current-students/courses/40018/
         - title: Academic Year 2021/2022
           items:
           - organization: Instituto Superior Técnico
