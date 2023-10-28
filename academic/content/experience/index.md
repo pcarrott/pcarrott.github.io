@@ -86,7 +86,7 @@ sections:
           - organization: Instituto Superior Técnico
             organization_url: https://tecnico.ulisboa.pt/en
             title: Artificial Intelligence
-            date_term: '4th Quarter'
+            date_term: 'Spring Term'
             date_start: ''
             date_end: ''
             certificate_url: ''
@@ -96,7 +96,7 @@ sections:
           - organization: Instituto Superior Técnico
             organization_url: https://tecnico.ulisboa.pt/en
             title: Analysis and Synthesis of Algorithms
-            date_term: '2nd Quarter'
+            date_term: 'Autumn Term'
             date_start: ''
             date_end: ''
             certificate_url: ''

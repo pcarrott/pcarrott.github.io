@@ -2,6 +2,7 @@
 
 {{ $copyright_license := .Params.copyright.license | default site.Params.footer.copyright.license }}
 {{ $notice := .Params.copyright.notice | default site.Params.footer.copyright.notice }}
+{{ $show_lastmod := site.Params.footer.copyright.show_lastmod | default false }}
 
 {{ if ($copyright_license.enable | default false) }}
 
@@ -46,7 +47,14 @@
 
   {{ with $notice }}
   <p class="powered-by copyright-license-text">
+    <!-- {{ replace (replace . "{year}" now.Year) "{now}" (now | time.Format ":date_long") | markdownify }} -->
     {{ replace . "{year}" now.Year | markdownify }}
+  </p>
+  {{ end }}
+
+  {{ if $show_lastmod }}
+  <p class="powered-by copyright-license-text">
+    {{ replace "Last updated on {now}" "{now}" (now | time.Format ":date_long") | markdownify }}
   </p>
   {{ end }}
 

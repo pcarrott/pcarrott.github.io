@@ -45,6 +45,7 @@ footer:
   copyright:
     notice: >-
       © {year} Pedro Carrott. Meme design is my passion.
+    show_lastmod: true
 
 # Localization
 

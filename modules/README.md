@@ -12,6 +12,8 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `blocks/groups.html`: Add a new block type to replace accomplishments with groups of accomplishments.
 
+`site_footer_license.html`: Include date of last update in footer.
+
 ## wowchemy-plugin-reveal
 
 `baseof.html`: Load local themes in `assets/css/theme` for Reveal slides.
