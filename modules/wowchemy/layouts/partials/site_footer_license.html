@@ -47,14 +47,10 @@
 
   {{ with $notice }}
   <p class="powered-by copyright-license-text">
-    <!-- {{ replace (replace . "{year}" now.Year) "{now}" (now | time.Format ":date_long") | markdownify }} -->
-    {{ replace . "{year}" now.Year | markdownify }}
-  </p>
-  {{ end }}
-
-  {{ if $show_lastmod }}
-  <p class="powered-by copyright-license-text">
-    {{ replace "Last updated on {now}" "{now}" (now | time.Format ":date_long") | markdownify }}
+    <b>{{ replace . "{year}" now.Year | markdownify }}</b>
+    {{ if $show_lastmod }}
+      <i>{{ replace "Last updated on {now}" "{now}" (now | time.Format ":date_long") | markdownify }}</i>
+    {{ end }}
   </p>
   {{ end }}
 
