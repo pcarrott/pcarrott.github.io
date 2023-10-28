@@ -49,6 +49,7 @@
   <p class="powered-by copyright-license-text">
     <b>{{ replace . "{year}" now.Year | markdownify }}</b>
     {{ if $show_lastmod }}
+      <br>
       <i>{{ replace "Last updated on {now}" "{now}" (now | time.Format ":date_long") | markdownify }}</i>
     {{ end }}
   </p>
