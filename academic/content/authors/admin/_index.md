@@ -66,10 +66,12 @@ email: 'pedro.carrott@imperial.ac.uk'
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
+
+mention:
+  authors:
+    - azalea-raad
 ---
 
-I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at [Instituto Superior Técnico](https://tecnico.ulisboa.pt/en), I am now a PhD student at [Imperial College London](https://www.imperial.ac.uk) under the advisory of [Azalea Raad](https://www.soundandcomplete.org).
+I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at [Instituto Superior Técnico](https://tecnico.ulisboa.pt/en), I am now a PhD student at [Imperial College London](https://www.imperial.ac.uk) under the advisory of {azalea-raad}.
 
 My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages. I have always been interested in pure mathematical reasoning and I found in these fields of Computer Science a way to nurture that interest while contributing with a direct impact in society.
-
-<!-- {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}. -->

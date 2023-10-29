@@ -6,7 +6,7 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `page_links.html`: Links now always have the same target; local files now open in a new tab as with any other link.
 
-`about.biography.html`: Admin avatar is not compressed maintaining image quality.
+`about.biography.html`: Admin avatar is not compressed maintaining image quality. Can now reference authors as well.
 
 `publication_types.toml`: Add publication type for tool papers.
 

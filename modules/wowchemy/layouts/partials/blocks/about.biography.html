@@ -90,11 +90,15 @@
     {{/* Only display widget title in explicit instances of about widget, not in author pages. */}}
     {{ with $block.content.title }}<h1>{{ . | markdownify | emojify }}</h1>{{ end }}
 
-    {{ with $person_page.Content }}
-    <div class="article-style">
-      {{ . }}
-    </div>
+    {{ $content := $person_page.Content }}
+    {{ with $person.mention.authors }}
+      {{ range $index, $author := .}}
+        {{ $page := site.GetPage (replace "/authors/{t}" "{t}" $author) }}
+        {{ $name := printf "[%s](%s)" $page.LinkTitle $page.Page.Params.site | markdownify }}
+        {{ $content = replace $content (printf "{%s}" $author) $name }}
+      {{ end }}
     {{ end }}
+    {{ $content | markdownify }}
 
     <div class="row">
 
