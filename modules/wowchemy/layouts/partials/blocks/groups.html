@@ -19,13 +19,15 @@
         <div class="card-text" style="padding-bottom:0">
           {{ range .items }}
 
-            {{- $svg_icon := resources.Get (printf "media/icons/brands/%s.svg" (replace (lower .organization) " " "_")) -}}
+            {{ $page := site.GetPage (printf "/organizations/%s" .organization) }}
+
+            {{- $svg_icon := $page.Resources.GetMatch "icon.svg" -}}
             {{- if $svg_icon }}
             <div class="d-flex align-content-start">
               <div class="mr-2 mb-2">
-                {{- with .organization_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
+                {{- with $page.Page.Params.site}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
                 <img src="{{ $svg_icon.RelPermalink }}" width="56px" height="56px" alt="{{.organization | plainify}}" loading="lazy">
-                {{- with .organization_url}}</a>{{end -}}
+                {{- with $page.Page.Params.site}}</a>{{end -}}
               </div>
               <div>
             {{ end }}
@@ -38,9 +40,9 @@
             </div>
 
             <div class="card-subtitle my-0 article-metadata">
-              {{- with .organization_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
-              {{- .organization | markdownify | emojify -}}
-              {{- with .organization_url}}</a>{{end -}}
+              {{- with $page.Page.Params.site}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
+              {{- $page.LinkTitle | markdownify | emojify -}}
+              {{- with $page.Page.Params.site}}</a>{{end -}}
 
               <span class="middot-divider"></span>
 

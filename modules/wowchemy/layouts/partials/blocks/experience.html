@@ -36,21 +36,22 @@
       <div class="card">
         <div class="card-body">
 
-          {{- if .company_logo}}
-          {{- $svg_icon := resources.Get (printf "media/icons/brands/%s.svg" .company_logo) -}}
-          {{ if not $svg_icon }}{{ errorf "Brand logo not found at `assets/media/icons/brands/%s.svg`" .company_logo }}{{end}}
+          {{ $page := site.GetPage (printf "/organizations/%s" .organization) }}
+
+          {{- $svg_icon := $page.Resources.GetMatch "icon.svg" -}}
+          {{ if not $svg_icon }}{{ errorf "Logo not found at `organizations/%s/icon.svg`" .organization }}{{end}}
           <div class="d-flex align-content-start">
             <div class="mr-2 mb-2">
-              {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
-              <img src="{{ $svg_icon.RelPermalink }}" width="56px" height="56px" alt="{{.company | plainify}}" loading="lazy">
-              {{- with .company_url}}</a>{{end -}}
+              {{- with $page.Page.Params.site}}<a href="{{.}}" target="_blank" rel="noopener">{{end -}}
+              <img src="{{ $svg_icon.RelPermalink }}" width="56px" height="56px" alt="{{.organization | plainify}}" loading="lazy">
+              {{- with $page.Page.Params.site}}</a>{{end -}}
             </div>
             <div>
-          {{ end }}
-
               <div class="section-subheading card-title exp-title text-muted my-0">{{.title | markdownify | emojify}}</div>
               <div class="section-subheading card-title exp-company text-muted my-0">
-                {{- with .company_url}}<a href="{{.}}" target="_blank" rel="noopener">{{end}}{{.company | markdownify | emojify}}{{with .company_url}}</a>{{end -}}
+                {{- with $page.Page.Params.site}}<a href="{{.}}" target="_blank" rel="noopener">{{end}}
+                  {{$page.LinkTitle | markdownify | emojify}}
+                {{with $page.Page.Params.site}}</a>{{end -}}
               </div>
               <div class="text-muted exp-meta">
                 {{ (time .date_start) | time.Format ($block.Params.date_format | default "January 2006") }} –
@@ -64,11 +65,8 @@
                   <span>{{.}}</span>
                 {{end}}
               </div>
-
-          {{- if .company_logo}}
             </div>
           </div>
-          {{end}}
 
           {{with .description}}<div class="card-text">{{. | markdownify | emojify}}</div>{{end}}
         </div>

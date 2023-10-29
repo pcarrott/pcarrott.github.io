@@ -52,11 +52,13 @@
         {{ with $person.role }}<h3>{{ . | markdownify | emojify }}</h3>{{ end }}
 
         {{ range $person.organizations }}
-        <h3>
-          {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
-          <span>{{ .name }}</span>
-          {{ if .url }}</a>{{ end }}
-        </h3>
+          {{ with site.GetPage (printf "/organizations/%s" .) }}
+            <h3>
+              {{ with .Page.Params.site }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+              <span>{{ .LinkTitle }}</span>
+              {{ if .Page.Params.site }}</a>{{ end }}
+            </h3>
+          {{ end }}
         {{ end }}
       </div>
 
@@ -98,6 +100,13 @@
         {{ $content = replace $content (printf "{%s}" $author) $name }}
       {{ end }}
     {{ end }}
+    {{ with $person.mention.organizations }}
+      {{ range $index, $org := .}}
+        {{ $page := site.GetPage (replace "/organizations/{t}" "{t}" $org) }}
+        {{ $name := printf "[%s](%s)" $page.LinkTitle $page.Page.Params.site | markdownify }}
+        {{ $content = replace $content (printf "{%s}" $org) $name }}
+      {{ end }}
+    {{ end }}
     {{ $content | markdownify }}
 
     <div class="row">
@@ -121,11 +130,18 @@
         <div class="section-subheading">{{ i18n "education" | markdownify }}</div>
         <ul class="ul-edu fa-ul mb-0">
           {{ range .courses }}
+
           <li>
             <i class="fa-li fa-solid fa-graduation-cap"></i>
             <div class="description">
               <p class="course">{{ .course }}{{ with .year }}, {{ . }}{{ end }}</p>
-              <p class="institution">{{ .institution }}</p>
+              {{ with site.GetPage (printf "/organizations/%s" .organization) }}
+                <div class="article-metadata">
+                {{ with .Page.Params.site }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+                  {{ .LinkTitle }}
+                {{ if .Page.Params.site }}</a>{{ end }}
+                </div>
+              {{ end }}
             </div>
           </li>
           {{ end }}

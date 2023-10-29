@@ -10,8 +10,7 @@ role: PhD Student
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Imperial College London
-    url: https://www.imperial.ac.uk
+  - imperial
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages.
@@ -27,11 +26,9 @@ interests:
 education:
   courses:
     - course: MSc in Computer Science and Engineering
-      institution: Instituto Superior Técnico
-      # year: 2022
+      organization: tecnico
     - course: BSc in Computer Science and Engineering
-      institution: Instituto Superior Técnico
-      # year: 2020
+      organization: tecnico
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -70,8 +67,11 @@ highlight_name: true
 mention:
   authors:
     - azalea-raad
+  organizations:
+    - tecnico
+    - imperial
 ---
 
-I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at [Instituto Superior Técnico](https://tecnico.ulisboa.pt/en), I am now a PhD student at [Imperial College London](https://www.imperial.ac.uk) under the advisory of {azalea-raad}.
+I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. Having graduated in Computer Science and Engineering at {tecnico}, I am now a PhD student at {imperial} under the advisory of {azalea-raad}.
 
 My research interests include formal methods and their application on software verification, as well as the development of logical foundations for programming languages. I have always been interested in pure mathematical reasoning and I found in these fields of Computer Science a way to nurture that interest while contributing with a direct impact in society.
