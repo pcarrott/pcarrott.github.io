@@ -14,6 +14,12 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `site_footer_license.html`: Include date of last update in footer.
 
+`page_metadata_advisors.html`: New file to format an advisor entry in publications.
+
+`page_metadata_authors.html`: Author links redirect to the corresponding website.
+
+`publication/single.html`: Add line for advisors in publication page.
+
 ## wowchemy-plugin-reveal
 
 `baseof.html`: Load local themes in `assets/css/theme` for Reveal slides.

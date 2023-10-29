@@ -159,6 +159,9 @@
 - id: publication
   translation: Publication
 
+- id: advisors
+  translation: Advisors
+
 - id: publication_type
   translation: Type
 

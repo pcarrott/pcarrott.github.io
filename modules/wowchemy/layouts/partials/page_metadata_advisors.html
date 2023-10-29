@@ -1,0 +1,15 @@
+{{/* Display author list. */}}
+
+{{- $taxonomy := "advisors" }}
+{{ if .Param $taxonomy }}
+  {{ range $index, $value := .Params.advisors }}
+    {{- if gt $index 0 }}, {{ end -}}
+    {{ with site.GetPage (replace "/authors/{t}" "{t}" $value) }}
+      {{- if .Page.Params.site -}}
+        <a href="{{.Page.Params.site}}" target="_blank" rel="noopener">{{.LinkTitle}}</a>
+      {{- else -}}
+        {{ .LinkTitle }}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

@@ -9,8 +9,8 @@
     {{- if gt $index 0 }}, {{ end -}}
     <span {{ if $highlight_name }}class="author-highlighted"{{end}}>
       {{/* Effectively check the page's `_build` option as `_build` is not exposed in Hugo's Page object. */}}
-      {{- if .RelPermalink -}}
-        <a href="{{.RelPermalink}}">{{.LinkTitle}}</a>
+      {{- if .Page.Params.site -}}
+        <a href="{{.Page.Params.site}}" target="_blank" rel="noopener">{{.LinkTitle}}</a>
       {{- else -}}
         {{ .LinkTitle }}
       {{- end -}}

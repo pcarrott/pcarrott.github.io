@@ -18,6 +18,8 @@ publishDate: '2022-11-25T14:30:00Z'
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent; 9 = Tool
 publication_types: ['7']
+advisors:
+  - joao-ferreira
 publication: |-
   [MSc Thesis, Instituto Superior Técnico](https://scholar.tecnico.ulisboa.pt/records/WcX0DzHiRG0JbSdINpsBWX_h8g9go2ZN2yrC)
 publication_short: MSc Thesis
@@ -35,14 +37,8 @@ featured: true
 links:
 - name: Extended Abstract
   url: extended-abstract.pdf
-    # Doesn't open in new tab, but this doesnt't work:
-    #   {{site.BaseURL}}/publication/msc/extended-abstract.pdf
 - name: Coq development
   url: https://github.com/sr-lab/iris-jellyfish
 
 slides: msc
 ---
-
-{{% callout note %}}
-Thesis advised by [João Ferreira](https://joaoff.com).
-{{% /callout %}}
