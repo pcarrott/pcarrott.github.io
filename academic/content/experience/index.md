@@ -56,14 +56,6 @@ sections:
         - title: Academic Year 2023/2024
           items:
           - organization: imperial
-            title: Models of Computation
-            date_term: 'Autumn Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
-          - organization: imperial
             title: Discrete Mathematics, Logic & Reasoning
             date_term: 'Autumn Term'
             date_start: ''
@@ -71,6 +63,14 @@ sections:
             certificate_url: ''
             description: ''
             url: https://www.imperial.ac.uk/computing/current-students/courses/40018/
+          - organization: imperial
+            title: Models of Computation
+            date_term: 'Autumn Term'
+            date_start: ''
+            date_end: ''
+            certificate_url: ''
+            description: ''
+            url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
         - title: Academic Year 2021/2022
           items:
           - organization: tecnico

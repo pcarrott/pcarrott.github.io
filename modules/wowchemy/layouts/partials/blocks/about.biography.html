@@ -93,19 +93,12 @@
     {{ with $block.content.title }}<h1>{{ . | markdownify | emojify }}</h1>{{ end }}
 
     {{ $content := $person_page.Content }}
-    {{ with $person.mention.authors }}
-      {{ range $index, $author := .}}
-        {{ $page := site.GetPage (replace "/authors/{t}" "{t}" $author) }}
-        {{ $name := printf "[%s](%s)" $page.LinkTitle $page.Page.Params.site | markdownify }}
-        {{ $content = replace $content (printf "{%s}" $author) $name }}
-      {{ end }}
-    {{ end }}
-    {{ with $person.mention.organizations }}
-      {{ range $index, $org := .}}
-        {{ $page := site.GetPage (replace "/organizations/{t}" "{t}" $org) }}
-        {{ $name := printf "[%s](%s)" $page.LinkTitle $page.Page.Params.site | markdownify }}
-        {{ $content = replace $content (printf "{%s}" $org) $name }}
-      {{ end }}
+    {{ range after 1 (split $content "«") }}
+      {{ $tag := index (split . "»") 0 }}
+      {{ $entry := split $tag ":" }}
+      {{ $page := site.GetPage (printf "/%s/%s" (index $entry 0) (index $entry 1)) }}
+      {{ $name := printf "[%s](%s)" $page.LinkTitle $page.Page.Params.site | markdownify }}
+      {{ $content = replace $content (printf "«%s»" $tag) $name }}
     {{ end }}
     {{ $content | markdownify }}
 
