@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: Research
 cms_exclude: true
 
 # View.
@@ -14,4 +14,4 @@ header:
   image: ''
 ---
 
-Hopefully, I'll be updating this soon enough :eyes:
+I'll be updating this soon enough :eyes:

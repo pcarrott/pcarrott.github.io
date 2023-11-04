@@ -1,5 +1,5 @@
 ---
-title: Theorem Proving and Automation
+title: Automated Theorem Proving
 summary: An example of using the in-built project page.
 tags:
   - Large Language Models
