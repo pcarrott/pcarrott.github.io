@@ -71,6 +71,14 @@ sections:
             certificate_url: ''
             description: ''
             url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
+          - organization: imperial
+            title: The Theory and Practice of Concurrent Programming
+            date_term: 'Autumn Term'
+            date_start: ''
+            date_end: ''
+            certificate_url: ''
+            description: ''
+            url: https://www.imperial.ac.uk/computing/current-students/courses/60007/
         - title: Academic Year 2021/2022
           items:
           - organization: tecnico
