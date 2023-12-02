@@ -5,7 +5,7 @@ type: landing
 sections:
   - block: experience
     content:
-      title: Academic Record 
+      title: Academic Record
       # Date format for experience
       #   Refer to https://wowchemy.com/docs/customization/#date-format
       date_format: Jan 2006
@@ -29,7 +29,7 @@ sections:
           description: |-
             GPA: 19 out of 20
             <br>
-            Major in **Algorithms and Programming** and **Intelligent Systems**
+            Major in _**Algorithms and Programming**_ and _**Intelligent Systems**_
             <br>
             Thesis: [Formal Specification and Verification of the Lazy JellyFish Skip List](/publication/msc/)
         - title: BSc in Computer Science and Engineering
@@ -40,63 +40,70 @@ sections:
           description: 'GPA: 18 out of 20'
     design:
       columns: '2'
-  - block: groups
+  - block: experience
     content:
-      # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
-      title: 'Teaching'
-      subtitle: 'Experience as a teaching assistant'
-      # Date format: https://wowchemy.com/docs/customization/#date-format
+      title: Teaching
+      # Date format for experience
+      #   Refer to https://wowchemy.com/docs/customization/#date-format
       date_format: Jan 2006
-      # Accomplishments.
-      #   Add/remove as many `item` blocks below as you like.
-      #   `title`, `organization`, and `date_start` are the required parameters.
-      #   Leave other parameters empty if not required.
+      # Experiences.
+      #   Add/remove as many `experience` items below as you like.
+      #   Required fields are `title`, `company`, and `date_start`.
+      #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
-      groups:
-        - title: Academic Year 2023/2024
-          items:
-          - organization: imperial
-            title: Discrete Mathematics, Logic & Reasoning
-            date_term: 'Autumn Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://www.imperial.ac.uk/computing/current-students/courses/40018/
-          - organization: imperial
-            title: Models of Computation
-            date_term: 'Autumn Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://www.imperial.ac.uk/computing/current-students/courses/50003/
-          - organization: imperial
-            title: The Theory and Practice of Concurrent Programming
-            date_term: 'Autumn Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://www.imperial.ac.uk/computing/current-students/courses/60007/
-        - title: Academic Year 2021/2022
-          items:
-          - organization: tecnico
-            title: Artificial Intelligence
-            date_term: 'Spring Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre
-          - organization: tecnico
-            title: Analysis and Synthesis of Algorithms
-            date_term: 'Autumn Term'
-            date_start: ''
-            date_end: ''
-            certificate_url: ''
-            description: ''
-            url: https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre
+      items:
+        - title: Academic Year 23/24
+          organization: imperial
+          location: ''
+          date_start: ''
+          date_end: ''
+          ongoing: true
+          description: |-
+            <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2023</div>
+            <div class="card-title my-0 article-metadata">
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/60007/" target="_blank" rel="noopener">
+                <b>The Theory and Practice of Concurrent Programming</b>
+              </a>
+              <span class="middot-divider"></span>
+              <i>Coursework marking</i>
+            </div>
+            <div class="card-title my-0 article-metadata">
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/50003/" target="_blank" rel="noopener">
+                <b>Models of Computation</b>
+              </a>
+              <span class="middot-divider"></span>
+              <i>Tutorial helper and coursework marking</i>
+            </div>
+            <div class="card-title my-0 article-metadata">
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/40018/" target="_blank" rel="noopener">
+                <b>Discrete Mathematics, Logic & Reasoning</b>
+              </a>
+              <span class="middot-divider"></span>
+              <i>Tutorial helper and coursework marking</i>
+            </div>
+        - title: Academic Year 21/22
+          organization: tecnico
+          location: ''
+          date_start: ''
+          date_end: ''
+          description: |-
+            <div class="section-subheading card-title exp-title text-muted my-0">Spring 2022</div>
+            <div class="card-title my-0 article-metadata">
+              <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre" target="_blank" rel="noopener">
+                <b>Artificial Intelligence</b>
+              </a>
+              <span class="middot-divider"></span>
+              <i>Teaching assistant and coursework marking</i>
+            </div>
+            <br>
+            <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2021</div>
+            <div class="card-title my-0 article-metadata">
+              <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre" target="_blank" rel="noopener">
+                <b>Analysis and Synthesis of Algorithms</b>
+              </a>
+              <span class="middot-divider"></span>
+              <i>Teaching assistant and coursework marking</i>
+            </div>
     design:
       columns: '2'
   - block: groups
