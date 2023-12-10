@@ -77,7 +77,7 @@ sections:
             <div class="card-title my-0 article-metadata">
               <span class="middot-divider"></span>
               <a href="https://www.imperial.ac.uk/computing/current-students/courses/40018/" target="_blank" rel="noopener">
-                <b>Discrete Mathematics, Logic & Reasoning</b>
+                <b>Discrete Mathematics & Logic</b>
               </a>
               <i>(Tutorial helper and coursework marking)</i>
             </div>
