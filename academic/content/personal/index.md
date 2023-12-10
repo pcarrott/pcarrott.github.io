@@ -16,9 +16,11 @@ sections:
     content:
       title: ':carrot: About me'
       text: |-
-        <center>I am a Portuguese and British citizen, born in 1999 in Évora, Portugal. This page contains some personal information about myself and what I enjoy doing in my free time. Below, I leave pictures of the cutest woofers to lay their paws on Earth.</center>
-        <br>
+        This page contains some personal information about myself and what I enjoy doing in my free time. I am a 🇵🇹 and 🏴󠁧󠁢󠁥󠁮󠁧󠁿 citizen, born in 1999 in Évora, Portugal. Here are the cutest woofers to lay their paws on Earth.
+        
         {{< gallery album="dogs" >}}
+    design:
+      columns: '2'
   - block: markdown
     content:
       title: ':soccer: Football'
