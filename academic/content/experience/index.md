@@ -61,25 +61,25 @@ sections:
           description: |-
             <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2023</div>
             <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
               <a href="https://www.imperial.ac.uk/computing/current-students/courses/60007/" target="_blank" rel="noopener">
                 <b>The Theory and Practice of Concurrent Programming</b>
               </a>
-              <span class="middot-divider"></span>
-              <i>Coursework marking</i>
+              <i>(Coursework marking)</i>
             </div>
             <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
               <a href="https://www.imperial.ac.uk/computing/current-students/courses/50003/" target="_blank" rel="noopener">
                 <b>Models of Computation</b>
               </a>
-              <span class="middot-divider"></span>
-              <i>Tutorial helper and coursework marking</i>
+              <i>(Tutorial helper and coursework marking)</i>
             </div>
             <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
               <a href="https://www.imperial.ac.uk/computing/current-students/courses/40018/" target="_blank" rel="noopener">
                 <b>Discrete Mathematics, Logic & Reasoning</b>
               </a>
-              <span class="middot-divider"></span>
-              <i>Tutorial helper and coursework marking</i>
+              <i>(Tutorial helper and coursework marking)</i>
             </div>
         - title: Academic Year 21/22
           organization: tecnico
@@ -89,20 +89,20 @@ sections:
           description: |-
             <div class="section-subheading card-title exp-title text-muted my-0">Spring 2022</div>
             <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
               <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/IArt2/2021-2022/2-semestre" target="_blank" rel="noopener">
                 <b>Artificial Intelligence</b>
               </a>
-              <span class="middot-divider"></span>
-              <i>Teaching assistant and coursework marking</i>
+              <i>(Teaching assistant and coursework marking)</i>
             </div>
             <br>
             <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2021</div>
             <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
               <a href="https://fenix.tecnico.ulisboa.pt/disciplinas/ASA/2021-2022/1-semestre" target="_blank" rel="noopener">
                 <b>Analysis and Synthesis of Algorithms</b>
               </a>
-              <span class="middot-divider"></span>
-              <i>Teaching assistant and coursework marking</i>
+              <i>(Teaching assistant and coursework marking)</i>
             </div>
     design:
       columns: '2'
