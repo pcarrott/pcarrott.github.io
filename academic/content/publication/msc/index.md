@@ -20,6 +20,8 @@ publishDate: '2022-11-25T14:30:00Z'
 publication_types: ['7']
 advisors:
   - joao-ferreira
+examiners:
+  - ralf-jung
 publication: |-
   [MSc Thesis, Instituto Superior Técnico](https://scholar.tecnico.ulisboa.pt/records/WcX0DzHiRG0JbSdINpsBWX_h8g9go2ZN2yrC)
 publication_short: MSc Thesis

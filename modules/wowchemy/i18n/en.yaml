@@ -162,6 +162,9 @@
 - id: advisors
   translation: Advisors
 
+- id: examiners
+  translation: Examiners
+
 - id: publication_type
   translation: Type
 
