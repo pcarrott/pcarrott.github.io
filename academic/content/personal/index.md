@@ -16,7 +16,7 @@ sections:
     content:
       title: ':carrot: About me'
       text: |-
-        This page contains some personal information about myself and what I enjoy doing in my free time. I am a :flag_pt: and :england: citizen, born in 1999 in Évora, Portugal. Here are the cutest woofers to lay their paws on Earth.
+        This page contains some personal information about myself and what I enjoy doing in my free time. I am a :flag_pt: and :flag_gb: citizen, born in 1999 in Évora, Portugal. Here are the cutest woofers to lay their paws on Earth.
         
         {{< gallery album="dogs" >}}
     design:
