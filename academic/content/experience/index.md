@@ -59,6 +59,15 @@ sections:
           date_end: ''
           ongoing: true
           description: |-
+            <div class="section-subheading card-title exp-title text-muted my-0">Spring 2024</div>
+            <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/50007_2/" target="_blank" rel="noopener">
+                <b>Introduction to Prolog</b>
+              </a>
+              <i>(Tutorial helper and coursework marking)</i>
+            </div>
+            <br>
             <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2023</div>
             <div class="card-title my-0 article-metadata">
               <span class="middot-divider"></span>
