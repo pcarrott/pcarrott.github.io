@@ -67,6 +67,13 @@ sections:
               </a>
               <i>(Tutorial helper and coursework marking)</i>
             </div>
+            <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/40018/" target="_blank" rel="noopener">
+                <b>Logic</b>
+              </a>
+              <i>(Tutorial helper and coursework marking)</i>
+            </div>
             <br>
             <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2023</div>
             <div class="card-title my-0 article-metadata">

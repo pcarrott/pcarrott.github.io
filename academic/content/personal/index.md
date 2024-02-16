@@ -30,14 +30,14 @@ sections:
   - block: markdown
     content:
       title: ':ramen: Animanga'
-      text: My favourite entertainment mediums are anime and manga. Check out my profile in [MyAnimeList](https://myanimelist.net/profile/Carrott_99), if you wish to become a more cultured person. Occasionally, I still enjoy reading books or watching movies/series for variety's sake. Feel free to add me on [GoodReads](https://www.goodreads.com/user/show/104915806-pedro-carrott) and [Letterboxd](https://letterboxd.com/carrott/).
+      text: My favourite entertainment mediums are anime and manga. Check out my profile in [MyAnimeList](https://myanimelist.net/profile/Carrott_99), if you wish to become a more cultured person. Occasionally, I still enjoy reading books or watching movies/series for variety's sake. Feel free to add me on [GoodReads](https://www.goodreads.com/user/show/104915806-pedro-carrott)/[StoryGraph](https://app.thestorygraph.com/profile/pcarrott) and [Letterboxd](https://letterboxd.com/carrott).
     design:
       columns: '2'
   - block: markdown
     content:
       title: ':mahjong: Mahjong'
       text: |-
-        At home, I have a Mahjong set to play the Hong Kong variant of the game with friends and/or family. However, although it's fun to mess around with the physical tiles, I mostly play Riichi Mahjong online in [MahjongSoul](https://mahjongsoul.yo-star.com/).
+        At home, I have two Mahjong sets to play with family/friends different variants of the game: Cantonese style and Japanese Riichi. However, although it's fun to mess around with the physical tiles, I mostly play Riichi Mahjong online in [MahjongSoul](https://mahjongsoul.yo-star.com).
 
         > *Mahjong is amazing. No matter how good I am, I may still lose; no matter how bad I play, I may still win.*
         <div style="text-align: right"> &mdash; Miki Nikaidou </div>
