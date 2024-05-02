@@ -8,8 +8,6 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `about.biography.html`: Admin avatar is not compressed maintaining image quality. Can now reference authors as well.
 
-`publication_types.toml`: Add publication type for tool papers.
-
 `blocks/groups.html`: Add a new block type to replace accomplishments with groups of accomplishments.
 
 `site_footer_license.html`: Include date of last update in footer.
@@ -19,6 +17,8 @@ I keep a local version of these modules, because of the following files. Some ot
 `page_metadata_authors.html`: Author links redirect to the corresponding website.
 
 `publication/single.html`: Add line for advisors in publication page.
+
+`page_author.html`: Exclude other users besides the superuser.
 
 ## wowchemy-plugin-reveal
 

@@ -207,9 +207,6 @@
 - id: pub_patent
   translation: Patent
 
-- id: pub_tool
-  translation: Tool
-
 # Project details
 
 - id: open_project_site
