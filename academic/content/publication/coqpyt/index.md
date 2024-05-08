@@ -34,10 +34,11 @@ tags: []
 featured: true
 
 # Custom links (uncomment lines below)
-links: 
+links:
 - name: Pre-print
   url: https://arxiv.org/abs/2405.04282
 
+doi: 10.1145/3663529.3663814
 url_code: https://github.com/sr-lab/coqpyt
 url_video: https://youtu.be/fk74o0rePM8
 ---
