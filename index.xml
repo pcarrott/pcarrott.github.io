@@ -2766,12 +2766,12 @@ We can assert ownership of&lt;br>an individual array entry&amp;hellip;
 &lt;div>
 &lt;span class="fragment fade-out" data-fragment-index="4">
 &lt;span class="fragment " data-fragment-index="1">
-&lt;span>$\textsf{Array}(a, vs, n)$&lt;/span>
+&lt;span>$\textsf{Array}(a, vs)$&lt;/span>
 &lt;/span>
 &lt;/span>
 &lt;span class="fragment fade-out" data-fragment-index="4">
 &lt;span class="fragment " data-fragment-index="2">
-&lt;span>$\triangleq \mathop{\Huge\ast}\limits_{i = 0}^{n - 1}$&lt;/span>
+&lt;span>$\triangleq \mathop{\Huge\ast}\limits_{i = 0}^{|vs| - 1}$&lt;/span>
 &lt;/span>
 &lt;/span>
 &lt;span class="fragment fade-out" data-fragment-index="4">
@@ -2790,7 +2790,7 @@ $ P * (P -\!\!\!\!\!\;\ast Q) \vdash Q$
 &lt;span>$l \mapsto v$&lt;/span>
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="7">
-&lt;span>$ \quad * \quad (l \mapsto v -\!\!\!\!\!\;\ast \textsf{Array}(a, vs, n))$&lt;/span>
+&lt;span>$ \quad * \quad \left(l \mapsto v -\!\!\!\!\!\;\ast \textsf{Array}(a, vs)\right)$&lt;/span>
 &lt;/span>
 &lt;/div>
 &lt;/div>
@@ -2863,7 +2863,7 @@ $\{R * l \mapsto v \} \quad \textsf{inc}(l) \quad \{ l \mapsto v+1 * R \}$
 $R \triangleq \textsf{emp}$
 &lt;/span>
 &lt;span class="fragment " data-fragment-index="4">
-$R \triangleq l \mapsto v -\!\!\!\!\!\;\ast \textsf{Array}(a, vs, n)$
+$R \triangleq l \mapsto v -\!\!\!\!\!\;\ast \textsf{Array}(a, vs)$
 &lt;/span>
 &lt;/div>
 &lt;aside class="notes">
