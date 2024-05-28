@@ -449,12 +449,12 @@ This is in contrast with the standard conjunction where P /\ P necessarily impli
   <div>
   {{< fragment weight=4 class=fade-out >}}
   {{< fragment weight=1 >}}
-  <span>$\textsf{Array}(a, vs, n)$</span>
+  <span>$\textsf{Array}(a, vs)$</span>
   {{< /fragment >}}
   {{< /fragment >}}
   {{< fragment weight=4 class=fade-out >}}
   {{< fragment weight=2 >}}
-  <span>$\triangleq \mathop{\Huge\ast}\limits_{i = 0}^{n - 1}$</span>
+  <span>$\triangleq \mathop{\Huge\ast}\limits_{i = 0}^{|vs| - 1}$</span>
   {{< /fragment >}}
   {{< /fragment >}}
   {{< fragment weight=4 class=fade-out >}}
@@ -475,7 +475,7 @@ This is in contrast with the standard conjunction where P /\ P necessarily impli
   <span>$l \mapsto v$</span>
   {{< /fragment >}}
   {{< fragment weight=7 >}}
-  <span>$ \quad * \quad (l \mapsto v -\\!\\!\\!\\!\\!\\;\ast \textsf{Array}(a, vs, n))$</span>
+  <span>$ \quad * \quad \left(l \mapsto v -\\!\\!\\!\\!\\!\\;\ast \textsf{Array}(a, vs)\right)$</span>
   {{< /fragment >}}
   </div>
 </div>
@@ -578,7 +578,7 @@ This modularity provided by the frame rule is what has made SL so successful by 
   {{< /fragment >}}
 
   {{< fragment weight=4 >}}
-  $R \triangleq l \mapsto v -\\!\\!\\!\\!\\!\\;\ast \textsf{Array}(a, vs, n)$
+  $R \triangleq l \mapsto v -\\!\\!\\!\\!\\!\\;\ast \textsf{Array}(a, vs)$
   {{< /fragment >}}
 </div>
 
