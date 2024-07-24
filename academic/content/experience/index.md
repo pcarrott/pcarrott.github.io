@@ -20,7 +20,7 @@ sections:
           location: London
           date_start: '2023-10-02'
           date_end: ''
-          description: 'Topic: Incorrectness Logic'
+          description: ''
         - title: MSc in Computer Science and Engineering
           organization: tecnico
           location: Lisbon

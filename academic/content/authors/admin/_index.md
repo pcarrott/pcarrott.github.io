@@ -38,18 +38,15 @@ social:
   # - icon: at
   #   icon_pack: fas
   #   link: '/#contact'
-  - icon: square-twitter
-    icon_pack: fab
-    link: https://twitter.com/pedrocarrott
-  - icon: square-github
-    icon_pack: fab
-    link: https://github.com/pcarrott
-  - icon: google-scholar-square
+  - icon: google-scholar
     icon_pack: ai
     link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl
-  # - icon: linkedin
-  #   icon_pack: fab
-  #   link: https://www.linkedin.com/in/pedro-carrott
+  - icon: github
+    icon_pack: fab
+    link: https://github.com/pcarrott
+  - icon: twitter
+    icon_pack: fab
+    link: https://twitter.com/pedrocarrott
 
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`,

@@ -30,7 +30,7 @@ sections:
   - block: markdown
     content:
       title: ':ramen: Animanga'
-      text: My favourite entertainment mediums are anime and manga. Check out my profile in [MyAnimeList](https://myanimelist.net/profile/Carrott_99), if you wish to become a more cultured person. Occasionally, I still enjoy reading books or watching movies/series for variety's sake. Feel free to add me on [GoodReads](https://www.goodreads.com/user/show/104915806-pedro-carrott)/[StoryGraph](https://app.thestorygraph.com/profile/pcarrott) and [Letterboxd](https://letterboxd.com/carrott).
+      text: My favourite entertainment mediums are anime and manga. Check out my profile in [MyAnimeList](https://myanimelist.net/profile/Carrott_99), if you wish to become a more cultured person. Occasionally, I still enjoy reading books or watching movies/series for variety's sake. Feel free to add me on [GoodReads](https://www.goodreads.com/user/show/104915806-pedro-carrott)/[StoryGraph](https://app.thestorygraph.com/profile/pcarrott) and [Letterboxd](https://letterboxd.com/pcarrott).
     design:
       columns: '2'
   - block: markdown
