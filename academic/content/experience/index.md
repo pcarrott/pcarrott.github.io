@@ -142,7 +142,7 @@ sections:
             date_start: '2024-01-14'
             date_end: '2024-01-20'
             certificate_url: ''
-            description: Part of the AV team recording the Incorrectness and CoqPL workshops.
+            description: Part of the AV team recording talks in workshops co-located with POPL.
             url: ''
           - organization: tecnico
             title: Student Representative
