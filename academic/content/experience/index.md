@@ -135,21 +135,21 @@ sections:
       #   Leave other parameters empty if not required.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       groups:
-        - title: Activities @ IST
+        - title: Volunteering
           items:
+          - organization: popl24
+            title: Student Volunteer
+            date_start: '2024-01-14'
+            date_end: '2024-01-20'
+            certificate_url: ''
+            description: Part of the AV team recording the Incorrectness and CoqPL workshops.
+            url: ''
           - organization: tecnico
             title: Student Representative
             date_start: '2021-01-01'
             date_end: '2021-10-31'
             certificate_url: ''
             description: Representative for the MSc students in Computer Science and Engineering at IST.
-            url: ''
-          - organization: tecnico
-            title: DEI Management System
-            date_start: '2020-02-17'
-            date_end: '2020-07-31'
-            certificate_url: ''
-            description: Collaboration with the [Computer Science Department](https://dei.tecnico.ulisboa.pt/) from IST in the context of the [Software Engineering](https://fenix.tecnico.ulisboa.pt/disciplinas/ESof96451113264/2019-2020/2-semestre) course for the development of the Department's management [application](https://dms.rnl.tecnico.ulisboa.pt/).
             url: ''
           - organization: tecnico
             title: Student Mentor
@@ -174,6 +174,15 @@ sections:
             certificate_url: ''
             description: ''
             url: ''
+        # - title: Activities @ IST
+        #   items:
+        #   - organization: tecnico
+        #     title: DEI Management System
+        #     date_start: '2020-02-17'
+        #     date_end: '2020-07-31'
+        #     certificate_url: ''
+        #     description: Collaboration with the [Computer Science Department](https://dei.tecnico.ulisboa.pt/) from IST in the context of the [Software Engineering](https://fenix.tecnico.ulisboa.pt/disciplinas/ESof96451113264/2019-2020/2-semestre) course for the development of the Department's management [application](https://dms.rnl.tecnico.ulisboa.pt/).
+        #     url: ''
     design:
       columns: '2'
 ---
