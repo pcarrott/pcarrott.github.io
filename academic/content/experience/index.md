@@ -140,7 +140,7 @@ sections:
           - organization: popl24
             title: Student Volunteer
             date_start: '2024-01-14'
-            date_end: '2024-01-20'
+            date_end: ''
             certificate_url: ''
             description: Part of the AV team recording talks in workshops co-located with POPL.
             url: ''
