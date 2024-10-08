@@ -41,12 +41,21 @@ social:
   - icon: google-scholar
     icon_pack: ai
     link: https://scholar.google.com/citations?user=Mvp4TrgAAAAJ&hl
+  - icon: orcid
+    icon_pack: ai
+    link: https://orcid.org/0000-0003-4316-928X
   - icon: github
     icon_pack: fab
     link: https://github.com/pcarrott
+  - icon: linkedin
+    icon_pack: fab
+    link: https://linkedin.com/in/pedro-carrott
   - icon: twitter
     icon_pack: fab
     link: https://twitter.com/pedrocarrott
+  - icon: instagram
+    icon_pack: fab
+    link: https://instagram.com/pedrocarrott
 
 # Link to a PDF of your resume/CV.
 # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.toml`,
