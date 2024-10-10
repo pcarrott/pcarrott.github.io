@@ -24,7 +24,7 @@ publishDate: '2024-05-02T21:00:00Z'
 # 7 = Thesis; 8 = Patent
 publication_types: ['1']
 publication: In [International Conference on the Foundations of Software Engineering 2024](https://2024.esec-fse.org) (Demonstrations Track)
-publication_short: In *FSE 2024*
+publication_short: In [FSE 2024](https://2024.esec-fse.org)
 
 abstract: 'Proof assistants enable users to develop machine-checked proofs regarding software-related properties. Unfortunately, the interactive nature of these proof assistants imposes most of the proof burden on the user, making formal verification a complex, and time-consuming endeavor. Recent automation techniques based on neural methods address this issue, but require good programmatic support for collecting data and interacting with proof assistants. This paper presents CoqPyt, a Python tool for interacting with the Coq proof assistant. CoqPyt improves on other Coq-related tools by providing novel features, such as the extraction of rich premise data. We expect our work to aid development of tools and techniques, especially LLM-based, designed for proof synthesis and repair.'
 
