@@ -37,7 +37,6 @@
       {{ end }}
 
       <div class="portrait-title">
-
         <h2>
           {{- if $person.name_pronunciation -}}
             <ruby>
@@ -59,6 +58,11 @@
               {{ if .Page.Params.site }}</a>{{ end }}
             </h3>
           {{ end }}
+        {{ end }}
+
+        {{ with $person.email }}<h3>
+                {{ . | markdownify | emojify }}
+        </h3>
         {{ end }}
       </div>
 
@@ -84,7 +88,6 @@
         </li>
         {{ end }}
       </ul>
-
     </div>
   </div>
   <div class="col-12 col-lg-8">

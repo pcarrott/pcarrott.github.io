@@ -10,15 +10,4 @@ sections:
       title: Biography
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
-  - block: contact
-    id: contact
-    content:
-      title: Contact
-      contact_links:
-        - icon: at
-          icon_pack: fas
-          name: pedro.carrott@imperial.ac.uk
-          link: "mailto:?subject={title}&body={url}"
-    design:
-      columns: '2'
 ---
