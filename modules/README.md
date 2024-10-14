@@ -18,8 +18,6 @@ I keep a local version of these modules, because of the following files. Some ot
 
 `publication/single.html`: Add line for advisors in publication page.
 
-`page_author.html`: Exclude other users besides the superuser.
-
 ## wowchemy-plugin-reveal
 
 `baseof.html`: Load local themes in `assets/css/theme` for Reveal slides.
