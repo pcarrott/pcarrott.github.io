@@ -52,12 +52,40 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
-        - title: Academic Year 23/24
+        - title: Academic Year 24/25
           organization: imperial
           location: ''
           date_start: ''
           date_end: ''
           ongoing: true
+          description: |-
+            <div class="section-subheading card-title exp-title text-muted my-0">Autumn 2024</div>
+            <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/60007/" target="_blank" rel="noopener">
+                <b>The Theory and Practice of Concurrent Programming</b>
+              </a>
+              <i>(Coursework marking)</i>
+            </div>
+            <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/50003/" target="_blank" rel="noopener">
+                <b>Models of Computation</b>
+              </a>
+              <i>(Tutorial helper and coursework marking)</i>
+            </div>
+            <div class="card-title my-0 article-metadata">
+              <span class="middot-divider"></span>
+              <a href="https://www.imperial.ac.uk/computing/current-students/courses/40018/" target="_blank" rel="noopener">
+                <b>Discrete Mathematics & Logic</b>
+              </a>
+              <i>(Tutorial helper and coursework marking)</i>
+            </div>
+        - title: Academic Year 23/24
+          organization: imperial
+          location: ''
+          date_start: ''
+          date_end: ''
           description: |-
             <div class="section-subheading card-title exp-title text-muted my-0">Spring 2024</div>
             <div class="card-title my-0 article-metadata">
