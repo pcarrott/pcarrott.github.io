@@ -3205,7 +3205,7 @@ body {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	z-index: 10000;
+	z-index: 10002;
 }
 
 #header .content {
@@ -3701,7 +3701,7 @@ body.is-ez-visible #footer {
 	overflow-y: auto;
 	position: fixed;
 	right: 0;
-	top: 0;
+	top: 3.5em;
 	visibility: hidden;
 	width: 25em;
 	z-index: 10002;
@@ -3772,6 +3772,14 @@ body.is-menu-visible #menu {
 	-ms-transform: translateX(0);
 	transform: translateX(0);
 	visibility: visible;
+}
+
+@media screen and (max-width: 980px) {
+
+	#menu {
+		top: 2.75em;
+	}
+
 }
 
 
