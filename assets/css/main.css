@@ -3467,7 +3467,8 @@ body.is-ez-visible #wrapper {
 @media screen and (max-width: 980px) {
 
 	#wrapper {
-		padding: 0em;
+		padding: 0;
+		margin: 0;
 	}
 
 }
