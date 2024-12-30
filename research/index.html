@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Research | Pedro Carrott</title>
+	<link rel="icon" href="/images/icon.svg" sizes="any" type="image/svg+xml">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header-component></header-component>
+
+	<!-- FIXME: What is going on here??? -->
+	<!-- Mobile menu -->
+	<section id="menu">
+		<menu-component></menu-component>
+	</section>
+
+	<!-- Main body -->
+	<div id="wrapper">
+		<!-- Teaser -->
+		<div id="linked">
+			<h1>Research</h1>
+			My research interests include <i><u>formal methods</u></i> and their application on <i><u>software
+					verification</u></i>, as well as the development of <i><u>logical foundations</u></i> for
+			<i><u>programming languages</u></i>. I have always been interested in pure mathematical reasoning and I
+			found in these fields of Computer Science a way to nurture that interest while contributing with a direct
+			impact in society. Threading on the boundary between theory and practice is something I wish to explore at
+			this early stage of my career.
+			<br><br>
+
+			Currently, I am working on <i><u>incorrectness logic</u></i> for scalable bug detection in libraries that
+			rely on internal use of <i><u>unsafe features</u></i>. In particular, my focus is on the <a
+				href="https://www.rust-lang.org" target="_blank">Rust</a> programming language, building on the type
+			soundness result of <a href="https://plv.mpi-sws.org/rustbelt/popl18" target="_blank"> RustBelt</a>. The
+			main goal of this project is to develop a sound and scalable technique for <i><u>automatic</u></i> detection
+			of <i><u>type unsoundness</u></i> in internally unsafe Rust libraries.
+			<br><br>
+
+			I have experience with the <a href="https://rocq-prover.org" target="_blank">Rocq</a> proof assistant and
+			with the <a href="https://iris-project.org" target="_blank">Iris</a> framework. My <a
+				href="/research/carrott2022thesis">MSc thesis</a> consisted in the verification of a concurrent skip
+			list algorithm in Iris. The <a href="https://github.com/sr-lab/iris-jellyfish" target="_blank">Rocq
+				development</a> is publicly available and also contains an alternative definition of atomic triples
+			within the Iris logic.
+			<br><br>
+
+			<nuno-saavedra></nuno-saavedra> and I created <a href="/research/carrott2024coqpyt">CoqPyt</a>, a Python
+			tool for interacting with Rocq (previously known as Coq) via extraction of contextual information from
+			proofs, as well as insertion and removal of steps in proofs. CoqPyt allowed the construction of a dataset
+			used to train and evaluate <a href="/research/thompson2025rango">Rango</a>, a state-of-the-art LLM-based
+			proof synthesizer.
+			<br><br>
+
+			<h1>Talks</h1>
+			<carrott2025unsafe-item></carrott2025unsafe-item>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer-component></footer-component>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/components.js" type="text/javascript" defer></script>
+</body>
+
+</html>
