@@ -140,7 +140,7 @@ customElements.define('azalea-raad', Entity("Azalea Raad", "https://www.soundand
 customElements.define('sacha-ayoun', Entity("Sacha-Élie Ayoun", "https://www.doc.ic.ac.uk/~sja3417"));
 
 // CoqPyt/Rango project
-customElements.define('emily-first', Entity("Emily First", "https://people.cs.umass.edu/~efirst"));
+customElements.define('emily-first', Entity("Emily First", "https://efirst.github.io"));
 customElements.define('kyle-thompson', Entity("Kyle Thompson", "https://rkthomps.github.io"));
 customElements.define('yuriy-brun', Entity("Yuriy Brun", "https://people.cs.umass.edu/~brun"));
 customElements.define('sorin-lerner', Entity("Sorin Lerner", "https://cseweb.ucsd.edu/~lerner"));
@@ -286,11 +286,11 @@ defineResearchElement('carrott2025unsafe',
         ['Slides', '']
     ],
     `
-    Recent work has shown promising advances in techniques for scalable bug detection by leveraging under-approximate (UX) reasoning.
-    This work presents a UX approach to automatically detect type unsoundness in libraries that rely on internal use of unsafe features.
-    To reason about such libraries, we build on prior work by encoding type assignments as separation logic assertions.
+    Recent work has shown promising advances in techniques for scalable bug detection by leveraging <i>under-approximate</i> (UX) reasoning.
+    This work presents a UX approach to <i>automatically</i> detect type unsoundness in libraries that rely on internal use of <i>unsafe features</i>.
+    To reason about such libraries, we build on prior work by encoding type assignments as <i>separation logic</i> assertions.
     Our key insight is that undefined behaviour obtained from incorrect uses of unsafe features
-    may be reasoned about by refuting such type assignments via incorrectness logic.
+    may be reasoned about by refuting such type assignments via <i>incorrectness logic</i>.
     We demonstrate how our approach may be used to detect memory safety bugs in a simple language with an ownership type system.
     `,
     "TPSA 2025: Workshop on Theory and Practice of Static Analysis"
