@@ -79,14 +79,9 @@ class Footer extends HTMLElement {
                         &copy; ${date.getFullYear()}
                         Pedro Carrott.
                     </b>
-                    <i>Last updated on
-                        ${date.toLocaleDateString(
-            "en-GB",
-            { year: "numeric", month: "long", day: "numeric" }
-        )}
-                    </i>
+                    <i>Meme design is my passion.</i>
                     <br><br>
-                    Based on <u style="text-underline-offset: 1px;">Future Imperfect</u> by <a href="http://html5up.net" target="_blank">HTML5 UP</a>.
+                    Based on <i><u style="text-underline-offset: 1px;">Future Imperfect</u></i> by <a href="http://html5up.net" target="_blank">HTML5 UP</a>
                 </p>
             </section>
         `;
