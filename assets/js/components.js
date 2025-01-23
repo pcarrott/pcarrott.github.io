@@ -283,7 +283,8 @@ defineResearchElement('carrott2025unsafe',
     "Scalable Bug Detection for Internally Unsafe Libraries: A Logical Approach to Type Refutation",
     ["pedro-carrott", "sacha-ayoun", "azalea-raad"],
     [
-        ['Slides', '']
+        ['Slides', 'slides.pdf'],
+        ['Video', 'https://www.youtube.com/live/pdYtlOtP2Vk?si=dY9G7w4T9fPwciOB&t=21104']
     ],
     `
     Recent work has shown promising advances in techniques for scalable bug detection by leveraging <i>under-approximate</i> (UX) reasoning.
