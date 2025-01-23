@@ -223,8 +223,8 @@ defineResearchElement('carrott2022thesis',
     "Formal Specification and Verification of the Lazy JellyFish Skip List",
     ["pedro-carrott"],
     [
-        ['PDF', 'msc.pdf'],
-        ['Extended Abstract', 'extended-abstract.pdf'],
+        ['PDF', 'carrott2022thesis.pdf'],
+        ['Extended Abstract', 'carrott2022abstract.pdf'],
         ['Rocq Development', 'https://github.com/sr-lab/iris-jellyfish']
     ],
     `
@@ -257,7 +257,7 @@ defineResearchElement('carrott2024coqpyt',
     ["pedro-carrott", "nuno-saavedra", "kyle-thompson", "sorin-lerner", "joao-ferreira", "emily-first"],
     [
         ['DOI', 'https://doi.org/10.1145/3663529.3663814'],
-        ['PDF', 'coqpyt.pdf'],
+        ['PDF', 'carrott2024coqpyt.pdf'],
         ['Code', 'https://github.com/sr-lab/coqpyt'],
         ['Video', 'https://youtu.be/fk74o0rePM8'],
         ['Pre-print', 'https://arxiv.org/abs/2405.04282']
@@ -278,7 +278,7 @@ defineResearchElement('carrott2025unsafe',
     "Scalable Bug Detection for Internally Unsafe Libraries: A Logical Approach to Type Refutation",
     ["pedro-carrott", "sacha-ayoun", "azalea-raad"],
     [
-        ['Slides', 'slides.pdf'],
+        ['Slides', 'carrott2025unsafe.pdf'],
         ['Video', 'https://www.youtube.com/live/pdYtlOtP2Vk?si=dY9G7w4T9fPwciOB&t=21104']
     ],
     `
