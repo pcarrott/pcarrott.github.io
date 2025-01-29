@@ -279,7 +279,7 @@ defineResearchElement('carrott2025unsafe',
     ["pedro-carrott", "sacha-ayoun", "azalea-raad"],
     [
         ['Slides', 'carrott2025unsafe.pdf'],
-        ['Video', 'https://www.youtube.com/live/pdYtlOtP2Vk?si=dY9G7w4T9fPwciOB&t=21104']
+        ['Video', 'https://www.youtube.com/live/pdYtlOtP2Vk?si=YvEU5Sj57Mc-MnDl&t=14437']
     ],
     `
     Recent work has shown promising advances in techniques for scalable bug detection by leveraging <i>under-approximate</i> (UX) reasoning.
