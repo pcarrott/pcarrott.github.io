@@ -296,8 +296,8 @@ defineResearchElement('thompson2025rango',
     "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification",
     ["kyle-thompson", "nuno-saavedra", "pedro-carrott", "kevin-fisher", "alex-sanchez-stern", "yuriy-brun", "joao-ferreira", "sorin-lerner", "emily-first"],
     [
-        ['DOI', ''],
-        ['PDF', ''],
+        ['DOI', 'https://doi.ieeecomputersociety.org/10.1109/ICSE55347.2025.00161'],
+        ['PDF', 'thompson2025rango.pdf'],
         ['Code', 'https://github.com/rkthomps/coq-modeling'],
         ['Dataset', 'https://github.com/rkthomps/CoqStoq'],
         ['Pre-print', 'https://arxiv.org/abs/2412.14063']
