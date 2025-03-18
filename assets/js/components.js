@@ -213,7 +213,8 @@ function ResearchPage(title, authors, links, abstract, venue) {
     };
 }
 
-function defineResearchElement(id, title, authors, links, abstract, venue) {
+function defineResearchElement(id, title, authors, links, abstract, venue, distinguished = false) {
+    title = title + (distinguished ? " <span class='distinguished'>(Distinguished Paper)</span>" : "");
     customElements.define(`${id}-link`, Entity(title, `/research/${id}`, true));
     customElements.define(`${id}-item`, ResearchItem(id, title, authors, venue));
     customElements.define(`${id}-page`, ResearchPage(title, authors, links, abstract, venue));
@@ -318,5 +319,6 @@ defineResearchElement('thompson2025rango',
     which is 29% more theorems than the prior state-of-the-art tool Tactician.
     Our evaluation also shows that Rango adding relevant proofs to its context leads to a 47% increase in the number of theorems proven.
     `,
-    "ICSE '25: Proceedings of the IEEE/ACM 47th International Conference on Software Engineering"
+    "ICSE '25: Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
+    true
 )

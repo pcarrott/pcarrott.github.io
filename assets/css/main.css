@@ -2959,6 +2959,11 @@ ul.posts article header> :last-child {
 	font-style: oblique;
 }
 
+.distinguished {
+	font-weight: normal !important;
+	font-style: oblique !important;
+}
+
 .publication>header .venue {
 	display: block;
 	font-size: 12pt;
