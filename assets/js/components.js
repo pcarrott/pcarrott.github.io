@@ -200,21 +200,25 @@ function ResearchPage(title, authors, links, abstract, venue) {
                 <div>
                     <h1 class="research">${title}</h1>
                     <div class="authors" style="margin: 0 0 1em 0;">${authors}</div>
-
                     <h3>${links}</h3>
-
                     <h1>Abstract</h1>
                     ${abstract}
                     <br><br>
-                    <h3 class="research">${venue}</h3>
+                    <h3 class="pagevenue">${venue}</h3>
                 </div>
             `;
         }
     };
 }
 
-function defineResearchElement(id, title, authors, links, abstract, venue, distinguished = false) {
-    title = title + (distinguished ? " <span class='distinguished'>(Distinguished Paper)</span>" : "");
+function defineResearchElement(id, title, authors, links, abstract, venue, distinction = "") {
+    venue = venue + (
+        distinction
+            ?
+            `<br><span class="distinguished"><i class="fa-solid fa-trophy"></i> Recipient of <span class='award'>${distinction}</span></span>`
+            :
+            ""
+    );
     customElements.define(`${id}-link`, Entity(title, `/research/${id}`, true));
     customElements.define(`${id}-item`, ResearchItem(id, title, authors, venue));
     customElements.define(`${id}-page`, ResearchPage(title, authors, links, abstract, venue));
@@ -320,5 +324,5 @@ defineResearchElement('thompson2025rango',
     Our evaluation also shows that Rango adding relevant proofs to its context leads to a 47% increase in the number of theorems proven.
     `,
     "ICSE '25: Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
-    true
+    "ACM SIGSOFT Distinguished Paper Award"
 )

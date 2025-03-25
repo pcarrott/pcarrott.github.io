@@ -2961,7 +2961,22 @@ ul.posts article header> :last-child {
 
 .distinguished {
 	font-weight: normal !important;
-	font-style: oblique !important;
+	font-style: normal !important;
+	color: var(--header-color);
+}
+
+.distinguished .award {
+	font-weight: bold !important;
+	font-style: normal !important;
+	color: var(--header-color);
+}
+
+.pagevenue {
+	font-weight: bold !important;
+	font-style: normal !important;
+	color: var(--text-color) !important;
+	letter-spacing: 0.15em !important;
+	text-transform: none !important;
 }
 
 .publication>header .venue {
