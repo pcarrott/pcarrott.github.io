@@ -326,3 +326,39 @@ defineResearchElement('thompson2025rango',
     "ICSE '25: Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
     "ACM SIGSOFT Distinguished Paper Award"
 )
+
+defineResearchElement('carrott2025ruxt',
+    "Compositional Bug Detection for Internally Unsafe Libraries: A Logical Approach to Type Unsoundness",
+    ["pedro-carrott", "sacha-ayoun", "azalea-raad"],
+    [
+        ['Draft', 'carrott2025ruxt.pdf']
+    ],
+    `
+    Rust is a modern programming language marrying the best of language design by offering fine-grained control over system
+    resources (thus enabling efficient implementations), while simultaneously ensuring memory safety and data-race freedom. 
+    However, ensuring type safety in <i>internally unsafe</i> libraries remains an important and non-trivial challenge,
+    where unsafe features enable low-level control but can introduce undefined behaviour (UB). 
+    Existing works on reasoning about unsafe code either use <i>verification</i> techniques to show <i>correctness</i>
+    (i.e. safety, useful only when the unsafe code is indeed correct),
+    or use <i>bug-detection</i> techniques to show <i>incorrectness</i> (i.e. unsafety) but fail to do so
+    <i>automatically</i> (to avoid developer burden),
+    <i>compositionally</i> (to support libraries without a main function),
+    <i>soundly</i> (without false positives) and
+    <i>generally</i> (rather than applying to specific patterns). 
+
+    <br><br>
+
+    We close this gap by developing RUXt, a <i>fully automatic</i>, <i>compositional</i> bug detection tool for detecting UB
+    in internally unsafe Rust libraries with a formal <i>inadequacy</i> theorem providing a <i>no-false-positives guarantee</i>.
+    RUXt leverages the Rust type system to under-approximate the set of safe values for user-defined
+    types and detect safety violations without requiring manual annotations by the user. 
+    By encoding well-typed values in Rust as separation logic assertions,
+    RUXt enables compositional reasoning about types to refute unsound type signatures and detect UB. 
+    The inadequacy theorem of RUXt ensures that each UB detected by RUXt in an internally unsafe library is a true safety violation
+    that can be triggered by a <i>safe</i> program, i.e. one that solely interacts with the safe API of the library. 
+    To this end,  when RUXt identifies a UB, it additionally produces a <i>safe program</i> witnessing the UB.
+    To demonstrate the generality and applicability of RUXt, we develop a prototype implementation in OCaml,
+    and apply it to several case studies, showcasing its ability to detect true safety violations.
+    `,
+    "Under submission"
+);
