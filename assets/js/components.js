@@ -276,7 +276,7 @@ defineResearchElement('carrott2024coqpyt',
     CoqPyt improves on other Coq-related tools by providing novel features, such as the extraction of rich premise data.
     We expect our work to aid development of tools and techniques, especially LLM-based, designed for proof synthesis and repair.
     `,
-    "FSE 2024: Companion Proceedings of the 32nd ACM International Conference on the Foundations of Software Engineering"
+    "FSE 2024: 32nd ACM International Conference on the Foundations of Software Engineering (Demonstration Track)"
 );
 
 defineResearchElement('carrott2025unsafe',
@@ -323,7 +323,7 @@ defineResearchElement('thompson2025rango',
     which is 29% more theorems than the prior state-of-the-art tool Tactician.
     Our evaluation also shows that Rango adding relevant proofs to its context leads to a 47% increase in the number of theorems proven.
     `,
-    "ICSE '25: Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
+    "ICSE 2025: IEEE/ACM 47th International Conference on Software Engineering",
     "ACM SIGSOFT Distinguished Paper Award"
 )
 
