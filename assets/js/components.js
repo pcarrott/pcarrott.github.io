@@ -331,7 +331,11 @@ defineResearchElement('carrott2025ruxt',
     "Compositional Bug Detection for Internally Unsafe Libraries: A Logical Approach to Type Unsoundness",
     ["pedro-carrott", "sacha-ayoun", "azalea-raad"],
     [
-        ['Pre-print', 'carrott2025ruxt.pdf']
+        ['DOI', ''],
+        ['PDF', ''],
+        ['Pre-print', 'carrott2025ruxt.pdf'],
+        ['Artifact', 'https://doi.org/10.5281/zenodo.15268680'],
+        ['Rocq Development', 'https://github.com/pcarrott/ruxt-model']
     ],
     `
     Rust is a modern programming language marrying the best of language design by offering fine-grained control over system
